@@ -37,7 +37,10 @@ const App = () => {
     <>
       <SafeAreaView>
         <View style={styles.body}>
-          <Text style={styles.content}>Ex nihilo.</Text>
+          <View style={styles.logo}></View>
+          <Text style={styles.title}>EX NIHILO</Text>
+          <Text style={styles.baseline}>The answer is out there</Text>
+          <Text style={styles.loader}>Loading...</Text>
         </View>
       </SafeAreaView>
     </>
@@ -46,14 +49,31 @@ const App = () => {
 
 const styles = StyleSheet.create({
   body: {
-    backgroundColor: Colors.black,
+    backgroundColor: '#818181',
     width: '100%',
     height: '100%',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
-  content: {
-    color: Colors.white,
+  logo: {
+    backgroundColor: '#c4c4c4',
+    width: 100,
+    height: 100,
+    marginBottom: 84,
+  },
+  title: {
+    marginBottom: 12,
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  baseline: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  loader: {
+    fontSize: 12,
+    position: 'absolute',
+    bottom: 84,
   }
 });
 

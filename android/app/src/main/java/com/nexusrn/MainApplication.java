@@ -11,6 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import com.reactnativecommunity.rnpermissions.RNPermissionsPackage;
+import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 
 public class MainApplication extends Application implements ReactApplication {
 

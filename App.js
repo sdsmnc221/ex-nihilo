@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import {request, PERMISSIONS} from 'react-native-permissions';
+import Contacts from 'react-native-contacts';
 
 const App = () => {
 
@@ -21,7 +22,16 @@ const App = () => {
     return {readContactsStatus, writeContactsStatus};
   }
   
-  requestPermissions().then(statuses => console.log(statuses));
+  requestPermissions().then(statuses => {
+    console.log(statuses);
+    Contacts.getAllWithoutPhotos((err, contacts) => {
+      if (err === 'denied'){
+        // error
+      } else {
+        console.log(contacts);
+      }
+    });
+  });
 
   return (
     <>

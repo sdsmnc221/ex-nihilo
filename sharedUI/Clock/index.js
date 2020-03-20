@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-} from 'react-native';
+import React from 'react';
+import { View, Text } from 'react-native';
 import styled from 'styled-components';
 
-const DateTime = styled.View`
+const Wrapper = styled.View`
   position: absolute;
   top: 84px;
 `;
@@ -24,12 +19,12 @@ const Date = styled.Text`
 
 const Clock = () => {
     return (
-        <DateTime>
+        <Wrapper>
             <Time>13</Time>
             <Time>45</Time>
             <Date>Mardi 17 Mars 2020</Date>
-        </DateTime>
+        </Wrapper>
     );
-}
+};
 
 export default Clock;

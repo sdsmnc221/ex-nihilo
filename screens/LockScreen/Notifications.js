@@ -12,6 +12,8 @@ import styled from 'styled-components';
 import Clock from '../../sharedUI/Clock';
 import Notification from '../../sharedUI/Notification';
 
+import { shuffle, sampleSize } from '../../utils';
+
 const NotificationsList = styled.ScrollView`
   width: 80%;
   max-height: 56%;
@@ -51,14 +53,14 @@ const NotificationsScreen = ({ route, navigation }) => {
     if (contactsRef && contactsRef.current) {
       const deviceContacts = contactsRef.current.filter(c => c.phoneNumbers.length > 0);
       if (deviceContacts.length > 0) {
-        setContacts(deviceContacts.map(c => c.phoneNumbers[0].number));
+        setContacts(shuffle(deviceContacts.map(c => c.phoneNumbers[0].number)));
       }
     }
   }, [contactsRef]);
 
   const onPress = () => navigation.navigate('LockScreen');
 
-  const notifications = contacts.map(c => {
+  const notifications = sampleSize(contacts.map(c => {
     const type =  Math.random() >= 0.5 ? 'message' : 'call';
     return {
       type,
@@ -66,7 +68,7 @@ const NotificationsScreen = ({ route, navigation }) => {
       title: c,
       message: type === 'message' ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo' : ''
     };
-  });
+  }), contacts.length >= 10 ? 10 : contacts.length);
 
   return (
     <>

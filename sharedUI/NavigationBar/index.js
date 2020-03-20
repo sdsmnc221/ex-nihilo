@@ -11,6 +11,6 @@ const Wrapper = styled.View`
   bottom: 0;
 `;
 
-const NavigationBar = ({ size }) => <Wrapper />;
+const NavigationBar = () => <Wrapper />;
 
 export default NavigationBar;

@@ -8,8 +8,10 @@ import {
 import styled from 'styled-components';
 import { TextInput } from 'react-native-gesture-handler';
 
-const LockScreen = () => {
+const LockScreen = ({ navigation }) => {
   const [passwordInput, setPasswordInput] = useState('');
+
+  const onSubmit = () => navigation.navigate('HomeScreen');
 
   return (
     <>
@@ -17,7 +19,14 @@ const LockScreen = () => {
         <View style={styles.body}>
           <View style={styles.lock}></View>
           <Text style={styles.title}>Entrer le mot de passe</Text>
-          <TextInput style={styles.input} onChangeText={text => setPasswordInput(text)} value={passwordInput} />
+          <TextInput 
+            style={styles.input}
+            secureTextEntry
+            blurOnSubmit
+            onChangeText={text => setPasswordInput(text)}
+            value={passwordInput}
+            onSubmitEditing={onSubmit}
+          />
           <Text style={styles.hint}>Aide mot de passe Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo</Text>
         </View>
       </SafeAreaView>

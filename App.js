@@ -6,6 +6,7 @@ import SplashScreen from './screens/SplashScreen';
 import WarningScreen from './screens/Warning';
 import NotificationsScreen from './screens/LockScreen/Notifications';
 import LockScreen from './screens/LockScreen';
+import HomeScreen from './screens/Home';
 
 const App = () => {
   const Stack = createStackNavigator();
@@ -17,6 +18,7 @@ const App = () => {
         <Stack.Screen name='WarningScreen' component={WarningScreen} />
         <Stack.Screen name='NotificationsScreen' component={NotificationsScreen} />
         <Stack.Screen name='LockScreen' component={LockScreen} />
+        <Stack.Screen name='HomeScreen' component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

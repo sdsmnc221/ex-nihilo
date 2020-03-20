@@ -22,12 +22,12 @@ const Date = styled.Text`
 const Clock = () => {
   const now = moment().format('LLLL');
   const [time, setTime] = useState(now.slice(-5));
-  const [date, setDate] = useState(now.slice(0, now.indexOf(time) - 1));
+  const [date, setDate] = useState(now.slice(0, now.length - time.length).trim());
 
   const tick = () => {
     const now = moment().format('LLLL');
     setTime(now.slice(-5));
-    setDate(now.slice(0, now.indexOf(time) - 1));
+    setDate(now.slice(0, now.length - time.length).trim());
   };
 
   useEffect(() => {

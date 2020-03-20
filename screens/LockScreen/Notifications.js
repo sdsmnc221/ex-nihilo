@@ -17,7 +17,7 @@ import { shuffle, sampleSize } from '../../utils';
 
 const NotificationsList = styled.ScrollView`
   width: 80%;
-  max-height: 56%;
+  max-height: 46%;
 `;
 
 const Swiper = styled.TouchableOpacity`

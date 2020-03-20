@@ -9,7 +9,10 @@ import {
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
-const DateTime = styled.View``;
+const DateTime = styled.View`
+  position: absolute;
+  top: 84px;
+`;
 
 const Time = styled.Text`
   font-weight: bold;
@@ -24,13 +27,13 @@ const Date = styled.Text`
 const NotificationsList = styled.ScrollView`
   width: 80%;
   max-height: 56%;
-  margin: 24px 0;
 `;
 
 const Swiper = styled.TouchableOpacity`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 24px;
 `;
 
 const SwiperText = styled.Text`
@@ -75,8 +78,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#c4c4c4',
     width: '100%',
     height: '100%',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
+    paddingBottom: 12,
   },
 });
 

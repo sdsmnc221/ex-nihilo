@@ -7,6 +7,7 @@ import {
   ScrollView
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import GestureRecognizer from 'react-native-swipe-gestures';
 import styled from 'styled-components';
 
 import Clock from '../../sharedUI/Clock';
@@ -58,7 +59,7 @@ const NotificationsScreen = ({ route, navigation }) => {
     }
   }, [contactsRef]);
 
-  const onPress = () => navigation.navigate('LockScreen');
+  const onSwipeUp = (gestureState) => navigation.navigate('LockScreen');
 
   const notifications = sampleSize(contacts.map(c => {
     const type =  Math.random() >= 0.5 ? 'message' : 'call';
@@ -73,16 +74,18 @@ const NotificationsScreen = ({ route, navigation }) => {
   return (
     <>
       <SafeAreaView>
-        <View style={styles.body}>
-          <Clock />
-          <NotificationsList>
-            {notifications.map((n, i) => <Notification key={i} type={n.type} date={n.date} title={n.title} message={n.message} />)}
-          </NotificationsList>
-          <Swiper onPress={onPress}>
-            <SwiperText>Swipe to unlock</SwiperText>
-            <SwiperNotch />
-          </Swiper>
-        </View>
+        <GestureRecognizer onSwipeUp={onSwipeUp}>
+          <View style={styles.body}>
+            <Clock />
+            <NotificationsList>
+              {notifications.map((n, i) => <Notification key={i} type={n.type} date={n.date} title={n.title} message={n.message} />)}
+            </NotificationsList>
+            <Swiper>
+              <SwiperText>Swipe to unlock</SwiperText>
+              <SwiperNotch />
+            </Swiper>
+          </View>
+        </GestureRecognizer>
       </SafeAreaView>
     </>
   );

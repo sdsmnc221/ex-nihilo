@@ -7,28 +7,32 @@ import {
 } from 'react-native';
 import styled from 'styled-components';
 import { TextInput } from 'react-native-gesture-handler';
+import GestureRecognizer from 'react-native-swipe-gestures';
 
 const LockScreen = ({ navigation }) => {
   const [passwordInput, setPasswordInput] = useState('');
 
   const onSubmit = () => navigation.navigate('HomeScreen');
+  const onSwipeDown = (gestureState) => navigation.navigate('NotificationsScreen');
 
   return (
     <>
       <SafeAreaView>
-        <View style={styles.body}>
-          <View style={styles.lock}></View>
-          <Text style={styles.title}>Entrer le mot de passe</Text>
-          <TextInput 
-            style={styles.input}
-            secureTextEntry
-            blurOnSubmit
-            onChangeText={text => setPasswordInput(text)}
-            value={passwordInput}
-            onSubmitEditing={onSubmit}
-          />
-          <Text style={styles.hint}>Aide mot de passe Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo</Text>
-        </View>
+        <GestureRecognizer onSwipeDown={onSwipeDown}>
+          <View style={styles.body}>
+            <View style={styles.lock}></View>
+            <Text style={styles.title}>Entrer le mot de passe</Text>
+            <TextInput 
+              style={styles.input}
+              secureTextEntry
+              blurOnSubmit
+              onChangeText={text => setPasswordInput(text)}
+              value={passwordInput}
+              onSubmitEditing={onSubmit}
+            />
+            <Text style={styles.hint}>Aide mot de passe Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo</Text>
+          </View>
+        </GestureRecognizer>
       </SafeAreaView>
     </>
   );

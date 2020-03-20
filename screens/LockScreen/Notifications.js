@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -36,8 +36,37 @@ const SwiperNotch = styled.View`
   background-color: #565656;
 `;
 
-const NotificationsScreen = ({ navigation }) => {
+const NotificationsScreen = ({ route, navigation }) => {
+  const { contactsRef } = route.params;
+
+  const [contacts, setContacts] = useState([
+    '950',
+    '550',
+    '438',
+    'Marie Dupont',
+    '117'
+  ])
+
+  useEffect(() => {
+    if (contactsRef && contactsRef.current) {
+      const deviceContacts = contactsRef.current.filter(c => c.phoneNumbers.length > 0);
+      if (deviceContacts.length > 0) {
+        setContacts(deviceContacts.map(c => c.phoneNumbers[0].number));
+      }
+    }
+  }, [contactsRef]);
+
   const onPress = () => navigation.navigate('LockScreen');
+
+  const notifications = contacts.map(c => {
+    const type =  Math.random() >= 0.5 ? 'message' : 'call';
+    return {
+      type,
+      date: 'le 25/02/2020',
+      title: c,
+      message: type === 'message' ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo' : ''
+    };
+  });
 
   return (
     <>
@@ -45,13 +74,7 @@ const NotificationsScreen = ({ navigation }) => {
         <View style={styles.body}>
           <Clock />
           <NotificationsList>
-            <Notification />
-            <Notification />
-            <Notification />
-            <Notification />
-            <Notification />
-            <Notification />
-            <Notification />
+            {notifications.map((n, i) => <Notification key={i} type={n.type} date={n.date} title={n.title} message={n.message} />)}
           </NotificationsList>
           <Swiper onPress={onPress}>
             <SwiperText>Swipe to unlock</SwiperText>

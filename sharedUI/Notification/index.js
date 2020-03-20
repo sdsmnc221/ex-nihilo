@@ -59,31 +59,53 @@ const Message = styled.Text`
   font-size: 10px;
 `;
 
-const Notification = ({ withSpacing }) => (
-    <Wrapper withSpacing={withSpacing}>
-        <Header>
-            <Type>
-                <PlaceHolder size={12} />
-                <TypeText>Messages</TypeText>
-            </Type>
-            <Date>le 25/02/2020</Date>
-        </Header>
-        <Content>
-            <PlaceHolder size={36} />
-            <ContentTextWrapper>
-                <Title>Marie Dupont</Title>
-                <Message>{truncate('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo')}</Message>
-            </ContentTextWrapper>
-        </Content>
-    </Wrapper>
-);
+const Notification = ({ withSpacing, type, date, title, message }) => {
+    let typeText, messageText = '';
+
+    switch (type) {
+        case 'call':
+            typeText = 'Appels';
+            messageText = 'Appel manqué';
+            break;
+        case 'message':
+            typeText = 'Messages';
+            messageText = truncate(message);
+            break;
+        default:
+            break;
+    }
+
+    return (
+        <Wrapper withSpacing={withSpacing}>
+            <Header>
+                <Type>
+                    <PlaceHolder size={12} />
+                    <TypeText>{typeText}</TypeText>
+                </Type>
+                <Date>{date}</Date>
+            </Header>
+            <Content>
+                <PlaceHolder size={36} />
+                <ContentTextWrapper>
+                    <Title>{title}</Title>
+                    <Message>{messageText}</Message>
+                </ContentTextWrapper>
+            </Content>
+        </Wrapper>
+    );
+}
 
 Notification.propTypes = {
     withSpacing: PropTypes.bool,
+    type: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
 }
 
 Notification.defaultProps = {
-    withSpacing: true
+    withSpacing: true,
+    message: '',
 }
 
 export default Notification;

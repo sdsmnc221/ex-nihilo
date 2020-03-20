@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -21,6 +21,8 @@ const Button = styled.TouchableOpacity`
 `;
 
 const WarningScreen = ({ navigation }) => {
+  const contactsRef = useRef(null);
+
   async function requestPermissions() {
     const rationale = {
       title: 'Permissions thing',
@@ -39,13 +41,13 @@ const WarningScreen = ({ navigation }) => {
         if (err === 'denied'){
           // error
         } else {
-          console.log(contacts);
+          contactsRef.current = contacts;
         }
       });
     });
   }, []);
 
-  const onPress = () => navigation.navigate('NotificationsScreen');
+  const onPress = () => navigation.navigate('NotificationsScreen', { contactsRef });
 
   return (
     <>

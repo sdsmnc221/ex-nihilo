@@ -11,10 +11,14 @@ import NotificationsScreen from './screens/LockScreen/Notifications';
 import LockScreen from './screens/LockScreen';
 import HomeScreen from './screens/Home';
 
+import FullScreen from "./utils/FullScreen";
+
 const App = () => {
   moment.locale('fr');
   
   const Stack = createStackNavigator();
+
+  FullScreen.enable();
 
   return (
     <NavigationContainer>

@@ -8,7 +8,7 @@ import {
 
 const SplashScreen = ({ navigation }) => {
   useEffect(() => {
-    setTimeout(() => navigation.navigate('WarningScreen'), 3200);
+    setTimeout(() => navigation.navigate('WarningScreen'), 6400);
   }, [])
 
   return (

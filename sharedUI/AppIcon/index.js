@@ -17,7 +17,7 @@ const Wrapper = styled.View`
   align-items: center;
 `;
 
-const AppIcon = ({ type, size, active, onPress }) => active ?
+const AppIcon = ({ type, notifs, size, active, onPress }) => active ?
     (<TouchableOpacity onPress={onPress}>
         <Wrapper size={size}>
             <Icon type={type} />
@@ -29,6 +29,7 @@ const AppIcon = ({ type, size, active, onPress }) => active ?
 
 AppIcon.propTypes = {
     type: PropTypes.string,
+    notifs: PropTypes.number,
     size: PropTypes.number,
     active: PropTypes.bool,
     onPress: PropTypes.func,
@@ -36,6 +37,7 @@ AppIcon.propTypes = {
 
 AppIcon.defaultProps = {
     type: '',
+    notifs: 0,
     size: 45,
     active: false,
     onPress: () => {},

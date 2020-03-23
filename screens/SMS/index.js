@@ -12,12 +12,26 @@ import { shuffle } from '../../utils';
 
 import SmsShort from '../../sharedUI/SmsShort';
 import NavigationBar from '../../sharedUI/NavigationBar';
+import Icon from '../../sharedUI/Icon';
 
 const SmsList = styled.ScrollView`
   width: 100%;
   background-color: #fff;
   margin-top: 48px;
 `;
+
+const AddButton = styled.View`
+  position: absolute;
+  right: 12px;
+  bottom: 64px;
+  background-color: #565656;
+  width: 56px;
+  height: 56px;
+  border-radius: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 const SmsScreen = ({ navigation }) => {
   const [contacts, setContacts] = useState([
@@ -62,6 +76,9 @@ const SmsScreen = ({ navigation }) => {
           <SmsList>
             {smsList.map((s, i) => <SmsShort key={i} date={s.date} title={s.title} message={s.message} onPress={() => navigation.navigate('SmsConversation', { headerTitle: s.title })} />)}
           </SmsList>
+          <AddButton>
+            <Icon type="ADD" />
+          </AddButton>
           <NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
         </View>
       </SafeAreaView>

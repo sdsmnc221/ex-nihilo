@@ -1,3 +1,4 @@
+export { default as ADD } from './ADD';
 export { default as APPS } from './APPS';
 export { default as ARROW_LEFT } from './ARROW_LEFT';
 export { default as CONTACTS } from './CONTACTS';

@@ -48,7 +48,7 @@ const NotificationsScreen = ({ route, navigation }) => {
     '438',
     'Marie Dupont',
     '117'
-  ])
+  ]);
 
   useEffect(() => {
     if (contactsRef && contactsRef.current) {

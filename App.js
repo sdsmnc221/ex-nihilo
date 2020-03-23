@@ -10,6 +10,8 @@ import WarningScreen from './screens/Warning';
 import NotificationsScreen from './screens/LockScreen/Notifications';
 import LockScreen from './screens/LockScreen';
 import HomeScreen from './screens/Home';
+import SmsScreen from './screens/SMS';
+import SmsConversation from './screens/SMS/SmsConversation';
 
 import FullScreen from "./utils/FullScreen";
 
@@ -22,12 +24,14 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator headerMode='none'>
-        <Stack.Screen name='SpashScreen' component={SplashScreen} />
-        <Stack.Screen name='WarningScreen' component={WarningScreen} />
-        <Stack.Screen name='NotificationsScreen' component={NotificationsScreen} />
-        <Stack.Screen name='LockScreen' component={LockScreen} />
-        <Stack.Screen name='HomeScreen' component={HomeScreen} />
+      <Stack.Navigator>
+        <Stack.Screen name='SplashScreen' component={SplashScreen} options={{ headerShown: false }} />
+        <Stack.Screen name='WarningScreen' component={WarningScreen} options={{ headerShown: false }} />
+        <Stack.Screen name='NotificationsScreen' component={NotificationsScreen} options={{ headerShown: false }} />
+        <Stack.Screen name='LockScreen' component={LockScreen} options={{ headerShown: false }} />
+        <Stack.Screen name='HomeScreen' component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name='SmsScreen' component={SmsScreen} options={{ title: 'Messagerie', headerLeft: null }} />
+        <Stack.Screen name='SmsConversation' component={SmsConversation} />
       </Stack.Navigator>
     </NavigationContainer>
   );

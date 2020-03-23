@@ -10,6 +10,8 @@ import styled from 'styled-components';
 import {request, PERMISSIONS} from 'react-native-permissions';
 import Contacts from 'react-native-contacts';
 
+import Icon from '../../sharedUI/Icon';
+
 const Button = styled.TouchableOpacity`
   position: absolute;
   bottom: 84px;
@@ -17,7 +19,10 @@ const Button = styled.TouchableOpacity`
   font-weight: bold;
   background-color: #c4c4c4;
   padding: 12px;
-  padding-right: 48px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
 const WarningScreen = ({ navigation }) => {
@@ -55,11 +60,11 @@ const WarningScreen = ({ navigation }) => {
         <View style={styles.body}>
           <View style={styles.logo}></View>
           <Text style={styles.title}>Warning</Text>
-          <Text style={styles.content}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo. Vestibulum tincidunt turpis pretium neque vulputate, nec imperdiet velit ultricies. In ac quam ex. Ut leo libero, ultrices volutpat velit ut, vehicula bibendum nibh. Vestibulum lacus lectus, tincidunt vitae mauris quis, semper condimentum ante.
-          </Text>
+          <Text style={styles.content}>L’expérience que nous vous proposons contient du contenu explicite et violent pouvant choquer votre sensibilité. </Text>
+          <Text style={styles.content}>Nous recommandons aux personnes sensibles et aux enfants de ne pas y participer.</Text>
           <Button onPress={onPress}>
-            <Text>Suivant</Text>
+            <Text>Suivant  </Text>
+            <Icon type="ARROW_LEFT" />
           </Button>
         </View>
       </SafeAreaView>
@@ -92,7 +97,8 @@ const styles = StyleSheet.create({
     color: '#e8e8e8',
     fontSize: 12,
     textAlign: 'center',
-    padding: 12,
+    paddingLeft: 24,
+    paddingRight: 24,
   },
 });
 

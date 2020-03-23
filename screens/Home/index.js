@@ -32,12 +32,12 @@ const HomeScreen = ({ navigation }) => {
           <Clock />
           <Icons>
             <AppIcon size={iconSize} />
-            <AppIcon size={iconSize} />
+            <AppIcon size={iconSize} active onPress={() => navigation.navigate('SmsScreen')} />
             <AppIcon size={iconSize} />
             <AppIcon size={iconSize} />
             <AppIcon size={iconSize} />
           </Icons>
-          <NavigationBar />
+          <NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} />
         </View>
       </SafeAreaView>
     </>

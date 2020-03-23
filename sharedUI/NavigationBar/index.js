@@ -1,16 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled, { css } from 'styled-components';
 
+import Icon from '../Icon';
+
+
 const Wrapper = styled.View`
-  background-color: #e8e8e8;
   width: 100%;
-  height: 64px;
+  height: 40px;
   position: absolute;
   bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: ${({ black }) => black ? '#565656' : 'transparent'};
 `;
 
-const NavigationBar = () => <Wrapper />;
+const NavigationBar = ({ onPressHome, black }) => (
+  <Wrapper black={black}>
+    <Icon type='NAVIGATION_BACK' />
+    <TouchableOpacity onPress={onPressHome}>
+      <Icon type='NAVIGATION_HOME' />
+    </TouchableOpacity>
+    <Icon type='NAVIGATION_APP' />
+  </Wrapper>
+);
+
+NavigationBar.propTypes = {
+  onPressHome: PropTypes.func.isRequired,
+  black: PropTypes.bool,
+}
+
+NavigationBar.defaultProps = {
+  onPressHome: () => {},
+  black: false,
+}
 
 export default NavigationBar;

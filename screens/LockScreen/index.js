@@ -8,6 +8,7 @@ import {
 import styled from 'styled-components';
 import { TextInput } from 'react-native-gesture-handler';
 import GestureRecognizer from 'react-native-swipe-gestures';
+import Icon from '../../sharedUI/Icon';
 
 const LockScreen = ({ navigation }) => {
   const [passwordInput, setPasswordInput] = useState('');
@@ -20,7 +21,9 @@ const LockScreen = ({ navigation }) => {
       <SafeAreaView>
         <GestureRecognizer onSwipeDown={onSwipeDown}>
           <View style={styles.body}>
-            <View style={styles.lock}></View>
+            <View style={styles.lock}>
+              <Icon type="LOCK" />
+            </View>
             <Text style={styles.title}>Entrer le mot de passe</Text>
             <TextInput 
               style={styles.input}
@@ -30,7 +33,7 @@ const LockScreen = ({ navigation }) => {
               value={passwordInput}
               onSubmitEditing={onSubmit}
             />
-            <Text style={styles.hint}>Aide mot de passe Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo</Text>
+            <Text style={styles.hint}>Le saviez-vous les catégories de mots de passe les plus répandu sont : les dates de naissances,  le nom d’un animal de compagnie ,1 2 3 4, ou encore password.</Text>
           </View>
         </GestureRecognizer>
       </SafeAreaView>
@@ -47,11 +50,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   lock: {
-    backgroundColor: '#c4c4c4',
-    width: 58,
-    height: 58,
-    position: 'absolute',
-    top: 84,
+    marginBottom: 32,
   },
   title: {
     marginBottom: 12,

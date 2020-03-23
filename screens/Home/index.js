@@ -31,11 +31,11 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.body}>
           <Clock />
           <Icons>
-            <AppIcon size={iconSize} />
-            <AppIcon size={iconSize} active onPress={() => navigation.navigate('SmsScreen')} />
-            <AppIcon size={iconSize} />
-            <AppIcon size={iconSize} />
-            <AppIcon size={iconSize} />
+            <AppIcon size={iconSize} type='PHONE' />
+            <AppIcon size={iconSize} type='SMS' active onPress={() => navigation.navigate('SmsScreen')} />
+            <AppIcon size={iconSize} type='APPS' />
+            <AppIcon size={iconSize} type='CONTACTS' />
+            <AppIcon size={iconSize} type='FILES' />
           </Icons>
           <NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} />
         </View>

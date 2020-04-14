@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { BackHandler } from 'react-native';
 
 import moment from 'moment';
 import 'moment/locale/fr';
@@ -19,6 +20,12 @@ const App = () => {
   moment.locale('fr');
   
   const Stack = createStackNavigator();
+  
+  const onBackButtonPressed = () => {
+    return true;
+  }
+  //Disable Back native button
+  BackHandler.addEventListener('backPress', onBackButtonPressed);
 
   FullScreen.enable();
 

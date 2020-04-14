@@ -11,9 +11,27 @@ import GestureRecognizer from 'react-native-swipe-gestures';
 import Icon from '../../sharedUI/Icon';
 
 const LockScreen = ({ navigation }) => {
+  const [numberOfTry, setNumberOfTry ] = useState(0);
+  const [messageFailed, setMessageFailed] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+  const [phonePassword, setPhonePassword] = useState('Thierry');
 
-  const onSubmit = () => navigation.navigate('HomeScreen');
+  const onSubmit = () => {
+    if(passwordInput != phonePassword)
+    {
+      setNumberOfTry(numberOfTry+1);
+      console.log(passwordInput+' | '+numberOfTry)
+      if(numberOfTry >= 2 )
+      {
+        setMessageFailed("Le saviez-vous les catégories de mots de passe les plus répandu sont : les dates de naissances,  le nom d’un animal de compagnie ,1 2 3 4, ou encore password.");
+      }else{
+        setMessageFailed("Mot de passe incorrect");
+      }
+    }else{
+      navigation.navigate('HomeScreen');
+    }
+  }
+  // const onSubmit = () => navigation.navigate('HomeScreen');
   const onSwipeDown = (gestureState) => navigation.navigate('NotificationsScreen');
 
   return (
@@ -33,7 +51,7 @@ const LockScreen = ({ navigation }) => {
               value={passwordInput}
               onSubmitEditing={onSubmit}
             />
-            <Text style={styles.hint}>Le saviez-vous les catégories de mots de passe les plus répandu sont : les dates de naissances,  le nom d’un animal de compagnie ,1 2 3 4, ou encore password.</Text>
+            <Text style={styles.hint}>{messageFailed}</Text>
           </View>
         </GestureRecognizer>
       </SafeAreaView>

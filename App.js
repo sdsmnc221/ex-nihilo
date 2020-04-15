@@ -13,6 +13,7 @@ import LockScreen from './screens/LockScreen';
 import HomeScreen from './screens/Home';
 import SmsScreen from './screens/SMS';
 import SmsConversation from './screens/SMS/SmsConversation';
+import ContactsScreen from './screens/ContactsScreen';
 
 import FullScreen from "./utils/FullScreen";
 
@@ -39,6 +40,7 @@ const App = () => {
         <Stack.Screen name='HomeScreen' component={HomeScreen} options={{ headerShown: false }} />
         <Stack.Screen name='SmsScreen' component={SmsScreen} options={{ title: 'Messagerie', headerLeft: null }} />
         <Stack.Screen name='SmsConversation' component={SmsConversation} />
+        <Stack.Screen name='ContactsScreen' component={ContactsScreen} options={{ title: 'Contacts', headerLeft: null }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

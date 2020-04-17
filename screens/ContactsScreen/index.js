@@ -47,13 +47,17 @@ const ContactsScreen = ({ navigation }) => {
 			} else {
 				const deviceContacts = contacts_.filter((c) => c.phoneNumbers.length > 0);
 				if (deviceContacts.length > 0) {
-					const shuffleContact = shuffle(
-						deviceContacts.map((c) => c.phoneNumbers[0].number)
+					const shuffledContacts = shuffle(
+						deviceContacts.map((contact) => {
+							const { displayName, phoneNumbers } = contact;
+							const { number } = phoneNumbers[0];
+							return {
+								name: displayName || number,
+								number,
+							};
+						})
 					);
-					shuffleContact.map((c, i) => {
-						setContacts({ name: '', number: c });
-					});
-					console.log(contacts);
+					setContacts(shuffledContacts);
 				}
 			}
 		});

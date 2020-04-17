@@ -165,6 +165,7 @@ const EmailScreen = ({ navigation }) => {
 									title={e.title}
 									message={e.message}
 									starred={e.starred !== undefined ? e.starred : random(0.32)}
+									onPress={() => navigation.navigate('EmailDetailsScreen', { email: e })}
 								/>
 							))}
 						</Inbox>

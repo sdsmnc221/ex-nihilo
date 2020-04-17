@@ -20,6 +20,7 @@ import AlbumPhotoScreen from './screens/Album/AlbumPhoto';
 import FacebookScreen from './screens/Facebook';
 import FacebookLoginScreen from './screens/Facebook/FacebookLogin';
 import EmailScreen from './screens/Email';
+import EmailDetailsScreen from './screens/Email/EmailDetails';
 import EmailLoginScreen from './screens/Email/EmailLogin';
 
 import FullScreen from './utils/FullScreen';
@@ -110,6 +111,11 @@ const App = () => {
 					name="EmailLoginScreen"
 					component={EmailLoginScreen}
 					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="EmailDetailsScreen"
+					component={EmailDetailsScreen}
+					options={{ title: '' }}
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>

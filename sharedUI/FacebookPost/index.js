@@ -4,7 +4,6 @@ import { StyleSheet, View, Text } from 'react-native';
 import styled from 'styled-components';
 
 import PlaceHolder from '../PlaceHolder';
-import Icon from '../Icon';
 import IconButton from '../Button/IconButton';
 
 const Wrapper = styled.View`

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View, Text, Dimensions } from 'react-native';
+import { SafeAreaView, StyleSheet, View, Dimensions } from 'react-native';
 import styled from 'styled-components';
 
 import Clock from '../../sharedUI/Clock';

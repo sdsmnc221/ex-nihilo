@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import styled from 'styled-components';
 import Contacts from 'react-native-contacts';
 

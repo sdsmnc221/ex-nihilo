@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import styled from 'styled-components';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -49,7 +49,7 @@ const Feeds = styled.View`
 `;
 
 const Story = ({ text, last }) => (
-	<View style={{ marginRight: last ? 0 : 12 }}>
+	<View style={!last && styles.story}>
 		<PlaceHolder width={100} height={164} color="#818181" text={text} />
 	</View>
 );
@@ -199,6 +199,9 @@ const styles = StyleSheet.create({
 		padding: 0,
 		justifyContent: 'flex-start',
 		alignItems: 'center',
+	},
+	story: {
+		marginRight: 12,
 	},
 });
 

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
 import SmsMessage from '../../sharedUI/SmsMessage';
 import NavigationBar from '../../sharedUI/NavigationBar';
-import Icon from '../../sharedUI/Icon';
 import IconButton from '../../sharedUI/Button/IconButton';
 
 const SmsList = styled.ScrollView`

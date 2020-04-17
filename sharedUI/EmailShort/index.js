@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
 import PlaceHolder from '../PlaceHolder';
 
 import { truncate } from '../../utils';
-import Icon from '../Icon';
 import IconButton from '../Button/IconButton';
 
 const Wrapper = styled.TouchableOpacity`
@@ -53,13 +51,6 @@ const Date = styled.Text`
 	font-size: 10px;
 	color: #c4c4c4;
 	margin-bottom: 4px;
-`;
-
-const StarButtonWrapper = styled.TouchableOpacity`
-	width: 20px;
-	height: 20px;
-	justify-content: center;
-	align-items: center;
 `;
 
 const EmailShort = ({ sender, date, title, message, starred, onPress }) => {

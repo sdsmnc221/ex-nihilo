@@ -3,7 +3,33 @@ import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import styled from 'styled-components';
 import { TextInput } from 'react-native-gesture-handler';
 import GestureRecognizer from 'react-native-swipe-gestures';
+
 import Icon from '../../sharedUI/Icon';
+
+const IconWrapper = styled.View`
+	margin-bottom: 32px;
+`;
+
+const Title = styled.Text`
+	margin-bottom: 12px;
+	font-size: 14px;
+	font-weight: bold;
+`;
+
+const Input = styled.TextInput`
+	width: 64%;
+	background-color: #e8e8e8;
+	font-size: 12px;
+	text-align: center;
+	padding: 8px;
+`;
+
+const Hint = styled.Text`
+	width: 64%;
+	font-size: 11px;
+	margin-top: 12px;
+	text-align: center;
+`;
 
 const LockScreen = ({ navigation }) => {
 	const [numberOfTry, setNumberOfTry] = useState(0);
@@ -12,7 +38,7 @@ const LockScreen = ({ navigation }) => {
 	const [phonePassword, setPhonePassword] = useState('Thierry');
 
 	const onSubmit = () => {
-		if (passwordInput != phonePassword) {
+		if (passwordInput !== phonePassword) {
 			setNumberOfTry(numberOfTry + 1);
 			console.log(passwordInput + ' | ' + numberOfTry);
 			if (numberOfTry >= 2) {
@@ -35,19 +61,18 @@ const LockScreen = ({ navigation }) => {
 			<SafeAreaView>
 				<GestureRecognizer onSwipeDown={onSwipeDown}>
 					<View style={styles.body}>
-						<View style={styles.lock}>
+						<IconWrapper>
 							<Icon type="LOCK" />
-						</View>
-						<Text style={styles.title}>Entrer le mot de passe</Text>
-						<TextInput
-							style={styles.input}
+						</IconWrapper>
+						<Title>Entrer le mot de passe</Title>
+						<Input
 							secureTextEntry
 							blurOnSubmit
 							onChangeText={(text) => setPasswordInput(text)}
 							value={passwordInput}
 							onSubmitEditing={onSubmit}
 						/>
-						<Text style={styles.hint}>{messageFailed}</Text>
+						<Hint>{messageFailed}</Hint>
 					</View>
 				</GestureRecognizer>
 			</SafeAreaView>
@@ -62,27 +87,6 @@ const styles = StyleSheet.create({
 		height: '100%',
 		justifyContent: 'center',
 		alignItems: 'center',
-	},
-	lock: {
-		marginBottom: 32,
-	},
-	title: {
-		marginBottom: 12,
-		fontSize: 14,
-		fontWeight: 'bold',
-	},
-	input: {
-		width: '64%',
-		backgroundColor: '#e8e8e8',
-		fontSize: 12,
-		textAlign: 'center',
-		padding: 8,
-	},
-	hint: {
-		width: '64%',
-		fontSize: 11,
-		marginTop: 12,
-		textAlign: 'center',
 	},
 });
 

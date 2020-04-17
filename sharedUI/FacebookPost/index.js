@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import styled from 'styled-components';
 
 import PlaceHolder from '../PlaceHolder';
 import Icon from '../Icon';
+import IconButton from '../Button/IconButton';
 
 const Wrapper = styled.View`
 	width: 100%;
@@ -59,12 +60,6 @@ const Dot = styled.View`
 	margin: 0 6px;
 `;
 
-const Settings = () => (
-	<View style={{ marginTop: 8 }}>
-		<Icon type="DOTS_FB" />
-	</View>
-);
-
 const FacebookPost = ({ user, date, content }) => (
 	<Wrapper>
 		<Header>
@@ -79,11 +74,17 @@ const FacebookPost = ({ user, date, content }) => (
 					</DateWrapper>
 				</View>
 			</UserWrapper>
-			<Settings />
+			<IconButton type="DOTS_FB" noBlink additionalStyles={styles.settingsIcon} />
 		</Header>
 		<Content>{content}</Content>
 	</Wrapper>
 );
+
+const styles = StyleSheet.create({
+	settingsIcon: {
+		marginTop: 8,
+	},
+});
 
 FacebookPost.propTypes = {
 	user: PropTypes.string.isRequired,

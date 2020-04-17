@@ -30,7 +30,11 @@ const defaultPosition = {
 const AddButton = ({ position, size, iconW, iconH, onPress }) => {
 	position = position || defaultPosition;
 	return (
-		<Wrapper position={position} size={size} onPress={onPress}>
+		<Wrapper
+			position={position}
+			size={size}
+			onPress={onPress}
+			activeOpacity={0.8}>
 			{iconW && iconH ? (
 				<Icon type="ADD" width={iconW} height={iconH} />
 			) : (

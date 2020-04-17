@@ -17,12 +17,13 @@ const IconButton = ({
 	size,
 	onPress,
 	pressOpacity,
+	noBlink,
 	additionalStyles,
 }) => (
 	<Wrapper
 		size={size}
 		onPress={onPress}
-		activeOpacity={pressOpacity}
+		activeOpacity={noBlink ? 1.0 : pressOpacity}
 		style={additionalStyles}>
 		<Icon type={type} />
 	</Wrapper>
@@ -33,13 +34,15 @@ IconButton.propTypes = {
 	size: PropTypes.number,
 	onPress: PropTypes.func,
 	pressOpacity: PropTypes.number,
+	noBlink: PropTypes.bool,
 	additionalStyles: PropTypes.object,
 };
 
 IconButton.defaultProps = {
 	size: undefined,
 	onPress: () => {},
-	pressOpacity: 0.2,
+	noBlink: false,
+	pressOpacity: 0.8,
 	additionalStyles: {},
 };
 

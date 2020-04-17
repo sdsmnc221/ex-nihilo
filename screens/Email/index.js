@@ -5,7 +5,6 @@ import { ScrollView, TextInput } from 'react-native-gesture-handler';
 
 import NavigationBar from '../../sharedUI/NavigationBar';
 import AddButton from '../../sharedUI/Button/AddButton';
-import Icon from '../../sharedUI/Icon';
 import EmailShort from '../../sharedUI/EmailShort';
 
 import { random } from '../../utils';

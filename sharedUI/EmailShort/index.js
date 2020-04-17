@@ -80,7 +80,7 @@ const EmailShort = ({ sender, date, title, message, starred, onPress }) => {
 					type={`STAR${active ? '' : '_OUTLINE'}`}
 					size={20}
 					onPress={onPressStarButton}
-					pressOpacity={1.0}
+					noBlink
 				/>
 			</Side>
 		</Wrapper>

@@ -71,11 +71,7 @@ const SmsConversation = ({ route, navigation }) => {
 					</SmsList>
 					<InputField>
 						<SmsInput editable={false} value={'Écrire un SMS...'} />
-						<IconButton
-							type="SEND"
-							pressOpacity={1.0}
-							additionalStyles={styles.sendIcon}
-						/>
+						<IconButton type="SEND" noBlink additionalStyles={styles.sendIcon} />
 					</InputField>
 				</View>
 				<NavigationBar

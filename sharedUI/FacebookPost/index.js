@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import PlaceHolder from '../PlaceHolder';
 import Icon from '../Icon';
@@ -85,8 +85,10 @@ const FacebookPost = ({ user, date, content }) => (
 	</Wrapper>
 );
 
-FacebookPost.propTypes = {};
-
-FacebookPost.defaultProps = {};
+FacebookPost.propTypes = {
+	user: PropTypes.string.isRequired,
+	date: PropTypes.string.isRequired,
+	content: PropTypes.string.isRequired,
+};
 
 export default FacebookPost;

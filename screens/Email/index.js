@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import styled from 'styled-components';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TextInput } from 'react-native-gesture-handler';
 
 import NavigationBar from '../../sharedUI/NavigationBar';
-import PlaceHolder from '../../sharedUI/PlaceHolder';
-import FacebookPost from '../../sharedUI/FacebookPost';
 import AddButton from '../../sharedUI/Button/AddButton';
+import Icon from '../../sharedUI/Icon';
+import EmailShort from '../../sharedUI/EmailShort';
 
 const Header = styled.View`
 	width: 100%;
@@ -22,52 +22,128 @@ const Row = styled.View`
 	justify-content: space-between;
 `;
 
-const Feeds = styled.View`
+const SearchBar = styled.View`
+	position: relative;
+	width: 100%;
+	height: 35px;
+	flex-direction: row;
+	background-color: #c4c4c4;
+`;
+
+const SearchInput = styled.TextInput`
+	width: 100%;
+	height: 100%;
+	color: #e5e5e5;
+	font-size: 13px;
+	padding: 0 48px;
+`;
+
+const Title = styled.Text`
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 1.6px;
+`;
+
+const Inbox = styled.View`
 	width: 100%;
 	background-color: #fff;
-	margin-top: 40px;
 	margin-bottom: 48px;
 `;
 
+const SettingsIcon = () => (
+	<View style={styles.settingsIcon}>
+		<Icon type="HAMBURGER" />
+	</View>
+);
+
+const SearchIcon = () => (
+	<View style={styles.searchIcon}>
+		<Icon type="SEARCH" />
+	</View>
+);
+
 const EmailScreen = ({ navigation }) => {
-	const statusBtns = ['En direct', 'Photo', 'Visite'];
-	const stories = [
-		'Ajouter à la story',
-		'Marie Dupont',
-		'Anne Parisi',
-		'...',
-		'...',
-	];
-	const posts = [
+	const searchPlaceHolder = 'Rechercher dans messages...';
+	const [searchValue, setSearchValue] = useState(searchPlaceHolder);
+	const onSearchSubmit = () => {};
+
+	const emails = [
 		{
-			user: 'Marie Dupont',
-			date: '1h',
-			content:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo. Vestibulum tincidunt turpis pretium neque vulputate, nec imperdiet velit ultricies. In ac quam ex. Ut leo libero, ultrices volutpat velit ut, vehicula bibendum nibh. Vestibulum lacus lectus, tincidunt vitae mauris quis, semper condimentum ante.',
+			sender: 'Marie Dupont',
+			date: '17 févr.',
+			title: 'Objet du mail ici',
+			message:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo.',
 		},
 		{
-			user: 'Marie Dupont',
-			date: '1h',
-			content:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo. Vestibulum tincidunt turpis pretium neque vulputate, nec imperdiet velit ultricies. In ac quam ex. Ut leo libero, ultrices volutpat velit ut, vehicula bibendum nibh. Vestibulum lacus lectus, tincidunt vitae mauris quis, semper condimentum ante.',
+			sender: 'Anynomous',
+			date: '17 févr.',
+			title: 'Hello Sam',
+			message:
+				'Hello dear, je ne me présenterai pas mais nous orem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo.',
 		},
 		{
-			user: 'Marie Dupont',
-			date: '1h',
-			content:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo. Vestibulum tincidunt turpis pretium neque vulputate, nec imperdiet velit ultricies. In ac quam ex. Ut leo libero, ultrices volutpat velit ut, vehicula bibendum nibh. Vestibulum lacus lectus, tincidunt vitae mauris quis, semper condimentum ante.',
+			sender: 'Ludovic Poiret',
+			date: '17 févr.',
+			title: 'Objet du mail ici',
+			message:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo.',
 		},
 		{
-			user: 'Marie Dupont',
-			date: '1h',
-			content:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo. Vestibulum tincidunt turpis pretium neque vulputate, nec imperdiet velit ultricies. In ac quam ex. Ut leo libero, ultrices volutpat velit ut, vehicula bibendum nibh. Vestibulum lacus lectus, tincidunt vitae mauris quis, semper condimentum ante.',
+			sender: 'Catherine Mont',
+			date: '17 févr.',
+			title: 'Objet du mail ici',
+			message:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo.',
 		},
 		{
-			user: 'Marie Dupont',
-			date: '1h',
-			content:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo. Vestibulum tincidunt turpis pretium neque vulputate, nec imperdiet velit ultricies. In ac quam ex. Ut leo libero, ultrices volutpat velit ut, vehicula bibendum nibh. Vestibulum lacus lectus, tincidunt vitae mauris quis, semper condimentum ante.',
+			sender: 'Erick Paulin',
+			date: '17 févr.',
+			title: 'Objet du mail ici',
+			message:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo.',
+		},
+		{
+			sender: 'Henry Petit',
+			date: '17 févr.',
+			title: 'Objet du mail ici',
+			message:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo.',
+		},
+		{
+			sender: 'Henry Petit',
+			date: '17 févr.',
+			title: 'Objet du mail ici',
+			message:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo.',
+		},
+		{
+			sender: 'Anne Marie Parisi',
+			date: '17 févr.',
+			title: 'Objet du mail ici',
+			message:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo.',
+		},
+		{
+			sender: 'Ludovic Poiret',
+			date: '17 févr.',
+			title: 'Objet du mail ici',
+			message:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo.',
+		},
+		{
+			sender: 'Catherine Mont',
+			date: '17 févr.',
+			title: 'Objet du mail ici',
+			message:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo.',
+		},
+		{
+			sender: 'Erick Paulin',
+			date: '17 févr.',
+			title: 'Objet du mail ici',
+			message:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo.',
 		},
 	];
 
@@ -76,12 +152,35 @@ const EmailScreen = ({ navigation }) => {
 			<SafeAreaView>
 				<View style={styles.body}>
 					<ScrollView contentContainerStyle={styles.scrollBody}>
-						<Header />
-						<Feeds>
-							{posts.map((p, i) => (
-								<FacebookPost key={i} user={p.user} date={p.date} content={p.content} />
+						<Header>
+							<SearchBar>
+								<SettingsIcon />
+								<SearchIcon />
+								<SearchInput
+									value={searchValue}
+									blurOnSubmit
+									clearTextOnFocus
+									onFocus={() => setSearchValue('')}
+									onSubmitEditing={onSearchSubmit}
+									onEndEditing={() =>
+										searchValue === '' && setSearchValue(searchPlaceHolder)
+									}
+									onChangeText={(text) => setSearchValue(text)}
+								/>
+							</SearchBar>
+							<Title>Boîte de réception</Title>
+						</Header>
+						<Inbox>
+							{emails.map((e, i) => (
+								<EmailShort
+									key={i}
+									sender={e.sender}
+									date={e.date}
+									title={e.title}
+									message={e.message}
+								/>
 							))}
-						</Feeds>
+						</Inbox>
 					</ScrollView>
 					<AddButton />
 				</View>
@@ -106,11 +205,15 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 		width: '100%',
 	},
-	storiesContainer: {
-		margin: 0,
-		padding: 0,
-		justifyContent: 'flex-start',
-		alignItems: 'center',
+	settingsIcon: {
+		position: 'absolute',
+		top: 12,
+		left: 12,
+	},
+	searchIcon: {
+		position: 'absolute',
+		top: 8,
+		right: 12,
 	},
 });
 

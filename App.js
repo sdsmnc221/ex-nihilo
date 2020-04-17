@@ -8,6 +8,7 @@ import 'moment/locale/fr';
 
 import SplashScreen from './screens/SplashScreen';
 import WarningScreen from './screens/Warning';
+import IntroScreen from './screens/Intro';
 import NotificationsScreen from './screens/LockScreen/Notifications';
 import LockScreen from './screens/LockScreen';
 import HomeScreen from './screens/Home';
@@ -47,6 +48,11 @@ const App = () => {
 				<Stack.Screen
 					name="WarningScreen"
 					component={WarningScreen}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="IntroScreen"
+					component={IntroScreen}
 					options={{ headerShown: false }}
 				/>
 				<Stack.Screen

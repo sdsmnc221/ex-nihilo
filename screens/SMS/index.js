@@ -7,7 +7,6 @@ import { shuffle } from '../../utils';
 
 import SmsShort from '../../sharedUI/SmsShort';
 import NavigationBar from '../../sharedUI/NavigationBar';
-import Icon from '../../sharedUI/Icon';
 import AddButton from '../../sharedUI/Button/AddButton';
 
 const SmsList = styled.ScrollView`

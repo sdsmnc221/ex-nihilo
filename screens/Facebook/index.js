@@ -5,7 +5,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import NavigationBar from '../../sharedUI/NavigationBar';
 import PlaceHolder from '../../sharedUI/PlaceHolder';
-import Icon from '../../sharedUI/Icon';
 import FacebookPost from '../../sharedUI/FacebookPost';
 import AddButton from '../../sharedUI/Button/AddButton';
 

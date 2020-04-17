@@ -6,7 +6,6 @@ import Contacts from 'react-native-contacts';
 import { shuffle } from '../../utils';
 
 import NavigationBar from '../../sharedUI/NavigationBar';
-import Icon from '../../sharedUI/Icon';
 import Contact from '../../sharedUI/Contact';
 import AddButton from '../../sharedUI/Button/AddButton';
 

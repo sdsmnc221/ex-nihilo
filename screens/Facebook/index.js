@@ -172,11 +172,11 @@ const FacebookScreen = ({ navigation }) => {
 							))}
 						</Feeds>
 					</ScrollView>
-					<NavigationBar
-						onPressHome={() => navigation.navigate('HomeScreen')}
-						black
-					/>
 				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
 			</SafeAreaView>
 		</>
 	);

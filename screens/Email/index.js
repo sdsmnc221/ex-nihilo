@@ -84,11 +84,11 @@ const EmailScreen = ({ navigation }) => {
 						</Feeds>
 					</ScrollView>
 					<AddButton />
-					<NavigationBar
-						onPressHome={() => navigation.navigate('HomeScreen')}
-						black
-					/>
 				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
 			</SafeAreaView>
 		</>
 	);

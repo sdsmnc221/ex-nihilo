@@ -80,11 +80,11 @@ const SmsConversation = ({ route, navigation }) => {
 							<Icon type="SEND" />
 						</IconContainer>
 					</InputField>
-					<NavigationBar
-						onPressHome={() => navigation.navigate('HomeScreen')}
-						black
-					/>
 				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
 			</SafeAreaView>
 		</>
 	);

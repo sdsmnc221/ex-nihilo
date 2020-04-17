@@ -111,11 +111,11 @@ const EmailLoginScreen = ({ navigation }) => {
 							</StyledText>
 						</Button>
 					</ContentContainer>
-					<NavigationBar
-						onPressHome={() => navigation.navigate('HomeScreen')}
-						black
-					/>
 				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
 			</SafeAreaView>
 		</>
 	);

@@ -8,7 +8,7 @@ import NavigationBar from '../../sharedUI/NavigationBar';
 
 const Icons = styled.View`
 	position: absolute;
-	bottom: 120px;
+	bottom: 90px;
 	width: 100%;
 	display: flex;
 	flex-direction: row;
@@ -67,8 +67,8 @@ const HomeScreen = ({ navigation }) => {
 						<AppIcon size={iconSize} label="Notes" />
 					</IconsTemp>
 					{/* Temporary App Icons */}
-					<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} />
 				</View>
+				<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} />
 			</SafeAreaView>
 		</>
 	);

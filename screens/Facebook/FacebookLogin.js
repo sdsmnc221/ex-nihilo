@@ -134,11 +134,11 @@ const FacebookLoginScreen = ({ navigation }) => {
 							<StyledText size={9}>Plus...</StyledText>
 						</LanguagesContainer>
 					</ContentContainer>
-					<NavigationBar
-						onPressHome={() => navigation.navigate('HomeScreen')}
-						black
-					/>
 				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
 			</SafeAreaView>
 		</>
 	);

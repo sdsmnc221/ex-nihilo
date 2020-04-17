@@ -72,11 +72,11 @@ const SmsScreen = ({ navigation }) => {
 						))}
 					</SmsList>
 					<AddButton />
-					<NavigationBar
-						onPressHome={() => navigation.navigate('HomeScreen')}
-						black
-					/>
 				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
 			</SafeAreaView>
 		</>
 	);

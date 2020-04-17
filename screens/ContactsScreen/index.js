@@ -77,11 +77,11 @@ const ContactsScreen = ({ navigation }) => {
 						))}
 					</ContactsList>
 					<AddButton />
-					<NavigationBar
-						onPressHome={() => navigation.navigate('HomeScreen')}
-						black
-					/>
 				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
 			</SafeAreaView>
 		</>
 	);

@@ -12,11 +12,11 @@ const AlbumPhotoScreen = ({ route, navigation }) => {
 			<SafeAreaView>
 				<View style={styles.body}>
 					<Icon type="PHOTO_XL" />
-					<NavigationBar
-						onPressHome={() => navigation.navigate('HomeScreen')}
-						black
-					/>
 				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
 			</SafeAreaView>
 		</>
 	);

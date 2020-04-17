@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, View, Dimensions } from 'react-native';
 import styled from 'styled-components';
 
@@ -11,10 +11,22 @@ const PhotoGrid = styled.ScrollView`
 	margin-bottom: 40px;
 `;
 
+const LockOverlay = styled.View`
+	background-color: rgba(0, 0, 0, 0.7);
+	width: 100%;
+	height: 100%;
+	opacity: 0.7;
+	position: absolute;
+	top: 0;
+	left: 0;
+`;
+
 const AlbumScreen = ({ navigation }) => {
 	const deviceW = Dimensions.get('window').width;
 	const photoSize = deviceW / 3;
 	const photoNb = 32;
+
+	const [isLocked, setIsLocked] = useState(true);
 
 	return (
 		<>
@@ -30,11 +42,12 @@ const AlbumScreen = ({ navigation }) => {
 							/>
 						))}
 					</PhotoGrid>
-					<NavigationBar
-						onPressHome={() => navigation.navigate('HomeScreen')}
-						black
-					/>
 				</View>
+				{isLocked && <LockOverlay />}
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
 			</SafeAreaView>
 		</>
 	);

@@ -7,6 +7,7 @@ import NavigationBar from '../../sharedUI/NavigationBar';
 import PlaceHolder from '../../sharedUI/PlaceHolder';
 import Icon from '../../sharedUI/Icon';
 import FacebookPost from '../../sharedUI/FacebookPost';
+import AddButton from '../../sharedUI/Button/AddButton';
 
 const Header = styled.View`
 	width: 100%;
@@ -41,19 +42,6 @@ const Stories = styled.View`
 	position: relative;
 `;
 
-const AddButton = styled.View`
-	position: absolute;
-	left: 28px;
-	top: 24px;
-	background-color: #454545;
-	width: 26px;
-	height: 26px;
-	border-radius: 26px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-`;
-
 const Feeds = styled.View`
 	width: 100%;
 	background-color: #fff;
@@ -72,6 +60,13 @@ const PlaceHolderWithSpacing = ({ spacing, size, color, round }) => (
 		<PlaceHolder size={size} color={color} round={round} />
 	</View>
 );
+
+const storiesAddButtonPosition = {
+	left: '28px',
+	top: '24px',
+	right: 'auto',
+	bottom: 'auto',
+};
 
 const FacebookScreen = ({ navigation }) => {
 	const statusBtns = ['En direct', 'Photo', 'Visite'];
@@ -165,9 +160,12 @@ const FacebookScreen = ({ navigation }) => {
 									<Story key={i} text={e} last={i === stories.length - 1} />
 								))}
 							</ScrollView>
-							<AddButton>
-								<Icon type="ADD" width={13.93} height={16.07} />
-							</AddButton>
+							<AddButton
+								position={storiesAddButtonPosition}
+								size={26}
+								iconW={13.93}
+								iconH={16.07}
+							/>
 						</Stories>
 						<Feeds>
 							{posts.map((p, i) => (

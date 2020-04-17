@@ -7,6 +7,7 @@ import NavigationBar from '../../sharedUI/NavigationBar';
 import PlaceHolder from '../../sharedUI/PlaceHolder';
 import Icon from '../../sharedUI/Icon';
 import FacebookPost from '../../sharedUI/FacebookPost';
+import AddButton from '../../sharedUI/Button/AddButton';
 
 const Header = styled.View`
 	width: 100%;
@@ -20,19 +21,6 @@ const Row = styled.View`
 	width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
 	flex-direction: row;
 	justify-content: space-between;
-`;
-
-const AddButton = styled.View`
-	position: absolute;
-	right: 12px;
-	bottom: 64px;
-	background-color: #565656;
-	width: 56px;
-	height: 56px;
-	border-radius: 56px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 `;
 
 const Feeds = styled.View`
@@ -96,9 +84,7 @@ const EmailScreen = ({ navigation }) => {
 							))}
 						</Feeds>
 					</ScrollView>
-					<AddButton>
-						<Icon type="ADD" />
-					</AddButton>
+					<AddButton />
 					<NavigationBar
 						onPressHome={() => navigation.navigate('HomeScreen')}
 						black

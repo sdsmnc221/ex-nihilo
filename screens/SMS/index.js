@@ -8,24 +8,12 @@ import { shuffle } from '../../utils';
 import SmsShort from '../../sharedUI/SmsShort';
 import NavigationBar from '../../sharedUI/NavigationBar';
 import Icon from '../../sharedUI/Icon';
+import AddButton from '../../sharedUI/Button/AddButton';
 
 const SmsList = styled.ScrollView`
 	width: 100%;
 	background-color: #fff;
 	margin-top: 48px;
-`;
-
-const AddButton = styled.View`
-	position: absolute;
-	right: 12px;
-	bottom: 64px;
-	background-color: #565656;
-	width: 56px;
-	height: 56px;
-	border-radius: 56px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 `;
 
 const SmsScreen = ({ navigation }) => {
@@ -84,9 +72,7 @@ const SmsScreen = ({ navigation }) => {
 							/>
 						))}
 					</SmsList>
-					<AddButton>
-						<Icon type="ADD" />
-					</AddButton>
+					<AddButton />
 					<NavigationBar
 						onPressHome={() => navigation.navigate('HomeScreen')}
 						black

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -7,51 +7,82 @@ import styled from 'styled-components';
 import PlaceHolder from '../PlaceHolder';
 
 import { truncate } from '../../utils';
+import Icon from '../Icon';
 
 const Wrapper = styled.TouchableOpacity`
 	width: 100%;
 	height: 50px;
 	background-color: #fff;
-	margin-bottom: ${({ withSpacing }) => (withSpacing ? 36 : 0)}px;
-	padding: 12px 36px;
+	margin-bottom: 18px;
+	padding: 0 24px;
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
-	align-items: center;
+	justify-content: space-between;
+	align-items: flex-start;
 `;
 
 const Content = styled.View`
-	width: 90%;
+	flex: 1;
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
-	margin-left: 16px;
-	margin-top: 2px;
+	margin-left: 24px;
 `;
 
-const Date = styled.Text`
-	font-size: 10px;
-	color: #c4c4c4;
+const Sender = styled.Text`
+	font-size: 13px;
+	top: -4px;
 `;
 
 const Title = styled.Text`
-	font-size: 13px;
-	font-weight: bold;
+	font-size: 10px;
 `;
 
 const Message = styled.Text`
 	font-size: 10px;
 `;
 
+const Side = styled.View`
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+`;
+
+const Date = styled.Text`
+	font-size: 10px;
+	color: #c4c4c4;
+	margin-bottom: 4px;
+`;
+
+const StarButtonWrapper = styled.TouchableOpacity`
+	width: 18px;
+	height: 18px;
+	justify-content: center;
+	align-items: center;
+`;
+
+const StarButton = ({ onPress, starred }) => (
+	<StarButtonWrapper activeOpacity={1} onPress={onPress}>
+		<Icon type={`STAR${starred ? '' : '_OUTLINE'}`} />
+	</StarButtonWrapper>
+);
+
 const EmailShort = ({ sender, date, title, message, starred, onPress }) => {
+	const [active, setActive] = useState(starred);
+	const onPressStarButton = () => setActive(!active);
+
 	return (
 		<Wrapper onPress={onPress}>
-			<PlaceHolder color="#c4c4c4" size={50} round />
+			<PlaceHolder color="#c4c4c4" size={35} round />
 			<Content>
+				<Sender>{sender}</Sender>
 				<Title>{title}</Title>
 				<Message>{truncate(message, 48)}</Message>
-				<Date>{date}</Date>
 			</Content>
+			<Side>
+				<Date>{date}</Date>
+				<StarButton starred={active} onPress={onPressStarButton} />
+			</Side>
 		</Wrapper>
 	);
 };

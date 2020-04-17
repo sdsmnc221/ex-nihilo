@@ -17,3 +17,5 @@ export { default as PHOTO_XL } from './PHOTO_XL';
 export { default as SEARCH } from './SEARCH';
 export { default as SEND } from './SEND';
 export { default as SMS } from './SMS';
+export { default as STAR } from './STAR';
+export { default as STAR_OUTLINE } from './STAR_OUTLINE';

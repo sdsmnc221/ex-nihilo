@@ -21,4 +21,6 @@ const shuffle = ([...arr]) => {
 	return arr;
 };
 
-export { truncate, sample, sampleSize, shuffle };
+const random = (odd = 0.5) => (Math.random() <= odd ? true : false);
+
+export { truncate, sample, sampleSize, shuffle, random };

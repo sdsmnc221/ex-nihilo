@@ -8,17 +8,13 @@ import AddButton from '../../sharedUI/Button/AddButton';
 import Icon from '../../sharedUI/Icon';
 import EmailShort from '../../sharedUI/EmailShort';
 
+import { random } from '../../utils';
+
 const Header = styled.View`
 	width: 100%;
 	height: 120px;
 	background-color: #fff;
 	padding: 24px;
-	justify-content: space-between;
-`;
-
-const Row = styled.View`
-	width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
-	flex-direction: row;
 	justify-content: space-between;
 `;
 
@@ -47,7 +43,7 @@ const Title = styled.Text`
 const Inbox = styled.View`
 	width: 100%;
 	background-color: #fff;
-	margin-bottom: 48px;
+	margin-bottom: 120px;
 `;
 
 const SettingsIcon = () => (
@@ -81,6 +77,7 @@ const EmailScreen = ({ navigation }) => {
 			title: 'Hello Sam',
 			message:
 				'Hello dear, je ne me présenterai pas mais nous orem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo.',
+			starred: true,
 		},
 		{
 			sender: 'Ludovic Poiret',
@@ -178,6 +175,7 @@ const EmailScreen = ({ navigation }) => {
 									date={e.date}
 									title={e.title}
 									message={e.message}
+									starred={e.starred !== undefined ? e.starred : random(0.24)}
 								/>
 							))}
 						</Inbox>

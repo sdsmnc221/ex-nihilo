@@ -6,6 +6,7 @@ export { default as DOTS_FB } from './DOTS_FB';
 export { default as EMAIL_XL } from './EMAIL_XL';
 export { default as FACEBOOK_XL } from './FACEBOOK_XL';
 export { default as FILES } from './FILES';
+export { default as LOADING } from './LOADING';
 export { default as LOCK } from './LOCK';
 export { default as NAVIGATION_APP } from './NAVIGATION_APP';
 export { default as NAVIGATION_BACK } from './NAVIGATION_BACK';

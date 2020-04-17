@@ -9,6 +9,7 @@ import Icon from '../../sharedUI/Icon';
 import EmailShort from '../../sharedUI/EmailShort';
 
 import { random } from '../../utils';
+import IconButton from '../../sharedUI/Button/IconButton';
 
 const Header = styled.View`
 	width: 100%;
@@ -43,20 +44,8 @@ const Title = styled.Text`
 const Inbox = styled.View`
 	width: 100%;
 	background-color: #fff;
-	margin-bottom: 120px;
+	margin-bottom: 108px;
 `;
-
-const SettingsIcon = () => (
-	<View style={styles.settingsIcon}>
-		<Icon type="HAMBURGER" />
-	</View>
-);
-
-const SearchIcon = () => (
-	<View style={styles.searchIcon}>
-		<Icon type="SEARCH" />
-	</View>
-);
 
 const EmailScreen = ({ navigation }) => {
 	const searchPlaceHolder = 'Rechercher dans messages...';
@@ -151,8 +140,6 @@ const EmailScreen = ({ navigation }) => {
 					<ScrollView contentContainerStyle={styles.scrollBody}>
 						<Header>
 							<SearchBar>
-								<SettingsIcon />
-								<SearchIcon />
 								<SearchInput
 									value={searchValue}
 									blurOnSubmit
@@ -164,6 +151,9 @@ const EmailScreen = ({ navigation }) => {
 									}
 									onChangeText={(text) => setSearchValue(text)}
 								/>
+
+								<IconButton type="HAMBURGER" additionalStyles={styles.settingsIcon} />
+								<IconButton type="SEARCH" additionalStyles={styles.searchIcon} />
 							</SearchBar>
 							<Title>Boîte de réception</Title>
 						</Header>
@@ -175,7 +165,7 @@ const EmailScreen = ({ navigation }) => {
 									date={e.date}
 									title={e.title}
 									message={e.message}
-									starred={e.starred !== undefined ? e.starred : random(0.24)}
+									starred={e.starred !== undefined ? e.starred : random(0.32)}
 								/>
 							))}
 						</Inbox>

@@ -5,6 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled, { css } from 'styled-components';
 
 import Icon from '../Icon';
+import IconButton from '../Button/IconButton';
 
 const Wrapper = styled.View`
 	width: 100%;
@@ -21,9 +22,7 @@ const Wrapper = styled.View`
 const NavigationBar = ({ onPressHome, black }) => (
 	<Wrapper black={black}>
 		<Icon type="NAVIGATION_BACK" />
-		<TouchableOpacity onPress={onPressHome}>
-			<Icon type="NAVIGATION_HOME" />
-		</TouchableOpacity>
+		<IconButton type="NAVIGATION_HOME" onPress={onPressHome} />
 		<Icon type="NAVIGATION_APP" />
 	</Wrapper>
 );

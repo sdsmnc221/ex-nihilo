@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
 import styled from 'styled-components';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import Icon from '../Icon';
 
-const Wrapper = styled.View`
+const Wrapper = styled.TouchableOpacity`
 	position: absolute;
 	left: ${({ position }) => position.left};
 	right: ${({ position }) => position.right};
@@ -29,7 +29,6 @@ const defaultPosition = {
 
 const AddButton = ({ position, size, iconW, iconH, onPress }) => {
 	position = position || defaultPosition;
-
 	return (
 		<Wrapper position={position} size={size} onPress={onPress}>
 			{iconW && iconH ? (

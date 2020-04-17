@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import SmsMessage from '../../sharedUI/SmsMessage';
 import NavigationBar from '../../sharedUI/NavigationBar';
 import Icon from '../../sharedUI/Icon';
+import IconButton from '../../sharedUI/Button/IconButton';
 
 const SmsList = styled.ScrollView`
 	width: 100%;
@@ -23,12 +24,6 @@ const InputField = styled.View`
 	position: absolute;
 	bottom: 40px; /* navigation bar's place */
 	width: 100%;
-`;
-
-const IconContainer = styled.View`
-	position: absolute;
-	right: 12px;
-	top: 12px;
 `;
 
 const SmsInput = styled.TextInput`
@@ -76,9 +71,11 @@ const SmsConversation = ({ route, navigation }) => {
 					</SmsList>
 					<InputField>
 						<SmsInput editable={false} value={'Écrire un SMS...'} />
-						<IconContainer>
-							<Icon type="SEND" />
-						</IconContainer>
+						<IconButton
+							type="SEND"
+							pressOpacity={1.0}
+							additionalStyles={styles.sendIcon}
+						/>
 					</InputField>
 				</View>
 				<NavigationBar
@@ -97,6 +94,11 @@ const styles = StyleSheet.create({
 		height: '100%',
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	sendIcon: {
+		position: 'absolute',
+		right: 12,
+		top: 12,
 	},
 });
 

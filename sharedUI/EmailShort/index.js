@@ -8,12 +8,13 @@ import PlaceHolder from '../PlaceHolder';
 
 import { truncate } from '../../utils';
 import Icon from '../Icon';
+import IconButton from '../Button/IconButton';
 
 const Wrapper = styled.TouchableOpacity`
 	width: 100%;
 	height: 50px;
 	background-color: #fff;
-	margin-bottom: 18px;
+	margin-bottom: 24px;
 	padding: 0 24px;
 	display: flex;
 	flex-direction: row;
@@ -55,17 +56,11 @@ const Date = styled.Text`
 `;
 
 const StarButtonWrapper = styled.TouchableOpacity`
-	width: 18px;
-	height: 18px;
+	width: 20px;
+	height: 20px;
 	justify-content: center;
 	align-items: center;
 `;
-
-const StarButton = ({ onPress, starred }) => (
-	<StarButtonWrapper activeOpacity={1} onPress={onPress}>
-		<Icon type={`STAR${starred ? '' : '_OUTLINE'}`} />
-	</StarButtonWrapper>
-);
 
 const EmailShort = ({ sender, date, title, message, starred, onPress }) => {
 	const [active, setActive] = useState(starred);
@@ -81,7 +76,12 @@ const EmailShort = ({ sender, date, title, message, starred, onPress }) => {
 			</Content>
 			<Side>
 				<Date>{date}</Date>
-				<StarButton starred={active} onPress={onPressStarButton} />
+				<IconButton
+					type={`STAR${active ? '' : '_OUTLINE'}`}
+					size={20}
+					onPress={onPressStarButton}
+					pressOpacity={1.0}
+				/>
 			</Side>
 		</Wrapper>
 	);

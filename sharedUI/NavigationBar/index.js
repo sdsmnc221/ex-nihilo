@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import Icon from '../Icon';
 import IconButton from '../Button/IconButton';

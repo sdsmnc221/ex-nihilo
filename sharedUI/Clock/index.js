@@ -27,9 +27,9 @@ const Clock = () => {
 	);
 
 	const tick = () => {
-		const now = moment().format('LLLL');
-		setTime(now.slice(-5));
-		setDate(now.slice(0, now.length - time.length).trim());
+		const now_ = moment().format('LLLL');
+		setTime(now_.slice(-5));
+		setDate(now_.slice(0, now.length - time.length).trim());
 	};
 
 	useEffect(() => {

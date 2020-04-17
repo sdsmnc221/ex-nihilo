@@ -6,8 +6,6 @@ import styled from 'styled-components';
 
 import PlaceHolder from '../PlaceHolder';
 
-import { truncate } from '../../utils';
-
 const Wrapper = styled.TouchableOpacity`
 	width: 100%;
 	height: 50px;

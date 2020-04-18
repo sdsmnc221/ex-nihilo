@@ -64,7 +64,7 @@ const EmailScreen = ({ navigation }) => {
 			date: '17 févr.',
 			title: 'Hello Sam',
 			message:
-				'Hello dear, je ne me présenterai pas mais nous orem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo.',
+				'Hello Dear,\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo. Vestibulum tincidunt turpis pretium neque vulputate, nec imperdiet velit ultricies. In ac quam ex.\n\nUt leo libero, ultrices volutpat velit ut, vehicula bibendum nibh. Vestibulum lacus lectus, tincidunt vitae mauris quis, semper condimentum ante.\n\nSee u soon Sam',
 			starred: true,
 		},
 		{

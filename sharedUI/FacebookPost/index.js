@@ -73,7 +73,11 @@ const FacebookPost = ({ user, date, content }) => (
 					</DateWrapper>
 				</View>
 			</UserWrapper>
-			<IconButton type="DOTS_FB" noBlink additionalStyles={styles.settingsIcon} />
+			<IconButton
+				type="DOTS_HORIZONTAL"
+				noBlink
+				additionalStyles={styles.settingsIcon}
+			/>
 		</Header>
 		<Content>{content}</Content>
 	</Wrapper>

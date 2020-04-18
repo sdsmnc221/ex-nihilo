@@ -54,6 +54,9 @@ const Date = styled.Text`
 `;
 
 const EmailShort = ({ sender, date, title, message, starred, onPress }) => {
+	if (sender === 'Anonymous') {
+		console.log(message, message.replace(/\/n/g, ''));
+	}
 	return (
 		<Wrapper onPress={onPress}>
 			<PlaceHolder color="#c4c4c4" size={35} round />

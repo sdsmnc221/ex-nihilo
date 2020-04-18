@@ -17,9 +17,14 @@ const Wrapper = styled.View`
 		`} */
 `;
 
+const Label = styled.Text`
+	font-size: 12px;
+	text-align: center;
+`;
+
 const PlaceHolder = ({ color, size, width, height, round, text }) => (
 	<Wrapper color={color} size={size} width={width} height={height} round={round}>
-		{text && <Text>{text}</Text>}
+		{text && <Label>{text}</Label>}
 	</Wrapper>
 );
 

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
-import styled from 'styled-components';
 import Contacts from 'react-native-contacts';
 
 import { shuffle } from '../../utils';
@@ -8,12 +7,7 @@ import { shuffle } from '../../utils';
 import SmsShort from '../../sharedUI/SmsShort';
 import NavigationBar from '../../sharedUI/NavigationBar';
 import AddButton from '../../sharedUI/Button/AddButton';
-
-const SmsList = styled.ScrollView`
-	width: 100%;
-	background-color: #fff;
-	margin-top: 48px;
-`;
+import { ScrollView } from 'react-native-gesture-handler';
 
 const SmsScreen = ({ navigation }) => {
 	const [contacts, setContacts] = useState([
@@ -56,7 +50,7 @@ const SmsScreen = ({ navigation }) => {
 		<>
 			<SafeAreaView>
 				<View style={styles.body}>
-					<SmsList>
+					<ScrollView contentContainerStyle={styles.scrollBody}>
 						{smsList.map((s, i) => (
 							<SmsShort
 								key={i}
@@ -70,7 +64,7 @@ const SmsScreen = ({ navigation }) => {
 								}
 							/>
 						))}
-					</SmsList>
+					</ScrollView>
 					<AddButton />
 				</View>
 				<NavigationBar
@@ -89,6 +83,12 @@ const styles = StyleSheet.create({
 		height: '100%',
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	scrollBody: {
+		backgroundColor: '#fff',
+		width: '100%',
+		paddingTop: 36,
+		paddingBottom: 84,
 	},
 });
 

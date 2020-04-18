@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
-import styled from 'styled-components';
 import Contacts from 'react-native-contacts';
 
 import { shuffle } from '../../utils';
@@ -8,12 +7,7 @@ import { shuffle } from '../../utils';
 import NavigationBar from '../../sharedUI/NavigationBar';
 import Contact from '../../sharedUI/Contact';
 import AddButton from '../../sharedUI/Button/AddButton';
-
-const ContactsList = styled.ScrollView`
-	width: 100%;
-	background-color: #fff;
-	margin-top: 48px;
-`;
+import { ScrollView } from 'react-native-gesture-handler';
 
 const ContactsScreen = ({ navigation }) => {
 	const [contacts, setContacts] = useState([
@@ -67,15 +61,17 @@ const ContactsScreen = ({ navigation }) => {
 		<>
 			<SafeAreaView>
 				<View style={styles.body}>
-					<ContactsList>
+					<ScrollView contentContainerStyle={styles.scrollBody}>
 						{contacts.map((c, i) => (
 							<Contact
 								key={i}
 								title={c.name ? c.name : c.number}
-								onPress={() => navigation.navigate('', { headerTitle: c.title })}
+								onPress={() =>
+									navigation.navigate('HomeScreen', { headerTitle: c.title })
+								}
 							/>
 						))}
-					</ContactsList>
+					</ScrollView>
 					<AddButton />
 				</View>
 				<NavigationBar
@@ -94,6 +90,12 @@ const styles = StyleSheet.create({
 		height: '100%',
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	scrollBody: {
+		backgroundColor: '#fff',
+		width: '100%',
+		paddingTop: 36,
+		paddingBottom: 84,
 	},
 });
 

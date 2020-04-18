@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, View, Text, Dimensions } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { SafeAreaView, StyleSheet, View, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import styled from 'styled-components';
 
 import NavigationBar from '../../sharedUI/NavigationBar';
 import PhotoThumbnail from '../../sharedUI/PhotoThumbnail';
-import Icon from '../../sharedUI/Icon';
 import PasswordLock from '../../sharedUI/PasswordLock';
 
 const PhotoGrid = styled.ScrollView`

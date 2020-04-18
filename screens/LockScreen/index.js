@@ -1,36 +1,8 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
-import styled from 'styled-components';
-import { TextInput } from 'react-native-gesture-handler';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
-import Icon from '../../sharedUI/Icon';
 import PasswordLock from '../../sharedUI/PasswordLock';
-
-const IconWrapper = styled.View`
-	margin-bottom: 32px;
-`;
-
-const Title = styled.Text`
-	margin-bottom: 12px;
-	font-size: 14px;
-	font-weight: bold;
-`;
-
-const Input = styled.TextInput`
-	width: 64%;
-	background-color: #e8e8e8;
-	font-size: 12px;
-	text-align: center;
-	padding: 8px;
-`;
-
-const Hint = styled.Text`
-	width: 64%;
-	font-size: 11px;
-	margin-top: 12px;
-	text-align: center;
-`;
 
 const LockScreen = ({ navigation }) => {
 	const [numberOfTry, setNumberOfTry] = useState(0);

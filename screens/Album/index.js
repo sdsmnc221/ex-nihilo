@@ -7,36 +7,12 @@ import styled from 'styled-components';
 import NavigationBar from '../../sharedUI/NavigationBar';
 import PhotoThumbnail from '../../sharedUI/PhotoThumbnail';
 import Icon from '../../sharedUI/Icon';
+import PasswordLock from '../../sharedUI/PasswordLock';
 
 const PhotoGrid = styled.ScrollView`
 	width: 100%;
 	background-color: #fff;
 	margin-bottom: 40px;
-`;
-
-const LockOverlay = styled.View`
-	flex: 1;
-	justify-content: center;
-	align-items: center;
-`;
-
-const IconWrapper = styled.View`
-	margin-bottom: 32px;
-`;
-
-const Title = styled.Text`
-	margin-bottom: 12px;
-	font-size: 14px;
-	font-weight: bold;
-	color: #fff;
-`;
-
-const Input = styled.TextInput`
-	width: 64%;
-	background-color: #e8e8e8;
-	font-size: 12px;
-	text-align: center;
-	padding: 8px;
 `;
 
 const AlbumScreen = ({ navigation }) => {
@@ -48,6 +24,23 @@ const AlbumScreen = ({ navigation }) => {
 	const [passwordInput, setPasswordInput] = useState('');
 
 	const onSubmitPassword = () => setIsLocked(false);
+
+	const renderPasswordLock = () => (
+		<Modal
+			isVisible={isLocked}
+			style={styles.modal}
+			animationInTiming={400}
+			animationOutTiming={800}
+			useNativeDriver>
+			<PasswordLock
+				color="#fff"
+				passwordInput={passwordInput}
+				onInputPassword={(text) => setPasswordInput(text)}
+				onSubmitPassword={onSubmitPassword}
+			/>
+			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+		</Modal>
+	);
 
 	return (
 		<>
@@ -63,25 +56,7 @@ const AlbumScreen = ({ navigation }) => {
 							/>
 						))}
 					</PhotoGrid>
-					<Modal isVisible={isLocked} style={styles.modal}>
-						<LockOverlay>
-							<IconWrapper>
-								<Icon type="LOCK" color="#fff" />
-							</IconWrapper>
-							<Title>Entrer le mot de passe</Title>
-							<Input
-								secureTextEntry
-								blurOnSubmit
-								onChangeText={(text) => setPasswordInput(text)}
-								onSubmitEditing={onSubmitPassword}
-								value={passwordInput}
-							/>
-						</LockOverlay>
-						<NavigationBar
-							onPressHome={() => navigation.navigate('HomeScreen')}
-							black
-						/>
-					</Modal>
+					{renderPasswordLock()}
 				</View>
 				<NavigationBar
 					onPressHome={() => navigation.navigate('HomeScreen')}

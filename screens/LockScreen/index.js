@@ -5,6 +5,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
 import Icon from '../../sharedUI/Icon';
+import PasswordLock from '../../sharedUI/PasswordLock';
 
 const IconWrapper = styled.View`
 	margin-bottom: 32px;
@@ -38,6 +39,7 @@ const LockScreen = ({ navigation }) => {
 	const [phonePassword, setPhonePassword] = useState('Thierry');
 
 	const onSubmit = () => {
+		console.log(phonePassword);
 		if (passwordInput !== phonePassword) {
 			setNumberOfTry(numberOfTry + 1);
 			console.log(passwordInput + ' | ' + numberOfTry);
@@ -61,18 +63,13 @@ const LockScreen = ({ navigation }) => {
 			<SafeAreaView>
 				<GestureRecognizer onSwipeDown={onSwipeDown}>
 					<View style={styles.body}>
-						<IconWrapper>
-							<Icon type="LOCK" />
-						</IconWrapper>
-						<Title>Entrer le mot de passe</Title>
-						<Input
-							secureTextEntry
-							blurOnSubmit
-							onChangeText={(text) => setPasswordInput(text)}
-							value={passwordInput}
-							onSubmitEditing={onSubmit}
+						<PasswordLock
+							hintEnabled
+							hint={messageFailed}
+							passwordInput={passwordInput}
+							onInputPassword={(text) => setPasswordInput(text)}
+							onSubmitPassword={onSubmit}
 						/>
-						<Hint>{messageFailed}</Hint>
 					</View>
 				</GestureRecognizer>
 			</SafeAreaView>

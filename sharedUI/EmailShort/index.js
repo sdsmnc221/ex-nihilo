@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import styled from 'styled-components';
@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import PlaceHolder from '../PlaceHolder';
 
 import { truncate } from '../../utils';
-import IconButton from '../Button/IconButton';
+import StarButton from '../Button/StarButton';
 
 const Wrapper = styled.TouchableOpacity`
 	width: 100%;
@@ -54,9 +54,6 @@ const Date = styled.Text`
 `;
 
 const EmailShort = ({ sender, date, title, message, starred, onPress }) => {
-	const [active, setActive] = useState(starred);
-	const onPressStarButton = () => setActive(!active);
-
 	return (
 		<Wrapper onPress={onPress}>
 			<PlaceHolder color="#c4c4c4" size={35} round />
@@ -67,12 +64,7 @@ const EmailShort = ({ sender, date, title, message, starred, onPress }) => {
 			</Content>
 			<Side>
 				<Date>{date}</Date>
-				<IconButton
-					type={`STAR${active ? '' : '_OUTLINE'}`}
-					size={20}
-					onPress={onPressStarButton}
-					noBlink
-				/>
+				<StarButton initialActive={starred} />
 			</Side>
 		</Wrapper>
 	);

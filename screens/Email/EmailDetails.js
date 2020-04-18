@@ -1,60 +1,59 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import styled from 'styled-components';
-import { ScrollView, TextInput } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import NavigationBar from '../../sharedUI/NavigationBar';
 import AddButton from '../../sharedUI/Button/AddButton';
-import EmailShort from '../../sharedUI/EmailShort';
 
-import { random } from '../../utils';
-import IconButton from '../../sharedUI/Button/IconButton';
+import StarButton from '../../sharedUI/Button/StarButton';
 
-const Header = styled.View`
+const TitleWrapper = styled.View`
 	width: 100%;
-	height: 120px;
-	background-color: #fff;
-	padding: 24px;
-	justify-content: space-between;
-`;
-
-const SearchBar = styled.View`
-	position: relative;
-	width: 100%;
-	height: 35px;
 	flex-direction: row;
-	background-color: #c4c4c4;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 24px;
+	background-color: #fff;
 `;
 
-const SearchInput = styled.TextInput`
-	width: 100%;
-	height: 100%;
-	color: #e5e5e5;
-	font-size: 13px;
-	padding: 0 48px;
+const Group = styled.View`
+	flex-direction: ${({ dir }) => dir};
+	justify-content: center;
+	align-items: ${({ align }) => align || 'center'};
 `;
 
 const Title = styled.Text`
-	font-size: 13px;
-	text-transform: uppercase;
-	letter-spacing: 1.6px;
+	font-size: 18px;
+	font-weight: bold;
 `;
 
-const Inbox = styled.View`
-	width: 100%;
-	background-color: #fff;
-	margin-bottom: 108px;
+const Category = styled.Text`
+	background-color: #c4c4c4;
+	font-size: 9px;
+	letter-spacing: 0.4px;
+	padding: 2px 6px;
+	margin-top: 8px;
 `;
 
 const EmailDetailsScreen = ({ route, navigation }) => {
-	console.log(route);
+	const { email } = route.params;
+	const { sender, date, title, message, starred } = email;
+
+	console.log(email);
 
 	return (
 		<>
 			<SafeAreaView>
 				<View style={styles.body}>
 					<ScrollView contentContainerStyle={styles.scrollBody}>
-						<Text>abc</Text>
+						<TitleWrapper>
+							<Group dir="column" align="flex-start">
+								<Title>{title}</Title>
+								<Category>Boîte de réception</Category>
+							</Group>
+							<StarButton initialActive={starred} additionalStyles={styles.starIcon} />
+						</TitleWrapper>
 					</ScrollView>
 					<AddButton />
 				</View>
@@ -79,15 +78,8 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 		width: '100%',
 	},
-	settingsIcon: {
-		position: 'absolute',
-		top: 12,
-		left: 12,
-	},
-	searchIcon: {
-		position: 'absolute',
-		top: 8,
-		right: 12,
+	starIcon: {
+		marginTop: 8,
 	},
 });
 

@@ -6,24 +6,24 @@ import { BackHandler } from 'react-native';
 import moment from 'moment';
 import 'moment/locale/fr';
 
-import SplashScreen from './screens/SplashScreen';
-import WarningScreen from './screens/Warning';
-import IntroScreen from './screens/Intro';
-import NotificationsScreen from './screens/LockScreen/Notifications';
-import LockScreen from './screens/LockScreen';
-import HomeScreen from './screens/Home';
-import SmsScreen from './screens/SMS';
-import SmsConversation from './screens/SMS/SmsConversation';
-import ContactsScreen from './screens/ContactsScreen';
-import AlbumScreen from './screens/Album';
-import AlbumPhotoScreen from './screens/Album/AlbumPhoto';
-import FacebookScreen from './screens/Facebook';
-import FacebookLoginScreen from './screens/Facebook/FacebookLogin';
-import EmailScreen from './screens/Email';
-import EmailDetailsScreen from './screens/Email/EmailDetails';
-import EmailLoginScreen from './screens/Email/EmailLogin';
+import SplashScreen from 'screens/SplashScreen';
+import WarningScreen from 'screens/Warning';
+import IntroScreen from 'screens/Intro';
+import NotificationsScreen from 'screens/LockScreen/Notifications';
+import LockScreen from 'screens/LockScreen';
+import HomeScreen from 'screens/Home';
+import SmsScreen from 'screens/SMS';
+import SmsConversation from 'screens/SMS/SmsConversation';
+import ContactsScreen from 'screens/ContactsScreen';
+import AlbumScreen from 'screens/Album';
+import AlbumPhotoScreen from 'screens/Album/AlbumPhoto';
+import FacebookScreen from 'screens/Facebook';
+import FacebookLoginScreen from 'screens/Facebook/FacebookLogin';
+import EmailScreen from 'screens/Email';
+import EmailDetailsScreen from 'screens/Email/EmailDetails';
+import EmailLoginScreen from 'screens/Email/EmailLogin';
 
-import FullScreen from './utils/FullScreen';
+import FullScreen from 'utils/FullScreen';
 
 const App = () => {
 	moment.locale('fr');

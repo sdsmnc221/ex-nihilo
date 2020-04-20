@@ -50,62 +50,7 @@ $ react-native run-android
 
 ### Changes made
 
-- Modules & Paths resolver / Aliases (with [babel-plugin-module-resolver](https://github.com/tleunen/babel-plugin-module-resolver)). (Files are now placed in **src/**).
-- Empty folder _assets_ (for picto, video, fonts, etc.) and _configs_ (for future use) added.
-- App's name and package's name changed to, respectively, _EX NIHILO_ and _ex-nihilo_.
-- Components only relate to a screen, and that are not shared _(for example **SmsShort** which only shows up in **SmsScreen**)_ will be moved into the associated screen's folder.
-
-### Docs & Sources
-
-#### [Cleaning up imports using module resolver in React Native](https://dev.to/karanpratapsingh/cleaning-up-imports-using-module-resolver-in-react-native-58g8).
-
-So instead of `import NavigationBar from '../../sharedUI/NavigationBar';`, we will end up with `import NavigationBar from 'sharedUI/NavigationBar';`
-
-Check out [babel.config.js](babel.config.js) for aliases folders.
-
-#### Change packages's name and app's name
-
-Basically I just modified the names in [package.json](package.json) and [app.json](app.json).
-
-And [strings.xml](/android/app/src/main/res/values/strings.xml).
-
-And additionally used a fresh **android/** folders so all the Java packages stuff etc. also have the name **ex_nihilo**.
-
-_(That's why it will take a long time to build the app for the first time)_
-
-### Install and build for testing purpose
-
-#### Checkout to this branch.
-
-```
-$ git fetch
-$ git pull
-$ git checkout an_path-resolver
-```
-
-#### Clear caches. No in fact clear everything. Then restart the Metro Bundler Server.
-
-```
-$ watchman watch-del-all  && rm -rf node_modules/ && npm cache verify && npm install && npm start --reset-cache
-```
-
-Separated commands
-
-```
-$ watchman watch-del-al (if you have watchman)
-$ rm -rf node_modules/
-$ npm cache verify
-$ npm i
-$ npm start --reset-cache (or react-native start --reset-cache)
-```
-
-#### Build for Android
-
-_(It's gonna take a whiiiiiile since I used a new, fresh **android/** folder)_
-
-```
-$ react-native run-android
-```
+- :monkey::monkey::monkey::monkey::monkey::monkey:
 
 ## Built With
 

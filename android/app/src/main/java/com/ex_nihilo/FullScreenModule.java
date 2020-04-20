@@ -1,6 +1,7 @@
 // FullScreenModule.java
 
-package com.nexusrn;
+package com.ex_nihilo;
+
 import android.view.View;
 import android.app.Activity;
 import com.facebook.react.bridge.NativeModule;

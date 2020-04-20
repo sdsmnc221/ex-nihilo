@@ -1,6 +1,6 @@
 // FullScreenPackage.java
 
-package com.nexusrn;
+package com.ex_nihilo;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;

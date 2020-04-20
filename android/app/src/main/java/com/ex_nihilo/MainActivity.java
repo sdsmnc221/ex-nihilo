@@ -1,4 +1,4 @@
-package com.nexusrn;
+package com.ex_nihilo;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "nexusRN";
+    return "ex_nihilo";
   }
 }

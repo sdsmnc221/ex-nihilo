@@ -4,8 +4,8 @@ import Modal from 'react-native-modal';
 import styled from 'styled-components';
 
 import NavigationBar from 'sharedUI/NavigationBar';
-import PhotoThumbnail from 'sharedUI/PhotoThumbnail';
 import PasswordLock from 'sharedUI/PasswordLock';
+import PhotoThumbnail from './components/PhotoThumbnail';
 
 const PhotoGrid = styled.ScrollView`
 	width: 100%;

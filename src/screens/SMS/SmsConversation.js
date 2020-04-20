@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
-import SmsMessage from 'sharedUI/SmsMessage';
+import SmsMessage from './components/SmsMessage';
 import NavigationBar from 'sharedUI/NavigationBar';
 import IconButton from 'sharedUI/Button/IconButton';
 

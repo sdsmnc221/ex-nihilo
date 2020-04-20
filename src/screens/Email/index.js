@@ -5,10 +5,10 @@ import { ScrollView, TextInput } from 'react-native-gesture-handler';
 
 import NavigationBar from 'sharedUI/NavigationBar';
 import AddButton from 'sharedUI/Button/AddButton';
-import EmailShort from 'sharedUI/EmailShort';
-
-import { random } from '../../utils';
 import IconButton from 'sharedUI/Button/IconButton';
+import EmailShort from './components/EmailShort';
+
+import { random } from 'utils';
 
 const Header = styled.View`
 	width: 100%;

@@ -5,8 +5,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import NavigationBar from 'sharedUI/NavigationBar';
 import PlaceHolder from 'sharedUI/PlaceHolder';
-import FacebookPost from 'sharedUI/FacebookPost';
 import AddButton from 'sharedUI/Button/AddButton';
+import FacebookPost from './components/FacebookPost';
 
 const Header = styled.View`
 	width: 100%;

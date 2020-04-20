@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import Contacts from 'react-native-contacts';
 
-import { shuffle } from '../../utils';
+import { shuffle } from 'utils';
 
 import NavigationBar from 'sharedUI/NavigationBar';
-import Contact from 'sharedUI/Contact';
 import AddButton from 'sharedUI/Button/AddButton';
-import { ScrollView } from 'react-native-gesture-handler';
+import Contact from './components/Contact';
 
 const ContactsScreen = ({ navigation }) => {
 	const [contacts, setContacts] = useState([

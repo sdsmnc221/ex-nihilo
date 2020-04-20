@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import Contacts from 'react-native-contacts';
 
-import { shuffle } from '../../utils';
+import { shuffle } from 'utils';
 
-import SmsShort from 'sharedUI/SmsShort';
+import SmsShort from './components/SmsShort';
 import NavigationBar from 'sharedUI/NavigationBar';
 import AddButton from 'sharedUI/Button/AddButton';
 import { ScrollView } from 'react-native-gesture-handler';

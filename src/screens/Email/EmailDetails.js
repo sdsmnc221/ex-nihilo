@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import NavigationBar from 'sharedUI/NavigationBar';
-
 import StarButton from 'sharedUI/Button/StarButton';
 import PlaceHolder from 'sharedUI/PlaceHolder';
 import IconButton from 'sharedUI/Button/IconButton';

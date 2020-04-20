@@ -5,9 +5,9 @@ import GestureRecognizer from 'react-native-swipe-gestures';
 import styled from 'styled-components';
 
 import Clock from 'sharedUI/Clock';
-import Notification from 'sharedUI/Notification';
+import Notification from './components/Notification';
 
-import { shuffle, sampleSize } from '../../utils';
+import { shuffle, sampleSize } from 'utils';
 
 const NotificationsList = styled.ScrollView`
 	width: 80%;

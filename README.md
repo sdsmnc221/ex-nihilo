@@ -53,6 +53,7 @@ $ react-native run-android
 - Modules & Paths resolver / Aliases (with [babel-plugin-module-resolver](https://github.com/tleunen/babel-plugin-module-resolver)). (Files are now placed in **src/**).
 - Empty folder _assets_ (for picto, video, fonts, etc.) and _configs_ (for future use) added.
 - App's name and package's name changed to, respectively, _EX NIHILO_ and _ex-nihilo_.
+- Components only relate to a screen, and that are not shared _(for example **SmsShort** which only shows up in **SmsScreen**)_ will be moved into the associated screen's folder.
 
 ### Docs & Sources
 
@@ -68,7 +69,7 @@ Basically I just modified the names in [package.json](package.json) and [app.jso
 
 And [strings.xml](/android/app/src/main/res/values/strings.xml).
 
-And additionally use a fresh **ios/** and **android/** folder so all the Java packages stuff etc. also have the name **ex_nihilo**.
+And additionally used a fresh **android/** folders so all the Java packages stuff etc. also have the name **ex_nihilo**.
 
 _(That's why it will take a long time to build the app for the first time)_
 
@@ -100,7 +101,7 @@ $ npm start --reset-cache (or react-native start --reset-cache)
 
 #### Build for Android
 
-(It's gonna take a whiiiiiile since I used a new, fresh android/ folder)
+_(It's gonna take a whiiiiiile since I used a new, fresh **android/** folder)_
 
 ```
 $ react-native run-android
@@ -123,7 +124,7 @@ $ react-native run-android
 - [**Sarah Manzaro**](htts://) @ Gobelins - Designer.
 - [**Léa Morand**](htts://) @ Gobelins - Designer.
 - [**sdsmnc**](https://github.com/sdsmnc221) / [**An TRUONG**](https://antr.tech) @ Gobelins - Developer.
-- [**VincentLrg**](https://github.com/VincentLrg) / [\*\*Vincent Largillet](htts://) @ Gobelins - Developer.
+- [**VincentLrg**](https://github.com/VincentLrg) / [**Vincent Largillet**](htts://) @ Gobelins - Developer.
 
 ## License
 

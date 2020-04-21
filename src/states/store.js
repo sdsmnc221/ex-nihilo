@@ -6,8 +6,9 @@ import rootReducer from './reducers';
 import initialStates from './initialStates';
 
 function create() {
+	const composer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 	const middlewares = [thunk];
-	const enhancer = compose(applyMiddleware(...middlewares));
+	const enhancer = composer(applyMiddleware(...middlewares));
 
 	const storeInstance = createStore(rootReducer, initialStates, enhancer);
 

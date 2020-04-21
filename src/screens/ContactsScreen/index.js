@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Contacts from 'react-native-contacts';
 
-import { shuffle } from 'utils';
+import { sortContact } from 'utils';
 
 import NavigationBar from 'sharedUI/NavigationBar';
 import AddButton from 'sharedUI/Button/AddButton';
@@ -13,7 +13,11 @@ const ContactsScreen = ({ navigation }) => {
 	const [contacts, setContacts] = useState([
 		{
 			name: '',
-			number: '950',
+			number: '117',
+		},
+		{
+			name: '',
+			number: '438',
 		},
 		{
 			name: '',
@@ -21,16 +25,13 @@ const ContactsScreen = ({ navigation }) => {
 		},
 		{
 			name: '',
-			number: '438',
+			number: '950',
 		},
 		{
 			name: 'Marie Dupont',
 			number: '+33 7 53 69 93 21',
 		},
-		{
-			name: '',
-			number: '117',
-		},
+		
 	]);
 
 	useEffect(() => {
@@ -41,17 +42,16 @@ const ContactsScreen = ({ navigation }) => {
 			} else {
 				const deviceContacts = contacts_.filter((c) => c.phoneNumbers.length > 0);
 				if (deviceContacts.length > 0) {
-					const shuffledContacts = shuffle(
-						deviceContacts.map((contact) => {
-							const { displayName, phoneNumbers } = contact;
-							const { number } = phoneNumbers[0];
-							return {
-								name: displayName || number,
-								number,
-							};
-						})
-					);
-					setContacts(shuffledContacts);
+					const sortedContact = deviceContacts.map((contact) => {
+						const { displayName, phoneNumbers } = contact;
+						const { number } = phoneNumbers[0];
+						
+						return {
+							name: displayName != number ? displayName : null,
+							number: number.replace('+33 ', '0'),
+						};
+					}).sort(sortContact)
+					setContacts(sortedContact);
 				}
 			}
 		});
@@ -65,7 +65,7 @@ const ContactsScreen = ({ navigation }) => {
 						{contacts.map((c, i) => (
 							<Contact
 								key={i}
-								title={c.name ? c.name : c.number}
+								contact={c}
 								onPress={() =>
 									navigation.navigate('HomeScreen', { headerTitle: c.title })
 								}

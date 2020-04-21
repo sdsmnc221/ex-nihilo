@@ -32,12 +32,13 @@ const Title = styled.Text`
 	font-weight: bold;
 `;
 
-const Contact = ({ withSpacing, title, onPress }) => {
+const Contact = ({ withSpacing, contact, onPress }) => {
+	const firstLetter = contact.name ? contact.name.charAt(0) : "#"
 	return (
 		<Wrapper withSpacing={withSpacing} onPress={onPress}>
-			<PlaceHolder color="#c4c4c4" size={50} round />
+			<PlaceHolder color="#c4c4c4" size={50} text={firstLetter} round/>
 			<Content>
-				<Title>{title}</Title>
+				<Title>{contact.name ? contact.name : contact.number}</Title>
 			</Content>
 		</Wrapper>
 	);
@@ -45,7 +46,7 @@ const Contact = ({ withSpacing, title, onPress }) => {
 
 Contact.propTypes = {
 	withSpacing: PropTypes.bool,
-	title: PropTypes.string.isRequired,
+	contact: PropTypes.object.isRequired,
 	onPress: PropTypes.func.isRequired,
 };
 

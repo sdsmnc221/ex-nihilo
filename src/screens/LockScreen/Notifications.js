@@ -46,20 +46,17 @@ const NotificationsScreen = ({ route, navigation }) => {
 	useEffect(() => {
 		if (contactsRef && contactsRef.current) {
 			let deviceContacts = contactsRef.current.filter(
-				(c) => c.phoneNumbers.length > 0
+				(contact) => contact.phoneNumbers.length > 0
 			);
 			if (deviceContacts.length > 0) {
-				deviceContacts = shuffle(
-					deviceContacts.map(
-						(contact) =>
-							contact.phoneNumbers[0].displayName || contact.phoneNumbers[0].number
-					)
+				deviceContacts = deviceContacts.map(
+					(contact) => contact.displayName || contact.phoneNumbers[0].number
 				);
 
 				setContacts(shuffle([...contacts, ...deviceContacts]));
 			}
 		}
-	}, [contactsRef]);
+	}, []);
 
 	useEffect(() => {
 		console.log(contacts);

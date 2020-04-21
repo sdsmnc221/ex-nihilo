@@ -37,45 +37,50 @@ const SwiperNotch = styled.View`
 const NotificationsScreen = ({ route, navigation }) => {
 	const { contactsRef } = route.params;
 
-	const contacts_ = useSelector((state) => state.contacts);
-
-	console.log(contacts_);
-
-	const [contacts, setContacts] = useState([
-		'950',
-		'550',
-		'438',
-		'Marie Dupont',
-		'117',
-	]);
+	const [contacts, setContacts] = useState(
+		useSelector((state) => state.contacts).map(
+			(contact) => contact.name || contact.phoneNumber
+		)
+	);
 
 	useEffect(() => {
 		if (contactsRef && contactsRef.current) {
-			const deviceContacts = contactsRef.current.filter(
+			let deviceContacts = contactsRef.current.filter(
 				(c) => c.phoneNumbers.length > 0
 			);
 			if (deviceContacts.length > 0) {
-				setContacts(shuffle(deviceContacts.map((c) => c.phoneNumbers[0].number)));
+				deviceContacts = shuffle(
+					deviceContacts.map(
+						(contact) =>
+							contact.phoneNumbers[0].displayName || contact.phoneNumbers[0].number
+					)
+				);
+
+				setContacts(shuffle([...contacts, ...deviceContacts]));
 			}
 		}
 	}, [contactsRef]);
 
+	useEffect(() => {
+		console.log(contacts);
+	}, [contacts]);
+
 	const onSwipeUp = (gestureState) => navigation.navigate('LockScreen');
 
 	const notifications = sampleSize(
-		contacts.map((c) => {
+		contacts.map((contactName) => {
 			const type = Math.random() >= 0.5 ? 'message' : 'call';
 			return {
 				type,
 				date: 'le 25/02/2020',
-				title: c,
+				title: contactName,
 				message:
 					type === 'message'
 						? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo'
 						: '',
 			};
 		}),
-		contacts.length >= 10 ? 10 : contacts.length
+		contacts.length >= 32 ? 32 : contacts.length
 	);
 
 	return (

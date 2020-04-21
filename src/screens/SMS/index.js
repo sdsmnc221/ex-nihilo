@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import Contacts from 'react-native-contacts';
+import { useSelector } from 'react-redux';
 
 import { shuffle } from 'utils';
 
@@ -10,31 +11,36 @@ import AddButton from 'sharedUI/Button/AddButton';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const SmsScreen = ({ navigation }) => {
-	const [contacts, setContacts] = useState([
-		'950',
-		'550',
-		'438',
-		'Marie Dupont',
-		'117',
-	]);
+	const [contacts, setContacts] = useState(
+		useSelector((state) => state.contacts).map(
+			(contact) => contact.name || contact.phoneNumber
+		)
+	);
 
 	useEffect(() => {
 		Contacts.getAllWithoutPhotos((err, contacts_) => {
 			if (err === 'denied') {
 				// error
 			} else {
-				const deviceContacts = contacts_.filter((c) => c.phoneNumbers.length > 0);
+				let deviceContacts = contacts_.filter(
+					(contact) => contact.phoneNumbers.length > 0
+				);
+
 				if (deviceContacts.length > 0) {
-					setContacts(shuffle(deviceContacts.map((c) => c.phoneNumbers[0].number)));
+					deviceContacts = deviceContacts.map(
+						(contact) => contact.displayName || contact.phoneNumbers[0].number
+					);
+
+					setContacts(shuffle([...contacts, ...deviceContacts]));
 				}
 			}
 		});
 	}, []);
 
-	const smsList = contacts.map((c) => {
+	const smsList = contacts.map((contactName) => {
 		return {
 			date: 'Hier',
-			title: c,
+			title: contactName,
 			message:
 				'Moi: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo',
 		};

@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, View, Text, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 import Clock from 'sharedUI/Clock';
 import Notification from './components/Notification';
@@ -36,41 +37,47 @@ const SwiperNotch = styled.View`
 const NotificationsScreen = ({ route, navigation }) => {
 	const { contactsRef } = route.params;
 
-	const [contacts, setContacts] = useState([
-		'950',
-		'550',
-		'438',
-		'Marie Dupont',
-		'117',
-	]);
+	const [contacts, setContacts] = useState(
+		useSelector((state) => state.contacts).map(
+			(contact) => contact.name || contact.phoneNumber
+		)
+	);
 
 	useEffect(() => {
 		if (contactsRef && contactsRef.current) {
-			const deviceContacts = contactsRef.current.filter(
-				(c) => c.phoneNumbers.length > 0
+			let deviceContacts = contactsRef.current.filter(
+				(contact) => contact.phoneNumbers.length > 0
 			);
 			if (deviceContacts.length > 0) {
-				setContacts(shuffle(deviceContacts.map((c) => c.phoneNumbers[0].number)));
+				deviceContacts = deviceContacts.map(
+					(contact) => contact.displayName || contact.phoneNumbers[0].number
+				);
+
+				setContacts(shuffle([...contacts, ...deviceContacts]));
 			}
 		}
-	}, [contactsRef]);
+	}, []);
+
+	useEffect(() => {
+		console.log(contacts);
+	}, [contacts]);
 
 	const onSwipeUp = (gestureState) => navigation.navigate('LockScreen');
 
 	const notifications = sampleSize(
-		contacts.map((c) => {
+		contacts.map((contactName) => {
 			const type = Math.random() >= 0.5 ? 'message' : 'call';
 			return {
 				type,
 				date: 'le 25/02/2020',
-				title: c,
+				title: contactName,
 				message:
 					type === 'message'
 						? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo'
 						: '',
 			};
 		}),
-		contacts.length >= 10 ? 10 : contacts.length
+		contacts.length >= 32 ? 32 : contacts.length
 	);
 
 	return (

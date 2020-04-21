@@ -46,6 +46,16 @@ $ react-native link
 $ react-native run-android
 ```
 
+## THIS BRANCH ONLY :sparkles:
+
+### Changes made
+
+- :monkey::monkey::monkey::monkey::monkey::monkey:
+
+### Docs & Resources
+
+- https://github.com/jhen0409/react-native-debugger/blob/master/docs/redux-devtools-integration.md
+
 ## Built With
 
 - [Make A README](https://www.makeareadme.com/) - README's good practices.

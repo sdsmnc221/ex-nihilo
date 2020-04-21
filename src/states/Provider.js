@@ -1,7 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+
 import store from './store';
 
-export default ({ element }) => {
-	return <Provider store={store()}>{element}</Provider>;
+export default ({ children }) => {
+	return <Provider store={store()}>{children}</Provider>;
 };

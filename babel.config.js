@@ -7,6 +7,7 @@ module.exports = {
 				alias: {
 					assets: './src/assets',
 					configs: './src/configs',
+					states: './src/states',
 					screens: './src/screens',
 					sharedUI: './src/sharedUI',
 					utils: './src/utils',

@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, View, Text, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 import Clock from 'sharedUI/Clock';
 import Notification from './components/Notification';
@@ -35,6 +36,10 @@ const SwiperNotch = styled.View`
 
 const NotificationsScreen = ({ route, navigation }) => {
 	const { contactsRef } = route.params;
+
+	const contacts_ = useSelector((state) => state.contacts);
+
+	console.log(contacts_);
 
 	const [contacts, setContacts] = useState([
 		'950',

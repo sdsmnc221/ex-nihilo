@@ -26,4 +26,16 @@ const shuffle = ([...arr]) => {
 
 const random = (odd = 0.5) => (Math.random() <= odd ? true : false);
 
-export { truncate, sample, sampleSize, shuffle, random };
+const sortContact = (a, b) =>{
+	const contactA = a.name ? a.name.toUpperCase() : ''
+	const contactB = b.name ? b.name.toUpperCase() : ''
+	let comparison = 0;
+	if (contactA > contactB) {
+		comparison = 1;
+	} else if (contactA < contactB) {
+		comparison = -1;
+	}
+	return comparison;
+}
+
+export { truncate, sample, sampleSize, shuffle, random, sortContact };

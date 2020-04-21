@@ -34,7 +34,7 @@ const App = () => {
 		return true;
 	};
 	//Disable Back native button
-	BackHandler.addEventListener('backPress', onBackButtonPressed);
+	BackHandler.addEventListener('hardwareBackPress', onBackButtonPressed);
 
 	FullScreen.enable();
 

@@ -83,10 +83,21 @@ const Dot = styled.View`
 `;
 
 const FacebookLoginScreen = ({ navigation }) => {
-	const [email, setEmail] = useState('sam.blanchard@gmail.com');
-	const [password, setPassword] = useState('');
+	const [emailInput, setEmailInput] = useState('sam.blanchard@gmail.com');
+	const [passwordInput, setPasswordInput] = useState('');
+	const [fbEmail, setFbEmail] = useState('sam.blanchard@gmail.com');
+	const [fbPassword, setFbPassword] = useState('b1nouze');
+	const [failed, setFailed] = useState(false);
 
-	const onSubmit = () => navigation.navigate('FacebookScreen');
+	const onSubmit = () => {
+		console.log(`${passwordInput} | ${fbPassword}`)
+		console.log(`${emailInput} | ${fbEmail}`)
+		if ((passwordInput !== fbPassword) || (emailInput !== fbEmail)) {
+			setFailed(true)
+		} else {
+			navigation.navigate('FacebookScreen');
+		}
+	}
 
 	return (
 		<>
@@ -96,13 +107,14 @@ const FacebookLoginScreen = ({ navigation }) => {
 						<Icon type="FACEBOOK_XL" />
 					</LogoContainer>
 					<ContentContainer>
-						<Input value={email} onChangeText={(text) => setEmail(text)} />
+						<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
+						{failed && <Text color='#DDD'>Email ou mot de passe incorrect.</Text>}
 						<Input
-							value={password}
+							value={passwordInput}
 							secureTextEntry
 							blurOnSubmit
 							onSubmitEditing={onSubmit}
-							onChangeText={(text) => setPassword(text)}
+							onChangeText={(text) => setPasswordInput(text)}
 						/>
 						<Button onPress={onSubmit}>
 							<StyledText size={14} bold>

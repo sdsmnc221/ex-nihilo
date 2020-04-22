@@ -27,7 +27,7 @@ const ContentContainer = styled.View`
 
 const Title = styled.Text`
 	position: absolute;
-	top: 36px;
+	top: 24px;
 	width: 72%;
 	text-align: left;
 	font-size: 24px;
@@ -72,10 +72,21 @@ const Separator = styled.View`
 `;
 
 const EmailLoginScreen = ({ navigation }) => {
-	const [email, setEmail] = useState('sam.blanchard@gmail.com');
-	const [password, setPassword] = useState('');
+	const [emailInput, setEmailInput] = useState('sam.blanchard@gmail.com');
+	const [passwordInput, setPasswordInput] = useState('');
+	const [mailEmail, setMailEmail] = useState('sam.blanchard@gmail.com');
+	const [mailPassword, setMailPassword] = useState('Dormiens');
+	const [failed, setFailed] = useState(false);
 
-	const onSubmit = () => navigation.navigate('EmailScreen');
+	const onSubmit = () => {
+		console.log(`${passwordInput} | ${mailPassword}`)
+		console.log(`${emailInput} | ${mailEmail}`)
+		if ((passwordInput !== mailPassword) || (emailInput !== mailEmail)) {
+			setFailed(true)
+		} else {
+			navigation.navigate('EmailScreen');
+		}
+	}
 
 	return (
 		<>
@@ -86,13 +97,14 @@ const EmailLoginScreen = ({ navigation }) => {
 					</LogoContainer>
 					<ContentContainer>
 						<Title>Connexion</Title>
-						<Input value={email} onChangeText={(text) => setEmail(text)} />
+						<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
+						{failed && <Text color='#DDD'>Email ou mot de passe incorrect.</Text>}
 						<Input
-							value={password}
+							value={passwordInput}
 							secureTextEntry
 							blurOnSubmit
 							onSubmitEditing={onSubmit}
-							onChangeText={(text) => setPassword(text)}
+							onChangeText={(text) => setPasswordInput(text)}
 						/>
 						<Button onPress={onSubmit}>
 							<StyledText size={14} bold>

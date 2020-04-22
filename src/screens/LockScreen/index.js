@@ -11,7 +11,6 @@ const LockScreen = ({ navigation }) => {
 	const [phonePassword, setPhonePassword] = useState('Thierry');
 
 	const onSubmit = () => {
-		console.log(phonePassword);
 		if (passwordInput !== phonePassword) {
 			setNumberOfTry(numberOfTry + 1);
 			console.log(passwordInput + ' | ' + numberOfTry);

@@ -26,7 +26,7 @@ const AlbumScreen = ({ navigation }) => {
 		if (passwordInput === albumPassword) {
 			setIsLocked(false);
 		}
-	}
+	};
 
 	const renderPasswordLock = () => (
 		<Modal
@@ -41,6 +41,7 @@ const AlbumScreen = ({ navigation }) => {
 				onInputPassword={(text) => setPasswordInput(text)}
 				onSubmitPassword={onSubmitPassword}
 			/>
+			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
 		</Modal>
 	);
 

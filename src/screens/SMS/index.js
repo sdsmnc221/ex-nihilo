@@ -31,7 +31,9 @@ const SmsScreen = ({ navigation }) => {
 						(contact) => contact.displayName || contact.phoneNumbers[0].number
 					);
 
-					setContacts(shuffle([...contacts, ...deviceContacts]));
+					setContacts((prevContacts) =>
+						shuffle([...prevContacts, ...deviceContacts])
+					);
 				}
 			}
 		});

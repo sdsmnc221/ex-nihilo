@@ -21,12 +21,9 @@ const ContactsScreen = ({ navigation }) => {
 		Contacts.getAllWithoutPhotos((err, contacts_) => {
 			if (err === 'denied') {
 				// error
-				console.log(contacts);
 			} else {
-				let deviceContacts = contacts_.filter(
-					(contact) => contact.phoneNumbers.length > 0
-				);
-				let sortedContacts = [];
+				let deviceContacts =
+					contacts_.filter((contact) => contact.phoneNumbers.length > 0) || [];
 
 				if (deviceContacts.length > 0) {
 					deviceContacts = deviceContacts.map((contact) => {
@@ -38,13 +35,15 @@ const ContactsScreen = ({ navigation }) => {
 							number: number.replace('+33 ', '0'),
 						};
 					});
-
-					sortedContacts = [...contacts, ...deviceContacts].sort(sortContact);
-				} else {
-					sortedContacts = [...contacts.sort(sortContact)];
 				}
 
-				setContacts(sortedContacts);
+				setContacts((prevContacts) => {
+					const sortedContacts = [...prevContacts, ...deviceContacts].sort(
+						sortContact
+					);
+
+					return sortedContacts;
+				});
 			}
 		});
 	}, []);

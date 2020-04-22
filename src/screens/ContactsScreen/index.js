@@ -26,6 +26,8 @@ const ContactsScreen = ({ navigation }) => {
 				let deviceContacts = contacts_.filter(
 					(contact) => contact.phoneNumbers.length > 0
 				);
+				let sortedContacts = [];
+
 				if (deviceContacts.length > 0) {
 					deviceContacts = deviceContacts.map((contact) => {
 						const { displayName, phoneNumbers } = contact;
@@ -37,10 +39,12 @@ const ContactsScreen = ({ navigation }) => {
 						};
 					});
 
-					const sortedContacts = [...contacts, ...deviceContacts].sort(sortContact);
-
-					setContacts(sortedContacts);
+					sortedContacts = [...contacts, ...deviceContacts].sort(sortContact);
+				} else {
+					sortedContacts = [...contacts.sort(sortContact)];
 				}
+
+				setContacts(sortedContacts);
 			}
 		});
 	}, []);

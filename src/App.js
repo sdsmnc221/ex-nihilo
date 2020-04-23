@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { BackHandler } from 'react-native';
@@ -25,25 +25,30 @@ import EmailScreen from 'screens/Email';
 import EmailDetailsScreen from 'screens/Email/EmailDetails';
 import EmailLoginScreen from 'screens/Email/EmailLogin';
 
-import FullScreen from 'utils/FullScreen';
 import Notification from './sharedUI/Notification';
 
+import FullScreen from 'utils/FullScreen';
+
+const Stack = createStackNavigator();
+
 const App = () => {
+	// Set date time locale to FR
 	moment.locale('fr');
 
-	const Stack = createStackNavigator();
-
+	// Disable Back native button
 	const onBackButtonPressed = () => {
 		return true;
 	};
-	//Disable Back native button
 	BackHandler.addEventListener('hardwareBackPress', onBackButtonPressed);
 
+	// Enable Fullscreen mode
 	FullScreen.enable();
+
+	const navContainerRef = useRef(null);
 
 	return (
 		<Provider>
-			<NavigationContainer>
+			<NavigationContainer ref={navContainerRef}>
 				<Stack.Navigator>
 					<Stack.Screen
 						name="SplashScreen"
@@ -122,7 +127,9 @@ const App = () => {
 						options={{ title: '' }}
 					/>
 				</Stack.Navigator>
-				<Notification />
+				<Notification
+					onSwitchScreen={() => navContainerRef.current?.navigate('SmsScreen')}
+				/>
 			</NavigationContainer>
 		</Provider>
 	);

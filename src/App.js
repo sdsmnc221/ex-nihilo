@@ -17,6 +17,7 @@ import HomeScreen from 'screens/Home';
 import SmsScreen from 'screens/SMS';
 import SmsConversation from 'screens/SMS/SmsConversation';
 import ContactsScreen from 'screens/ContactsScreen';
+import ContactDetails from 'screens/ContactsScreen/ContactDetails';
 import AlbumScreen from 'screens/Album';
 import AlbumPhotoScreen from 'screens/Album/AlbumPhoto';
 import FacebookScreen from 'screens/Facebook';
@@ -79,11 +80,18 @@ const App = () => {
 						component={SmsScreen}
 						options={{ title: 'Messagerie', headerLeft: null }}
 					/>
-					<Stack.Screen name="SmsConversation" component={SmsConversation} />
+					<Stack.Screen 
+						name="SmsConversation" 
+						component={SmsConversation} 
+					/>
 					<Stack.Screen
 						name="ContactsScreen"
 						component={ContactsScreen}
 						options={{ title: 'Contacts', headerLeft: null }}
+					/>
+					<Stack.Screen 
+						name="ContactDetails"
+						component={ContactDetails}
 					/>
 					<Stack.Screen
 						name="AlbumScreen"

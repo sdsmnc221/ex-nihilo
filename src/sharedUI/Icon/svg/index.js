@@ -4,6 +4,8 @@ export { default as ARROW_LEFT } from './ARROW_LEFT';
 export { default as CONTACTS } from './CONTACTS';
 export { default as DOTS_HORIZONTAL } from './DOTS_HORIZONTAL';
 export { default as DOTS_VERTICAL } from './DOTS_VERTICAL';
+export { default as EDIT_CONTACTS } from './EDIT_CONTACTS';
+export { default as EMAIL } from './EMAIL';
 export { default as EMAIL_REPLY } from './EMAIL_REPLY';
 export { default as EMAIL_XL } from './EMAIL_XL';
 export { default as FACEBOOK_XL } from './FACEBOOK_XL';

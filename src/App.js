@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
+import { BackHandler } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { BackHandler } from 'react-native';
 
 import moment from 'moment';
 import 'moment/locale/fr';
@@ -16,6 +16,7 @@ import LockScreen from 'screens/LockScreen';
 import HomeScreen from 'screens/Home';
 import SmsScreen from 'screens/SMS';
 import SmsConversation from 'screens/SMS/SmsConversation';
+import JanusConversation from './screens/SMS/JanusConversation';
 import ContactsScreen from 'screens/ContactsScreen';
 import AlbumScreen from 'screens/Album';
 import AlbumPhotoScreen from 'screens/Album/AlbumPhoto';
@@ -28,6 +29,7 @@ import EmailLoginScreen from 'screens/Email/EmailLogin';
 import Notification from './sharedUI/Notification';
 
 import FullScreen from 'utils/FullScreen';
+import { BaseButton } from 'react-native-gesture-handler';
 
 const Stack = createStackNavigator();
 
@@ -86,6 +88,7 @@ const App = () => {
 						options={{ title: 'Messagerie', headerLeft: null }}
 					/>
 					<Stack.Screen name="SmsConversation" component={SmsConversation} />
+					<Stack.Screen name="JanusConversation" component={JanusConversation} />
 					<Stack.Screen
 						name="ContactsScreen"
 						component={ContactsScreen}
@@ -128,7 +131,9 @@ const App = () => {
 					/>
 				</Stack.Navigator>
 				<Notification
-					onSwitchScreen={() => navContainerRef.current?.navigate('SmsScreen')}
+					onSwitchScreen={() =>
+						navContainerRef.current?.navigate('JanusConversation')
+					}
 				/>
 			</NavigationContainer>
 		</Provider>

@@ -79,12 +79,6 @@ const Notification = ({
 		return () => clearTimeout(timer.current);
 	}, [triggerDelay]);
 
-	const onPress = () => {
-		setIsVisible(false);
-
-		setTimeout(() => onSwitchScreen(), 200);
-	};
-
 	return (
 		<Modal
 			isVisible={isVisible}
@@ -94,8 +88,12 @@ const Notification = ({
 			animationOut="slideOutUp"
 			animationInTiming={800}
 			animationOutTiming={800}
-			useNativeDriver>
-			<Wrapper style={styles.shadow} activeOpacity={0.8} onPress={onPress}>
+			useNativeDriver
+			onModalHide={onSwitchScreen}>
+			<Wrapper
+				style={styles.shadow}
+				activeOpacity={0.8}
+				onPress={() => setIsVisible(false)}>
 				<FlexView dir="row" justify="space-between" fullWidth>
 					<FlexView dir="row">
 						<Icon type={iconType} width={15} height={15} />

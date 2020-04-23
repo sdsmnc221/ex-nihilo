@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import Contacts from 'react-native-contacts';
 import { useSelector } from 'react-redux';
 
@@ -8,7 +9,6 @@ import { shuffle } from 'utils';
 import SmsShort from './components/SmsShort';
 import NavigationBar from 'sharedUI/NavigationBar';
 import AddButton from 'sharedUI/Button/AddButton';
-import { ScrollView } from 'react-native-gesture-handler';
 
 const SmsScreen = ({ navigation }) => {
 	const [contacts, setContacts] = useState(
@@ -75,10 +75,12 @@ const SmsScreen = ({ navigation }) => {
 					</ScrollView>
 					<AddButton />
 				</View>
+
 				<NavigationBar
 					onPressHome={() => navigation.navigate('HomeScreen')}
 					black
 				/>
+				{/* <Notification /> */}
 			</SafeAreaView>
 		</>
 	);

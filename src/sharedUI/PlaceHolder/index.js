@@ -45,7 +45,7 @@ PlaceHolder.defaultProps = {
 	height: undefined,
 	round: false,
 	text: undefined,
-	textSize: 12
+	textSize: 12,
 };
 
 export default PlaceHolder;

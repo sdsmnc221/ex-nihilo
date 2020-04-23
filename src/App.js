@@ -26,6 +26,7 @@ import EmailDetailsScreen from 'screens/Email/EmailDetails';
 import EmailLoginScreen from 'screens/Email/EmailLogin';
 
 import FullScreen from 'utils/FullScreen';
+import Notification from './sharedUI/Notification';
 
 const App = () => {
 	moment.locale('fr');
@@ -121,6 +122,7 @@ const App = () => {
 						options={{ title: '' }}
 					/>
 				</Stack.Navigator>
+				<Notification />
 			</NavigationContainer>
 		</Provider>
 	);

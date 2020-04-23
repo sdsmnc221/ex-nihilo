@@ -18,19 +18,20 @@ const Wrapper = styled.View`
 `;
 
 const Label = styled.Text`
-	font-size: 12px;
+	font-size: ${({ textSize }) => textSize}px;
 	text-align: center;
 `;
 
-const PlaceHolder = ({ color, size, width, height, round, text }) => (
+const PlaceHolder = ({ color, size, textSize, width, height, round, text }) => (
 	<Wrapper color={color} size={size} width={width} height={height} round={round}>
-		{text && <Label>{text}</Label>}
+		{text && <Label textSize={textSize}>{text}</Label>}
 	</Wrapper>
 );
 
 PlaceHolder.propTypes = {
 	color: PropTypes.string,
 	size: PropTypes.number,
+	textSize: PropTypes.number,
 	width: PropTypes.number,
 	height: PropTypes.number,
 	round: PropTypes.bool,
@@ -44,6 +45,7 @@ PlaceHolder.defaultProps = {
 	height: undefined,
 	round: false,
 	text: undefined,
+	textSize: 12
 };
 
 export default PlaceHolder;

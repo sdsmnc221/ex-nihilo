@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import styled from 'styled-components';
@@ -20,9 +20,8 @@ const Date = styled.Text`
 `;
 
 const InputField = styled.View`
-	position: absolute;
-	bottom: 40px; /* navigation bar's place */
 	width: 100%;
+	margin-top: 12px;
 `;
 
 const SmsInput = styled.TextInput`
@@ -37,11 +36,17 @@ const SmsConversation = ({ route, navigation }) => {
 	const { headerTitle } = route.params;
 	navigation.setOptions({ headerTitle });
 
+	const smsListRef = useRef(null);
+
 	return (
 		<>
 			<SafeAreaView>
 				<View style={styles.body}>
-					<SmsList>
+					<SmsList
+						ref={smsListRef}
+						onContentSizeChange={() =>
+							smsListRef.current?.scrollToEnd({ animated: true })
+						}>
 						<SmsMessage message="Lorem ipsum dolor sit amet" />
 						<SmsMessage hasPlaceholder message="Lorem ipsum dolor sit amet" />
 
@@ -63,6 +68,31 @@ const SmsConversation = ({ route, navigation }) => {
 							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 						/>
 
+						<SmsMessage
+							hasPlaceholder
+							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
+						/>
+
+						<Date>15:12</Date>
+
+						<SmsMessage
+							isUser
+							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+						/>
+
+						<SmsMessage
+							hasPlaceholder
+							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
+						/>
+
+						<SmsMessage
+							hasPlaceholder
+							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
+						/>
+						<SmsMessage
+							hasPlaceholder
+							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
+						/>
 						<SmsMessage
 							hasPlaceholder
 							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
@@ -89,6 +119,7 @@ const styles = StyleSheet.create({
 		height: '100%',
 		justifyContent: 'center',
 		alignItems: 'center',
+		paddingBottom: 40,
 	},
 	sendIcon: {
 		position: 'absolute',

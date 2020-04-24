@@ -29,7 +29,6 @@ import EmailLoginScreen from 'screens/Email/EmailLogin';
 import Notification from './sharedUI/Notification';
 
 import FullScreen from 'utils/FullScreen';
-import { BaseButton } from 'react-native-gesture-handler';
 
 const Stack = createStackNavigator();
 

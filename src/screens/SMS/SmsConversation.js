@@ -1,11 +1,10 @@
 import React, { useRef } from 'react';
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
-import SmsMessage from './components/SmsMessage';
 import NavigationBar from 'sharedUI/NavigationBar';
-import IconButton from 'sharedUI/Button/IconButton';
+import SmsMessage from './components/SmsMessage';
+import SmsInput from './components/SmsInput';
 
 const SmsList = styled.ScrollView`
 	width: 100%;
@@ -22,14 +21,6 @@ const Date = styled.Text`
 const InputField = styled.View`
 	width: 100%;
 	margin-top: 12px;
-`;
-
-const SmsInput = styled.TextInput`
-	height: 44px;
-	padding: 0 18px;
-	background-color: #c4c4c4;
-	color: #818181;
-	font-size: 10px;
 `;
 
 const SmsConversation = ({ route, navigation }) => {
@@ -99,8 +90,7 @@ const SmsConversation = ({ route, navigation }) => {
 						/>
 					</SmsList>
 					<InputField>
-						<SmsInput editable={false} value={'Écrire un SMS...'} />
-						<IconButton type="SEND" noBlink additionalStyles={styles.sendIcon} />
+						<SmsInput />
 					</InputField>
 				</View>
 				<NavigationBar
@@ -120,11 +110,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		paddingBottom: 40,
-	},
-	sendIcon: {
-		position: 'absolute',
-		right: 12,
-		top: 12,
 	},
 });
 

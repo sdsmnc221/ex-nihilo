@@ -1,37 +1,22 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
 import { HeaderBackButton } from '@react-navigation/stack';
 import styled from 'styled-components';
 
-import SmsMessage from './components/SmsMessage';
 import NavigationBar from 'sharedUI/NavigationBar';
-import IconButton from 'sharedUI/Button/IconButton';
+import SmsMessage from './components/SmsMessage';
+import AnswerChoice from './components/AnswerChoice';
+import SmsInput from './components/SmsInput';
 
 const SmsList = styled.ScrollView`
 	width: 100%;
 	background-color: #fff;
 `;
 
-const Date = styled.Text`
-	font-size: 10px;
-	color: #565656;
-	text-align: center;
-	margin-top: 12px;
-`;
-
 const InputWrapper = styled.View`
 	height: 40%;
 	width: 100%;
 	margin-top: 12px;
-`;
-
-const InputField = styled.TextInput`
-	height: 44px;
-	padding: 0 18px;
-	background-color: #c4c4c4;
-	color: #818181;
-	font-size: 10px;
 `;
 
 const ChoicesWrapper = styled.View`
@@ -55,7 +40,13 @@ const JanusConversation = ({ navigation }) => {
 		),
 	});
 
+	const choices = ['Salut', 'Bonsoir', 'Ho biloute'];
+
+	const [choicesAvailable, setChoicesAvailable] = useState(true);
+	const [activeChoice, setActiveChoice] = useState(undefined);
 	const smsListRef = useRef(null);
+
+	const onPressChoice = (choiceIndex) => setActiveChoice(choiceIndex);
 
 	return (
 		<>
@@ -66,8 +57,7 @@ const JanusConversation = ({ navigation }) => {
 						onContentSizeChange={() =>
 							smsListRef.current?.scrollToEnd({ animated: true })
 						}>
-						<SmsMessage message="Lorem ipsum dolor sit amet" />
-						<SmsMessage hasPlaceholder message="Lorem ipsum dolor sit amet" />
+						<SmsMessage hasPlaceholder message="Bonjour toi !" />
 
 						<SmsMessage
 							isUser
@@ -78,50 +68,24 @@ const JanusConversation = ({ navigation }) => {
 						<SmsMessage
 							hasPlaceholder
 							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-						/>
-
-						<Date>10:42</Date>
-
-						<SmsMessage
-							isUser
-							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-						/>
-
-						<SmsMessage
-							hasPlaceholder
-							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-						/>
-
-						<Date>15:12</Date>
-
-						<SmsMessage
-							isUser
-							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-						/>
-
-						<SmsMessage
-							hasPlaceholder
-							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-						/>
-
-						<SmsMessage
-							hasPlaceholder
-							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-						/>
-						<SmsMessage
-							hasPlaceholder
-							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-						/>
-						<SmsMessage
-							hasPlaceholder
-							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
 						/>
 					</SmsList>
 					<InputWrapper>
-						<InputField editable={false} value={'Écrire un SMS...'} />
-						<IconButton type="SEND" noBlink additionalStyles={styles.sendIcon} />
+						<SmsInput />
 						<ChoicesWrapper>
-							<NoChoice>Pas de réponses disponibles pour le moment.</NoChoice>
+							{!choicesAvailable ? (
+								<NoChoice>Pas de réponses disponibles pour le moment.</NoChoice>
+							) : (
+								choices.map((c, i) => (
+									<AnswerChoice
+										key={i}
+										index={i}
+										active={i === activeChoice}
+										text={c}
+										onPressChoice={onPressChoice}
+									/>
+								))
+							)}
 						</ChoicesWrapper>
 					</InputWrapper>
 				</View>

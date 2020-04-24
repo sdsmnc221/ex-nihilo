@@ -85,17 +85,13 @@ const Notification = ({
 	 *   to remind the user to press on it and go check it out.
 	 */
 	useEffect(() => {
-		if (isNotPressed) {
-			if (!reappearEnabled) {
-				interval.current = setTimeout(() => setIsVisible(true), triggerDelay);
-			} else {
-				clearTimeout(timeout.current);
-				interval.current = setInterval(() => setIsVisible(true), reappearDelay);
-			}
+		if (!reappearEnabled) {
+			interval.current = setTimeout(() => setIsVisible(true), triggerDelay);
 		} else {
-			clearInterval(interval.current);
+			clearTimeout(timeout.current);
+			interval.current = setInterval(() => setIsVisible(true), reappearDelay);
 		}
-	}, [isNotPressed, reappearEnabled, triggerDelay, reappearDelay]);
+	}, [reappearEnabled, triggerDelay, reappearDelay]);
 
 	const onSwipe = () => {
 		if (!reappearEnabled) {
@@ -108,6 +104,7 @@ const Notification = ({
 		setIsVisible(false);
 		setIsNotPressed(false);
 		setTimeout(() => onPress(), 160);
+		clearInterval(interval.current);
 	};
 
 	return (
@@ -151,8 +148,8 @@ Notification.propTypes = {
 };
 
 Notification.defaultProps = {
-	triggerDelay: 3200,
-	reappearDelay: 120,
+	triggerDelay: 20000,
+	reappearDelay: 4000,
 	type: 'Messages',
 	iconType: 'SMS',
 	date: "À l'instant",

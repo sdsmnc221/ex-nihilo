@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import { HeaderBackButton } from '@react-navigation/stack';
 import styled from 'styled-components';
@@ -32,10 +32,50 @@ const ChoicesWrapper = styled.View`
 	align-items: center;
 `;
 
-const NoChoice = styled.Text`
+const InputOverlay = styled.View`
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+`;
+
+const NoChoiceText = styled.Text`
 	font-size: 11px;
 	color: #818181;
 `;
+
+const NoChoice = () => (
+	<NoChoiceText>Pas de réponses disponibles pour le moment.</NoChoiceText>
+);
+
+const ChoicesContent = ({ script, activeChoiceIndex, onPressChoice }) => {
+	let content;
+
+	switch (script.type) {
+		case 'MESSAGE_WITH_CHOICES':
+			content = script.choices.map((c, i) => (
+				<AnswerChoice
+					key={i}
+					index={i}
+					active={i === activeChoiceIndex}
+					text={c.text}
+					onPressChoice={onPressChoice}
+				/>
+			));
+			break;
+		case 'INPUT':
+			content = <NoChoice />;
+			break;
+		case 'MESSAGE':
+		default:
+			content = <NoChoice />;
+			break;
+	}
+
+	return content;
+};
 
 const JanusConversation = ({ navigation }) => {
 	navigation.setOptions({
@@ -52,21 +92,42 @@ const JanusConversation = ({ navigation }) => {
 	const [activeScript, setActiveScript] = useState(
 		find(scripts, 'ID', dialogueLog.currentScriptID)
 	);
-	const [dialogueMessages, setDialogueMessages] = useState([
-		new DialogueMessage(activeScript),
-	]);
+	const [dialogueMessages, setDialogueMessages] = useState([]);
 	const [choices, setChoices] = useState(activeScript.choices);
 	const [activeChoiceIndex, setActiveChoiceIndex] = useState(undefined);
 
+	const updateDialogueMessages = useCallback(
+		(message) =>
+			setDialogueMessages((prevMessages) => [
+				...prevMessages,
+				new DialogueMessage(message),
+			]),
+		[]
+	);
 	const onPressChoice = (index) => setActiveChoiceIndex(index);
 	const onPressSend = (choice) => {
-		setDialogueMessages((prevMessages) => [
-			...prevMessages,
-			new DialogueMessage(choice),
-		]);
-
-		setChoices(false);
+		updateDialogueMessages(choice);
+		setActiveScript(find(scripts, 'ID', choice.nextID));
 	};
+
+	useEffect(() => {
+		console.log(activeScript, choices);
+		setTimeout(() => {
+			updateDialogueMessages(activeScript);
+		}, 240);
+
+		switch (activeScript.type) {
+			case 'MESSAGE':
+				setActiveScript(find(scripts, 'ID', activeScript.nextID));
+				break;
+			case 'MESSAGE_WITH_CHOICES':
+				setChoices(activeScript.choices);
+				setActiveChoiceIndex(undefined);
+				break;
+			default:
+				break;
+		}
+	}, [activeScript]);
 
 	return (
 		<>
@@ -88,23 +149,15 @@ const JanusConversation = ({ navigation }) => {
 					</SmsList>
 					<InputWrapper>
 						<SmsInput
-							choice={choices[activeChoiceIndex]}
+							choice={choices ? choices[activeChoiceIndex] : undefined}
 							onPressSend={choices ? onPressSend : undefined}
 						/>
 						<ChoicesWrapper>
-							{!choices ? (
-								<NoChoice>Pas de réponses disponibles pour le moment.</NoChoice>
-							) : (
-								choices.map((c, i) => (
-									<AnswerChoice
-										key={i}
-										index={i}
-										active={i === activeChoiceIndex}
-										text={c.text}
-										onPressChoice={onPressChoice}
-									/>
-								))
-							)}
+							<ChoicesContent
+								script={activeScript}
+								activeChoiceIndex={activeChoiceIndex}
+								onPressChoice={onPressChoice}
+							/>
 						</ChoicesWrapper>
 					</InputWrapper>
 				</View>

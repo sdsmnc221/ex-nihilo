@@ -41,12 +41,27 @@ const JanusConversation = ({ navigation }) => {
 	});
 
 	const choices = ['Salut', 'Bonsoir', 'Ho biloute'];
+	const smsList = [
+		{
+			isUser: false,
+			message: 'Bonjour toi',
+		},
+	];
 
 	const [choicesAvailable, setChoicesAvailable] = useState(true);
 	const [activeChoice, setActiveChoice] = useState(undefined);
+	const [smsMessages, setSmsMessages] = useState(smsList);
 	const smsListRef = useRef(null);
 
 	const onPressChoice = (choiceIndex) => setActiveChoice(choiceIndex);
+	const onPressSend = (message) => {
+		setSmsMessages((prevMessages) => [
+			...prevMessages,
+			{ isUser: true, message },
+		]);
+
+		setChoicesAvailable(false);
+	};
 
 	return (
 		<>
@@ -57,7 +72,15 @@ const JanusConversation = ({ navigation }) => {
 						onContentSizeChange={() =>
 							smsListRef.current?.scrollToEnd({ animated: true })
 						}>
-						<SmsMessage hasPlaceholder message="Bonjour toi !" />
+						{smsMessages.map((sms, i) => (
+							<SmsMessage
+								key={i}
+								hasPlaceholder={!sms.isUser}
+								isUser={sms.isUser}
+								message={sms.message}
+							/>
+						))}
+						{/* <SmsMessage hasPlaceholder message="Bonjour toi !" />
 
 						<SmsMessage
 							isUser
@@ -68,10 +91,13 @@ const JanusConversation = ({ navigation }) => {
 						<SmsMessage
 							hasPlaceholder
 							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-						/>
+						/> */}
 					</SmsList>
 					<InputWrapper>
-						<SmsInput />
+						<SmsInput
+							text={choices[activeChoice]}
+							onPressSend={choicesAvailable ? onPressSend : undefined}
+						/>
 						<ChoicesWrapper>
 							{!choicesAvailable ? (
 								<NoChoice>Pas de réponses disponibles pour le moment.</NoChoice>

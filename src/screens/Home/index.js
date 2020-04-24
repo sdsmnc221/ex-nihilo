@@ -38,7 +38,11 @@ const HomeScreen = ({ navigation }) => {
 							notifs={8}
 							onPress={() => navigation.navigate('SmsScreen')}
 						/>
-						<AppIcon size={iconSize} type="APPS" />
+						<AppIcon 
+							size={iconSize} 
+							type="APPS" 
+							onPress={() => navigation.navigate('AllApps')}
+						/>
 						<AppIcon
 							size={iconSize}
 							type="CONTACTS"

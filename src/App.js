@@ -26,6 +26,7 @@ import FacebookLoginScreen from 'screens/Facebook/FacebookLogin';
 import EmailScreen from 'screens/Email';
 import EmailDetailsScreen from 'screens/Email/EmailDetails';
 import EmailLoginScreen from 'screens/Email/EmailLogin';
+import AllApps from 'screens/AllApps';
 
 import Notification from './sharedUI/Notification';
 
@@ -80,6 +81,11 @@ const App = () => {
 					<Stack.Screen
 						name="HomeScreen"
 						component={HomeScreen}
+						options={{ headerShown: false }}
+					/>
+					<Stack.Screen
+						name="AllApps"
+						component={AllApps}
 						options={{ headerShown: false }}
 					/>
 					<Stack.Screen

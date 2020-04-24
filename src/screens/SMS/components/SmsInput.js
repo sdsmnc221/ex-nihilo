@@ -26,25 +26,25 @@ const styles = StyleSheet.create({
 	},
 });
 
-const SmsInput = ({ text, onPressSend }) => (
+const SmsInput = ({ choice, onPressSend }) => (
 	<Wrapper>
-		<InputField editable={false} value={text} />
+		<InputField editable={false} value={choice?.text || 'Écrire un SMS...'} />
 		<IconButton
 			type="SEND"
 			noBlink={onPressSend === undefined}
-			onPress={onPressSend === undefined ? () => {} : () => onPressSend(text)}
+			onPress={onPressSend === undefined ? () => {} : () => onPressSend(choice)}
 			additionalStyles={styles.sendIcon}
 		/>
 	</Wrapper>
 );
 
 SmsInput.propTypes = {
-	text: PropTypes.string,
+	choice: PropTypes.object,
 	onPressSend: PropTypes.func,
 };
 
 SmsInput.defaultProps = {
-	text: 'Écrire un SMS...',
+	choice: undefined,
 	onPressSend: undefined,
 };
 

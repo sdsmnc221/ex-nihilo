@@ -1,13 +1,9 @@
 const cleanLineBreaks = (str, withValue = ' ') =>
 	str.replace(/\r?\n|\r/g, withValue);
 
-const truncate = (str, ln = 96, ellipsis = true) => {
-	const cleanedStr = cleanLineBreaks(str);
-	let truncatedStr = cleanedStr.substring(0, ln);
-	truncatedStr += cleanedStr.length < ln ? '' : ellipsis ? '...' : '';
+const find = (arr, key, value) => arr.find((element) => element[key] === value);
 
-	return truncatedStr;
-};
+const random = (odd = 0.5) => (Math.random() <= odd ? true : false);
 
 const sample = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
@@ -29,8 +25,6 @@ const shuffle = ([...arr]) => {
 	return arr;
 };
 
-const random = (odd = 0.5) => (Math.random() <= odd ? true : false);
-
 const sortContact = (a, b) => {
 	const contactA = a.name ? a.name.toUpperCase() : '';
 	const contactB = b.name ? b.name.toUpperCase() : '';
@@ -43,8 +37,17 @@ const sortContact = (a, b) => {
 	return comparison;
 };
 
+const truncate = (str, ln = 96, ellipsis = true) => {
+	const cleanedStr = cleanLineBreaks(str);
+	let truncatedStr = cleanedStr.substring(0, ln);
+	truncatedStr += cleanedStr.length < ln ? '' : ellipsis ? '...' : '';
+
+	return truncatedStr;
+};
+
 export {
 	cleanLineBreaks,
+	find,
 	random,
 	sample,
 	sampleSize,

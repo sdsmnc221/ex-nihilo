@@ -2,11 +2,16 @@ import React, { useRef, useState } from 'react';
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import { HeaderBackButton } from '@react-navigation/stack';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 import NavigationBar from 'sharedUI/NavigationBar';
 import SmsMessage from './components/SmsMessage';
 import AnswerChoice from './components/AnswerChoice';
 import SmsInput from './components/SmsInput';
+
+import DialogueMessage from 'data/classes/DialogueMessage';
+
+import { find } from 'utils';
 
 const SmsList = styled.ScrollView`
 	width: 100%;
@@ -40,27 +45,27 @@ const JanusConversation = ({ navigation }) => {
 		),
 	});
 
-	const choices = ['Salut', 'Bonsoir', 'Ho biloute'];
-	const smsList = [
-		{
-			isUser: false,
-			message: 'Bonjour toi',
-		},
-	];
-
-	const [choicesAvailable, setChoicesAvailable] = useState(true);
-	const [activeChoice, setActiveChoice] = useState(undefined);
-	const [smsMessages, setSmsMessages] = useState(smsList);
 	const smsListRef = useRef(null);
 
-	const onPressChoice = (choiceIndex) => setActiveChoice(choiceIndex);
-	const onPressSend = (message) => {
-		setSmsMessages((prevMessages) => [
+	const { scripts, dialogueLog } = useSelector((state) => state.story);
+
+	const [activeScript, setActiveScript] = useState(
+		find(scripts, 'ID', dialogueLog.currentScriptID)
+	);
+	const [dialogueMessages, setDialogueMessages] = useState([
+		new DialogueMessage(activeScript),
+	]);
+	const [choices, setChoices] = useState(activeScript.choices);
+	const [activeChoiceIndex, setActiveChoiceIndex] = useState(undefined);
+
+	const onPressChoice = (index) => setActiveChoiceIndex(index);
+	const onPressSend = (choice) => {
+		setDialogueMessages((prevMessages) => [
 			...prevMessages,
-			{ isUser: true, message },
+			new DialogueMessage(choice),
 		]);
 
-		setChoicesAvailable(false);
+		setChoices(false);
 	};
 
 	return (
@@ -72,42 +77,30 @@ const JanusConversation = ({ navigation }) => {
 						onContentSizeChange={() =>
 							smsListRef.current?.scrollToEnd({ animated: true })
 						}>
-						{smsMessages.map((sms, i) => (
+						{dialogueMessages.map((message, i) => (
 							<SmsMessage
 								key={i}
-								hasPlaceholder={!sms.isUser}
-								isUser={sms.isUser}
-								message={sms.message}
+								hasPlaceholder={!message.isUser}
+								isUser={message.isUser}
+								message={message.text}
 							/>
 						))}
-						{/* <SmsMessage hasPlaceholder message="Bonjour toi !" />
-
-						<SmsMessage
-							isUser
-							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-						/>
-
-						<SmsMessage message="Lorem ipsum dolor sit amet" />
-						<SmsMessage
-							hasPlaceholder
-							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-						/> */}
 					</SmsList>
 					<InputWrapper>
 						<SmsInput
-							text={choices[activeChoice]}
-							onPressSend={choicesAvailable ? onPressSend : undefined}
+							choice={choices[activeChoiceIndex]}
+							onPressSend={choices ? onPressSend : undefined}
 						/>
 						<ChoicesWrapper>
-							{!choicesAvailable ? (
+							{!choices ? (
 								<NoChoice>Pas de réponses disponibles pour le moment.</NoChoice>
 							) : (
 								choices.map((c, i) => (
 									<AnswerChoice
 										key={i}
 										index={i}
-										active={i === activeChoice}
-										text={c}
+										active={i === activeChoiceIndex}
+										text={c.text}
 										onPressChoice={onPressChoice}
 									/>
 								))

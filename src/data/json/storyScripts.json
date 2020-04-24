@@ -1,0 +1,102 @@
+[{
+        "ID": 1,
+        "type": "MESSAGE_WITH_CHOICES",
+        "text": "Bonjour toi !",
+        "choices": [{
+                "text": "Salut",
+                "nextID": 3
+            },
+            {
+                "text": "Bonsoir",
+                "nextID": 3
+            },
+            {
+                "text": "Ho biloute",
+                "nextID": 2
+            }
+        ],
+        "nextID": null
+    },
+    {
+        "ID": 2,
+        "type": "MESSAGE",
+        "text": "ahahaha",
+        "choices": [],
+        "nextID": 3
+    },
+    {
+        "ID": 3,
+        "type": "MESSAGE_WITH_CHOICES",
+        "text": "Je suis Janus",
+        "choices": [{
+                "text": "Je suis Sam",
+                "nextID": 4
+            },
+            {
+                "text": "Moi c'est...",
+                "nextID": 6
+            },
+            {
+                "text": "Cool ta vie, on se connait ?",
+                "nextID": 5
+            }
+        ],
+        "nextID": null
+    },
+    {
+        "ID": 4,
+        "type": "MESSAGE_WITH_CHOICES",
+        "text": "Je sais que tu n'est pas Sam",
+        "choices": [{
+            "text": "Je suis...",
+            "nextID": 6
+        }],
+        "nextID": null
+    },
+    {
+        "ID": 5,
+        "type": "MESSAGE_WITH_CHOICES",
+        "text": "Nous devrions faire connaissance",
+        "choices": [{
+            "text": "Je suis...",
+            "nextID": 6
+        }],
+        "nextID": null
+    },
+    {
+        "ID": 6,
+        "type": "INPUT",
+        "text": "Ton nom",
+        "choices": [],
+        "nextID": 7
+    },
+    {
+        "ID": 7,
+        "type": "MESSAGE_WITH_PLACEHOLDER",
+        "text": "OK [$]",
+        "choices": [],
+        "nextID": 8
+    },
+    {
+        "ID": 8,
+        "type": "MESSAGE_WITH_CHOICES",
+        "text": "Sam a disparu, il faute que tu retrouves Sam, je crois qu'iel a des ennuis",
+        "choices": [{
+                "text": "OK qu'est-ce que je peux faire ?",
+                "nextID": 9
+            },
+            {
+                "text": "OK je vais t'aider !",
+                "nextID": 9
+            }
+        ],
+        "nextID": null
+    },
+    {
+        "ID": 9,
+        "type": "MESSAGE_WITH_BREAKPOINT",
+        "text": "Un bon point de départ est de jeter un coup d'œil à ses mails. N'oublie pas que je suis là pour t'aider.",
+        "choices": [],
+        "nextID": null
+    }
+]

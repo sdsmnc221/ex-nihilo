@@ -148,7 +148,7 @@ Notification.propTypes = {
 };
 
 Notification.defaultProps = {
-	triggerDelay: 20000,
+	triggerDelay: 1000,
 	reappearDelay: 4000,
 	type: 'Messages',
 	iconType: 'SMS',

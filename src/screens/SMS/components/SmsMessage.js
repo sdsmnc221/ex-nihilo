@@ -19,7 +19,7 @@ const SmsText = styled.Text`
 	background-color: #c4c4c4;
 	max-width: 56%;
 	margin-top: 12px;
-	font-size: 10px;
+	font-size: 11px;
 	color: #565656;
 	margin-left: ${({ isUser, hasPlaceholder }) =>
 		isUser ? 0 : hasPlaceholder ? 12 : 40}px;

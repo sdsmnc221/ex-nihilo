@@ -1,8 +1,13 @@
 const cleanLineBreaks = (str, withValue = ' ') =>
 	str.replace(/\r?\n|\r/g, withValue);
 
-const truncate = (str, ln = 96, ellipsis = true) =>
-	cleanLineBreaks(str).substring(0, ln) + (ellipsis ? '...' : '');
+const truncate = (str, ln = 96, ellipsis = true) => {
+	const cleanedStr = cleanLineBreaks(str);
+	let truncatedStr = cleanedStr.substring(0, ln);
+	truncatedStr += cleanedStr.length < ln ? '' : ellipsis ? '...' : '';
+
+	return truncatedStr;
+};
 
 const sample = (arr) => arr[Math.floor(Math.random() * arr.length)];
 

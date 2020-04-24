@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
-import SmsMessage from './components/SmsMessage';
 import NavigationBar from 'sharedUI/NavigationBar';
-import IconButton from 'sharedUI/Button/IconButton';
+import SmsMessage from './components/SmsMessage';
+import SmsInput from './components/SmsInput';
 
 const SmsList = styled.ScrollView`
 	width: 100%;
@@ -20,28 +19,25 @@ const Date = styled.Text`
 `;
 
 const InputField = styled.View`
-	position: absolute;
-	bottom: 40px; /* navigation bar's place */
 	width: 100%;
-`;
-
-const SmsInput = styled.TextInput`
-	height: 44px;
-	padding: 0 18px;
-	background-color: #c4c4c4;
-	color: #818181;
-	font-size: 10px;
+	margin-top: 12px;
 `;
 
 const SmsConversation = ({ route, navigation }) => {
 	const { headerTitle } = route.params;
 	navigation.setOptions({ headerTitle });
 
+	const smsListRef = useRef(null);
+
 	return (
 		<>
 			<SafeAreaView>
 				<View style={styles.body}>
-					<SmsList>
+					<SmsList
+						ref={smsListRef}
+						onContentSizeChange={() =>
+							smsListRef.current?.scrollToEnd({ animated: true })
+						}>
 						<SmsMessage message="Lorem ipsum dolor sit amet" />
 						<SmsMessage hasPlaceholder message="Lorem ipsum dolor sit amet" />
 
@@ -67,10 +63,34 @@ const SmsConversation = ({ route, navigation }) => {
 							hasPlaceholder
 							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
 						/>
+
+						<Date>15:12</Date>
+
+						<SmsMessage
+							isUser
+							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+						/>
+
+						<SmsMessage
+							hasPlaceholder
+							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
+						/>
+
+						<SmsMessage
+							hasPlaceholder
+							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
+						/>
+						<SmsMessage
+							hasPlaceholder
+							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
+						/>
+						<SmsMessage
+							hasPlaceholder
+							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
+						/>
 					</SmsList>
 					<InputField>
-						<SmsInput editable={false} value={'Écrire un SMS...'} />
-						<IconButton type="SEND" noBlink additionalStyles={styles.sendIcon} />
+						<SmsInput />
 					</InputField>
 				</View>
 				<NavigationBar
@@ -89,11 +109,7 @@ const styles = StyleSheet.create({
 		height: '100%',
 		justifyContent: 'center',
 		alignItems: 'center',
-	},
-	sendIcon: {
-		position: 'absolute',
-		right: 12,
-		top: 12,
+		paddingBottom: 40,
 	},
 });
 

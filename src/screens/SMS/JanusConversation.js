@@ -1,12 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import { HeaderBackButton } from '@react-navigation/stack';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 import NavigationBar from 'sharedUI/NavigationBar';
 import SmsMessage from './components/SmsMessage';
 import AnswerChoice from './components/AnswerChoice';
 import SmsInput from './components/SmsInput';
+
+import DialogueMessage from 'data/classes/DialogueMessage';
+
+import { find } from 'utils';
 
 const SmsList = styled.ScrollView`
 	width: 100%;
@@ -27,10 +32,50 @@ const ChoicesWrapper = styled.View`
 	align-items: center;
 `;
 
-const NoChoice = styled.Text`
+const InputOverlay = styled.View`
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+`;
+
+const NoChoiceText = styled.Text`
 	font-size: 11px;
 	color: #818181;
 `;
+
+const NoChoice = () => (
+	<NoChoiceText>Pas de réponses disponibles pour le moment.</NoChoiceText>
+);
+
+const ChoicesContent = ({ script, activeChoiceIndex, onPressChoice }) => {
+	let content;
+
+	switch (script.type) {
+		case 'MESSAGE_WITH_CHOICES':
+			content = script.choices.map((c, i) => (
+				<AnswerChoice
+					key={i}
+					index={i}
+					active={i === activeChoiceIndex}
+					text={c.text}
+					onPressChoice={onPressChoice}
+				/>
+			));
+			break;
+		case 'INPUT':
+			content = <NoChoice />;
+			break;
+		case 'MESSAGE':
+		default:
+			content = <NoChoice />;
+			break;
+	}
+
+	return content;
+};
 
 const JanusConversation = ({ navigation }) => {
 	navigation.setOptions({
@@ -40,28 +85,49 @@ const JanusConversation = ({ navigation }) => {
 		),
 	});
 
-	const choices = ['Salut', 'Bonsoir', 'Ho biloute'];
-	const smsList = [
-		{
-			isUser: false,
-			message: 'Bonjour toi',
-		},
-	];
-
-	const [choicesAvailable, setChoicesAvailable] = useState(true);
-	const [activeChoice, setActiveChoice] = useState(undefined);
-	const [smsMessages, setSmsMessages] = useState(smsList);
 	const smsListRef = useRef(null);
 
-	const onPressChoice = (choiceIndex) => setActiveChoice(choiceIndex);
-	const onPressSend = (message) => {
-		setSmsMessages((prevMessages) => [
-			...prevMessages,
-			{ isUser: true, message },
-		]);
+	const { scripts, dialogueLog } = useSelector((state) => state.story);
 
-		setChoicesAvailable(false);
+	const [activeScript, setActiveScript] = useState(
+		find(scripts, 'ID', dialogueLog.currentScriptID)
+	);
+	const [dialogueMessages, setDialogueMessages] = useState([]);
+	const [choices, setChoices] = useState(activeScript.choices);
+	const [activeChoiceIndex, setActiveChoiceIndex] = useState(undefined);
+
+	const updateDialogueMessages = useCallback(
+		(message) =>
+			setDialogueMessages((prevMessages) => [
+				...prevMessages,
+				new DialogueMessage(message),
+			]),
+		[]
+	);
+	const onPressChoice = (index) => setActiveChoiceIndex(index);
+	const onPressSend = (choice) => {
+		updateDialogueMessages(choice);
+		setActiveScript(find(scripts, 'ID', choice.nextID));
 	};
+
+	useEffect(() => {
+		console.log(activeScript, choices);
+		setTimeout(() => {
+			updateDialogueMessages(activeScript);
+		}, 240);
+
+		switch (activeScript.type) {
+			case 'MESSAGE':
+				setActiveScript(find(scripts, 'ID', activeScript.nextID));
+				break;
+			case 'MESSAGE_WITH_CHOICES':
+				setChoices(activeScript.choices);
+				setActiveChoiceIndex(undefined);
+				break;
+			default:
+				break;
+		}
+	}, [activeScript]);
 
 	return (
 		<>
@@ -72,46 +138,26 @@ const JanusConversation = ({ navigation }) => {
 						onContentSizeChange={() =>
 							smsListRef.current?.scrollToEnd({ animated: true })
 						}>
-						{smsMessages.map((sms, i) => (
+						{dialogueMessages.map((message, i) => (
 							<SmsMessage
 								key={i}
-								hasPlaceholder={!sms.isUser}
-								isUser={sms.isUser}
-								message={sms.message}
+								hasPlaceholder={!message.isUser}
+								isUser={message.isUser}
+								message={message.text}
 							/>
 						))}
-						{/* <SmsMessage hasPlaceholder message="Bonjour toi !" />
-
-						<SmsMessage
-							isUser
-							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-						/>
-
-						<SmsMessage message="Lorem ipsum dolor sit amet" />
-						<SmsMessage
-							hasPlaceholder
-							message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-						/> */}
 					</SmsList>
 					<InputWrapper>
 						<SmsInput
-							text={choices[activeChoice]}
-							onPressSend={choicesAvailable ? onPressSend : undefined}
+							choice={choices ? choices[activeChoiceIndex] : undefined}
+							onPressSend={choices ? onPressSend : undefined}
 						/>
 						<ChoicesWrapper>
-							{!choicesAvailable ? (
-								<NoChoice>Pas de réponses disponibles pour le moment.</NoChoice>
-							) : (
-								choices.map((c, i) => (
-									<AnswerChoice
-										key={i}
-										index={i}
-										active={i === activeChoice}
-										text={c}
-										onPressChoice={onPressChoice}
-									/>
-								))
-							)}
+							<ChoicesContent
+								script={activeScript}
+								activeChoiceIndex={activeChoiceIndex}
+								onPressChoice={onPressChoice}
+							/>
 						</ChoicesWrapper>
 					</InputWrapper>
 				</View>

@@ -130,9 +130,7 @@ const App = () => {
 					/>
 				</Stack.Navigator>
 				<Notification
-					onSwitchScreen={() =>
-						navContainerRef.current?.navigate('JanusConversation')
-					}
+					onPress={() => navContainerRef.current?.navigate('JanusConversation')}
 				/>
 			</NavigationContainer>
 		</Provider>

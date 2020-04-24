@@ -66,18 +66,24 @@ const Notification = ({
 	date,
 	title,
 	message,
-	onSwitchScreen,
+	onPress,
 }) => {
 	const [isVisible, setIsVisible] = useState(false);
+	const [isNotPressed, setIsNotPressed] = useState(true);
 
-	let timer = useRef(null);
+	let interval = useRef(null);
 	useEffect(() => {
-		if (!timer.current) {
-			timer.current = setTimeout(() => setIsVisible(true), triggerDelay);
+		if (!interval.current && !isVisible && isNotPressed) {
+			interval.current = setInterval(() => setIsVisible(true), triggerDelay);
 		}
+	}, [isNotPressed, isVisible, triggerDelay]);
 
-		return () => clearTimeout(timer.current);
-	}, [triggerDelay]);
+	const switchScreen = () => {
+		setIsVisible(false);
+		setIsNotPressed(false);
+		setTimeout(() => onPress(), 160);
+		clearInterval(interval.current);
+	};
 
 	return (
 		<Modal
@@ -89,11 +95,9 @@ const Notification = ({
 			animationInTiming={800}
 			animationOutTiming={800}
 			useNativeDriver
-			onModalHide={onSwitchScreen}>
-			<Wrapper
-				style={styles.shadow}
-				activeOpacity={0.8}
-				onPress={() => setIsVisible(false)}>
+			swipeDirection={['left', 'right', 'up']}
+			onSwipeComplete={() => setIsVisible(false)}>
+			<Wrapper style={styles.shadow} activeOpacity={0.8} onPress={switchScreen}>
 				<FlexView dir="row" justify="space-between" fullWidth>
 					<FlexView dir="row">
 						<Icon type={iconType} width={15} height={15} />
@@ -117,7 +121,7 @@ Notification.propTypes = {
 	date: PropTypes.string,
 	title: PropTypes.string,
 	message: PropTypes.string,
-	onSwitchScreen: PropTypes.func,
+	onPress: PropTypes.func,
 };
 
 Notification.defaultProps = {
@@ -127,7 +131,7 @@ Notification.defaultProps = {
 	date: "À l'instant",
 	title: 'Janus',
 	message: 'Bonjour toi !',
-	onSwitchScreen: () => {},
+	onPress: () => {},
 };
 
 export default Notification;

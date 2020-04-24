@@ -57,8 +57,16 @@ const ContactsScreen = ({ navigation }) => {
 							<Contact
 								key={i}
 								contact={c}
+								firstLetter={c.name ? c.name.charAt(0) : "#"}
 								onPress={() =>
-									navigation.navigate('HomeScreen', { headerTitle: c.title })
+									navigation.navigate('ContactDetails', { 
+										title: '',
+										headerStyle: {
+											elevation: 0,
+										},
+										contact: c,
+										firstLetter: c.name ? c.name.charAt(0) : "#"
+									})
 								}
 							/>
 						))}

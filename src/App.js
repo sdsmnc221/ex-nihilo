@@ -18,6 +18,7 @@ import SmsScreen from 'screens/SMS';
 import SmsConversation from 'screens/SMS/SmsConversation';
 import JanusConversation from './screens/SMS/JanusConversation';
 import ContactsScreen from 'screens/ContactsScreen';
+import ContactDetails from 'screens/ContactsScreen/ContactDetails';
 import AlbumScreen from 'screens/Album';
 import AlbumPhotoScreen from 'screens/Album/AlbumPhoto';
 import FacebookScreen from 'screens/Facebook';
@@ -93,6 +94,7 @@ const App = () => {
 						component={ContactsScreen}
 						options={{ title: 'Contacts', headerLeft: null }}
 					/>
+					<Stack.Screen name="ContactDetails" component={ContactDetails} />
 					<Stack.Screen
 						name="AlbumScreen"
 						component={AlbumScreen}

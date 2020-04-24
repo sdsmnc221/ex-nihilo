@@ -32,8 +32,7 @@ const Title = styled.Text`
 	font-weight: bold;
 `;
 
-const Contact = ({ withSpacing, contact, onPress }) => {
-	const firstLetter = contact.name ? contact.name.charAt(0) : "#"
+const Contact = ({ withSpacing, contact, firstLetter, onPress }) => {
 	return (
 		<Wrapper withSpacing={withSpacing} onPress={onPress}>
 			<PlaceHolder color="#c4c4c4" size={50} text={firstLetter} round/>

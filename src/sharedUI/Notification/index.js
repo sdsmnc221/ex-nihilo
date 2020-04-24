@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
 
 const Notification = ({
 	triggerDelay,
+	reappearDelay,
 	type,
 	iconType,
 	date,
@@ -68,21 +69,45 @@ const Notification = ({
 	message,
 	onPress,
 }) => {
+	const [reappearEnabled, setReappearEnabled] = useState(false);
 	const [isVisible, setIsVisible] = useState(false);
 	const [isNotPressed, setIsNotPressed] = useState(true);
 
 	let interval = useRef(null);
+	let timeout = useRef(null);
+
+	/*
+	 * - if the notification appears for the first time, it will appear
+	 *   after a 'triggerDelay' amount of time (which is kinda long).
+	 *
+	 * - if the notification is turned off (by swiping), it will reappear
+	 *   every 'reappearDelay' amount of time (which is short),
+	 *   to remind the user to press on it and go check it out.
+	 */
 	useEffect(() => {
-		if (!interval.current && !isVisible && isNotPressed) {
-			interval.current = setInterval(() => setIsVisible(true), triggerDelay);
+		if (isNotPressed) {
+			if (!reappearEnabled) {
+				interval.current = setTimeout(() => setIsVisible(true), triggerDelay);
+			} else {
+				clearTimeout(timeout.current);
+				interval.current = setInterval(() => setIsVisible(true), reappearDelay);
+			}
+		} else {
+			clearInterval(interval.current);
 		}
-	}, [isNotPressed, isVisible, triggerDelay]);
+	}, [isNotPressed, reappearEnabled, triggerDelay, reappearDelay]);
+
+	const onSwipe = () => {
+		if (!reappearEnabled) {
+			setReappearEnabled(true);
+		}
+		setIsVisible(false);
+	};
 
 	const switchScreen = () => {
 		setIsVisible(false);
 		setIsNotPressed(false);
 		setTimeout(() => onPress(), 160);
-		clearInterval(interval.current);
 	};
 
 	return (
@@ -96,7 +121,7 @@ const Notification = ({
 			animationOutTiming={800}
 			useNativeDriver
 			swipeDirection={['left', 'right', 'up']}
-			onSwipeComplete={() => setIsVisible(false)}>
+			onSwipeComplete={onSwipe}>
 			<Wrapper style={styles.shadow} activeOpacity={0.8} onPress={switchScreen}>
 				<FlexView dir="row" justify="space-between" fullWidth>
 					<FlexView dir="row">
@@ -116,6 +141,7 @@ const Notification = ({
 
 Notification.propTypes = {
 	triggerDelay: PropTypes.number,
+	reappearDelay: PropTypes.number,
 	type: PropTypes.string,
 	iconType: PropTypes.string,
 	date: PropTypes.string,
@@ -125,7 +151,8 @@ Notification.propTypes = {
 };
 
 Notification.defaultProps = {
-	triggerDelay: 2000,
+	triggerDelay: 3200,
+	reappearDelay: 120,
 	type: 'Messages',
 	iconType: 'SMS',
 	date: "À l'instant",

@@ -26,16 +26,16 @@ const AllApps = ({ navigation }) => {
                     <Icons style={styles.firstChild}>
                         <AppIcon label='Appels' size={iconSize} type='PHONE' notifs={24} />
                         <AppIcon label='Calendrier' size={iconSize} />
-                        <AppIcon label='Contact' size={iconSize} type='CONTACTS' />
+                        <AppIcon label='Contact' size={iconSize} type='CONTACTS' onPress={() => navigation.navigate('ContactsScreen')} />
                     </Icons>
                     <Icons>
-                        <AppIcon label='Facebook' size={iconSize} />
-                        <AppIcon label='Galerie' size={iconSize} />
+                        <AppIcon label='Facebook' size={iconSize} onPress={() => navigation.navigate('FacebookLoginScreen')} />
+                        <AppIcon label='Galerie' size={iconSize} onPress={() => navigation.navigate('AlbumScreen')} />
                         <AppIcon label='Internet' size={iconSize} />
                     </Icons>
                     <Icons>
-                        <AppIcon label='Mail' size={iconSize} type='EMAIL' />
-                        <AppIcon label='Messages' size={iconSize} type='SMS' />
+                        <AppIcon label='Mail' size={iconSize} type='EMAIL' onPress={() => navigation.navigate('EmailLoginScreen')} />
+                        <AppIcon label='Messages' size={iconSize} type='SMS' onPress={() => navigation.navigate('SmsScreen')} />
                         <AppIcon label='Mes notes' size={iconSize} />
                     </Icons>
                     <Icons>

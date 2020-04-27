@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
-import { request, openSettings, PERMISSIONS } from 'react-native-permissions';
+import {
+	request,
+	requestMultiple,
+	openSettings,
+	PERMISSIONS,
+} from 'react-native-permissions';
 import Contacts from 'react-native-contacts';
 
 const {
@@ -11,6 +16,8 @@ const {
 	ACCESS_FINE_LOCATION,
 	ACCESS_BACKGROUND_LOCATION,
 	READ_EXTERNAL_STORAGE,
+	READ_PHONE_NUMBERS,
+	READ_PHONE_STATE,
 } = PERMISSIONS.ANDROID;
 
 const usePermissions = (defaultContacts = []) => {
@@ -48,6 +55,9 @@ const usePermissions = (defaultContacts = []) => {
 	}
 
 	useEffect(() => {
+		// requestMultiple([READ_PHONE_NUMBERS, READ_PHONE_STATE]).then((statuses) => {
+		// 	console.log(statuses);
+		// });
 		requestPermissions().then((statuses) => {
 			console.log(statuses);
 			openSettings().catch(() => console.warn('cannot open settings'));

@@ -2,6 +2,17 @@ import { useState, useEffect } from 'react';
 import { request, PERMISSIONS } from 'react-native-permissions';
 import Contacts from 'react-native-contacts';
 
+const {
+	READ_CONTACTS,
+	WRITE_CONTACTS,
+	READ_CALENDAR,
+	CAMERA,
+	ACCESS_COARSE_LOCATION,
+	ACCESS_FINE_LOCATION,
+	ACCESS_BACKGROUND_LOCATION,
+	READ_EXTERNAL_STORAGE,
+} = PERMISSIONS.ANDROID;
+
 const usePermissions = (defaultContacts = []) => {
 	const [contacts, setContacts] = useState(defaultContacts);
 
@@ -11,15 +22,27 @@ const usePermissions = (defaultContacts = []) => {
 			message: 'Request permission',
 			buttonPositive: 'Please accept bare mortal',
 		};
-		const readContactsStatus = await request(
-			PERMISSIONS.ANDROID.READ_CONTACTS,
+
+		const readContacts = await request(READ_CONTACTS, rationale);
+		const readCalendar = await request(READ_CALENDAR, rationale);
+		const camera = await request(CAMERA, rationale);
+		const coarseLocation = await request(ACCESS_COARSE_LOCATION, rationale);
+		const fineLocation = await request(ACCESS_FINE_LOCATION, rationale);
+		const backgroundLocation = await request(
+			ACCESS_BACKGROUND_LOCATION,
 			rationale
 		);
-		const writeContactsStatus = await request(
-			PERMISSIONS.ANDROID.WRITE_CONTACTS,
-			rationale
-		);
-		return { readContactsStatus, writeContactsStatus };
+		const readExternalStorage = await request(READ_EXTERNAL_STORAGE, rationale);
+
+		return {
+			readContacts,
+			readCalendar,
+			camera,
+			coarseLocation,
+			fineLocation,
+			backgroundLocation,
+			readExternalStorage,
+		};
 	}
 
 	useEffect(() => {

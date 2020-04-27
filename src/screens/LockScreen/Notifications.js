@@ -35,30 +35,27 @@ const SwiperNotch = styled.View`
 `;
 
 const NotificationsScreen = ({ route, navigation }) => {
-	const { contactsRef } = route.params;
-
 	const [contacts, setContacts] = useState(
 		useSelector((state) => state.contacts).map(
 			(contact) => contact.name || contact.phoneNumber
 		)
 	);
 
+	const { contacts: contacts_ } = route.params;
+
 	useEffect(() => {
-		if (contactsRef && contactsRef.current) {
-			let deviceContacts = contactsRef.current.filter(
+		if (contacts_.length > 0) {
+			let deviceContacts = contacts_.filter(
 				(contact) => contact.phoneNumbers.length > 0
 			);
-			if (deviceContacts.length > 0) {
-				deviceContacts = deviceContacts.map(
-					(contact) => contact.displayName || contact.phoneNumbers[0].number
-				);
 
-				setContacts((prevContacts) =>
-					shuffle([...prevContacts, ...deviceContacts])
-				);
-			}
+			deviceContacts = deviceContacts.map(
+				(contact) => contact.displayName || contact.phoneNumbers[0].number
+			);
+
+			setContacts((prevContacts) => shuffle([...prevContacts, ...deviceContacts]));
 		}
-	}, [contactsRef]);
+	}, [contacts_]);
 
 	useEffect(() => {
 		console.log(contacts);

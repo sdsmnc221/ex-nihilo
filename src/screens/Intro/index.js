@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
-import usePermissions from '../../hooks/usePermissions';
+import usePermissions from 'hooks/usePermissions';
 
 import Icon from 'sharedUI/Icon';
 

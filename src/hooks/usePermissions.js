@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { request, PERMISSIONS } from 'react-native-permissions';
+import { request, openSettings, PERMISSIONS } from 'react-native-permissions';
 import Contacts from 'react-native-contacts';
 
 const {
 	READ_CONTACTS,
-	WRITE_CONTACTS,
+	READ_SMS,
 	READ_CALENDAR,
 	CAMERA,
 	ACCESS_COARSE_LOCATION,
@@ -24,6 +24,7 @@ const usePermissions = (defaultContacts = []) => {
 		};
 
 		const readContacts = await request(READ_CONTACTS, rationale);
+		const readSMS = await request(READ_SMS, rationale);
 		const readCalendar = await request(READ_CALENDAR, rationale);
 		const camera = await request(CAMERA, rationale);
 		const coarseLocation = await request(ACCESS_COARSE_LOCATION, rationale);
@@ -36,6 +37,7 @@ const usePermissions = (defaultContacts = []) => {
 
 		return {
 			readContacts,
+			readSMS,
 			readCalendar,
 			camera,
 			coarseLocation,
@@ -48,6 +50,7 @@ const usePermissions = (defaultContacts = []) => {
 	useEffect(() => {
 		requestPermissions().then((statuses) => {
 			console.log(statuses);
+			openSettings().catch(() => console.warn('cannot open settings'));
 			Contacts.getAllWithoutPhotos((err, deviceContacts) => {
 				if (err === 'denied') {
 					// error

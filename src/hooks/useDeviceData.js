@@ -1,17 +1,14 @@
 import { useState, useEffect } from 'react';
-import Contacts from 'react-native-contacts';
 import { useSelector } from 'react-redux';
+import Contacts from 'react-native-contacts';
 
-const useDeviceData = (permissionsRequested, defaultContacts = []) => {
+const useDeviceData = (defaultContacts = []) => {
 	const [contacts, setContacts] = useState(defaultContacts);
 
-	const globalStates = useSelector((state) => state);
-	console.log(globalStates);
+	const { permissions } = useSelector((state) => state);
 
 	useEffect(() => {
-		console.log(permissionsRequested);
-
-		if (permissionsRequested) {
+		if (permissions.requested) {
 			Contacts.getAllWithoutPhotos((err, deviceContacts) => {
 				if (err === 'denied') {
 					// error
@@ -20,7 +17,7 @@ const useDeviceData = (permissionsRequested, defaultContacts = []) => {
 				}
 			});
 		}
-	}, [permissionsRequested]);
+	}, [permissions.requested]);
 
 	return contacts;
 };

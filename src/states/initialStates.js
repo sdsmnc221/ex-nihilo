@@ -9,6 +9,10 @@ const storyScripts = dataStoryScripts.map((script) =>
 );
 
 export default {
+	permissions: {
+		requested: false,
+		statuses: null,
+	},
 	contacts,
 	story: {
 		scripts: storyScripts,

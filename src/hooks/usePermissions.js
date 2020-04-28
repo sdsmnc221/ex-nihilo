@@ -1,6 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { request, openSettings, PERMISSIONS } from 'react-native-permissions';
-import Contacts from 'react-native-contacts';
+
+import {
+	requestPermissionsStart,
+	requestPermissionsSuccess,
+	requestPermissionsFailure,
+	setPermissionsStatuses,
+} from 'states/actions/permissionsActions';
 
 const {
 	ACCESS_BACKGROUND_LOCATION,
@@ -17,9 +24,7 @@ const {
 	READ_SMS,
 } = PERMISSIONS.ANDROID;
 
-const usePermissions = () => {
-	const [permissionsRequested, setPermissionsRequested] = useState(false);
-
+const usePermissions = (doOpenAppSettings = false) => {
 	const requestPermissions = async () => {
 		// Access background location goes last.
 		const coarseLocation = await request(ACCESS_COARSE_LOCATION);
@@ -60,17 +65,24 @@ const usePermissions = () => {
 		};
 	};
 
+	const dispatch = useDispatch();
+
 	useEffect(() => {
+		requestPermissionsStart(dispatch);
 		requestPermissions()
 			.then((statuses) => {
-				console.log(statuses);
-				openSettings().catch(() => console.warn('cannot open settings'));
-				setPermissionsRequested(true);
+				doOpenAppSettings &&
+					openSettings().catch(() => console.warn('cannot open settings'));
+				requestPermissionsSuccess(dispatch);
+				setPermissionsStatuses(dispatch, statuses);
 			})
-			.catch((error) => console.log(error));
-	}, []);
+			.catch((error) => {
+				requestPermissionsFailure(dispatch);
+				console.log(error);
+			});
+	}, [dispatch, doOpenAppSettings]);
 
-	return permissionsRequested;
+	return;
 };
 
 export default usePermissions;

@@ -34,8 +34,8 @@ const ButtonText = styled.Text`
 `;
 
 const IntroScreen = ({ navigation }) => {
-	const permissionRequested = usePermissions();
-	const contacts = useDeviceData(permissionRequested);
+	usePermissions();
+	const contacts = useDeviceData();
 
 	const onPress = () => navigation.navigate('NotificationsScreen', { contacts });
 

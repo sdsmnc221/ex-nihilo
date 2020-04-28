@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import Contacts from 'react-native-contacts';
+import { useSelector } from 'react-redux';
 
 const useDeviceData = (permissionsRequested, defaultContacts = []) => {
 	const [contacts, setContacts] = useState(defaultContacts);
+
+	const globalStates = useSelector((state) => state);
+	console.log(globalStates);
 
 	useEffect(() => {
 		console.log(permissionsRequested);

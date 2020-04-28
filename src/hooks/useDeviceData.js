@@ -8,6 +8,10 @@ const useDeviceData = (defaultContacts = []) => {
 	const { permissions } = useSelector((state) => state);
 
 	useEffect(() => {
+		console.log(permissions);
+	}, [permissions]);
+
+	useEffect(() => {
 		if (permissions.requested) {
 			Contacts.getAllWithoutPhotos((err, deviceContacts) => {
 				if (err === 'denied') {

@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
 import usePermissions from 'hooks/usePermissions';
+import useDeviceData from 'hooks/useDeviceData';
 
 import Icon from 'sharedUI/Icon';
 
@@ -33,7 +34,8 @@ const ButtonText = styled.Text`
 `;
 
 const IntroScreen = ({ navigation }) => {
-	const contacts = usePermissions();
+	const permissionRequested = usePermissions();
+	const contacts = useDeviceData(permissionRequested);
 
 	const onPress = () => navigation.navigate('NotificationsScreen', { contacts });
 

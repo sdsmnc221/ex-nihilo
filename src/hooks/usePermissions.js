@@ -1,10 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-	request,
-	requestMultiple,
-	openSettings,
-	PERMISSIONS,
-} from 'react-native-permissions';
+import { request, openSettings, PERMISSIONS } from 'react-native-permissions';
 import Contacts from 'react-native-contacts';
 
 const {
@@ -22,8 +17,8 @@ const {
 	READ_SMS,
 } = PERMISSIONS.ANDROID;
 
-const usePermissions = (defaultContacts = []) => {
-	const [contacts, setContacts] = useState(defaultContacts);
+const usePermissions = () => {
+	const [permissionsRequested, setPermissionsRequested] = useState(false);
 
 	const requestPermissions = async () => {
 		// Access background location goes last.
@@ -70,18 +65,12 @@ const usePermissions = (defaultContacts = []) => {
 			.then((statuses) => {
 				console.log(statuses);
 				openSettings().catch(() => console.warn('cannot open settings'));
-				Contacts.getAllWithoutPhotos((err, deviceContacts) => {
-					if (err === 'denied') {
-						// error
-					} else {
-						setContacts((prevContacts) => [...prevContacts, ...deviceContacts]);
-					}
-				});
+				setPermissionsRequested(true);
 			})
 			.catch((error) => console.log(error));
 	}, []);
 
-	return contacts;
+	return permissionsRequested;
 };
 
 export default usePermissions;

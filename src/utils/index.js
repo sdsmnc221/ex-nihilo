@@ -1,6 +1,8 @@
 const cleanLineBreaks = (str, withValue = ' ') =>
 	str.replace(/\r?\n|\r/g, withValue);
 
+const isArrEmpty = (array) => array.length === 0;
+
 const find = (arr, key, value) => arr.find((element) => element[key] === value);
 
 const random = (odd = 0.5) => (Math.random() <= odd ? true : false);
@@ -47,6 +49,7 @@ const truncate = (str, ln = 96, ellipsis = true) => {
 
 export {
 	cleanLineBreaks,
+	isArrEmpty,
 	find,
 	random,
 	sample,

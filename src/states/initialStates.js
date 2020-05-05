@@ -13,6 +13,16 @@ export default {
 		requested: false,
 		statuses: null,
 	},
+	deviceData: {
+		accounts: null,
+		contacts: null,
+		calendar: null,
+		calls: null,
+		gps: null,
+		misc: null,
+		photos: null,
+		sms: null,
+	},
 	contacts,
 	story: {
 		scripts: storyScripts,

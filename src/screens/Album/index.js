@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { SafeAreaView, StyleSheet, View, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import styled from 'styled-components';
@@ -14,9 +15,14 @@ const PhotoGrid = styled.ScrollView`
 `;
 
 const AlbumScreen = ({ navigation }) => {
+	const { gallery } = useSelector((state) => state.deviceData);
+
 	const deviceW = Dimensions.get('window').width;
 	const photoSize = deviceW / 3;
-	const photoNb = 32;
+	// Temporarily limit the photo numbers until
+	// rework Gallery (from ScrollView to FlatList)
+	const photoNb = Math.floor(gallery.count / 10);
+	const { edges: photos } = gallery.photos;
 
 	const [isLocked, setIsLocked] = useState(true);
 	const [passwordInput, setPasswordInput] = useState('');
@@ -50,14 +56,17 @@ const AlbumScreen = ({ navigation }) => {
 			<SafeAreaView>
 				<View style={styles.body}>
 					<PhotoGrid contentContainerStyle={styles.photoGridContainer}>
-						{[...Array(photoNb)].map((p, i) => (
-							<PhotoThumbnail
-								key={i}
-								size={photoSize}
-								color={i % 2 === 0 ? '#c4c4c4' : '#818181'}
-								onPress={() => navigation.navigate('AlbumPhotoScreen', { photoId: p })}
-							/>
-						))}
+						{photos.slice(0, photoNb).map((p, i) => {
+							const { uri } = p.node.image;
+							return (
+								<PhotoThumbnail
+									key={i}
+									size={photoSize}
+									source={{ uri }}
+									onPress={() => navigation.navigate('AlbumPhotoScreen', { uri })}
+								/>
+							);
+						})}
 					</PhotoGrid>
 					{renderPasswordLock()}
 				</View>

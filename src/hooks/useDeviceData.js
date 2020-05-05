@@ -75,7 +75,7 @@ const useDeviceData = (defaultContacts = []) => {
 				}
 			})();
 		}
-	}, [permissions.requested]);
+	}, [permissions.requested, dispatch]);
 
 	return contacts;
 };

@@ -21,7 +21,10 @@ export default {
 		gps: null,
 		misc: null,
 		photos: null,
-		sms: null,
+		sms: {
+			count: 0,
+			list: null,
+		},
 	},
 	contacts,
 	story: {

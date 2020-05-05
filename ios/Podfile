@@ -79,6 +79,8 @@ target 'ex_nihilo' do
 
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
 
+  pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
+
   target 'ex_nihiloTests' do
     inherit! :complete
     # Pods for testing

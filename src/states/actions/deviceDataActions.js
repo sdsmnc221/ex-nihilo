@@ -7,6 +7,10 @@ import {
 	DEVICE_GET_SMS_SUCCESS,
 	DEVICE_GET_SMS_FAILURE,
 	DEVICE_SET_SMS,
+	DEVICE_GET_GALLERY_START,
+	DEVICE_GET_GALLERY_SUCCESS,
+	DEVICE_GET_GALLERY_FAILURE,
+	DEVICE_SET_GALLERY,
 } from '../actionTypes';
 
 export const getDeviceContactsStart = (dispatch) =>
@@ -31,4 +35,18 @@ export const getDeviceSmsFailure = (dispatch) =>
 export const setDeviceSms = (dispatch, count, list) => {
 	// TODO : Format Sms List
 	return dispatch({ type: DEVICE_SET_SMS, payload: { count, list } });
+};
+
+export const getDeviceGalleryStart = (dispatch) =>
+	dispatch({ type: DEVICE_GET_GALLERY_START });
+
+export const getDeviceGallerySuccess = (dispatch) =>
+	dispatch({ type: DEVICE_GET_GALLERY_SUCCESS });
+
+export const getDeviceGalleryFailure = (dispatch) =>
+	dispatch({ type: DEVICE_GET_GALLERY_FAILURE });
+
+export const setDeviceGallery = (dispatch, count, albums, photos) => {
+	// TODO : Format Photos perhaps
+	dispatch({ type: DEVICE_SET_GALLERY, payload: { count, albums, photos } });
 };

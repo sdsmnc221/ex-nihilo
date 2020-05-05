@@ -1,6 +1,10 @@
 import Data from 'data';
 import initialStates from 'states/initialStates';
-import { DEVICE_SET_CONTACTS, DEVICE_SET_SMS } from 'states/actionTypes';
+import {
+	DEVICE_SET_CONTACTS,
+	DEVICE_SET_SMS,
+	DEVICE_SET_GALLERY,
+} from 'states/actionTypes';
 
 function deviceData(state = initialStates.deviceData, action) {
 	switch (action.type) {
@@ -13,13 +17,14 @@ function deviceData(state = initialStates.deviceData, action) {
 				),
 			};
 		case DEVICE_SET_SMS:
-			const { count, list } = action.payload;
 			return {
 				...state,
-				sms: {
-					count,
-					list,
-				},
+				sms: action.payload, // { count, list }
+			};
+		case DEVICE_SET_GALLERY:
+			return {
+				...state,
+				gallery: action.payload, // { count, albums, photos }
 			};
 		default:
 			return state;

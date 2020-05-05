@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Contacts from 'react-native-contacts';
 import SmsAndroid from 'react-native-get-sms-android';
+import CameraRoll from '@react-native-community/cameraroll';
 
 import {
 	getDeviceContactsStart,
@@ -11,6 +12,9 @@ import {
 	getDeviceSmsStart,
 	getDeviceSmsSuccess,
 	setDeviceSms,
+	getDeviceGalleryStart,
+	setDeviceGallery,
+	getDeviceGalleryFailure,
 } from 'states/actions/deviceDataActions';
 
 const useDeviceData = (defaultContacts = []) => {
@@ -49,6 +53,27 @@ const useDeviceData = (defaultContacts = []) => {
 					setDeviceSms(dispatch, count, JSON.parse(smsList));
 				}
 			);
+
+			// Retrieve Photos from Camera Roll
+			(async () => {
+				try {
+					getDeviceGalleryStart(dispatch);
+
+					const albums = await CameraRoll.getAlbums();
+					const count = albums
+						.map((a) => a.count)
+						.reduce((prev, current) => prev + current);
+					const photos = await CameraRoll.getPhotos({
+						first: count,
+						assetType: 'All',
+					});
+
+					setDeviceGallery(dispatch, count, albums, photos);
+				} catch (error) {
+					getDeviceGalleryFailure(dispatch);
+					console.log(error);
+				}
+			})();
 		}
 	}, [permissions.requested]);
 

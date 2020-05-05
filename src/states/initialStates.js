@@ -18,9 +18,13 @@ export default {
 		contacts: null,
 		calendar: null,
 		calls: null,
+		gallery: {
+			count: 0,
+			albums: null,
+			photos: null,
+		},
 		gps: null,
 		misc: null,
-		photos: null,
 		sms: {
 			count: 0,
 			list: null,

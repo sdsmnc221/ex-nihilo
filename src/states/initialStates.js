@@ -16,7 +16,10 @@ export default {
 	deviceData: {
 		accounts: null,
 		contacts: null,
-		calendar: null,
+		calendar: {
+			list: null,
+			events: null,
+		},
 		calls: null,
 		gallery: {
 			count: 0,

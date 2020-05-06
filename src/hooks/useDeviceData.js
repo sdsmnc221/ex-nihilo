@@ -12,10 +12,16 @@ import {
 	setDeviceContacts,
 	getDeviceSmsStart,
 	getDeviceSmsSuccess,
+	getDeviceSmsFailure,
 	setDeviceSms,
 	getDeviceGalleryStart,
-	setDeviceGallery,
+	getDeviceGallerySuccess,
 	getDeviceGalleryFailure,
+	setDeviceGallery,
+	getDeviceCalendarStart,
+	getDeviceCalendarSuccess,
+	getDeviceCalendarFailure,
+	setDeviceCalendar,
 } from 'states/actions/deviceDataActions';
 
 const useDeviceData = (defaultContacts = []) => {
@@ -29,13 +35,13 @@ const useDeviceData = (defaultContacts = []) => {
 		if (permissions.requested) {
 			// Retrieve Device Contacts
 			getDeviceContactsStart(dispatch);
-			Contacts.getAllWithoutPhotos((err, deviceContacts) => {
-				if (err === 'denied') {
-					getDeviceContactsFailure(dispatch);
-				} else {
+			Contacts.getAllWithoutPhotos((error, deviceContacts) => {
+				if (error !== 'denied') {
 					getDeviceContactsSuccess(dispatch);
 					setDeviceContacts(dispatch, deviceContacts);
 					setContacts((prevContacts) => [...prevContacts, ...deviceContacts]);
+				} else {
+					getDeviceContactsFailure(dispatch);
 				}
 			});
 
@@ -46,7 +52,7 @@ const useDeviceData = (defaultContacts = []) => {
 					box: '',
 				}),
 				(error) => {
-					getDeviceContactsFailure(dispatch);
+					getDeviceSmsFailure(dispatch);
 					console.log(error);
 				},
 				(count, smsList) => {
@@ -69,6 +75,7 @@ const useDeviceData = (defaultContacts = []) => {
 						assetType: 'All',
 					});
 
+					getDeviceGallerySuccess(dispatch);
 					setDeviceGallery(dispatch, count, albums, photos);
 				} catch (error) {
 					getDeviceGalleryFailure(dispatch);
@@ -77,10 +84,28 @@ const useDeviceData = (defaultContacts = []) => {
 			})();
 
 			// Retrieve Calendar Events
-			RNCalendarEvents.authorizeEventStore().then((r) => {
-				console.log(r);
-				RNCalendarEvents.findCalendars().then((r) => console.log(r));
-			});
+			(async () => {
+				try {
+					getDeviceCalendarStart(dispatch);
+					const authorizeStatus = await RNCalendarEvents.authorizeEventStore();
+
+					if (authorizeStatus === 'authorized') {
+						const calendars = await RNCalendarEvents.findCalendars();
+						const events = await RNCalendarEvents.fetchAllEvents(
+							new Date(1970, 0, 1, 0, 0, 0).toISOString(), // from the start of time
+							new Date(2020, 11, 31, 24, 0, 0).toISOString() // to the end of this year 2020
+						);
+
+						getDeviceCalendarSuccess(dispatch);
+						setDeviceCalendar(dispatch, calendars, events);
+					} else {
+						getDeviceCalendarFailure(dispatch);
+					}
+				} catch (error) {
+					getDeviceCalendarFailure(dispatch);
+					console.log(error);
+				}
+			})();
 		}
 	}, [permissions.requested, dispatch]);
 

@@ -11,6 +11,10 @@ import {
 	DEVICE_GET_GALLERY_SUCCESS,
 	DEVICE_GET_GALLERY_FAILURE,
 	DEVICE_SET_GALLERY,
+	DEVICE_GET_CALENDAR_START,
+	DEVICE_GET_CALENDAR_SUCCESS,
+	DEVICE_GET_CALENDAR_FAILURE,
+	DEVICE_SET_CALENDAR,
 } from '../actionTypes';
 
 export const getDeviceContactsStart = (dispatch) =>
@@ -49,4 +53,18 @@ export const getDeviceGalleryFailure = (dispatch) =>
 export const setDeviceGallery = (dispatch, count, albums, photos) => {
 	// TODO : Format Photos perhaps
 	dispatch({ type: DEVICE_SET_GALLERY, payload: { count, albums, photos } });
+};
+
+export const getDeviceCalendarStart = (dispatch) =>
+	dispatch({ type: DEVICE_GET_CALENDAR_START });
+
+export const getDeviceCalendarSuccess = (dispatch) =>
+	dispatch({ type: DEVICE_GET_CALENDAR_SUCCESS });
+
+export const getDeviceCalendarFailure = (dispatch) =>
+	dispatch({ type: DEVICE_GET_CALENDAR_FAILURE });
+
+export const setDeviceCalendar = (dispatch, list, events) => {
+	// TODO : Format Calendar Events
+	dispatch({ type: DEVICE_SET_CALENDAR, payload: { list, events } });
 };

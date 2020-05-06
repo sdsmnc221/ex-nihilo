@@ -4,6 +4,7 @@ import {
 	DEVICE_SET_CONTACTS,
 	DEVICE_SET_SMS,
 	DEVICE_SET_GALLERY,
+	DEVICE_SET_CALENDAR,
 } from 'states/actionTypes';
 
 function deviceData(state = initialStates.deviceData, action) {
@@ -25,6 +26,11 @@ function deviceData(state = initialStates.deviceData, action) {
 			return {
 				...state,
 				gallery: action.payload, // { count, albums, photos }
+			};
+		case DEVICE_SET_CALENDAR:
+			return {
+				...state,
+				calendar: action.payload, // { list (list of calendars), events }
 			};
 		default:
 			return state;

@@ -69,7 +69,7 @@ $ npm start --reset-cache
 $ react-native run-android
 ```
 
-- Update _fonts_ in [theme.js](./src/configs/theme.js). **IT'S IMPORTANT to have the _FONT NAME STRING_ exactly THE SAME AS the _FONT NAME FILE_ **
+- Update _fonts_ in [theme.js](./src/configs/theme.js): **IT'S IMPORTANT to have the _FONT NAME STRING_ exactly THE SAME AS the _FONT NAME FILE_.**
 
 ### Use Fonts in the project
 

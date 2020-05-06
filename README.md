@@ -48,13 +48,13 @@ $ react-native run-android
 
 ## About Theming
 
-- Checkout theme configs in [theme.js].
+- Checkout theme configs in [theme.js](./src/configs/theme.js).
 
 - Guides: [_Colors_](./docs/guide-colors.png).
 
-## About Custom Fonts
+### Custom Fonts
 
-### Install / Remove / Update Fonts
+#### Install / Remove / Update Fonts
 
 - We've already configured the [assets fonts folder](./react-native.config.js) (for React Native > 0.6).
 
@@ -77,7 +77,7 @@ $ react-native run-android
 
 - Update _fonts_ in [theme.js](./src/configs/theme.js): **IT'S IMPORTANT to have the _FONT NAME STRING_ exactly THE SAME AS the _FONT NAME FILE_.**
 
-### Use Fonts in the project
+#### Use Fonts in the project
 
 - Checkout _fonts_ in [theme.js](./src/configs/theme.js).
 

@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import { Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import theme from 'configs/theme';
+
+const { acumin, cairo, superclarendon } = theme.fonts;
+
 const Wrapper = styled.TouchableOpacity`
 	width: 88%;
 	height: 22%;
@@ -13,9 +17,19 @@ const Wrapper = styled.TouchableOpacity`
 	align-items: center;
 `;
 
+/*
+ * Example of how to use custom fonts:
+ *
+ * 00. Import fonts from theme (configs/theme)
+ * 01. DO NOT USE font-weight, font-style etc., as
+ * 	   the imported fonts already have their own weight
+ * 	   and style.
+ * 02. Use font-family like normal CSS.
+ */
 const Choice = styled.Text`
 	font-size: 13px;
-	font-weight: bold;
+	/* font-weight: bold; */
+	font-family: ${acumin.italic};
 	color: ${({ active }) => (!active ? '#565656' : '#e5e5e5')};
 `;
 

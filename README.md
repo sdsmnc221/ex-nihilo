@@ -46,9 +46,78 @@ $ react-native link
 $ react-native run-android
 ```
 
-## TODO
+## About Theming
 
-- ...
+- Checkout theme configs in [theme.js](./src/configs/theme.js).
+
+- Guides: [Colors](./docs/guide-colors.png) | [Typo](./docs/guide-typo.png).
+
+### Custom Fonts
+
+#### Install / Remove / Update Fonts
+
+- We've already configured the [assets fonts folder](./react-native.config.js) (for React Native > 0.6).
+
+- Every time the fonts are to be installed / removed / updated, first manually delete [android/app/src/main/assets](./android/app/src/main/assets) folder.
+
+- Install / Remove / Update fonts in [src/assets/fonts](./src/assets/fonts) folder.
+
+- Relink:
+
+```
+$ react-native link
+```
+
+- Restart metro bundler server and rebuild the app:
+
+```
+$ npm start --reset-cache
+$ react-native run-android
+```
+
+- Update _fonts_ in [theme.js](./src/configs/theme.js): **IT'S IMPORTANT to have the _FONT NAME STRING_ exactly THE SAME AS the _FONT NAME FILE_.**
+
+#### Use Fonts in the project
+
+- Checkout _fonts_ in [theme.js](./src/configs/theme.js).
+
+- **With _styled-component_**: [_example_](./src/screens/SMS/components/AnswerChoice.js) _(can be tested and checked in the Janus Convo Screen)._
+
+```javascript
+import theme from 'configs/theme';
+
+const { acumin, cairo, superclarendon } = theme.fonts;
+
+/*
+ * Example of how to use custom fonts:
+ *
+ * 00. Import fonts from theme (configs/theme)
+ * 01. DO NOT USE font-weight, font-style etc., as
+ *     the imported fonts already have their own weight
+ *     and style.
+ * 02. Use font-family like normal CSS.
+ */
+
+const Choice = styled.Text`
+	font-size: 13px;
+	/* font-weight: bold; */
+	font-family: ${acumin.italic};
+`;
+```
+
+- **With _React Native StyleSheet_**:
+
+```javascript
+import theme from 'configs/theme';
+
+const { superclarendon } = theme.fonts;
+
+const styles = StyleSheet.create({
+	font: {
+		fontFamily: superclarendon,
+	},
+});
+```
 
 ## Built With
 

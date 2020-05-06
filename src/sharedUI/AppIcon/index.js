@@ -32,6 +32,7 @@ const NotifsCount = styled.Text`
 `;
 
 const Label = styled.Text`
+	text-align: center;
 	font-size: 11px;
 	color: #000;
 	position: absolute;

@@ -17,6 +17,29 @@ export default {
 		superclarendon: 'Superclarendon',
 	},
 	/*
+	 * Go check /docs/guide-typo.png
+	 */
+	typo: {
+		// Sizes with px unit (for styled-component)
+		sizes: {
+			h1: '32px',
+			h2: '24px',
+			h3: '16px',
+			body: '14px',
+			bodyDataviz: '14px',
+			subtitle: '11px',
+		},
+		// Sizes without px unit (for React-Native StyleSheet)
+		sizesNb: {
+			h1: 32,
+			h2: 24,
+			h3: 16,
+			body: 14,
+			bodyDataviz: 14,
+			subtitle: 11,
+		},
+	},
+	/*
 	 * Go check /docs/guide-colors.png
 	 */
 	colors: {

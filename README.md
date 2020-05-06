@@ -50,7 +50,7 @@ $ react-native run-android
 
 - Checkout theme configs in [theme.js](./src/configs/theme.js).
 
-- Guides: [_Colors_](./docs/guide-colors.png).
+- Guides: [Colors](./docs/guide-colors.png) | [Typo](./docs/guide-typo.png).
 
 ### Custom Fonts
 

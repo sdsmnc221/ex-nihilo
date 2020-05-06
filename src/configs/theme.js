@@ -16,4 +16,15 @@ export default {
 		},
 		superclarendon: 'Superclarendon',
 	},
+	/*
+	 * Go check /docs/guide-colors.png
+	 */
+	colors: {
+		black: '#000000',
+		charcoal: '##4A4A4A',
+		ghostWhite: '#F5F4FF',
+		lime: '#14FF00',
+		slateBlue: '#6B5CFF',
+		whiskey: '#CE976A',
+	},
 };

@@ -46,6 +46,12 @@ $ react-native link
 $ react-native run-android
 ```
 
+## About Theming
+
+- Checkout theme configs in [theme.js].
+
+- Guides: [_Colors_](./docs/guide-colors.png).
+
 ## About Custom Fonts
 
 ### Install / Remove / Update Fonts

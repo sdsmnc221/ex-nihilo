@@ -20,6 +20,18 @@
 		4E2B1F1CFF306C08598DF73F /* libPods-ex_nihilo-ex_nihiloTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21ED7AA0A58B455B08BE9614 /* libPods-ex_nihilo-ex_nihiloTests.a */; };
 		5F19B078AC55721B18803823 /* libPods-ex_nihilo-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 655A5453FCA4361E73456BE4 /* libPods-ex_nihilo-tvOSTests.a */; };
 		6521C0D3D21C811AA1D4CE6B /* libPods-ex_nihilo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9DEB79733C5AF52B7C1D3C /* libPods-ex_nihilo.a */; };
+		579FD87637434B96A8F3158D /* Acumin-BdItPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83E560A19E52427994D7466E /* Acumin-BdItPro.otf */; };
+		4B566996822D4E7BB6CB5BAB /* Acumin-BdPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = D98ACD2C49E6436AA2CA73C6 /* Acumin-BdPro.otf */; };
+		E0CAF453B4B34CACB2CB60F2 /* Acumin-ItPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38BE6D7C2A0948E790629BA2 /* Acumin-ItPro.otf */; };
+		51986D58F64C4468813FCF18 /* Acumin-RPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = B03A3D7B21E746068ED94EB8 /* Acumin-RPro.otf */; };
+		14B1D3B95FE14DD4BD7541AF /* Cairo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CF77556C1B743C7A5EF0390 /* Cairo-Black.ttf */; };
+		EDBFF620A78946EF967FAEC6 /* Cairo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F98E2B0A4899402698676517 /* Cairo-Bold.ttf */; };
+		B087C9D5CE2E45418443297A /* Cairo-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1D68599D09F4D07BDE131AB /* Cairo-ExtraLight.ttf */; };
+		D995964291DB451A81924983 /* Cairo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D4A7FAE62A14D8292579BEE /* Cairo-Light.ttf */; };
+		00337D9F25984B5F9673AF6D /* Cairo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B44C7723D38B4120B00BC5C0 /* Cairo-Regular.ttf */; };
+		5FFA766680BA4EF59E78EF05 /* Cairo-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9DDB1161B0B4F46B7D60302 /* Cairo-SemiBold.ttf */; };
+		046AC7EFC73E4C5890E3C58B /* Superclarendon Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61DA8B4C87104805A3997080 /* Superclarendon Regular.ttf */; };
+		019FB82FF3A847C0A1B31725 /* Superclarendon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 352B9C8A19AC49D9B3766485 /* Superclarendon.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +79,18 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F08D14E2B44DC066F6586F6F /* Pods-ex_nihilo-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ex_nihilo-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ex_nihilo-tvOSTests/Pods-ex_nihilo-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		83E560A19E52427994D7466E /* Acumin-BdItPro.otf */ = {isa = PBXFileReference; name = "Acumin-BdItPro.otf"; path = "../src/assets/fonts/Acumin-BdItPro.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D98ACD2C49E6436AA2CA73C6 /* Acumin-BdPro.otf */ = {isa = PBXFileReference; name = "Acumin-BdPro.otf"; path = "../src/assets/fonts/Acumin-BdPro.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		38BE6D7C2A0948E790629BA2 /* Acumin-ItPro.otf */ = {isa = PBXFileReference; name = "Acumin-ItPro.otf"; path = "../src/assets/fonts/Acumin-ItPro.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B03A3D7B21E746068ED94EB8 /* Acumin-RPro.otf */ = {isa = PBXFileReference; name = "Acumin-RPro.otf"; path = "../src/assets/fonts/Acumin-RPro.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5CF77556C1B743C7A5EF0390 /* Cairo-Black.ttf */ = {isa = PBXFileReference; name = "Cairo-Black.ttf"; path = "../src/assets/fonts/Cairo-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F98E2B0A4899402698676517 /* Cairo-Bold.ttf */ = {isa = PBXFileReference; name = "Cairo-Bold.ttf"; path = "../src/assets/fonts/Cairo-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A1D68599D09F4D07BDE131AB /* Cairo-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Cairo-ExtraLight.ttf"; path = "../src/assets/fonts/Cairo-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2D4A7FAE62A14D8292579BEE /* Cairo-Light.ttf */ = {isa = PBXFileReference; name = "Cairo-Light.ttf"; path = "../src/assets/fonts/Cairo-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B44C7723D38B4120B00BC5C0 /* Cairo-Regular.ttf */ = {isa = PBXFileReference; name = "Cairo-Regular.ttf"; path = "../src/assets/fonts/Cairo-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A9DDB1161B0B4F46B7D60302 /* Cairo-SemiBold.ttf */ = {isa = PBXFileReference; name = "Cairo-SemiBold.ttf"; path = "../src/assets/fonts/Cairo-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		61DA8B4C87104805A3997080 /* Superclarendon Regular.ttf */ = {isa = PBXFileReference; name = "Superclarendon Regular.ttf"; path = "../src/assets/fonts/Superclarendon Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		352B9C8A19AC49D9B3766485 /* Superclarendon.ttf */ = {isa = PBXFileReference; name = "Superclarendon.ttf"; path = "../src/assets/fonts/Superclarendon.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +205,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				7E3290C767D849A77B0DBBD1 /* Pods */,
+				E55A6FD0EE1F4A8DA9165752 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -197,6 +222,26 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		E55A6FD0EE1F4A8DA9165752 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				83E560A19E52427994D7466E /* Acumin-BdItPro.otf */,
+				D98ACD2C49E6436AA2CA73C6 /* Acumin-BdPro.otf */,
+				38BE6D7C2A0948E790629BA2 /* Acumin-ItPro.otf */,
+				B03A3D7B21E746068ED94EB8 /* Acumin-RPro.otf */,
+				5CF77556C1B743C7A5EF0390 /* Cairo-Black.ttf */,
+				F98E2B0A4899402698676517 /* Cairo-Bold.ttf */,
+				A1D68599D09F4D07BDE131AB /* Cairo-ExtraLight.ttf */,
+				2D4A7FAE62A14D8292579BEE /* Cairo-Light.ttf */,
+				B44C7723D38B4120B00BC5C0 /* Cairo-Regular.ttf */,
+				A9DDB1161B0B4F46B7D60302 /* Cairo-SemiBold.ttf */,
+				61DA8B4C87104805A3997080 /* Superclarendon Regular.ttf */,
+				352B9C8A19AC49D9B3766485 /* Superclarendon.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -340,6 +385,18 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				579FD87637434B96A8F3158D /* Acumin-BdItPro.otf in Resources */,
+				4B566996822D4E7BB6CB5BAB /* Acumin-BdPro.otf in Resources */,
+				E0CAF453B4B34CACB2CB60F2 /* Acumin-ItPro.otf in Resources */,
+				51986D58F64C4468813FCF18 /* Acumin-RPro.otf in Resources */,
+				14B1D3B95FE14DD4BD7541AF /* Cairo-Black.ttf in Resources */,
+				EDBFF620A78946EF967FAEC6 /* Cairo-Bold.ttf in Resources */,
+				B087C9D5CE2E45418443297A /* Cairo-ExtraLight.ttf in Resources */,
+				D995964291DB451A81924983 /* Cairo-Light.ttf in Resources */,
+				00337D9F25984B5F9673AF6D /* Cairo-Regular.ttf in Resources */,
+				5FFA766680BA4EF59E78EF05 /* Cairo-SemiBold.ttf in Resources */,
+				046AC7EFC73E4C5890E3C58B /* Superclarendon Regular.ttf in Resources */,
+				019FB82FF3A847C0A1B31725 /* Superclarendon.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,6 +19,7 @@
     "react": "16.9.0",
     "react-devtools": "^4.6.0",
     "react-native": "^0.62.2",
+    "react-native-calendar-events": "^1.7.3",
     "react-native-contacts": "^5.1.0",
     "react-native-gesture-handler": "^1.6.0",
     "react-native-get-sms-android": "^2.1.0",

@@ -81,6 +81,8 @@ target 'ex_nihilo' do
 
   pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
 
+  pod 'react-native-calendar-events', :path => '../node_modules/react-native-calendar-events'
+
   target 'ex_nihiloTests' do
     inherit! :complete
     # Pods for testing

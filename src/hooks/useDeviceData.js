@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Contacts from 'react-native-contacts';
 import SmsAndroid from 'react-native-get-sms-android';
 import CameraRoll from '@react-native-community/cameraroll';
+import RNCalendarEvents from 'react-native-calendar-events';
 
 import {
 	getDeviceContactsStart,
@@ -74,6 +75,12 @@ const useDeviceData = (defaultContacts = []) => {
 					console.log(error);
 				}
 			})();
+
+			// Retrieve Calendar Events
+			RNCalendarEvents.authorizeEventStore().then((r) => {
+				console.log(r);
+				RNCalendarEvents.findCalendars().then((r) => console.log(r));
+			});
 		}
 	}, [permissions.requested, dispatch]);
 

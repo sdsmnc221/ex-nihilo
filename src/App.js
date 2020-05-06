@@ -28,6 +28,9 @@ import EmailDetailsScreen from 'screens/Email/EmailDetails';
 import EmailLoginScreen from 'screens/Email/EmailLogin';
 import AllApps from 'screens/AllApps';
 
+// Example screens
+import TypoScreen from 'screens/Examples/Typo';
+
 import Notification from './sharedUI/Notification';
 
 import FullScreen from 'utils/FullScreen';
@@ -39,6 +42,7 @@ const App = () => {
 	moment.locale('fr');
 
 	// Disable Back native button
+	// useEffect, useCallback, useFocusEffect ==> enfin regarder la doc
 	const onBackButtonPressed = () => {
 		return true;
 	};
@@ -135,6 +139,13 @@ const App = () => {
 						name="EmailDetailsScreen"
 						component={EmailDetailsScreen}
 						options={{ title: '' }}
+					/>
+
+					{/* Example Screens */}
+					<Stack.Screen
+						name="TypoScreen"
+						component={TypoScreen}
+						options={{ title: 'Typo Example', headerLeft: null }}
 					/>
 				</Stack.Navigator>
 				<Notification

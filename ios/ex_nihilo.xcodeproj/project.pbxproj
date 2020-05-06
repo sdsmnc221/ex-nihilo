@@ -32,6 +32,7 @@
 		5FFA766680BA4EF59E78EF05 /* Cairo-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9DDB1161B0B4F46B7D60302 /* Cairo-SemiBold.ttf */; };
 		046AC7EFC73E4C5890E3C58B /* Superclarendon Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61DA8B4C87104805A3997080 /* Superclarendon Regular.ttf */; };
 		019FB82FF3A847C0A1B31725 /* Superclarendon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 352B9C8A19AC49D9B3766485 /* Superclarendon.ttf */; };
+		8745277AB65A4D68BC3C20BD /* Acumin-MPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = D322F448EF73457399711C8F /* Acumin-MPro.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		A9DDB1161B0B4F46B7D60302 /* Cairo-SemiBold.ttf */ = {isa = PBXFileReference; name = "Cairo-SemiBold.ttf"; path = "../src/assets/fonts/Cairo-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		61DA8B4C87104805A3997080 /* Superclarendon Regular.ttf */ = {isa = PBXFileReference; name = "Superclarendon Regular.ttf"; path = "../src/assets/fonts/Superclarendon Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		352B9C8A19AC49D9B3766485 /* Superclarendon.ttf */ = {isa = PBXFileReference; name = "Superclarendon.ttf"; path = "../src/assets/fonts/Superclarendon.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D322F448EF73457399711C8F /* Acumin-MPro.otf */ = {isa = PBXFileReference; name = "Acumin-MPro.otf"; path = "../src/assets/fonts/Acumin-MPro.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 				A9DDB1161B0B4F46B7D60302 /* Cairo-SemiBold.ttf */,
 				61DA8B4C87104805A3997080 /* Superclarendon Regular.ttf */,
 				352B9C8A19AC49D9B3766485 /* Superclarendon.ttf */,
+				D322F448EF73457399711C8F /* Acumin-MPro.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				5FFA766680BA4EF59E78EF05 /* Cairo-SemiBold.ttf in Resources */,
 				046AC7EFC73E4C5890E3C58B /* Superclarendon Regular.ttf in Resources */,
 				019FB82FF3A847C0A1B31725 /* Superclarendon.ttf in Resources */,
+				8745277AB65A4D68BC3C20BD /* Acumin-MPro.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

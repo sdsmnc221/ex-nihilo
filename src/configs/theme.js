@@ -3,6 +3,7 @@ export default {
 		acumin: {
 			bold: 'Acumin-BdPro',
 			boldItalic: 'Acumin-BdItPro',
+			medium: 'Acumin-MPro',
 			regular: 'Acumin-RPro',
 			italic: 'Acumin-ItPro',
 		},
@@ -44,7 +45,7 @@ export default {
 	 */
 	colors: {
 		black: '#000000',
-		charcoal: '##4A4A4A',
+		charcoal: '#4A4A4A',
 		ghostWhite: '#F5F4FF',
 		lime: '#14FF00',
 		slateBlue: '#6B5CFF',

@@ -65,7 +65,7 @@ const useDeviceData = (defaultContacts = []) => {
 				},
 				(count, smsList) => {
 					getDeviceSmsSuccess(dispatch);
-					setDeviceSms(dispatch, count, JSON.parse(smsList));
+					setDeviceSms(dispatch, { count, list: JSON.parse(smsList) });
 				}
 			);
 
@@ -84,7 +84,7 @@ const useDeviceData = (defaultContacts = []) => {
 					});
 
 					getDeviceGallerySuccess(dispatch);
-					setDeviceGallery(dispatch, count, albums, photos);
+					setDeviceGallery(dispatch, { count, albums, photos });
 				} catch (error) {
 					getDeviceGalleryFailure(dispatch);
 					console.log(error);
@@ -105,7 +105,7 @@ const useDeviceData = (defaultContacts = []) => {
 						);
 
 						getDeviceCalendarSuccess(dispatch);
-						setDeviceCalendar(dispatch, calendars, events);
+						setDeviceCalendar(dispatch, { calendars, events });
 					} else {
 						getDeviceCalendarFailure(dispatch);
 					}

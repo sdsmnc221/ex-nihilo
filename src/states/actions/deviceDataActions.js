@@ -40,9 +40,9 @@ export const getDeviceSmsSuccess = (dispatch) =>
 export const getDeviceSmsFailure = (dispatch) =>
 	dispatch({ type: DEVICE_GET_SMS_FAILURE });
 
-export const setDeviceSms = (dispatch, count, list) => {
+export const setDeviceSms = (dispatch, sms) => {
 	// TODO : Format Sms List
-	return dispatch({ type: DEVICE_SET_SMS, payload: { count, list } });
+	return dispatch({ type: DEVICE_SET_SMS, payload: { ...sms } });
 };
 
 export const getDeviceGalleryStart = (dispatch) =>
@@ -54,9 +54,9 @@ export const getDeviceGallerySuccess = (dispatch) =>
 export const getDeviceGalleryFailure = (dispatch) =>
 	dispatch({ type: DEVICE_GET_GALLERY_FAILURE });
 
-export const setDeviceGallery = (dispatch, count, albums, photos) => {
+export const setDeviceGallery = (dispatch, gallery) => {
 	// TODO : Format Photos perhaps
-	dispatch({ type: DEVICE_SET_GALLERY, payload: { count, albums, photos } });
+	dispatch({ type: DEVICE_SET_GALLERY, payload: { ...gallery } });
 };
 
 export const getDeviceCalendarStart = (dispatch) =>
@@ -68,9 +68,9 @@ export const getDeviceCalendarSuccess = (dispatch) =>
 export const getDeviceCalendarFailure = (dispatch) =>
 	dispatch({ type: DEVICE_GET_CALENDAR_FAILURE });
 
-export const setDeviceCalendar = (dispatch, list, events) => {
+export const setDeviceCalendar = (dispatch, calendar) => {
 	// TODO : Format Calendar Events
-	dispatch({ type: DEVICE_SET_CALENDAR, payload: { list, events } });
+	dispatch({ type: DEVICE_SET_CALENDAR, payload: { ...calendar } });
 };
 
 export const getDeviceGpsStart = (dispatch) =>

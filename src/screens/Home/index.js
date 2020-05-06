@@ -38,9 +38,9 @@ const HomeScreen = ({ navigation }) => {
 							notifs={8}
 							onPress={() => navigation.navigate('SmsScreen')}
 						/>
-						<AppIcon 
-							size={iconSize} 
-							type="APPS" 
+						<AppIcon
+							size={iconSize}
+							type="APPS"
 							onPress={() => navigation.navigate('AllApps')}
 						/>
 						<AppIcon
@@ -50,27 +50,6 @@ const HomeScreen = ({ navigation }) => {
 						/>
 						<AppIcon size={iconSize} type="FILES" />
 					</Icons>
-					{/* Temporary App Icons */}
-					<IconsTemp>
-						<AppIcon
-							size={iconSize}
-							label="Album"
-							onPress={() => navigation.navigate('AlbumScreen')}
-						/>
-						<AppIcon
-							size={iconSize}
-							label="Facebook"
-							onPress={() => navigation.navigate('FacebookLoginScreen')}
-						/>
-						<AppIcon
-							size={iconSize}
-							label="Email"
-							onPress={() => navigation.navigate('EmailLoginScreen')}
-						/>
-						<AppIcon size={iconSize} label="Agenda" />
-						<AppIcon size={iconSize} label="Notes" />
-					</IconsTemp>
-					{/* Temporary App Icons */}
 				</View>
 				<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} />
 			</SafeAreaView>

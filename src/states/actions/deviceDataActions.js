@@ -15,6 +15,10 @@ import {
 	DEVICE_GET_CALENDAR_SUCCESS,
 	DEVICE_GET_CALENDAR_FAILURE,
 	DEVICE_SET_CALENDAR,
+	DEVICE_GET_GPS_START,
+	DEVICE_GET_GPS_SUCCESS,
+	DEVICE_GET_GPS_FAILURE,
+	DEVICE_SET_GPS,
 } from '../actionTypes';
 
 export const getDeviceContactsStart = (dispatch) =>
@@ -67,4 +71,17 @@ export const getDeviceCalendarFailure = (dispatch) =>
 export const setDeviceCalendar = (dispatch, list, events) => {
 	// TODO : Format Calendar Events
 	dispatch({ type: DEVICE_SET_CALENDAR, payload: { list, events } });
+};
+
+export const getDeviceGpsStart = (dispatch) =>
+	dispatch({ type: DEVICE_GET_GPS_START });
+
+export const getDeviceGpsSuccess = (dispatch) =>
+	dispatch({ type: DEVICE_GET_GPS_SUCCESS });
+
+export const getDeviceGpsFailure = (dispatch) =>
+	dispatch({ type: DEVICE_GET_GPS_FAILURE });
+
+export const setDeviceGps = (dispatch, gps) => {
+	dispatch({ type: DEVICE_SET_GPS, payload: { ...gps } });
 };

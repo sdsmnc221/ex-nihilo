@@ -5,6 +5,7 @@ import {
 	DEVICE_SET_SMS,
 	DEVICE_SET_GALLERY,
 	DEVICE_SET_CALENDAR,
+	DEVICE_SET_GPS,
 } from 'states/actionTypes';
 
 function deviceData(state = initialStates.deviceData, action) {
@@ -31,6 +32,11 @@ function deviceData(state = initialStates.deviceData, action) {
 			return {
 				...state,
 				calendar: action.payload, // { list (list of calendars), events }
+			};
+		case DEVICE_SET_GPS:
+			return {
+				...state,
+				gps: action.payload, // { lat, long, address }
 			};
 		default:
 			return state;

@@ -26,7 +26,11 @@ export default {
 			albums: null,
 			photos: null,
 		},
-		gps: null,
+		gps: {
+			lat: null,
+			long: null,
+			address: null,
+		},
 		misc: null,
 		sms: {
 			count: 0,

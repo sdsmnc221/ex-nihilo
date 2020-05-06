@@ -4,6 +4,8 @@ import Contacts from 'react-native-contacts';
 import SmsAndroid from 'react-native-get-sms-android';
 import CameraRoll from '@react-native-community/cameraroll';
 import RNCalendarEvents from 'react-native-calendar-events';
+import Geolocation from 'react-native-geolocation-service';
+import Geocoder from 'react-native-geocoding';
 
 import {
 	getDeviceContactsStart,
@@ -22,7 +24,13 @@ import {
 	getDeviceCalendarSuccess,
 	getDeviceCalendarFailure,
 	setDeviceCalendar,
+	getDeviceGpsStart,
+	getDeviceGpsSuccess,
+	getDeviceGpsFailure,
+	setDeviceGps,
 } from 'states/actions/deviceDataActions';
+
+import { isArrEmpty } from 'utils';
 
 const useDeviceData = (defaultContacts = []) => {
 	const [contacts, setContacts] = useState(defaultContacts);
@@ -106,6 +114,38 @@ const useDeviceData = (defaultContacts = []) => {
 					console.log(error);
 				}
 			})();
+
+			// Retrieve user's location / GPS
+			getDeviceGpsStart(dispatch);
+			Geolocation.getCurrentPosition(
+				async (position) => {
+					try {
+						Geocoder.init('AIzaSyAHOv4f75IOWGMuxRKCVvx8ZL5RBzCB-BE', {
+							language: 'fr',
+						});
+
+						const { latitude: lat, longitude: long } = position.coords;
+						const { results: addressesList } = await Geocoder.from([lat, long]);
+
+						getDeviceGpsSuccess(dispatch);
+						setDeviceGps(dispatch, {
+							lat,
+							long,
+							address: isArrEmpty(addressesList)
+								? null
+								: addressesList[0].formatted_address,
+						});
+					} catch (error) {
+						getDeviceGpsFailure(dispatch);
+						console.log(error);
+					}
+				},
+				(error) => {
+					getDeviceGpsFailure(dispatch);
+					console.log(error);
+				},
+				{ enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+			);
 		}
 	}, [permissions.requested, dispatch]);
 

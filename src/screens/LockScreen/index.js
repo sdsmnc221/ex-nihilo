@@ -3,13 +3,15 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
+import { KEY_PUZZLE_A } from 'configs';
+
 import PasswordLock from 'sharedUI/PasswordLock';
 
 const LockScreen = ({ navigation }) => {
 	const [numberOfTry, setNumberOfTry] = useState(0);
 	const [messageFailed, setMessageFailed] = useState('');
 	const [passwordInput, setPasswordInput] = useState('');
-	const [phonePassword, setPhonePassword] = useState('Thierry');
+	const [phonePassword, setPhonePassword] = useState(KEY_PUZZLE_A);
 
 	const onSubmit = () => {
 		if (passwordInput !== phonePassword) {

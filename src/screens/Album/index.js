@@ -4,6 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Modal from 'react-native-modal';
 import styled from 'styled-components';
 
+import { KEY_PUZZLE_B } from 'configs';
+
 import NavigationBar from 'sharedUI/NavigationBar';
 import PasswordLock from 'sharedUI/PasswordLock';
 import PhotoThumbnail from './components/PhotoThumbnail';
@@ -21,7 +23,7 @@ const AlbumScreen = ({ navigation }) => {
 
 	const [isLocked, setIsLocked] = useState(true);
 	const [passwordInput, setPasswordInput] = useState('');
-	const [albumPassword, setAlbumPassword] = useState('0d1n');
+	const [albumPassword, setAlbumPassword] = useState(KEY_PUZZLE_B);
 
 	const onSubmitPassword = () => {
 		if (passwordInput === albumPassword) {

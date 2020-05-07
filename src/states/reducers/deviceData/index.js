@@ -7,6 +7,7 @@ import {
 	DEVICE_SET_CALENDAR,
 	DEVICE_SET_GPS,
 	DEVICE_SET_CALL_LOG,
+	DEVICE_SET_ACCOUNTS,
 } from 'states/actionTypes';
 
 function deviceData(state = initialStates.deviceData, action) {
@@ -44,6 +45,12 @@ function deviceData(state = initialStates.deviceData, action) {
 			return {
 				...state,
 				calls, // [ Array of calls ]
+			};
+		case DEVICE_SET_ACCOUNTS:
+			const { accounts } = action.payload;
+			return {
+				...state,
+				accounts, // [ Array of accounts ]
 			};
 		default:
 			return state;

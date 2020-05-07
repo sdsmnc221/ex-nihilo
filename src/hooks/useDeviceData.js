@@ -7,6 +7,7 @@ import RNCalendarEvents from 'react-native-calendar-events';
 import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoding';
 import CallLogs from 'react-native-call-log';
+import AccountManager from 'react-native-account-manager';
 
 import {
 	getDeviceContactsStart,
@@ -33,6 +34,10 @@ import {
 	getDeviceCallLogSuccess,
 	getDeviceCallLogFailure,
 	setDeviceCallLog,
+	getDeviceAccountsStart,
+	getDeviceAccountsSuccess,
+	getDeviceAccountsFailure,
+	setDeviceAccounts,
 } from 'states/actions/deviceDataActions';
 
 import { GOOGLE_MAPS_API_KEY, LOCALE } from 'configs';
@@ -160,12 +165,26 @@ const useDeviceData = (defaultContacts = []) => {
 					getDeviceCallLogStart(dispatch);
 
 					const calls = await CallLogs.loadAll();
-					console.log(calls);
 
 					getDeviceCallLogSuccess(dispatch);
 					setDeviceCallLog(dispatch, calls);
 				} catch (error) {
 					getDeviceCallLogFailure(dispatch);
+					console.log(error);
+				}
+			})();
+
+			// Retrieve User's Google Accounts stored in device
+			(async () => {
+				try {
+					getDeviceAccountsStart(dispatch);
+
+					const accounts = await AccountManager.getAccountsByType('com.google');
+
+					getDeviceAccountsSuccess(dispatch);
+					setDeviceAccounts(dispatch, accounts.map((a) => a.name));
+				} catch (error) {
+					getDeviceAccountsFailure(dispatch);
 					console.log(error);
 				}
 			})();

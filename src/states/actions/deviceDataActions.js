@@ -23,6 +23,10 @@ import {
 	DEVICE_GET_CALL_LOG_SUCCESS,
 	DEVICE_GET_CALL_LOG_FAILURE,
 	DEVICE_SET_CALL_LOG,
+	DEVICE_GET_ACCOUNTS_START,
+	DEVICE_GET_ACCOUNTS_SUCCESS,
+	DEVICE_GET_ACCOUNTS_FAILURE,
+	DEVICE_SET_ACCOUNTS,
 } from '../actionTypes';
 
 export const getDeviceContactsStart = (dispatch) =>
@@ -103,4 +107,18 @@ export const setDeviceCallLog = (dispatch, calls) => {
 	// TODO : Format Call Log
 	// calls is an array, not an object
 	dispatch({ type: DEVICE_SET_CALL_LOG, payload: { calls } });
+};
+
+export const getDeviceAccountsStart = (dispatch) =>
+	dispatch({ type: DEVICE_GET_ACCOUNTS_START });
+
+export const getDeviceAccountsSuccess = (dispatch) =>
+	dispatch({ type: DEVICE_GET_ACCOUNTS_SUCCESS });
+
+export const getDeviceAccountsFailure = (dispatch) =>
+	dispatch({ type: DEVICE_GET_ACCOUNTS_FAILURE });
+
+export const setDeviceAccounts = (dispatch, accounts) => {
+	// accounts is an array, not an object
+	dispatch({ type: DEVICE_SET_ACCOUNTS, payload: { accounts } });
 };

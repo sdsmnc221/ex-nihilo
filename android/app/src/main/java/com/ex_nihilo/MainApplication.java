@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.calendarevents.CalendarEventsPackage;
 import com.reactnativecommunity.cameraroll.CameraRollPackage;
 import com.react.SmsPackage;

@@ -83,6 +83,8 @@ target 'ex_nihilo' do
 
   pod 'react-native-calendar-events', :path => '../node_modules/react-native-calendar-events'
 
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+
   target 'ex_nihiloTests' do
     inherit! :complete
     # Pods for testing

@@ -61,3 +61,6 @@ buck-out/
 
 # Misc.
 *.pem
+
+# dotenv environment variables file
+.env

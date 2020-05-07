@@ -30,6 +30,8 @@ import {
 	setDeviceGps,
 } from 'states/actions/deviceDataActions';
 
+import { GOOGLE_MAPS_API_KEY, LOCALE } from 'configs';
+
 import { isArrEmpty } from 'utils';
 
 const useDeviceData = (defaultContacts = []) => {
@@ -120,8 +122,8 @@ const useDeviceData = (defaultContacts = []) => {
 			Geolocation.getCurrentPosition(
 				async (position) => {
 					try {
-						Geocoder.init('AIzaSyAHOv4f75IOWGMuxRKCVvx8ZL5RBzCB-BE', {
-							language: 'fr',
+						Geocoder.init(GOOGLE_MAPS_API_KEY, {
+							language: LOCALE,
 						});
 
 						const { latitude: lat, longitude: long } = position.coords;

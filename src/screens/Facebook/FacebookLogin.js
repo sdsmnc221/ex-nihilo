@@ -3,6 +3,8 @@ import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
+import { KEY_PUZZLE_C } from 'configs';
+
 import NavigationBar from 'sharedUI/NavigationBar';
 import Icon from 'sharedUI/Icon';
 
@@ -86,18 +88,18 @@ const FacebookLoginScreen = ({ navigation }) => {
 	const [emailInput, setEmailInput] = useState('sam.blanchard@gmail.com');
 	const [passwordInput, setPasswordInput] = useState('');
 	const [fbEmail, setFbEmail] = useState('sam.blanchard@gmail.com');
-	const [fbPassword, setFbPassword] = useState('b1nouze');
+	const [fbPassword, setFbPassword] = useState(KEY_PUZZLE_C);
 	const [failed, setFailed] = useState(false);
 
 	const onSubmit = () => {
-		console.log(`${passwordInput} | ${fbPassword}`)
-		console.log(`${emailInput} | ${fbEmail}`)
-		if ((passwordInput !== fbPassword) || (emailInput !== fbEmail)) {
-			setFailed(true)
+		console.log(`${passwordInput} | ${fbPassword}`);
+		console.log(`${emailInput} | ${fbEmail}`);
+		if (passwordInput !== fbPassword || emailInput !== fbEmail) {
+			setFailed(true);
 		} else {
 			navigation.navigate('FacebookScreen');
 		}
-	}
+	};
 
 	return (
 		<>
@@ -108,7 +110,7 @@ const FacebookLoginScreen = ({ navigation }) => {
 					</LogoContainer>
 					<ContentContainer>
 						<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
-						{failed && <Text color='#DDD'>Email ou mot de passe incorrect.</Text>}
+						{failed && <Text color="#DDD">Email ou mot de passe incorrect.</Text>}
 						<Input
 							value={passwordInput}
 							secureTextEntry

@@ -3,6 +3,8 @@ import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
+import { KEY_PUZZLE_D } from 'configs';
+
 import NavigationBar from 'sharedUI/NavigationBar';
 import Icon from 'sharedUI/Icon';
 
@@ -75,18 +77,18 @@ const EmailLoginScreen = ({ navigation }) => {
 	const [emailInput, setEmailInput] = useState('sam.blanchard@gmail.com');
 	const [passwordInput, setPasswordInput] = useState('');
 	const [mailEmail, setMailEmail] = useState('sam.blanchard@gmail.com');
-	const [mailPassword, setMailPassword] = useState('Dormiens');
+	const [mailPassword, setMailPassword] = useState(KEY_PUZZLE_D);
 	const [failed, setFailed] = useState(false);
 
 	const onSubmit = () => {
-		console.log(`${passwordInput} | ${mailPassword}`)
-		console.log(`${emailInput} | ${mailEmail}`)
-		if ((passwordInput !== mailPassword) || (emailInput !== mailEmail)) {
-			setFailed(true)
+		console.log(`${passwordInput} | ${mailPassword}`);
+		console.log(`${emailInput} | ${mailEmail}`);
+		if (passwordInput !== mailPassword || emailInput !== mailEmail) {
+			setFailed(true);
 		} else {
 			navigation.navigate('EmailScreen');
 		}
-	}
+	};
 
 	return (
 		<>
@@ -98,7 +100,7 @@ const EmailLoginScreen = ({ navigation }) => {
 					<ContentContainer>
 						<Title>Connexion</Title>
 						<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
-						{failed && <Text color='#DDD'>Email ou mot de passe incorrect.</Text>}
+						{failed && <Text color="#DDD">Email ou mot de passe incorrect.</Text>}
 						<Input
 							value={passwordInput}
 							secureTextEntry

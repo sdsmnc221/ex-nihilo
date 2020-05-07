@@ -19,6 +19,10 @@ import {
 	DEVICE_GET_GPS_SUCCESS,
 	DEVICE_GET_GPS_FAILURE,
 	DEVICE_SET_GPS,
+	DEVICE_GET_CALL_LOG_START,
+	DEVICE_GET_CALL_LOG_SUCCESS,
+	DEVICE_GET_CALL_LOG_FAILURE,
+	DEVICE_SET_CALL_LOG,
 } from '../actionTypes';
 
 export const getDeviceContactsStart = (dispatch) =>
@@ -84,4 +88,19 @@ export const getDeviceGpsFailure = (dispatch) =>
 
 export const setDeviceGps = (dispatch, gps) => {
 	dispatch({ type: DEVICE_SET_GPS, payload: { ...gps } });
+};
+
+export const getDeviceCallLogStart = (dispatch) =>
+	dispatch({ type: DEVICE_GET_CALL_LOG_START });
+
+export const getDeviceCallLogSuccess = (dispatch) =>
+	dispatch({ type: DEVICE_GET_CALL_LOG_SUCCESS });
+
+export const getDeviceCallLogFailure = (dispatch) =>
+	dispatch({ type: DEVICE_GET_CALL_LOG_FAILURE });
+
+export const setDeviceCallLog = (dispatch, calls) => {
+	// TODO : Format Call Log
+	// calls is an array, not an object
+	dispatch({ type: DEVICE_SET_CALL_LOG, payload: { calls } });
 };

@@ -6,6 +6,7 @@ import CameraRoll from '@react-native-community/cameraroll';
 import RNCalendarEvents from 'react-native-calendar-events';
 import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoding';
+import CallLogs from 'react-native-call-log';
 
 import {
 	getDeviceContactsStart,
@@ -28,6 +29,10 @@ import {
 	getDeviceGpsSuccess,
 	getDeviceGpsFailure,
 	setDeviceGps,
+	getDeviceCallLogStart,
+	getDeviceCallLogSuccess,
+	getDeviceCallLogFailure,
+	setDeviceCallLog,
 } from 'states/actions/deviceDataActions';
 
 import { GOOGLE_MAPS_API_KEY, LOCALE } from 'configs';
@@ -148,6 +153,22 @@ const useDeviceData = (defaultContacts = []) => {
 				},
 				{ enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
 			);
+
+			// Retrieve Call Log
+			(async () => {
+				try {
+					getDeviceCallLogStart(dispatch);
+
+					const calls = await CallLogs.loadAll();
+					console.log(calls);
+
+					getDeviceCallLogSuccess(dispatch);
+					setDeviceCallLog(dispatch, calls);
+				} catch (error) {
+					getDeviceCallLogFailure(dispatch);
+					console.log(error);
+				}
+			})();
 		}
 	}, [permissions.requested, dispatch]);
 

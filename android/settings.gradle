@@ -1,8 +1,6 @@
 rootProject.name = 'ex_nihilo'
 include ':react-native-account-manager'
 project(':react-native-account-manager').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-account-manager/android')
-include ':react-native-account-manager'
-project(':react-native-account-manager').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-account-manager/android')
 include ':react-native-call-log'
 project(':react-native-call-log').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-call-log/android')
 include ':react-native-config'

@@ -29,34 +29,39 @@ const ContactDetails = ({ route, navigation }) => {
 	navigation.setOptions({ title, headerStyle });
 
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<PlaceHolder
-					color="#c4c4c4"
-					size={200}
-					text={firstLetter}
-					textSize={48}
-					round
-				/>
-				<Wrapper>
-					<Text style={styles.name}>{contact.name}</Text>
-					<AppIcon size={32} type="EDIT_CONTACTS" />
-				</Wrapper>
-				<Wrapper style={{ justifyContent: 'space-around', marginTop: 28 }}>
-					<AppIcon size={48} type="PHONE" />
-					<AppIcon size={48} type="SMS" />
-					<AppIcon size={48} type="EMAIL" />
-				</Wrapper>
-				<Wrapper style={{ flexDirection: 'column', marginTop: 28 }}>
-					<Wrapper style={{ width: '100%', justifyContent: 'space-between' }}>
-						<Text>Mobile</Text>
-						<Text>{contact.number}</Text>
+		<>
+			<SafeAreaView>
+				<View style={styles.body}>
+					<PlaceHolder
+						color="#c4c4c4"
+						size={200}
+						text={firstLetter}
+						textSize={48}
+						round
+					/>
+					<Wrapper>
+						<Text style={styles.name}>{contact.name}</Text>
+						<AppIcon size={32} type="EDIT_CONTACTS" />
 					</Wrapper>
-					<Separator />
-				</Wrapper>
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+					<Wrapper style={{ justifyContent: 'space-around', marginTop: 28 }}>
+						<AppIcon size={48} type="PHONE" />
+						<AppIcon size={48} type="SMS" />
+						<AppIcon size={48} type="EMAIL" />
+					</Wrapper>
+					<Wrapper style={{ flexDirection: 'column', marginTop: 28 }}>
+						<Wrapper style={{ width: '100%', justifyContent: 'space-between' }}>
+							<Text>Mobile</Text>
+							<Text>{contact.number}</Text>
+						</Wrapper>
+						<Separator />
+					</Wrapper>
+				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
+			</SafeAreaView>
+		</>
 	);
 };
 

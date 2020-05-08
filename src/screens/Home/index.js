@@ -27,32 +27,34 @@ const HomeScreen = ({ navigation }) => {
 	const iconSize = (deviceW - 12) / 5 - 12;
 
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<Clock />
-				<Icons>
-					<AppIcon size={iconSize} type="PHONE" notifs={24} />
-					<AppIcon
-						size={iconSize}
-						type="SMS"
-						notifs={8}
-						onPress={() => navigation.navigate('SmsScreen')}
-					/>
-					<AppIcon
-						size={iconSize}
-						type="APPS"
-						onPress={() => navigation.navigate('AllApps')}
-					/>
-					<AppIcon
-						size={iconSize}
-						type="CONTACTS"
-						onPress={() => navigation.navigate('ContactsScreen')}
-					/>
-					<AppIcon size={iconSize} type="FILES" />
-				</Icons>
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} />
-		</SafeAreaView>
+		<>
+			<SafeAreaView>
+				<View style={styles.body}>
+					<Clock />
+					<Icons>
+						<AppIcon size={iconSize} type="PHONE" notifs={24} />
+						<AppIcon
+							size={iconSize}
+							type="SMS"
+							notifs={8}
+							onPress={() => navigation.navigate('SmsScreen')}
+						/>
+						<AppIcon
+							size={iconSize}
+							type="APPS"
+							onPress={() => navigation.navigate('AllApps')}
+						/>
+						<AppIcon
+							size={iconSize}
+							type="CONTACTS"
+							onPress={() => navigation.navigate('ContactsScreen')}
+						/>
+						<AppIcon size={iconSize} type="FILES" />
+					</Icons>
+				</View>
+				<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} />
+			</SafeAreaView>
+		</>
 	);
 };
 

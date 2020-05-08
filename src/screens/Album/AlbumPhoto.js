@@ -9,12 +9,17 @@ const AlbumPhotoScreen = ({ route, navigation }) => {
 	console.log(route);
 
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<Icon type="PHOTO_XL" />
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+		<>
+			<SafeAreaView>
+				<View style={styles.body}>
+					<Icon type="PHOTO_XL" />
+				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
+			</SafeAreaView>
+		</>
 	);
 };
 

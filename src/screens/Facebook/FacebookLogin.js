@@ -91,64 +91,69 @@ const FacebookLoginScreen = ({ navigation }) => {
 	const [failed, setFailed] = useState(false);
 
 	const onSubmit = () => {
-		console.log(`${passwordInput} | ${fbPassword}`);
-		console.log(`${emailInput} | ${fbEmail}`);
-		if (passwordInput !== fbPassword || emailInput !== fbEmail) {
-			setFailed(true);
+		console.log(`${passwordInput} | ${fbPassword}`)
+		console.log(`${emailInput} | ${fbEmail}`)
+		if ((passwordInput !== fbPassword) || (emailInput !== fbEmail)) {
+			setFailed(true)
 		} else {
 			navigation.navigate('FacebookScreen');
 		}
-	};
+	}
 
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<LogoContainer>
-					<Icon type="FACEBOOK_XL" />
-				</LogoContainer>
-				<ContentContainer>
-					<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
-					{failed && <Text color="#DDD">Email ou mot de passe incorrect.</Text>}
-					<Input
-						value={passwordInput}
-						secureTextEntry
-						blurOnSubmit
-						onSubmitEditing={onSubmit}
-						onChangeText={(text) => setPasswordInput(text)}
-					/>
-					<Button onPress={onSubmit}>
-						<StyledText size={14} bold>
-							Connexion
-						</StyledText>
-					</Button>
-					<SeparatorContainer>
-						<StyledText size={13} bold>
-							Mot de passe oublié ?
-						</StyledText>
-						<Separator>
-							<Line />
-							<StyledText size={10} margin="0 16px">
-								ou
+		<>
+			<SafeAreaView>
+				<View style={styles.body}>
+					<LogoContainer>
+						<Icon type="FACEBOOK_XL" />
+					</LogoContainer>
+					<ContentContainer>
+						<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
+						{failed && <Text color='#DDD'>Email ou mot de passe incorrect.</Text>}
+						<Input
+							value={passwordInput}
+							secureTextEntry
+							blurOnSubmit
+							onSubmitEditing={onSubmit}
+							onChangeText={(text) => setPasswordInput(text)}
+						/>
+						<Button onPress={onSubmit}>
+							<StyledText size={14} bold>
+								Connexion
 							</StyledText>
-							<Line />
-						</Separator>
-					</SeparatorContainer>
-					<Button>
-						<StyledText size={14} bold>
-							Créer un nouveau compte Facebook
-						</StyledText>
-					</Button>
-					<LanguagesContainer>
-						<StyledText size={9}>English</StyledText>
-						<Dot />
-						<StyledText size={9}>Español</StyledText>
-						<Dot />
-						<StyledText size={9}>Plus...</StyledText>
-					</LanguagesContainer>
-				</ContentContainer>
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+						</Button>
+						<SeparatorContainer>
+							<StyledText size={13} bold>
+								Mot de passe oublié ?
+							</StyledText>
+							<Separator>
+								<Line />
+								<StyledText size={10} margin="0 16px">
+									ou
+								</StyledText>
+								<Line />
+							</Separator>
+						</SeparatorContainer>
+						<Button>
+							<StyledText size={14} bold>
+								Créer un nouveau compte Facebook
+							</StyledText>
+						</Button>
+						<LanguagesContainer>
+							<StyledText size={9}>English</StyledText>
+							<Dot />
+							<StyledText size={9}>Español</StyledText>
+							<Dot />
+							<StyledText size={9}>Plus...</StyledText>
+						</LanguagesContainer>
+					</ContentContainer>
+				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
+			</SafeAreaView>
+		</>
 	);
 };
 

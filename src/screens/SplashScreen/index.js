@@ -39,19 +39,17 @@ const SplashScreen = ({ navigation }) => {
 	}, []);
 
 	return (
-		<>
-			<SafeAreaView>
-				<View style={styles.body}>
-					<Logo />
-					<Title>EX NIHILO</Title>
-					<Baseline>The answer is out there</Baseline>
-					<Loader>
-						<Icon type="LOADING" />
-						<LoaderText>Loading...</LoaderText>
-					</Loader>
-				</View>
-			</SafeAreaView>
-		</>
+		<SafeAreaView>
+			<View style={styles.body}>
+				<Logo />
+				<Title>EX NIHILO</Title>
+				<Baseline>The answer is out there</Baseline>
+				<Loader>
+					<Icon type="LOADING" />
+					<LoaderText>Loading...</LoaderText>
+				</Loader>
+			</View>
+		</SafeAreaView>
 	);
 };
 

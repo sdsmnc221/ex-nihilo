@@ -130,43 +130,38 @@ const JanusConversation = ({ navigation }) => {
 	}, [activeScript]);
 
 	return (
-		<>
-			<SafeAreaView>
-				<View style={styles.body}>
-					<SmsList
-						ref={smsListRef}
-						onContentSizeChange={() =>
-							smsListRef.current?.scrollToEnd({ animated: true })
-						}>
-						{dialogueMessages.map((message, i) => (
-							<SmsMessage
-								key={i}
-								hasPlaceholder={!message.isUser}
-								isUser={message.isUser}
-								message={message.text}
-							/>
-						))}
-					</SmsList>
-					<InputWrapper>
-						<SmsInput
-							choice={choices ? choices[activeChoiceIndex] : undefined}
-							onPressSend={choices ? onPressSend : undefined}
+		<SafeAreaView>
+			<View style={styles.body}>
+				<SmsList
+					ref={smsListRef}
+					onContentSizeChange={() =>
+						smsListRef.current?.scrollToEnd({ animated: true })
+					}>
+					{dialogueMessages.map((message, i) => (
+						<SmsMessage
+							key={i}
+							hasPlaceholder={!message.isUser}
+							isUser={message.isUser}
+							message={message.text}
 						/>
-						<ChoicesWrapper>
-							<ChoicesContent
-								script={activeScript}
-								activeChoiceIndex={activeChoiceIndex}
-								onPressChoice={onPressChoice}
-							/>
-						</ChoicesWrapper>
-					</InputWrapper>
-				</View>
-				<NavigationBar
-					onPressHome={() => navigation.navigate('HomeScreen')}
-					black
-				/>
-			</SafeAreaView>
-		</>
+					))}
+				</SmsList>
+				<InputWrapper>
+					<SmsInput
+						choice={choices ? choices[activeChoiceIndex] : undefined}
+						onPressSend={choices ? onPressSend : undefined}
+					/>
+					<ChoicesWrapper>
+						<ChoicesContent
+							script={activeScript}
+							activeChoiceIndex={activeChoiceIndex}
+							onPressChoice={onPressChoice}
+						/>
+					</ChoicesWrapper>
+				</InputWrapper>
+			</View>
+			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+		</SafeAreaView>
 	);
 };
 

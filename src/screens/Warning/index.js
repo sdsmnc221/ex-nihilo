@@ -48,25 +48,23 @@ const WarningScreen = ({ navigation }) => {
 	const onPress = () => navigation.navigate('IntroScreen');
 
 	return (
-		<>
-			<SafeAreaView>
-				<View style={styles.body}>
-					<Logo />
-					<Title>Warning</Title>
-					<Content>
-						L’expérience que nous vous proposons contient du contenu explicite et
-						violent pouvant choquer votre sensibilité.
-						{'\n'}
-						Nous recommandons aux personnes sensibles et aux enfants de ne pas y
-						participer.
-					</Content>
-					<Button onPress={onPress}>
-						<ButtonText>Suivant </ButtonText>
-						<Icon type="ARROW_LEFT" />
-					</Button>
-				</View>
-			</SafeAreaView>
-		</>
+		<SafeAreaView>
+			<View style={styles.body}>
+				<Logo />
+				<Title>Warning</Title>
+				<Content>
+					L’expérience que nous vous proposons contient du contenu explicite et
+					violent pouvant choquer votre sensibilité.
+					{'\n'}
+					Nous recommandons aux personnes sensibles et aux enfants de ne pas y
+					participer.
+				</Content>
+				<Button onPress={onPress}>
+					<ButtonText>Suivant </ButtonText>
+					<Icon type="ARROW_LEFT" />
+				</Button>
+			</View>
+		</SafeAreaView>
 	);
 };
 

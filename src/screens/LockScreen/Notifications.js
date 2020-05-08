@@ -83,30 +83,28 @@ const NotificationsScreen = ({ route, navigation }) => {
 	);
 
 	return (
-		<>
-			<SafeAreaView>
-				<GestureRecognizer onSwipeUp={onSwipeUp}>
-					<View style={styles.body}>
-						<Clock />
-						<NotificationsList>
-							{notifications.map((n, i) => (
-								<Notification
-									key={i}
-									type={n.type}
-									date={n.date}
-									title={n.title}
-									message={n.message}
-								/>
-							))}
-						</NotificationsList>
-						<Swiper>
-							<SwiperText>Swipe to unlock</SwiperText>
-							<SwiperNotch />
-						</Swiper>
-					</View>
-				</GestureRecognizer>
-			</SafeAreaView>
-		</>
+		<SafeAreaView>
+			<GestureRecognizer onSwipeUp={onSwipeUp}>
+				<View style={styles.body}>
+					<Clock />
+					<NotificationsList>
+						{notifications.map((n, i) => (
+							<Notification
+								key={i}
+								type={n.type}
+								date={n.date}
+								title={n.title}
+								message={n.message}
+							/>
+						))}
+					</NotificationsList>
+					<Swiper>
+						<SwiperText>Swipe to unlock</SwiperText>
+						<SwiperNotch />
+					</Swiper>
+				</View>
+			</GestureRecognizer>
+		</SafeAreaView>
 	);
 };
 

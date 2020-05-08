@@ -23,59 +23,54 @@ const StyledText = styled.Text`
 
 const TypoScreen = ({ navigation }) => {
 	return (
-		<>
-			<SafeAreaView>
-				<View style={styles.body}>
-					<Title>OS</Title>
+		<SafeAreaView>
+			<View style={styles.body}>
+				<Title>OS</Title>
 
-					<StyledText
-						css={`
+				<StyledText
+					css={`
 							${os.h1}
                             color: ${colors.whiskey};
 						`}>
-						H1 Titre:{'\n'}Cairo Semi Bold 32px.
-					</StyledText>
+					H1 Titre:{'\n'}Cairo Semi Bold 32px.
+				</StyledText>
 
-					<StyledText
-						css={`
+				<StyledText
+					css={`
 							${os.h2}
                             color: ${colors.whiskey};
 						`}>
-						H2 Titre:{'\n'}Cairo Bold 24px.
-					</StyledText>
+					H2 Titre:{'\n'}Cairo Bold 24px.
+				</StyledText>
 
-					<StyledText
-						css={`
+				<StyledText
+					css={`
 							${os.h3}
                             color: ${colors.charcoal};
 						`}>
-						H3 Titre:{'\n'}Acumin Pro Bold 14px.
-					</StyledText>
+					H3 Titre:{'\n'}Acumin Pro Bold 14px.
+				</StyledText>
 
-					<StyledText
-						css={`
+				<StyledText
+					css={`
 							${os.body}
                             color: ${colors.black};
 						`}>
-						Body:{'\n'}Acumin Pro Medium 14px.
-					</StyledText>
+					Body:{'\n'}Acumin Pro Medium 14px.
+				</StyledText>
 
-					<StyledText
-						css={`
+				<StyledText
+					css={`
 							${os.subtitle}
                             color: ${colors.black};
 						`}>
-						Sous-titre:{'\n'}Cairo Extra Light 11px.
-					</StyledText>
+					Sous-titre:{'\n'}Cairo Extra Light 11px.
+				</StyledText>
 
-					<Title>Dataviz</Title>
-				</View>
-				<NavigationBar
-					onPressHome={() => navigation.navigate('HomeScreen')}
-					black
-				/>
-			</SafeAreaView>
-		</>
+				<Title>Dataviz</Title>
+			</View>
+			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+		</SafeAreaView>
 	);
 };
 

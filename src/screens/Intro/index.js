@@ -69,31 +69,29 @@ const IntroScreen = ({ navigation }) => {
 		navigation.navigate('NotificationsScreen', { contactsRef });
 
 	return (
-		<>
-			<SafeAreaView>
-				<View style={styles.body}>
-					<Content>
-						Vous êtes dans la rue, vous vous baladez quand tout à coup vous entendez
-						un téléphone sonner.
-						{'\n'}
-						Vous regardez autour de vous et vous découvrez que la sonnerie vient d’un
-						téléphone sur le sol.
-						{'\n'}
-						Vous demandez autour de vous si ce téléphone appartient à quelqu’un, mais
-						ce n’est pas le cas.
-						{'\n'}
-						{'\n'}
-						{'\n'}
-						Vous décidez de garder le téléphone... et d’essayer de retrouver son
-						propriétaire.
-					</Content>
-					<Button onPress={onPress}>
-						<ButtonText>Jouer</ButtonText>
-						<Icon type="ARROW_LEFT" />
-					</Button>
-				</View>
-			</SafeAreaView>
-		</>
+		<SafeAreaView>
+			<View style={styles.body}>
+				<Content>
+					Vous êtes dans la rue, vous vous baladez quand tout à coup vous entendez un
+					téléphone sonner.
+					{'\n'}
+					Vous regardez autour de vous et vous découvrez que la sonnerie vient d’un
+					téléphone sur le sol.
+					{'\n'}
+					Vous demandez autour de vous si ce téléphone appartient à quelqu’un, mais
+					ce n’est pas le cas.
+					{'\n'}
+					{'\n'}
+					{'\n'}
+					Vous décidez de garder le téléphone... et d’essayer de retrouver son
+					propriétaire.
+				</Content>
+				<Button onPress={onPress}>
+					<ButtonText>Jouer</ButtonText>
+					<Icon type="ARROW_LEFT" />
+				</Button>
+			</View>
+		</SafeAreaView>
 	);
 };
 

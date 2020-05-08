@@ -55,34 +55,28 @@ const SmsScreen = ({ navigation }) => {
 	// });
 
 	return (
-		<>
-			<SafeAreaView>
-				<View style={styles.body}>
-					<ScrollView contentContainerStyle={styles.scrollBody}>
-						{smsList.map((s, i) => (
-							<SmsShort
-								key={i}
-								date={s.date}
-								title={s.title}
-								message={s.message}
-								onPress={() =>
-									navigation.navigate('SmsConversation', {
-										headerTitle: s.title,
-									})
-								}
-							/>
-						))}
-					</ScrollView>
-					<AddButton />
-				</View>
+		<SafeAreaView>
+			<View style={styles.body}>
+				<ScrollView contentContainerStyle={styles.scrollBody}>
+					{smsList.map((s, i) => (
+						<SmsShort
+							key={i}
+							date={s.date}
+							title={s.title}
+							message={s.message}
+							onPress={() =>
+								navigation.navigate('SmsConversation', {
+									headerTitle: s.title,
+								})
+							}
+						/>
+					))}
+				</ScrollView>
+				<AddButton />
+			</View>
 
-				<NavigationBar
-					onPressHome={() => navigation.navigate('HomeScreen')}
-					black
-				/>
-				{/* <Notification /> */}
-			</SafeAreaView>
-		</>
+			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+		</SafeAreaView>
 	);
 };
 

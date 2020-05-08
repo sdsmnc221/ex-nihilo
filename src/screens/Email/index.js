@@ -133,51 +133,46 @@ const EmailScreen = ({ navigation }) => {
 	];
 
 	return (
-		<>
-			<SafeAreaView>
-				<View style={styles.body}>
-					<ScrollView contentContainerStyle={styles.scrollBody}>
-						<Header>
-							<SearchBar>
-								<SearchInput
-									value={searchValue}
-									blurOnSubmit
-									clearTextOnFocus
-									onFocus={() => setSearchValue('')}
-									onSubmitEditing={onSearchSubmit}
-									onEndEditing={() =>
-										searchValue === '' && setSearchValue(searchPlaceHolder)
-									}
-									onChangeText={(text) => setSearchValue(text)}
-								/>
+		<SafeAreaView>
+			<View style={styles.body}>
+				<ScrollView contentContainerStyle={styles.scrollBody}>
+					<Header>
+						<SearchBar>
+							<SearchInput
+								value={searchValue}
+								blurOnSubmit
+								clearTextOnFocus
+								onFocus={() => setSearchValue('')}
+								onSubmitEditing={onSearchSubmit}
+								onEndEditing={() =>
+									searchValue === '' && setSearchValue(searchPlaceHolder)
+								}
+								onChangeText={(text) => setSearchValue(text)}
+							/>
 
-								<IconButton type="HAMBURGER" additionalStyles={styles.settingsIcon} />
-								<IconButton type="SEARCH" additionalStyles={styles.searchIcon} />
-							</SearchBar>
-							<Title>Boîte de réception</Title>
-						</Header>
-						<Inbox>
-							{emails.map((e, i) => (
-								<EmailShort
-									key={i}
-									sender={e.sender}
-									date={e.date}
-									title={e.title}
-									message={e.message}
-									starred={e.starred !== undefined ? e.starred : random(0.32)}
-									onPress={() => navigation.navigate('EmailDetailsScreen', { email: e })}
-								/>
-							))}
-						</Inbox>
-					</ScrollView>
-					<AddButton />
-				</View>
-				<NavigationBar
-					onPressHome={() => navigation.navigate('HomeScreen')}
-					black
-				/>
-			</SafeAreaView>
-		</>
+							<IconButton type="HAMBURGER" additionalStyles={styles.settingsIcon} />
+							<IconButton type="SEARCH" additionalStyles={styles.searchIcon} />
+						</SearchBar>
+						<Title>Boîte de réception</Title>
+					</Header>
+					<Inbox>
+						{emails.map((e, i) => (
+							<EmailShort
+								key={i}
+								sender={e.sender}
+								date={e.date}
+								title={e.title}
+								message={e.message}
+								starred={e.starred !== undefined ? e.starred : random(0.32)}
+								onPress={() => navigation.navigate('EmailDetailsScreen', { email: e })}
+							/>
+						))}
+					</Inbox>
+				</ScrollView>
+				<AddButton />
+			</View>
+			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+		</SafeAreaView>
 	);
 };
 

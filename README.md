@@ -46,78 +46,55 @@ $ react-native link
 $ react-native run-android
 ```
 
-## About Theming
+## THIS BRANCH ONLY :sparkles:
 
-- Checkout theme configs in [theme.js](./src/configs/theme.js).
+### Changes made - [Store config in the environment](https://12factor.net/config):
 
-- Guides: [Colors](./docs/guide-colors.png) | [Typo](./docs/guide-typo.png).
+- Setup environment variables / configs **.env**.
 
-### Custom Fonts
+- [**.env.example**](./.env.example) was also created.
 
-#### Install / Remove / Update Fonts
+- Store confidential stuffs (like API keys, passwords, etc.) and other configs in **.env**.
 
-- We've already configured the [assets fonts folder](./react-native.config.js) (for React Native > 0.6).
+### Docs & Sources
 
-- Every time the fonts are to be installed / removed / updated, first manually delete [android/app/src/main/assets](./android/app/src/main/assets) folder.
+#### [Config variables for React Native apps](https://github.com/luggit/react-native-config).
 
-- Install / Remove / Update fonts in [src/assets/fonts](./src/assets/fonts) folder.
+- Create your own **.env** file based on [**.env.example**](./.env.example) (or get it from your teammate :satisfied:). **Environment variables are stored in this file, and won't be committed** _(since it was added in [**.gitignore**](./.gitignore))_.
 
-- Relink:
+- Checkout [**configs.js**](./src/configs/index.js): We get all environments variables with `Config` from `react-native-config`, and export all of it for late use.
+
+- For example, in the [**Lock Screen**](./src/screens/LockScreen/index.js):
+
+```javascript
+import { KEY_PUZZLE_A } from 'configs';
+
+const [phonePassword, setPhonePassword] = useState(KEY_PUZZLE_A);
+```
+
+- _What is `KEY_PUZZLE_A` !? What is the password??_ Well only those who have the **.env** file know. The password won't be hardcoded and seen in this public repo :satisfied:.
+
+- Commands for the first build:
 
 ```
+$ watchman watch-del-al (if you have watchman)
+$ rm -rf node_modules/ (optional)
+$ npm cache verify (optional)
+
+$ npm i
 $ react-native link
-```
-
-- Restart metro bundler server and rebuild the app:
-
-```
-$ npm start --reset-cache
+$ npm start --reset-cache (or react-native start --reset-cache)
 $ react-native run-android
 ```
 
-- Update _fonts_ in [theme.js](./src/configs/theme.js): **IT'S IMPORTANT to have the _FONT NAME STRING_ exactly THE SAME AS the _FONT NAME FILE_.**
+- Everytime we update the **.env** file, we need to rebuild the app:
 
-#### Use Fonts in the project
-
-- Checkout _fonts_ in [theme.js](./src/configs/theme.js).
-
-- **With _styled-component_**: [_example_](./src/screens/SMS/components/AnswerChoice.js) _(can be tested and checked in the Janus Convo Screen)._
-
-```javascript
-import theme from 'configs/theme';
-
-const { cairo, sourceSans, superclarendon } = theme.fonts;
-
-/*
- * Example of how to use custom fonts:
- *
- * 00. Import fonts from theme (configs/theme)
- * 01. DO NOT USE font-weight, font-style etc., as
- *     the imported fonts already have their own weight
- *     and style.
- * 02. Use font-family like normal CSS.
- */
-
-const Choice = styled.Text`
-	font-size: 13px;
-	/* font-weight: bold; */
-	font-family: ${sourceSans.italic};
-`;
+```
+$ npm start --reset-cache (--reset-cache is optional)
+$ react-native run-android
 ```
 
-- **With _React Native StyleSheet_**:
-
-```javascript
-import theme from 'configs/theme';
-
-const { superclarendon } = theme.fonts;
-
-const styles = StyleSheet.create({
-	font: {
-		fontFamily: superclarendon,
-	},
-});
-```
+- Test out the password locks!
 
 ## Built With
 
@@ -125,6 +102,7 @@ const styles = StyleSheet.create({
 - [A template to make good README.md](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) - Dependency Management.
 - **Love**.
 - React Native.
+- [react-native-config](https://github.com/luggit/react-native-config).
 - etc.
 
 ## Contributing

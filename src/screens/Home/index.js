@@ -15,12 +15,6 @@ const Icons = styled.View`
 	justify-content: center;
 `;
 
-const IconsTemp = styled.View`
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-`;
-
 const HomeScreen = ({ navigation }) => {
 	const deviceW = Dimensions.get('window').width;
 	const iconSize = (deviceW - 12) / 5 - 12;

@@ -57,10 +57,6 @@ const NotificationsScreen = ({ route, navigation }) => {
 		}
 	}, [contacts_]);
 
-	useEffect(() => {
-		console.log(contacts);
-	}, [contacts]);
-
 	const onSwipeUp = (gestureState) => navigation.navigate('LockScreen');
 
 	const notifications = sampleSize(

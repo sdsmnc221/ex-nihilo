@@ -2,7 +2,10 @@ import React, { useRef } from 'react';
 import { BackHandler } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {
+	SafeAreaProvider,
+	initialWindowSafeAreaInsets,
+} from 'react-native-safe-area-context';
 
 import moment from 'moment';
 import 'moment/locale/fr';
@@ -56,7 +59,7 @@ const App = () => {
 
 	return (
 		<Provider>
-			<SafeAreaProvider>
+			<SafeAreaProvider initialSafeAreaInsets={initialWindowSafeAreaInsets}>
 				<NavigationContainer ref={navContainerRef}>
 					<Stack.Navigator>
 						<Stack.Screen

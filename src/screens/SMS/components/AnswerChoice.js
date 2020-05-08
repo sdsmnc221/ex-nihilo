@@ -6,7 +6,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import theme from 'configs/theme';
 
-const { acumin, cairo, superclarendon } = theme.fonts;
+const { cairo, sourceSans, superclarendon } = theme.fonts;
 
 const Wrapper = styled.TouchableOpacity`
 	width: 88%;
@@ -29,7 +29,7 @@ const Wrapper = styled.TouchableOpacity`
 const Choice = styled.Text`
 	font-size: 13px;
 	/* font-weight: bold; */
-	font-family: ${acumin.italic};
+	font-family: ${sourceSans.italic};
 	color: ${({ active }) => (!active ? '#565656' : '#e5e5e5')};
 `;
 

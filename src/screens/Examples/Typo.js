@@ -49,7 +49,7 @@ const TypoScreen = ({ navigation }) => {
 							${os.h3}
                             color: ${colors.charcoal};
 						`}>
-					H3 Titre:{'\n'}Acumin Pro Bold 14px.
+					H3 Titre:{'\n'}Source Sans Pro Bold 14px.
 				</StyledText>
 
 				<StyledText
@@ -57,7 +57,23 @@ const TypoScreen = ({ navigation }) => {
 							${os.body}
                             color: ${colors.black};
 						`}>
+					Body:{'\n'}Source Sans Pro Medium 14px.
+				</StyledText>
+
+				<StyledText
+					css={`
+							${os.bodyAlternativeA}
+                            color: ${colors.black};
+						`}>
 					Body:{'\n'}Acumin Pro Medium 14px.
+				</StyledText>
+
+				<StyledText
+					css={`
+							${os.bodyAlternativeB}
+                            color: ${colors.black};
+						`}>
+					Body:{'\n'}Source Sans Pro Regular 14px.
 				</StyledText>
 
 				<StyledText
@@ -65,7 +81,7 @@ const TypoScreen = ({ navigation }) => {
 							${os.subtitle}
                             color: ${colors.black};
 						`}>
-					Sous-titre:{'\n'}Cairo Extra Light 11px.
+					Sous-titre:{'\n'}Source Sans Pro Extra Light 11px.
 				</StyledText>
 
 				<Title>Dataviz</Title>

@@ -86,7 +86,7 @@ $ react-native run-android
 ```javascript
 import theme from 'configs/theme';
 
-const { acumin, cairo, superclarendon } = theme.fonts;
+const { cairo, sourceSans, superclarendon } = theme.fonts;
 
 /*
  * Example of how to use custom fonts:
@@ -101,7 +101,7 @@ const { acumin, cairo, superclarendon } = theme.fonts;
 const Choice = styled.Text`
 	font-size: 13px;
 	/* font-weight: bold; */
-	font-family: ${acumin.italic};
+	font-family: ${sourceSans.italic};
 `;
 ```
 

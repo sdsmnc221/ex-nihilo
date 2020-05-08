@@ -1,19 +1,17 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View, Text, Dimensions } from 'react-native';
+import { SafeAreaView, StyleSheet, View, Dimensions } from 'react-native';
 import styled from 'styled-components';
-import { ScrollView } from 'react-native-gesture-handler';
 
 import AppIcon from 'sharedUI/AppIcon/';
 import NavigationBar from 'sharedUI/NavigationBar';
-import PlaceHolder from 'sharedUI/PlaceHolder';
 
 const Icons = styled.View`
-    width: 100%
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    margin-top: 48px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	margin-top: 48px;
 `;
 
 const AllApps = ({ navigation }) => {

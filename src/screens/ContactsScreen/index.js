@@ -50,31 +50,36 @@ const ContactsScreen = ({ navigation }) => {
 	}, []);
 
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<ScrollView contentContainerStyle={styles.scrollBody}>
-					{contacts.map((c, i) => (
-						<Contact
-							key={i}
-							contact={c}
-							firstLetter={c.name ? c.name.charAt(0) : '#'}
-							onPress={() =>
-								navigation.navigate('ContactDetails', {
-									title: '',
-									headerStyle: {
-										elevation: 0,
-									},
-									contact: c,
-									firstLetter: c.name ? c.name.charAt(0) : '#',
-								})
-							}
-						/>
-					))}
-				</ScrollView>
-				<AddButton />
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+		<>
+			<SafeAreaView>
+				<View style={styles.body}>
+					<ScrollView contentContainerStyle={styles.scrollBody}>
+						{contacts.map((c, i) => (
+							<Contact
+								key={i}
+								contact={c}
+								firstLetter={c.name ? c.name.charAt(0) : "#"}
+								onPress={() =>
+									navigation.navigate('ContactDetails', { 
+										title: '',
+										headerStyle: {
+											elevation: 0,
+										},
+										contact: c,
+										firstLetter: c.name ? c.name.charAt(0) : "#"
+									})
+								}
+							/>
+						))}
+					</ScrollView>
+					<AddButton />
+				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
+			</SafeAreaView>
+		</>
 	);
 };
 

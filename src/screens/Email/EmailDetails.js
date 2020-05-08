@@ -90,63 +90,70 @@ const EmailDetailsScreen = ({ route, navigation }) => {
 
 	const groupButtons = ['Répondre', 'Répondre à tous', 'Transférer'];
 
+	console.log(email);
+
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<ScrollView contentContainerStyle={styles.scrollBody}>
-					<Header>
-						<Group dir="column" align="flex-start">
-							<Title>{title}</Title>
-							<Category>Boîte de réception</Category>
-						</Group>
-						<StarButton initialActive={starred} additionalStyles={styles.starIcon} />
-					</Header>
-					<SubHeader>
-						<PlaceHolder
-							size={30}
-							color="#c4c4c4"
-							round
-							style={styles.spacingRight}
-						/>
-						<Group dir="column" align="flex-start" style={styles.fullFlex}>
-							<Group dir="row">
-								<Sender>{sender}</Sender>
-								<Date>{date}</Date>
+		<>
+			<SafeAreaView>
+				<View style={styles.body}>
+					<ScrollView contentContainerStyle={styles.scrollBody}>
+						<Header>
+							<Group dir="column" align="flex-start">
+								<Title>{title}</Title>
+								<Category>Boîte de réception</Category>
 							</Group>
-							<Recipient>à Sam Blanchard</Recipient>
-						</Group>
-						<Group dir="row">
-							<IconButton
-								type="EMAIL_REPLY"
-								noBlink
-								additionalStyles={styles.spacingRight}
-							/>
-							<IconButton type="DOTS_VERTICAL" noBlink size="20" />
-						</Group>
-					</SubHeader>
-					<Content>
-						<Message>{message}</Message>
-						<Gap />
-					</Content>
-					<Group
-						dir="row"
-						justify="space-between"
-						fullWidth
-						style={styles.groupButtons}>
-						{groupButtons.map((btn, i) => (
+							<StarButton initialActive={starred} additionalStyles={styles.starIcon} />
+						</Header>
+						<SubHeader>
 							<PlaceHolder
-								key={i}
-								width={100}
-								height={60}
-								text={btn}
+								size={30}
 								color="#c4c4c4"
+								round
+								style={styles.spacingRight}
 							/>
-						))}
-					</Group>
-				</ScrollView>
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+							<Group dir="column" align="flex-start" style={styles.fullFlex}>
+								<Group dir="row">
+									<Sender>{sender}</Sender>
+									<Date>{date}</Date>
+								</Group>
+								<Recipient>à Sam Blanchard</Recipient>
+							</Group>
+							<Group dir="row">
+								<IconButton
+									type="EMAIL_REPLY"
+									noBlink
+									additionalStyles={styles.spacingRight}
+								/>
+								<IconButton type="DOTS_VERTICAL" noBlink size="20" />
+							</Group>
+						</SubHeader>
+						<Content>
+							<Message>{message}</Message>
+							<Gap />
+						</Content>
+						<Group
+							dir="row"
+							justify="space-between"
+							fullWidth
+							style={styles.groupButtons}>
+							{groupButtons.map((btn, i) => (
+								<PlaceHolder
+									key={i}
+									width={100}
+									height={60}
+									text={btn}
+									color="#c4c4c4"
+								/>
+							))}
+						</Group>
+					</ScrollView>
+				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
+			</SafeAreaView>
+		</>
 	);
 };
 

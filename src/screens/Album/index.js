@@ -47,22 +47,27 @@ const AlbumScreen = ({ navigation }) => {
 	);
 
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<PhotoGrid contentContainerStyle={styles.photoGridContainer}>
-					{[...Array(photoNb)].map((p, i) => (
-						<PhotoThumbnail
-							key={i}
-							size={photoSize}
-							color={i % 2 === 0 ? '#c4c4c4' : '#818181'}
-							onPress={() => navigation.navigate('AlbumPhotoScreen', { photoId: p })}
-						/>
-					))}
-				</PhotoGrid>
-				{renderPasswordLock()}
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+		<>
+			<SafeAreaView>
+				<View style={styles.body}>
+					<PhotoGrid contentContainerStyle={styles.photoGridContainer}>
+						{[...Array(photoNb)].map((p, i) => (
+							<PhotoThumbnail
+								key={i}
+								size={photoSize}
+								color={i % 2 === 0 ? '#c4c4c4' : '#818181'}
+								onPress={() => navigation.navigate('AlbumPhotoScreen', { photoId: p })}
+							/>
+						))}
+					</PhotoGrid>
+					{renderPasswordLock()}
+				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
+			</SafeAreaView>
+		</>
 	);
 };
 

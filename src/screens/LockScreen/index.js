@@ -31,21 +31,19 @@ const LockScreen = ({ navigation }) => {
 		navigation.navigate('NotificationsScreen');
 
 	return (
-		<>
-			<SafeAreaView>
-				<GestureRecognizer onSwipeDown={onSwipeDown}>
-					<View style={styles.body}>
-						<PasswordLock
-							hintEnabled
-							hint={messageFailed}
-							passwordInput={passwordInput}
-							onInputPassword={(text) => setPasswordInput(text)}
-							onSubmitPassword={onSubmit}
-						/>
-					</View>
-				</GestureRecognizer>
-			</SafeAreaView>
-		</>
+		<SafeAreaView>
+			<GestureRecognizer onSwipeDown={onSwipeDown}>
+				<View style={styles.body}>
+					<PasswordLock
+						hintEnabled
+						hint={messageFailed}
+						passwordInput={passwordInput}
+						onInputPassword={(text) => setPasswordInput(text)}
+						onSubmitPassword={onSubmit}
+					/>
+				</View>
+			</GestureRecognizer>
+		</SafeAreaView>
 	);
 };
 

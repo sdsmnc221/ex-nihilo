@@ -80,57 +80,52 @@ const EmailLoginScreen = ({ navigation }) => {
 	const [failed, setFailed] = useState(false);
 
 	const onSubmit = () => {
-		console.log(`${passwordInput} | ${mailPassword}`)
-		console.log(`${emailInput} | ${mailEmail}`)
-		if ((passwordInput !== mailPassword) || (emailInput !== mailEmail)) {
-			setFailed(true)
+		console.log(`${passwordInput} | ${mailPassword}`);
+		console.log(`${emailInput} | ${mailEmail}`);
+		if (passwordInput !== mailPassword || emailInput !== mailEmail) {
+			setFailed(true);
 		} else {
 			navigation.navigate('EmailScreen');
 		}
-	}
+	};
 
 	return (
-		<>
-			<SafeAreaView>
-				<View style={styles.body}>
-					<LogoContainer>
-						<Icon type="EMAIL_XL" />
-					</LogoContainer>
-					<ContentContainer>
-						<Title>Connexion</Title>
-						<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
-						{failed && <Text color='#DDD'>Email ou mot de passe incorrect.</Text>}
-						<Input
-							value={passwordInput}
-							secureTextEntry
-							blurOnSubmit
-							onSubmitEditing={onSubmit}
-							onChangeText={(text) => setPasswordInput(text)}
-						/>
-						<Button onPress={onSubmit}>
-							<StyledText size={14} bold>
-								Connexion
-							</StyledText>
-						</Button>
-						<SeparatorContainer>
-							<StyledText size={13} bold>
-								Mot de passe oublié ?
-							</StyledText>
-							<Separator />
-						</SeparatorContainer>
-						<Button>
-							<StyledText size={14} bold>
-								Se créer un compte
-							</StyledText>
-						</Button>
-					</ContentContainer>
-				</View>
-				<NavigationBar
-					onPressHome={() => navigation.navigate('HomeScreen')}
-					black
-				/>
-			</SafeAreaView>
-		</>
+		<SafeAreaView>
+			<View style={styles.body}>
+				<LogoContainer>
+					<Icon type="EMAIL_XL" />
+				</LogoContainer>
+				<ContentContainer>
+					<Title>Connexion</Title>
+					<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
+					{failed && <Text color="#DDD">Email ou mot de passe incorrect.</Text>}
+					<Input
+						value={passwordInput}
+						secureTextEntry
+						blurOnSubmit
+						onSubmitEditing={onSubmit}
+						onChangeText={(text) => setPasswordInput(text)}
+					/>
+					<Button onPress={onSubmit}>
+						<StyledText size={14} bold>
+							Connexion
+						</StyledText>
+					</Button>
+					<SeparatorContainer>
+						<StyledText size={13} bold>
+							Mot de passe oublié ?
+						</StyledText>
+						<Separator />
+					</SeparatorContainer>
+					<Button>
+						<StyledText size={14} bold>
+							Se créer un compte
+						</StyledText>
+					</Button>
+				</ContentContainer>
+			</View>
+			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+		</SafeAreaView>
 	);
 };
 

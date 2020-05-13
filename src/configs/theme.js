@@ -66,10 +66,23 @@ const theme = {
 		slateBlue: '#6B5CFF',
 		whiskey: '#CE976A',
 	},
+	shadows: {
+		default: {
+			shadowColor: '#000',
+			shadowOffset: {
+				width: 0,
+				height: 6,
+			},
+			shadowOpacity: 0.37,
+			shadowRadius: 7.49,
+
+			elevation: 12,
+		},
+	},
 };
 
-const { fonts, typo, colors } = theme;
+const { fonts, typo, colors, shadows } = theme;
 
 export default theme;
 
-export { fonts, typo, colors };
+export { fonts, typo, colors, shadows };

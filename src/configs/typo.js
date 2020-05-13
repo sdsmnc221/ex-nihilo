@@ -19,7 +19,7 @@ export default {
 			font-size: ${sizes.h3};
 		`,
 		body: css`
-			font-family: ${sourceSans.semiBold};
+			font-family: ${sourceSans.regular};
 			font-size: ${sizes.body};
 		`,
 		bodyAlternativeA: css`
@@ -27,7 +27,7 @@ export default {
 			font-size: ${sizes.body};
 		`,
 		bodyAlternativeB: css`
-			font-family: ${sourceSans.regular};
+			font-family: ${sourceSans.semiBold};
 			font-size: ${sizes.body};
 		`,
 		subtitle: css`

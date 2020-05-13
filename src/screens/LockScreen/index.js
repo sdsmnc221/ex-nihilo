@@ -2,8 +2,22 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GestureRecognizer from 'react-native-swipe-gestures';
+import styled from 'styled-components';
 
+import BG_LOCKSCREEN from 'assets/images/BG-LockScreen.png';
+
+import BackgroundImage from 'sharedUI/BackgroundImage';
 import PasswordLock from 'sharedUI/PasswordLock';
+
+import { colors } from 'configs/theme';
+
+const Solid = styled.View`
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: ${colors.ghostWhite};
+	opacity: 0.6;
+`;
 
 const LockScreen = ({ navigation }) => {
 	const [numberOfTry, setNumberOfTry] = useState(0);
@@ -17,7 +31,7 @@ const LockScreen = ({ navigation }) => {
 			console.log(passwordInput + ' | ' + numberOfTry);
 			if (numberOfTry >= 2) {
 				setMessageFailed(
-					'Le saviez-vous les catégories de mots de passe les plus répandu sont : les dates de naissances,  le nom d’un animal de compagnie ,1 2 3 4, ou encore password.'
+					'Le saviez-vous les catégories de mots de passe les plus répandu sont : les dates de naissances,  le nom d’un animal de compagnie, 1 2 3 4, ou encore password.'
 				);
 			} else {
 				setMessageFailed('Mot de passe incorrect');
@@ -27,14 +41,17 @@ const LockScreen = ({ navigation }) => {
 		}
 	};
 	// const onSubmit = () => navigation.navigate('HomeScreen');
-	const onSwipeDown = (gestureState) =>
-		navigation.navigate('NotificationsScreen');
+	const onSwipeRight = () => navigation.navigate('NotificationsScreen');
 
 	return (
 		<SafeAreaView>
-			<GestureRecognizer onSwipeDown={onSwipeDown}>
+			<GestureRecognizer onSwipeRight={onSwipeRight}>
 				<View style={styles.body}>
+					<BackgroundImage source={BG_LOCKSCREEN} />
+					<Solid />
 					<PasswordLock
+						noLockIcon
+						submitButton
 						hintEnabled
 						hint={messageFailed}
 						passwordInput={passwordInput}
@@ -49,7 +66,6 @@ const LockScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
 	body: {
-		backgroundColor: '#c4c4c4',
 		width: '100%',
 		height: '100%',
 		justifyContent: 'center',

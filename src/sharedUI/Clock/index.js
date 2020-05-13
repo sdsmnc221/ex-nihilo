@@ -3,20 +3,28 @@ import { View, Text } from 'react-native';
 import styled from 'styled-components';
 import moment from 'moment';
 
+import { fonts, colors, shadows } from 'configs/theme';
+
 const Wrapper = styled.View`
 	position: absolute;
-	top: 84px;
+	top: 12%;
 `;
 
 const Time = styled.Text`
-	font-weight: bold;
-	font-size: 96px;
-	line-height: 96px;
+	font-family: ${fonts.cairo.bold};
+	font-size: 90px;
+	letter-spacing: 1.8px;
+	line-height: 80px;
+	color: ${colors.ghostWhite};
+	padding-top: 40px;
 `;
 
 const Date = styled.Text`
-	font-size: 11px;
-	text-transform: capitalize;
+	font-family: ${fonts.sourceSans.semiBold};
+	font-size: 12px;
+	text-transform: lowercase;
+	color: ${colors.white};
+	top: -40px;
 `;
 
 const Clock = () => {
@@ -41,9 +49,12 @@ const Clock = () => {
 
 	return (
 		<Wrapper>
-			<Time>{time.slice(0, 2)}</Time>
-			<Time>{time.slice(-2)}</Time>
-			<Date>{date}</Date>
+			<Time style={shadows.default}>
+				{time.slice(0, 2)}
+				{'\n'}
+				{time.slice(-2)}
+			</Time>
+			<Date style={shadows.default}>{date}</Date>
 		</Wrapper>
 	);
 };

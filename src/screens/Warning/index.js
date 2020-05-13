@@ -1,77 +1,77 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
-import Icon from 'sharedUI/Icon';
-
-const Logo = styled.View`
-	background-color: #c4c4c4;
-	width: 58px;
-	height: 58px;
-	position: absolute;
-	top: 84px;
-`;
+import { fonts, colors } from 'configs/theme';
 
 const Title = styled.Text`
-	color: #e8e8e8;
-	margin-bottom: 12px;
-	font-size: 24px;
-	font-weight: bold;
+	color: ${colors.white};
+	font-family: ${fonts.cairo.bold};
+	font-size: 30px;
+	letter-spacing: 1.5px;
 `;
 
 const Content = styled.Text`
-	color: #e8e8e8;
-	font-size: 12px;
+	color: ${colors.white};
+	font-family: ${fonts.cairo.semiBold};
+	font-size: 15px;
 	line-height: 18px;
+	letter-spacing: 0.75px;
 	text-align: center;
-	padding: 0 24px;
+	margin: 56px 30px;
 `;
 
 const Button = styled.TouchableOpacity`
-	width: 120px;
-	position: absolute;
-	bottom: 84px;
-	background-color: #c4c4c4;
-	padding: 12px 18px;
-	flex-direction: row;
+	background-color: ${({ active }) => (active ? colors.white : 'transparent')};
+	border: 1px solid ${colors.white};
+	border-radius: 50px;
+	width: 50px;
+	height: 50px;
+	justify-content: center;
 	align-items: center;
-	justify-content: space-between;
 `;
 
 const ButtonText = styled.Text`
-	font-size: 14px;
-	font-weight: bold;
+	color: ${({ active }) => (active ? colors.slateBlue : colors.white)};
+	font-family: ${fonts.cairo.semiBold};
+	font-size: 15px;
+	letter-spacing: 0.75px;
+	text-align: center;
 `;
 
 const WarningScreen = ({ navigation }) => {
-	const onPress = () => navigation.navigate('IntroScreen');
+	const [buttonPressed, setButtonPressed] = useState(false);
+
+	const onPress = () => setButtonPressed(!buttonPressed);
+
+	useEffect(() => {
+		if (buttonPressed) {
+			setTimeout(() => navigation.navigate('IntroScreen'), 60);
+		}
+	}, [buttonPressed, navigation]);
 
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<Logo />
-				<Title>Warning</Title>
-				<Content>
-					L’expérience que nous vous proposons contient du contenu explicite et
-					violent pouvant choquer votre sensibilité.
-					{'\n'}
-					Nous recommandons aux personnes sensibles et aux enfants de ne pas y
-					participer.
-				</Content>
-				<Button onPress={onPress}>
-					<ButtonText>Suivant </ButtonText>
-					<Icon type="ARROW_LEFT" />
-				</Button>
-			</View>
+		<SafeAreaView style={styles.body}>
+			<Title>Attention</Title>
+			<Content>
+				L’expérience que nous vous proposons contient du contenu explicite et
+				violent pouvant choquer votre sensibilité.
+				{'\n'}
+				Pour votre bien, nous recommandons aux personnes sensibles et aux enfants de
+				ne pas y participer.
+			</Content>
+			<Button onPress={onPress} active={buttonPressed} activeOpacity={0.8}>
+				<ButtonText active={buttonPressed}>ok</ButtonText>
+			</Button>
 		</SafeAreaView>
 	);
 };
 
 const styles = StyleSheet.create({
 	body: {
-		backgroundColor: '#565656',
+		backgroundColor: colors.slateBlue,
 		width: '100%',
 		height: '100%',
 		justifyContent: 'center',

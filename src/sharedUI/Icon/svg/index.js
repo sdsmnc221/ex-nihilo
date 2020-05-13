@@ -12,6 +12,7 @@ export { default as FACEBOOK_XL } from './FACEBOOK_XL';
 export { default as FILES } from './FILES';
 export { default as HAMBURGER } from './HAMBURGER';
 export { default as LOADING } from './LOADING';
+export { default as LOGO } from './LOGO';
 export { default as LOCK } from './LOCK';
 export { default as NAVIGATION_APP } from './NAVIGATION_APP';
 export { default as NAVIGATION_BACK } from './NAVIGATION_BACK';

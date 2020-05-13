@@ -1,4 +1,4 @@
-export default {
+const theme = {
 	fonts: {
 		acumin: {
 			bold: 'Acumin-BdPro',
@@ -58,7 +58,8 @@ export default {
 	 * Go check /docs/guide-colors.png
 	 */
 	colors: {
-		black: '#000000',
+		white: '#FFF',
+		black: '#000',
 		charcoal: '#4A4A4A',
 		ghostWhite: '#F5F4FF',
 		lime: '#14FF00',
@@ -66,3 +67,9 @@ export default {
 		whiskey: '#CE976A',
 	},
 };
+
+const { fonts, typo, colors } = theme;
+
+export default theme;
+
+export { fonts, typo, colors };

@@ -43,7 +43,7 @@ const Stack = createStackNavigator();
 
 const App = () => {
 	// Set date time locale to FR
-	moment.locale('fr');
+	moment.locale('fr')
 
 	// Disable Back native button
 	// useEffect, useCallback, useFocusEffect ==> enfin regarder la doc
@@ -153,9 +153,9 @@ const App = () => {
 							options={{ title: 'Typo Example', headerLeft: null }}
 						/>
 					</Stack.Navigator>
-					<Notification
+					{/* <Notification
 						onPress={() => navContainerRef.current?.navigate('JanusConversation')}
-					/>
+					/> */}
 				</NavigationContainer>
 			</SafeAreaProvider>
 		</Provider>

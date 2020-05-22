@@ -1,18 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
+import { NeuView } from 'react-native-neu-element';
 import styled from 'styled-components';
 
-import PlaceHolder from 'sharedUI/PlaceHolder';
+import Icon from 'sharedUI/Icon';
+import AppIcon from 'sharedUI/AppIcon/';
 
 import { truncate } from 'utils';
 
+import { colors, shadows } from 'configs/theme';
+
 const Wrapper = styled.View`
 	width: 100%;
-	height: 90px;
-	background-color: #fff;
+	height: 100px;
 	padding: 12px 18px;
 	margin-bottom: ${({ withSpacing }) => (withSpacing ? 12 : 0)}px;
+	justify-content: center;
+	align-items: center;
 `;
 
 const Header = styled.View`
@@ -21,6 +26,7 @@ const Header = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	margin-bottom: 4px;
 `;
 
 const Type = styled.View`
@@ -29,21 +35,22 @@ const Type = styled.View`
 `;
 
 const TypeText = styled.Text`
-	font-size: 10px;
+	font-size: 11px;
 	padding-left: 4px;
 `;
 
 const Date = styled.Text`
-	font-size: 8px;
+	font-size: 11px;
 `;
 
 const Content = styled.View`
-	width: 90%;
+	width: 100%;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
 	margin-top: 8px;
+	padding-right: 20px;
 `;
 
 const ContentTextWrapper = styled.View`
@@ -51,26 +58,29 @@ const ContentTextWrapper = styled.View`
 `;
 
 const Title = styled.Text`
-	font-size: 12px;
+	font-size: 16px;
 	font-weight: bold;
 `;
 
 const Message = styled.Text`
-	font-size: 10px;
+	font-size: 14px;
 `;
 
 const Notification = ({ withSpacing, type, date, title, message }) => {
 	let typeText,
+		typeIcon,
 		messageText = '';
 
 	switch (type) {
 		case 'call':
-			typeText = 'Appels';
+			typeText = 'appels';
+			typeIcon = 'PHONE_XS';
 			messageText = 'Appel manqué';
 			break;
 		case 'message':
-			typeText = 'Messages';
-			messageText = truncate(message);
+			typeText = 'message';
+			typeIcon = 'SMS_XS';
+			messageText = truncate(message, 24);
 			break;
 		default:
 			break;
@@ -78,20 +88,29 @@ const Notification = ({ withSpacing, type, date, title, message }) => {
 
 	return (
 		<Wrapper withSpacing={withSpacing}>
-			<Header>
-				<Type>
-					<PlaceHolder size={12} />
-					<TypeText>{typeText}</TypeText>
-				</Type>
-				<Date>{date}</Date>
-			</Header>
-			<Content>
-				<PlaceHolder size={36} />
-				<ContentTextWrapper>
-					<Title>{title}</Title>
-					<Message>{messageText}</Message>
-				</ContentTextWrapper>
-			</Content>
+			<NeuView
+				width={300}
+				height={100}
+				color={colors.ghostWhite}
+				borderRadius={32}
+				style={shadows.default}>
+				<Wrapper>
+					<Header>
+						<Type>
+							<Icon type={typeIcon} />
+							<TypeText>{typeText}</TypeText>
+						</Type>
+						<Date>{date}</Date>
+					</Header>
+					<Content>
+						<AppIcon size={40} type="PERSON" />
+						<ContentTextWrapper>
+							<Title>{title}</Title>
+							<Message>{messageText}</Message>
+						</ContentTextWrapper>
+					</Content>
+				</Wrapper>
+			</NeuView>
 		</Wrapper>
 	);
 };

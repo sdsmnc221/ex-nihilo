@@ -19,13 +19,14 @@ const IconButton = ({
 	pressOpacity,
 	noBlink,
 	additionalStyles,
+	color,
 }) => (
 	<Wrapper
 		size={size}
 		onPress={onPress}
 		activeOpacity={noBlink ? 1.0 : pressOpacity}
 		style={additionalStyles}>
-		<Icon type={type} />
+		<Icon type={type} color={color} />
 	</Wrapper>
 );
 

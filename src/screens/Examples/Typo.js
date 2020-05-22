@@ -24,7 +24,7 @@ const StyledText = styled.Text`
 
 const TypoScreen = ({ navigation }) => {
 	return (
-		<SafeAreaView>
+		<SafeAreaView style={styles.body}>
 			<View style={styles.body}>
 				<Title>OS</Title>
 

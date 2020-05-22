@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
-import styled from 'styled-components';
+import { NeuView, NeuBorderView } from 'react-native-neu-element';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import styled from 'styled-components';
 
 import Icon from 'sharedUI/Icon';
 
+import { colors, shadows } from 'configs/theme';
+
 const Wrapper = styled.TouchableOpacity`
 	position: relative;
-	background-color: #e8e8e8;
+	/* background-color: #e8e8e8; */
 	width: ${({ size }) => size}px;
 	height: ${({ size }) => size}px;
 	border-radius: ${({ size }) => size}px;
@@ -40,10 +43,19 @@ const Label = styled.Text`
 `;
 
 const AppIcon = ({ type, label, notifs, size, onPress }) => (
-	<Wrapper size={size} onPress={onPress}>
-		{notifs > 0 && <NotifsCount>{notifs}</NotifsCount>}
-		{type && <Icon type={type} />}
-		{label && <Label>{label}</Label>}
+	<Wrapper size={size}>
+		<NeuView
+			color={colors.ghostWhite}
+			height={size}
+			width={size}
+			borderRadius={size}
+			style={shadows.default}>
+			<Wrapper size={size} onPress={onPress}>
+				{notifs > 0 && <NotifsCount>{notifs}</NotifsCount>}
+				{type && <Icon type={type} />}
+				{label && <Label>{label}</Label>}
+			</Wrapper>
+		</NeuView>
 	</Wrapper>
 );
 

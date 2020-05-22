@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import Icon from 'sharedUI/Icon';
 import IconButton from 'sharedUI/Button/IconButton';
 
+import { colors } from 'configs/theme';
+
 const Wrapper = styled.View`
 	width: 100%;
 	height: 40px;
@@ -15,14 +17,18 @@ const Wrapper = styled.View`
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
-	background-color: ${({ black }) => (black ? '#565656' : 'transparent')};
+	background-color: ${({ black }) => (black ? colors.white : 'transparent')};
 `;
 
 const NavigationBar = ({ onPressHome, black }) => (
 	<Wrapper black={black}>
-		<Icon type="NAVIGATION_BACK" />
-		<IconButton type="NAVIGATION_HOME" onPress={onPressHome} />
-		<Icon type="NAVIGATION_APP" />
+		<Icon type="NAVIGATION_BACK" color={black ? colors.whiskey : colors.white} />
+		<IconButton
+			type="NAVIGATION_HOME"
+			color={black ? colors.whiskey : colors.white}
+			onPress={onPressHome}
+		/>
+		<Icon type="NAVIGATION_APP" color={black ? colors.whiskey : colors.white} />
 	</Wrapper>
 );
 

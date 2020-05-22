@@ -43,7 +43,7 @@ const Stack = createStackNavigator();
 
 const App = () => {
 	// Set date time locale to FR
-	moment.locale('fr')
+	moment.locale('fr');
 
 	// Disable Back native button
 	// useEffect, useCallback, useFocusEffect ==> enfin regarder la doc
@@ -113,7 +113,7 @@ const App = () => {
 						<Stack.Screen
 							name="AlbumScreen"
 							component={AlbumScreen}
-							options={{ title: 'Photos', headerLeft: null }}
+							options={{ title: 'Photos', headerLeft: null, headerShown: false }}
 						/>
 						<Stack.Screen
 							name="AlbumPhotoScreen"
@@ -150,7 +150,7 @@ const App = () => {
 						<Stack.Screen
 							name="TypoScreen"
 							component={TypoScreen}
-							options={{ title: 'Typo Example', headerLeft: null }}
+							options={{ title: 'Typo Example', headerLeft: null, headerShown: false }}
 						/>
 					</Stack.Navigator>
 					{/* <Notification

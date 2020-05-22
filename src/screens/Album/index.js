@@ -19,7 +19,7 @@ const AlbumScreen = ({ navigation }) => {
 	const photoSize = deviceW / 3;
 	const photoNb = 32;
 
-	const [isLocked, setIsLocked] = useState(true);
+	const [isLocked, setIsLocked] = useState(false);
 	const [passwordInput, setPasswordInput] = useState('');
 	const [albumPassword, setAlbumPassword] = useState('0d1n');
 

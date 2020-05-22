@@ -7,10 +7,12 @@ import styled from 'styled-components';
 import NavigationBar from 'sharedUI/NavigationBar';
 import Icon from 'sharedUI/Icon';
 
+import { fonts, colors } from 'configs/theme';
+
 const LogoContainer = styled.View`
 	width: 100%;
 	height: 218px;
-	background-color: #565656;
+	background-color: ${colors.slateBlue};
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -38,7 +40,7 @@ const Input = styled.TextInput`
 const Button = styled.TouchableOpacity`
 	width: 72%;
 	height: 41px;
-	background-color: #c4c4c4;
+	background-color: ${colors.slateBlue};
 	margin-bottom: 36px;
 	display: flex;
 	justify-content: center;

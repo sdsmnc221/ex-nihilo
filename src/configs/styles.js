@@ -16,6 +16,17 @@ export default {
 	flex: (
 		justifyContent = 'center',
 		alignItems = 'center',
+		direction = 'column',
+		fullWidth = false
+	) => css`
+		justify-content: ${justifyContent};
+		align-items: ${alignItems};
+		flex-direction: ${direction};
+		width: ${fullWidth ? '100%' : 'auto'};
+	`,
+	flexWithoutSize: (
+		justifyContent = 'center',
+		alignItems = 'center',
 		direction = 'column'
 	) => css`
 		justify-content: ${justifyContent};

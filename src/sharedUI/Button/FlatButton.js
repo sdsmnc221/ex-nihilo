@@ -11,7 +11,7 @@ const Button = styled.TouchableOpacity`
 	border: 1px solid ${({ theme }) => theme.colors.white};
 	background-color: ${({ active, theme }) =>
 		active ? theme.colors.white : 'transparent'};
-	${({ theme }) => theme.styles.flex()}
+	${({ theme }) => theme.styles.flexWithoutSize()}
 `;
 
 const ButtonText = styled.Text`
@@ -58,7 +58,6 @@ FlatButton.propTypes = {
 };
 
 FlatButton.defaultProps = {
-	ellipse: false,
 	pressHandler: () => {},
 	additionalStyle: null,
 	activeTextColor: null,

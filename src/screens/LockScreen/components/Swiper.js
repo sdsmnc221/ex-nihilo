@@ -1,22 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { withTheme } from 'styled-components';
 import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NeuView, NeuBorderView } from 'react-native-neu-element';
-import styled from 'styled-components';
-
-import { colors, shadows } from 'configs/theme';
 
 const Wrapper = styled.TouchableOpacity`
-	margin-top: 6%;
-	margin-bottom: 12%;
+	margin-top: 14%;
+	margin-bottom: 16%;
 	position: relative;
 `;
 
 const SwiperInner = styled.View`
 	width: 98%;
 	height: 100%;
-	background-color: ${colors.slateBlue};
+	background-color: ${({ theme }) => theme.colors.slateBlue};
 	border-radius: 50px;
 `;
 
@@ -26,30 +24,35 @@ const SwiperOuter = styled.View`
 	left: 4px;
 `;
 
-const Swiper = ({ onPress }) => (
-	<Wrapper activeOpacity={0.8} onPress={onPress}>
-		<NeuBorderView
-			width={72}
-			height={32}
-			color={colors.ghostWhite}
-			borderWidth={24}
-			borderRadius={32}
-			style={shadows.default}
-			noShadow>
-			<SwiperInner />
-		</NeuBorderView>
-		<SwiperOuter>
-			<NeuView
-				color={colors.ghostWhite}
-				height={26}
-				width={26}
-				borderRadius={26}
-				convex
-				style={shadows.default}
-			/>
-		</SwiperOuter>
-	</Wrapper>
-);
+const Swiper = ({ onPress, theme }) => {
+	const { ghostWhite } = theme.colors;
+	const { default: defaultShadow } = theme.shadows;
+
+	return (
+		<Wrapper activeOpacity={0.9} onPress={onPress}>
+			<NeuBorderView
+				width={72}
+				height={32}
+				color={ghostWhite}
+				borderWidth={24}
+				borderRadius={32}
+				style={defaultShadow}
+				noShadow>
+				<SwiperInner />
+			</NeuBorderView>
+			<SwiperOuter>
+				<NeuView
+					color={ghostWhite}
+					height={26}
+					width={26}
+					borderRadius={26}
+					convex
+					style={defaultShadow}
+				/>
+			</SwiperOuter>
+		</Wrapper>
+	);
+};
 
 Swiper.propTypes = {
 	onPress: PropTypes.func,
@@ -59,4 +62,4 @@ Swiper.defaultProps = {
 	onPress: () => {},
 };
 
-export default Swiper;
+export default withTheme(Swiper);

@@ -1,72 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { withTheme, css } from 'styled-components';
 import { View, Text } from 'react-native';
 import { NeuView } from 'react-native-neu-element';
-import styled from 'styled-components';
 
+import FlexDiv from 'sharedUI/FlexDiv';
 import Icon from 'sharedUI/Icon';
 import AppIcon from 'sharedUI/AppIcon/';
 
 import { truncate } from 'utils';
 
-import { colors, shadows } from 'configs/theme';
-
 const Wrapper = styled.View`
-	width: 100%;
-	height: 100px;
-	padding: 12px 18px;
-	margin-bottom: ${({ withSpacing }) => (withSpacing ? 12 : 0)}px;
-	justify-content: center;
-	align-items: center;
+	padding: 8px 20px;
+	${({ theme }) => theme.styles.flex('center', 'center', 'column', true)}
 `;
 
-const Header = styled.View`
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 4px;
-`;
-
-const Type = styled.View`
-	display: flex;
-	flex-direction: row;
-`;
-
-const TypeText = styled.Text`
-	font-size: 11px;
-	padding-left: 4px;
-`;
-
-const Date = styled.Text`
-	font-size: 11px;
-`;
-
-const Content = styled.View`
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: center;
-	margin-top: 8px;
-	padding-right: 20px;
-`;
-
-const ContentTextWrapper = styled.View`
-	margin-left: 12px;
+const Subtitle = styled.Text`
+	color: ${({ theme }) => theme.colors.charcoal};
+	line-height: ${({ theme }) => theme.typo.sizesNb.subtitle - 1}px;
+	letter-spacing: 0.19px;
+	${({ theme }) => theme.styles.os.subtitle};
 `;
 
 const Title = styled.Text`
-	font-size: 16px;
-	font-weight: bold;
+	margin-bottom: 4px;
+	color: ${({ theme }) => theme.colors.charcoal};
+	letter-spacing: 0.27px;
+	${({ theme }) => theme.styles.os.h3};
 `;
 
 const Message = styled.Text`
-	font-size: 14px;
+	color: ${({ theme }) => theme.colors.charcoal};
+	letter-spacing: 0.23px;
+	line-height: 15px;
+	${({ theme }) => theme.styles.os.body};
 `;
 
-const Notification = ({ withSpacing, type, date, title, message }) => {
+const Notification = ({ theme, type, date, title, message }) => {
 	let typeText,
 		typeIcon,
 		messageText = '';
@@ -87,28 +57,49 @@ const Notification = ({ withSpacing, type, date, title, message }) => {
 	}
 
 	return (
-		<Wrapper withSpacing={withSpacing}>
+		<Wrapper>
 			<NeuView
 				width={300}
 				height={100}
-				color={colors.ghostWhite}
+				color={theme.colors.ghostWhite}
 				borderRadius={32}
-				style={shadows.default}>
+				style={theme.shadows.default}>
 				<Wrapper>
-					<Header>
-						<Type>
+					{/* HEADER */}
+					<FlexDiv
+						direction="row"
+						justifyContent="space-between"
+						fullWidth
+						additionalStyle={`
+							${css`
+								margin-bottom: 8px;
+							`}
+						`}>
+						<FlexDiv direction="row">
 							<Icon type={typeIcon} />
-							<TypeText>{typeText}</TypeText>
-						</Type>
-						<Date>{date}</Date>
-					</Header>
-					<Content>
-						<AppIcon size={40} type="PERSON" />
-						<ContentTextWrapper>
+							<Subtitle
+								css={`
+									${css`
+										padding-left: 4px;
+									`}
+								`}>
+								{typeText}
+							</Subtitle>
+						</FlexDiv>
+						<Subtitle>{date}</Subtitle>
+					</FlexDiv>
+
+					{/* Content */}
+					<FlexDiv direction="row" justifyContent="flex-start" fullWidth>
+						<AppIcon size={45} type="PERSON" />
+						<View
+							css={css`
+								margin-left: 12px;
+							`}>
 							<Title>{title}</Title>
 							<Message>{messageText}</Message>
-						</ContentTextWrapper>
-					</Content>
+						</View>
+					</FlexDiv>
 				</Wrapper>
 			</NeuView>
 		</Wrapper>
@@ -128,4 +119,4 @@ Notification.defaultProps = {
 	message: '',
 };
 
-export default Notification;
+export default withTheme(Notification);

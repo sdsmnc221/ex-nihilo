@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import GestureRecognizer from 'react-native-swipe-gestures';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { useSelector } from 'react-redux';
+import { View, Text, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import GestureRecognizer from 'react-native-swipe-gestures';
 
 import BG_LOCKSCREEN from 'assets/images/BG-LockScreen.png';
 
@@ -17,10 +16,10 @@ import { shuffle, sampleSize } from 'utils';
 
 const NotificationsList = styled.ScrollView`
 	width: 80%;
-	max-height: 46%;
+	max-height: 42%;
 `;
 
-const NotificationsScreen = ({ route, navigation }) => {
+const NotificationsScreen = ({ route, navigation, theme }) => {
 	const { contactsRef } = route.params;
 
 	const [contacts, setContacts] = useState(
@@ -65,38 +64,37 @@ const NotificationsScreen = ({ route, navigation }) => {
 						: '',
 			};
 		}),
-		contacts.length >= 32 ? 32 : contacts.length
+		contacts.length >= 12 ? 12 : contacts.length
 	);
 
 	return (
 		<GestureRecognizer onSwipeLeft={onSwipeLeft}>
-			<SafeAreaView style={styles.body}>
-				<BackgroundImage source={BG_LOCKSCREEN} />
-				<Clock />
-				<NotificationsList>
-					{notifications.map((n, i) => (
-						<Notification
-							key={i}
-							type={n.type}
-							date={n.date}
-							title={n.title}
-							message={n.message}
-						/>
-					))}
-				</NotificationsList>
-				<Swiper onPress={onSwipeLeft} />
+			<SafeAreaView>
+				<View
+					css={`
+						${theme.styles.body()}
+						justify-content: flex-end;
+					`}>
+					<BackgroundImage source={BG_LOCKSCREEN} />
+					<Clock />
+					<NotificationsList
+						fadingEdgeLength={32}
+						showsVerticalScrollIndicator={false}>
+						{notifications.map((n, i) => (
+							<Notification
+								key={i}
+								type={n.type}
+								date={n.date}
+								title={n.title}
+								message={n.message}
+							/>
+						))}
+					</NotificationsList>
+					<Swiper onPress={onSwipeLeft} />
+				</View>
 			</SafeAreaView>
 		</GestureRecognizer>
 	);
 };
 
-const styles = StyleSheet.create({
-	body: {
-		width: '100%',
-		height: '100%',
-		justifyContent: 'flex-end',
-		alignItems: 'center',
-	},
-});
-
-export default NotificationsScreen;
+export default withTheme(NotificationsScreen);

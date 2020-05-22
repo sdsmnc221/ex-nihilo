@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import { Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import FlatButton from 'sharedUI/Button/FlatButton';
 

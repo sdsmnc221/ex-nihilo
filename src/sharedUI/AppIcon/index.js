@@ -15,7 +15,7 @@ const Wrapper = styled.TouchableOpacity`
 	width: ${({ size }) => size}px;
 	height: ${({ size }) => size}px;
 	border-radius: ${({ size }) => size}px;
-	margin: 0 6px;
+	margin: ${({ withSpacing }) => (withSpacing ? '0 6px' : 0)};
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -42,8 +42,8 @@ const Label = styled.Text`
 	bottom: -24px;
 `;
 
-const AppIcon = ({ type, label, notifs, size, onPress }) => (
-	<Wrapper size={size}>
+const AppIcon = ({ type, label, notifs, size, onPress, withSpacing }) => (
+	<Wrapper size={size} withSpacing={withSpacing}>
 		<NeuView
 			color={colors.ghostWhite}
 			height={size}
@@ -65,6 +65,7 @@ AppIcon.propTypes = {
 	notifs: PropTypes.number,
 	size: PropTypes.number,
 	onPress: PropTypes.func,
+	withSpacing: PropTypes.bool,
 };
 
 AppIcon.defaultProps = {
@@ -73,6 +74,7 @@ AppIcon.defaultProps = {
 	notifs: 0,
 	size: 45,
 	onPress: () => {},
+	withSpacing: false,
 };
 
 export default AppIcon;

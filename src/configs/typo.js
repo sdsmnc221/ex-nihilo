@@ -18,6 +18,11 @@ export default {
 			font-family: ${sourceSans.bold};
 			font-size: ${sizes.h3};
 		`,
+		boldBody: css`
+			font-family: ${cairo.semiBold};
+			font-size: 15px;
+			letter-spacing: 0.75px;
+		`,
 		body: css`
 			font-family: ${sourceSans.regular};
 			font-size: ${sizes.body};

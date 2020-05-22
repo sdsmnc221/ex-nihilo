@@ -10,7 +10,8 @@ import {
 import moment from 'moment';
 import 'moment/locale/fr';
 
-import Provider from 'states/Provider';
+import StoreProvider from 'states/StoreProvider';
+import ThemeProvider from 'configs/ThemeProvider';
 
 import SplashScreen from 'screens/SplashScreen';
 import WarningScreen from 'screens/Warning';
@@ -58,107 +59,113 @@ const App = () => {
 	const navContainerRef = useRef(null);
 
 	return (
-		<Provider>
-			<SafeAreaProvider initialSafeAreaInsets={initialWindowSafeAreaInsets}>
-				<NavigationContainer ref={navContainerRef}>
-					<Stack.Navigator>
-						<Stack.Screen
-							name="SplashScreen"
-							component={SplashScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="WarningScreen"
-							component={WarningScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="IntroScreen"
-							component={IntroScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="NotificationsScreen"
-							component={NotificationsScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="LockScreen"
-							component={LockScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="HomeScreen"
-							component={HomeScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="AllApps"
-							component={AllApps}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="SmsScreen"
-							component={SmsScreen}
-							options={{ title: 'Messagerie', headerLeft: null }}
-						/>
-						<Stack.Screen name="SmsConversation" component={SmsConversation} />
-						<Stack.Screen name="JanusConversation" component={JanusConversation} />
-						<Stack.Screen
-							name="ContactsScreen"
-							component={ContactsScreen}
-							options={{ title: 'Contacts', headerLeft: null }}
-						/>
-						<Stack.Screen name="ContactDetails" component={ContactDetails} />
-						<Stack.Screen
-							name="AlbumScreen"
-							component={AlbumScreen}
-							options={{ title: 'Photos', headerLeft: null, headerShown: false }}
-						/>
-						<Stack.Screen
-							name="AlbumPhotoScreen"
-							component={AlbumPhotoScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="FacebookScreen"
-							component={FacebookScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="FacebookLoginScreen"
-							component={FacebookLoginScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="EmailScreen"
-							component={EmailScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="EmailLoginScreen"
-							component={EmailLoginScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="EmailDetailsScreen"
-							component={EmailDetailsScreen}
-							options={{ title: '' }}
-						/>
+		<StoreProvider>
+			<ThemeProvider>
+				<SafeAreaProvider initialSafeAreaInsets={initialWindowSafeAreaInsets}>
+					<NavigationContainer ref={navContainerRef}>
+						<Stack.Navigator>
+							<Stack.Screen
+								name="SplashScreen"
+								component={SplashScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="WarningScreen"
+								component={WarningScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="IntroScreen"
+								component={IntroScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="NotificationsScreen"
+								component={NotificationsScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="LockScreen"
+								component={LockScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="HomeScreen"
+								component={HomeScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="AllApps"
+								component={AllApps}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="SmsScreen"
+								component={SmsScreen}
+								options={{ title: 'Messagerie', headerLeft: null }}
+							/>
+							<Stack.Screen name="SmsConversation" component={SmsConversation} />
+							<Stack.Screen name="JanusConversation" component={JanusConversation} />
+							<Stack.Screen
+								name="ContactsScreen"
+								component={ContactsScreen}
+								options={{ title: 'Contacts', headerLeft: null }}
+							/>
+							<Stack.Screen name="ContactDetails" component={ContactDetails} />
+							<Stack.Screen
+								name="AlbumScreen"
+								component={AlbumScreen}
+								options={{ title: 'Photos', headerLeft: null, headerShown: false }}
+							/>
+							<Stack.Screen
+								name="AlbumPhotoScreen"
+								component={AlbumPhotoScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="FacebookScreen"
+								component={FacebookScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="FacebookLoginScreen"
+								component={FacebookLoginScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="EmailScreen"
+								component={EmailScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="EmailLoginScreen"
+								component={EmailLoginScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="EmailDetailsScreen"
+								component={EmailDetailsScreen}
+								options={{ title: '' }}
+							/>
 
-						{/* Example Screens */}
-						<Stack.Screen
-							name="TypoScreen"
-							component={TypoScreen}
-							options={{ title: 'Typo Example', headerLeft: null, headerShown: false }}
-						/>
-					</Stack.Navigator>
-					{/* <Notification
+							{/* Example Screens */}
+							<Stack.Screen
+								name="TypoScreen"
+								component={TypoScreen}
+								options={{
+									title: 'Typo Example',
+									headerLeft: null,
+									headerShown: false,
+								}}
+							/>
+						</Stack.Navigator>
+						{/* <Notification
 						onPress={() => navContainerRef.current?.navigate('JanusConversation')}
 					/> */}
-				</NavigationContainer>
-			</SafeAreaProvider>
-		</Provider>
+					</NavigationContainer>
+				</SafeAreaProvider>
+			</ThemeProvider>
+		</StoreProvider>
 	);
 };
 

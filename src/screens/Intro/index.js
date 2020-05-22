@@ -1,48 +1,31 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import styled, { withTheme, css } from 'styled-components';
+import { Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import styled from 'styled-components';
+
 import { request, PERMISSIONS } from 'react-native-permissions';
 import Contacts from 'react-native-contacts';
 
-import { fonts, colors } from 'configs/theme';
+import FlatButton from 'sharedUI/Button/FlatButton';
 
 const Content = styled.Text`
-	color: ${colors.white};
-	font-family: ${fonts.cairo.semiBold};
-	font-size: 15px;
-	line-height: 18px;
-	letter-spacing: 0.75px;
 	margin-left: 10%;
 	margin-right: 40%;
+	color: ${({ theme }) => theme.colors.white};
+	line-height: 18px;
+	${({ theme }) => theme.styles.os.boldBody}
 `;
 
-const Button = styled.TouchableOpacity`
+const styledFlatButton = css`
 	position: absolute;
 	bottom: 12%;
-	background-color: ${({ active }) => (active ? colors.white : 'transparent')};
-	border: 1px solid ${colors.white};
-	border-radius: 50px;
+	width: auto;
 	padding: 12px 32px;
-	justify-content: center;
-	align-items: center;
 `;
 
-const ButtonText = styled.Text`
-	color: ${({ active }) => (active ? colors.charcoal : colors.white)};
-	font-family: ${fonts.cairo.semiBold};
-	font-size: 15px;
-	letter-spacing: 0.75px;
-	text-align: center;
-`;
-
-const IntroScreen = ({ navigation }) => {
-	const [buttonPressed, setButtonPressed] = useState(false);
-
+const IntroScreen = ({ navigation, theme }) => {
 	const contactsRef = useRef(null);
-
-	const onPress = () => setButtonPressed(!buttonPressed);
 
 	async function requestPermissions() {
 		const rationale = {
@@ -74,17 +57,11 @@ const IntroScreen = ({ navigation }) => {
 		});
 	}, []);
 
-	useEffect(() => {
-		if (buttonPressed) {
-			setTimeout(
-				() => navigation.navigate('NotificationsScreen', { contactsRef }),
-				60
-			);
-		}
-	}, [buttonPressed, navigation]);
-
 	return (
-		<SafeAreaView style={styles.body}>
+		<SafeAreaView
+			css={`
+				${theme.styles.body(theme.colors.charcoal)}
+			`}>
 			<Content>
 				Vous êtes dans la rue,
 				{'\n'}
@@ -104,21 +81,15 @@ const IntroScreen = ({ navigation }) => {
 				{'\n'}
 				propriétaire.
 			</Content>
-			<Button onPress={onPress} active={buttonPressed} activeOpacity={0.8}>
-				<ButtonText active={buttonPressed}>commencer</ButtonText>
-			</Button>
+			<FlatButton
+				text="commencer"
+				additionalStyle={`${styledFlatButton}`}
+				pressHandler={() =>
+					navigation.navigate('NotificationsScreen', { contactsRef })
+				}
+			/>
 		</SafeAreaView>
 	);
 };
 
-const styles = StyleSheet.create({
-	body: {
-		backgroundColor: colors.charcoal,
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-});
-
-export default IntroScreen;
+export default withTheme(IntroScreen);

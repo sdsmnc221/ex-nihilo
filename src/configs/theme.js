@@ -1,4 +1,16 @@
 const theme = {
+	/*
+	 * Go check /docs/guide-colors.png
+	 */
+	colors: {
+		white: '#FFF',
+		black: '#000',
+		charcoal: '#4A4A4A',
+		ghostWhite: '#F5F4FF',
+		lime: '#14FF00',
+		slateBlue: '#6B5CFF',
+		whiskey: '#CE976A',
+	},
 	fonts: {
 		acumin: {
 			bold: 'Acumin-BdPro',
@@ -31,6 +43,19 @@ const theme = {
 		},
 		superclarendon: 'Superclarendon',
 	},
+	shadows: {
+		default: {
+			shadowColor: '#000',
+			shadowOffset: {
+				width: 0,
+				height: 6,
+			},
+			shadowOpacity: 0.37,
+			shadowRadius: 7.49,
+
+			elevation: 12,
+		},
+	},
 	/*
 	 * Go check /docs/guide-typo.png
 	 */
@@ -54,35 +79,10 @@ const theme = {
 			subtitle: 11,
 		},
 	},
-	/*
-	 * Go check /docs/guide-colors.png
-	 */
-	colors: {
-		white: '#FFF',
-		black: '#000',
-		charcoal: '#4A4A4A',
-		ghostWhite: '#F5F4FF',
-		lime: '#14FF00',
-		slateBlue: '#6B5CFF',
-		whiskey: '#CE976A',
-	},
-	shadows: {
-		default: {
-			shadowColor: '#000',
-			shadowOffset: {
-				width: 0,
-				height: 6,
-			},
-			shadowOpacity: 0.37,
-			shadowRadius: 7.49,
-
-			elevation: 12,
-		},
-	},
 };
 
-const { fonts, typo, colors, shadows } = theme;
+const { colors, fonts, shadows, typo } = theme;
+
+export { colors, fonts, shadows, typo };
 
 export default theme;
-
-export { fonts, typo, colors, shadows };

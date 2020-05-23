@@ -18,17 +18,17 @@ const Solid = styled.View`
 `;
 
 const LockScreen = ({ navigation, theme }) => {
+	const PASSWORD = 'Thierry';
 	const [numberOfTry, setNumberOfTry] = useState(0);
 	const [messageFailed, setMessageFailed] = useState('');
 	const [passwordInput, setPasswordInput] = useState('');
-	const [phonePassword, setPhonePassword] = useState('Thierry');
 	const [passwordValid, setPassWordValid] = useState(false);
 	const [passwordSubmitted, setPassWordSubmitted] = useState(false);
 
 	const onSubmit = () => {
 		setPassWordSubmitted(true);
 
-		if (passwordInput !== phonePassword) {
+		if (passwordInput !== PASSWORD) {
 			setPassWordValid(false);
 			setNumberOfTry(numberOfTry + 1);
 

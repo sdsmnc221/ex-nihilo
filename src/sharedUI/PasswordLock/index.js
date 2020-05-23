@@ -30,10 +30,10 @@ const Input = styled.TextInput`
 	padding: 14px 26px;
 	border-radius: 50px;
 	border: 1px solid
-		${({ theme, isFocused, passwordValid, passwordSubmitted }) =>
+		${({ theme, isFocused, passwordValid, passwordSubmitted, value }) =>
 			passwordValid
 				? theme.colors.lime
-				: !isFocused || (isFocused && !passwordSubmitted)
+				: !isFocused || (isFocused && !passwordSubmitted) || !value
 				? 'transparent'
 				: theme.colors.cinnabar};
 	background-color: ${({ theme }) => theme.colors.ghostWhite};
@@ -45,7 +45,7 @@ const Hint = styled.Text`
 	width: 60%;
 	margin-top: 20px;
 	margin-bottom: 24px;
-	font-family: ${(theme) => theme.fonts.sourceSans.light};
+	font-family: ${({ theme }) => theme.fonts.sourceSans.light};
 	font-size: 12px;
 	line-height: 14px;
 	letter-spacing: 0.15px;
@@ -83,7 +83,7 @@ const PasswordLock = ({
 		<Wrapper>
 			{!noLockIcon && (
 				<IconWrapper>
-					<Icon type="LOCK" color={color} />
+					<Icon type="LOCK" color={hintColor} />
 				</IconWrapper>
 			)}
 			<Title>Mot de passe</Title>

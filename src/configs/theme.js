@@ -3,13 +3,15 @@ const theme = {
 	 * Go check /docs/guide-colors.png
 	 */
 	colors: {
-		white: '#FFF',
 		black: '#000',
 		charcoal: '#4A4A4A',
+		cinnabar: '#DB4545',
+		dimGray: '#707070',
 		ghostWhite: '#F5F4FF',
 		lime: '#14FF00',
 		slateBlue: '#6B5CFF',
 		whiskey: '#CE976A',
+		white: '#FFF',
 	},
 	fonts: {
 		acumin: {

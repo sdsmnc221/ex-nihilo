@@ -4,19 +4,29 @@ import styled from 'styled-components';
 import { Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import { tick } from 'utils';
+
 const Button = styled.TouchableOpacity`
 	width: 50px;
 	height: 50px;
 	border-radius: 50px;
-	border: 1px solid ${({ theme }) => theme.colors.white};
-	background-color: ${({ active, theme }) =>
-		active ? theme.colors.white : 'transparent'};
+	border: 1px solid
+		${({ theme, borderColor }) => borderColor || theme.colors.white};
+	background-color: ${({
+		active,
+		theme,
+		activeButtonColor,
+		inactiveButtonColor,
+	}) =>
+		active ? activeButtonColor || theme.colors.white : inactiveButtonColor};
 	${({ theme }) => theme.styles.flexWithoutSize()}
 `;
 
 const ButtonText = styled.Text`
-	color: ${({ active, activeTextColor, theme }) =>
-		active ? activeTextColor || theme.colors.charcoal : theme.colors.white};
+	color: ${({ active, theme, activeTextColor, inactiveTextColor }) =>
+		active
+			? activeTextColor || theme.colors.charcoal
+			: inactiveTextColor || theme.colors.white};
 	text-align: center;
 	${({ theme }) => theme.styles.os.boldBody}
 `;
@@ -25,6 +35,10 @@ const FlatButton = ({
 	text,
 	pressHandler,
 	additionalStyle,
+	borderColor,
+	inactiveButtonColor,
+	inactiveTextColor,
+	activeButtonColor,
 	activeTextColor,
 }) => {
 	const [buttonPressed, setButtonPressed] = useState(false);
@@ -33,7 +47,8 @@ const FlatButton = ({
 
 	useEffect(() => {
 		if (buttonPressed) {
-			setTimeout(() => pressHandler(), 32);
+			tick(pressHandler, 32);
+			tick(() => setButtonPressed(false), 1200);
 		}
 	}, [buttonPressed, pressHandler]);
 
@@ -42,8 +57,14 @@ const FlatButton = ({
 			onPress={onPress}
 			active={buttonPressed}
 			activeOpacity={0.8}
+			borderColor={borderColor}
+			inactiveButtonColor={inactiveButtonColor}
+			activeButtonColor={activeButtonColor}
 			css={additionalStyle}>
-			<ButtonText active={buttonPressed} activeTextColor={activeTextColor}>
+			<ButtonText
+				active={buttonPressed}
+				inactiveTextColor={inactiveTextColor}
+				activeTextColor={activeTextColor}>
 				{text}
 			</ButtonText>
 		</Button>
@@ -54,12 +75,20 @@ FlatButton.propTypes = {
 	text: PropTypes.string.isRequired,
 	pressHandler: PropTypes.func,
 	additionalStyle: PropTypes.string,
+	borderColor: PropTypes.string,
+	inactiveButtonColor: PropTypes.string,
+	inactiveTextColor: PropTypes.string,
+	activeButtonColor: PropTypes.string,
 	activeTextColor: PropTypes.string,
 };
 
 FlatButton.defaultProps = {
 	pressHandler: () => {},
 	additionalStyle: null,
+	borderColor: null,
+	inactiveButtonColor: 'transparent',
+	inactiveTextColor: null,
+	activeButtonColor: null,
 	activeTextColor: null,
 };
 

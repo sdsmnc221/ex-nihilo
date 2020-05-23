@@ -62,7 +62,7 @@ const Notification = ({ theme, type, date, title, message }) => {
 				width={300}
 				height={100}
 				color={theme.colors.ghostWhite}
-				borderRadius={32}
+				borderRadius={24}
 				style={theme.shadows.default}>
 				<Wrapper>
 					{/* HEADER */}

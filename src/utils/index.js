@@ -45,6 +45,8 @@ const truncate = (str, ln = 96, ellipsis = true) => {
 	return truncatedStr;
 };
 
+const tick = (cb, delay) => setTimeout(cb, delay);
+
 export {
 	cleanLineBreaks,
 	find,
@@ -53,5 +55,6 @@ export {
 	sampleSize,
 	shuffle,
 	sortContact,
+	tick,
 	truncate,
 };

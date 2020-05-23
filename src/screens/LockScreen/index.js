@@ -1,34 +1,37 @@
-import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import styled, { withTheme } from 'styled-components';
+import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GestureRecognizer from 'react-native-swipe-gestures';
-import styled from 'styled-components';
 
 import BG_LOCKSCREEN from 'assets/images/BG-LockScreen.png';
 
 import BackgroundImage from 'sharedUI/BackgroundImage';
 import PasswordLock from 'sharedUI/PasswordLock';
 
-import { colors } from 'configs/theme';
-
 const Solid = styled.View`
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	background-color: ${colors.ghostWhite};
+	background-color: ${({ theme }) => theme.colors.ghostWhite};
 	opacity: 0.6;
 `;
 
-const LockScreen = ({ navigation }) => {
+const LockScreen = ({ navigation, theme }) => {
 	const [numberOfTry, setNumberOfTry] = useState(0);
 	const [messageFailed, setMessageFailed] = useState('');
 	const [passwordInput, setPasswordInput] = useState('');
 	const [phonePassword, setPhonePassword] = useState('Thierry');
+	const [passwordValid, setPassWordValid] = useState(false);
+	const [passwordSubmitted, setPassWordSubmitted] = useState(false);
 
 	const onSubmit = () => {
+		setPassWordSubmitted(true);
+
 		if (passwordInput !== phonePassword) {
+			setPassWordValid(false);
 			setNumberOfTry(numberOfTry + 1);
-			console.log(passwordInput + ' | ' + numberOfTry);
+
 			if (numberOfTry >= 2) {
 				setMessageFailed(
 					'Le saviez-vous les catégories de mots de passe les plus répandu sont : les dates de naissances,  le nom d’un animal de compagnie, 1 2 3 4, ou encore password.'
@@ -37,16 +40,27 @@ const LockScreen = ({ navigation }) => {
 				setMessageFailed('Mot de passe incorrect');
 			}
 		} else {
-			navigation.navigate('HomeScreen');
+			setPassWordValid(true);
 		}
 	};
-	// const onSubmit = () => navigation.navigate('HomeScreen');
+
+	useEffect(() => {
+		if (passwordValid) {
+			setTimeout(() => {
+				navigation.navigate('HomeScreen');
+			}, 32);
+		}
+	}, [passwordValid, navigation]);
+
 	const onSwipeRight = () => navigation.navigate('NotificationsScreen');
 
 	return (
 		<SafeAreaView>
 			<GestureRecognizer onSwipeRight={onSwipeRight}>
-				<View style={styles.body}>
+				<View
+					css={`
+						${theme.styles.body()}
+					`}>
 					<BackgroundImage source={BG_LOCKSCREEN} />
 					<Solid />
 					<PasswordLock
@@ -54,7 +68,10 @@ const LockScreen = ({ navigation }) => {
 						submitButton
 						hintEnabled
 						hint={messageFailed}
+						hintColor={theme.colors.charcoal}
 						passwordInput={passwordInput}
+						passwordValid={passwordValid}
+						passwordSubmitted={passwordSubmitted}
 						onInputPassword={(text) => setPasswordInput(text)}
 						onSubmitPassword={onSubmit}
 					/>
@@ -64,13 +81,4 @@ const LockScreen = ({ navigation }) => {
 	);
 };
 
-const styles = StyleSheet.create({
-	body: {
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-});
-
-export default LockScreen;
+export default withTheme(LockScreen);

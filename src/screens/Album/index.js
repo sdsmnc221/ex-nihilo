@@ -37,7 +37,7 @@ const AlbumScreen = ({ navigation }) => {
 			animationOutTiming={800}
 			useNativeDriver>
 			<PasswordLock
-				color="#fff"
+				hintColor="#fff"
 				passwordInput={passwordInput}
 				onInputPassword={(text) => setPasswordInput(text)}
 				onSubmitPassword={onSubmitPassword}

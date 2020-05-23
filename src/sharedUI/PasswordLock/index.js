@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { View, Text } from 'react-native';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { TextInput } from 'react-native-gesture-handler';
 
 import Icon from 'sharedUI/Icon';
-
-import { colors, fonts, shadows } from 'configs/theme';
-import typo from 'configs/typo';
+import FlatButton from 'sharedUI/Button/FlatButton';
 
 const Wrapper = styled.View`
 	width: 100%;
 	height: 100%;
-	/* margin-top: 100%; */
 	justify-content: center;
 	align-items: center;
 `;
@@ -22,62 +19,57 @@ const IconWrapper = styled.View`
 `;
 
 const Title = styled.Text`
-	margin-bottom: 12px;
-	${typo.os.h2}
-	color: ${colors.whiskey};
+	margin-bottom: 20px;
+	color: ${({ theme }) => theme.colors.whiskey};
+	${({ theme }) => theme.styles.os.h2}
 `;
 
 const Input = styled.TextInput`
-	width: 60%;
+	width: 64%;
 	height: 60px;
-	padding: 0 24px;
+	padding: 14px 26px;
 	border-radius: 50px;
-	background-color: ${colors.ghostWhite};
-	color: ${colors.charcoal};
-	${typo.os.body}
+	border: 1px solid
+		${({ theme, isFocused, passwordValid, passwordSubmitted }) =>
+			passwordValid
+				? theme.colors.lime
+				: !isFocused || (isFocused && !passwordSubmitted)
+				? 'transparent'
+				: theme.colors.cinnabar};
+	background-color: ${({ theme }) => theme.colors.ghostWhite};
+	color: ${({ theme }) => theme.colors.dimGray};
+	${({ theme }) => theme.styles.os.body};
 `;
 
 const Hint = styled.Text`
 	width: 60%;
-	margin-top: 12px;
-	font-family: ${fonts.sourceSans.light};
+	margin-top: 20px;
+	margin-bottom: 24px;
+	font-family: ${(theme) => theme.fonts.sourceSans.light};
 	font-size: 12px;
+	line-height: 14px;
 	letter-spacing: 0.15px;
 	text-align: center;
-	opacity: 0.6;
 	color: ${({ color }) => color};
 `;
 
-const Button = styled.TouchableOpacity`
-	background-color: ${({ active }) => (active ? colors.whiskey : colors.white)};
-	border: 1px solid ${colors.whiskey};
-	border-radius: 50px;
-	width: 50px;
-	height: 50px;
-	justify-content: center;
-	align-items: center;
-	margin-top: 24px;
-`;
-
-const ButtonText = styled.Text`
-	color: ${({ active }) => (active ? colors.white : colors.whiskey)};
-	font-family: ${fonts.cairo.semiBold};
-	font-size: 15px;
-	letter-spacing: 0.75px;
-	text-align: center;
-`;
-
 const PasswordLock = ({
+	theme,
 	noLockIcon,
 	submitButton,
 	hintEnabled,
 	hint,
-	color,
+	hintColor,
 	passwordInput,
+	passwordValid,
+	passwordSubmitted,
 	onInputPassword,
 	onSubmitPassword,
 }) => {
+	const { whiskey, white } = theme.colors;
+
 	const [buttonPressed, setButtonPressed] = useState(false);
+	const [inputFocused, setInputFocused] = useState(false);
 
 	const onPress = () => setButtonPressed(!buttonPressed);
 
@@ -100,14 +92,25 @@ const PasswordLock = ({
 				blurOnSubmit
 				onChangeText={onInputPassword}
 				onSubmitEditing={onSubmitPassword}
+				onFocus={() => setInputFocused(true)}
+				onBlue={() => setInputFocused(false)}
 				value={passwordInput}
-				style={shadows.default}
+				style={theme.shadows.default}
+				isFocused={inputFocused}
+				passwordValid={passwordValid}
+				passwordSubmitted={passwordSubmitted}
 			/>
-			{hintEnabled && <Hint color={color}>{hint}</Hint>}
+			{hintEnabled && <Hint color={hintColor}>{hint}</Hint>}
 			{submitButton && (
-				<Button onPress={onPress} active={buttonPressed} activeOpacity={0.8}>
-					<ButtonText active={buttonPressed}>ok</ButtonText>
-				</Button>
+				<FlatButton
+					text="ok"
+					borderColor={whiskey}
+					inactiveButtonColor={white}
+					inactiveTextColor={whiskey}
+					activeButtonColor={whiskey}
+					activeTextColor={white}
+					pressHandler={onPress}
+				/>
 			)}
 		</Wrapper>
 	);
@@ -118,8 +121,9 @@ PasswordLock.propTypes = {
 	submitButton: PropTypes.bool,
 	hintEnabled: PropTypes.bool,
 	hint: PropTypes.string,
-	color: PropTypes.string,
+	hintColor: PropTypes.string,
 	passwordInput: PropTypes.string,
+	passwordValid: PropTypes.bool.isRequired,
 	onInputPassword: PropTypes.func,
 	onSubmitPassword: PropTypes.func,
 };
@@ -128,10 +132,10 @@ PasswordLock.defaultProps = {
 	noLockIcon: false,
 	submitButton: false,
 	hint: undefined,
-	color: '#000',
+	hintColor: '#000',
 	passwordInput: '',
 	onInputPassword: () => {},
 	onSubmitPassword: () => {},
 };
 
-export default PasswordLock;
+export default withTheme(PasswordLock);

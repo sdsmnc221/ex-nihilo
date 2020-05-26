@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import styled, { withTheme } from 'styled-components';
+import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import styled from 'styled-components';
 
 import BG_HOMESCREEN from 'assets/images/BG-HomeScreen.png';
 
@@ -10,95 +10,75 @@ import Clock from 'sharedUI/Clock';
 import AppIcon from 'sharedUI/AppIcon/';
 import NavigationBar from 'sharedUI/NavigationBar';
 
-import { colors } from 'configs/theme';
+import { device } from 'utils';
+import { APP_ICON } from 'configs/constants';
+
+const {
+	ICONS_TRAY_WIDTH,
+	ICONS_TRAY_WIDTH_NB,
+	ICONS_TRAY_MARGE,
+	ICONS_COUNT,
+	ICON_MARGE,
+	RATIO,
+} = APP_ICON;
 
 const Icons = styled.View`
 	position: absolute;
-	bottom: 90px;
-	width: 96%;
-	padding: 12px;
+	bottom: 64px;
+	width: ${ICONS_TRAY_WIDTH}%;
+	padding: ${ICONS_TRAY_MARGE}px;
 	border-radius: 50px;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	background-color: ${colors.ghostWhite};
+	background-color: ${({ theme }) => theme.colors.ghostWhite};
+	${({ theme }) => theme.styles.flexWithoutSize('space-around', null, 'row')}
 `;
 
-const IconsTemp = styled.View`
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-`;
-
-const HomeScreen = ({ navigation }) => {
-	const deviceW = Dimensions.get('window').width;
-	const iconSize = ((deviceW - 12) / 5 - 12) * 0.9;
+const HomeScreen = ({ navigation, theme }) => {
+	const { width: deviceW } = device();
+	const iconSize =
+		((deviceW * ICONS_TRAY_WIDTH_NB - ICONS_TRAY_MARGE * 2) / ICONS_COUNT -
+			ICON_MARGE) *
+		RATIO;
 
 	return (
 		<SafeAreaView>
-			<View style={styles.body}>
+			<View
+				css={`
+					${theme.styles.body()}
+				`}>
 				<BackgroundImage source={BG_HOMESCREEN} />
 				<Clock />
 				<Icons>
-					<AppIcon size={iconSize} type="PHONE" notifs={24} />
+					<AppIcon size={iconSize} type="PHONE" notifs={24} withSpacing />
 					<AppIcon
 						size={iconSize}
 						type="SMS"
 						notifs={8}
 						onPress={() => navigation.navigate('SmsScreen')}
+						withSpacing
 					/>
 					<AppIcon
 						size={iconSize}
 						type="APPS"
 						onPress={() => navigation.navigate('AllApps')}
+						withSpacing
 					/>
 					<AppIcon
 						size={iconSize}
 						type="CONTACTS"
 						onPress={() => navigation.navigate('ContactsScreen')}
-					/>
-					<AppIcon size={iconSize} type="FILES" />
-				</Icons>
-
-				<IconsTemp>
-					<AppIcon
-						size={iconSize}
-						type="STAR"
-						notifs={8}
-						onPress={() => navigation.navigate('FacebookLoginScreen')}
-					/>
-					<AppIcon
-						size={iconSize}
-						type="EMAIL"
-						onPress={() => navigation.navigate('EmailLoginScreen')}
+						withSpacing
 					/>
 					<AppIcon
 						size={iconSize}
 						type="ALBUM"
 						onPress={() => navigation.navigate('AlbumScreen')}
+						withSpacing
 					/>
-					<AppIcon
-						size={iconSize}
-						type="STAR"
-						onPress={() => navigation.navigate('TypoScreen')}
-					/>
-					<AppIcon size={iconSize} type="STAR" />
-				</IconsTemp>
+				</Icons>
 			</View>
 			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} />
 		</SafeAreaView>
 	);
 };
 
-const styles = StyleSheet.create({
-	body: {
-		backgroundColor: '#c4c4c4',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-});
-
-export default HomeScreen;
+export default withTheme(HomeScreen);

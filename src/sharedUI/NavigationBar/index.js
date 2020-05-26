@@ -1,36 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { withTheme } from 'styled-components';
 import { View } from 'react-native';
-import styled from 'styled-components';
 
 import Icon from 'sharedUI/Icon';
 import IconButton from 'sharedUI/Button/IconButton';
 
-import { colors } from 'configs/theme';
-
 const Wrapper = styled.View`
-	width: 100%;
-	height: 40px;
+	${({ theme }) => theme.styles.flex('space-between', null, 'row', true)}
+	padding: 0 72px;
+	height: 50px;
 	position: absolute;
 	bottom: 0;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
-	background-color: ${({ black }) => (black ? colors.white : 'transparent')};
+	background-color: ${({ black, theme }) =>
+		black ? theme.colors.white : 'transparent'};
 `;
 
-const NavigationBar = ({ onPressHome, black }) => (
-	<Wrapper black={black}>
-		<Icon type="NAVIGATION_BACK" color={black ? colors.whiskey : colors.white} />
-		<IconButton
-			type="NAVIGATION_HOME"
-			color={black ? colors.whiskey : colors.white}
-			onPress={onPressHome}
-		/>
-		<Icon type="NAVIGATION_APP" color={black ? colors.whiskey : colors.white} />
-	</Wrapper>
-);
+const NavigationBar = ({ onPressHome, black, theme }) => {
+	const { whiskey, white } = theme.colors;
+
+	return (
+		<Wrapper black={black}>
+			<Icon type="NAVIGATION_BACK" color={black ? whiskey : white} />
+			<IconButton
+				type="NAVIGATION_HOME"
+				color={black ? whiskey : white}
+				onPress={onPressHome}
+			/>
+			<Icon type="NAVIGATION_GLITCH" color={black ? whiskey : white} />
+		</Wrapper>
+	);
+};
 
 NavigationBar.propTypes = {
 	onPressHome: PropTypes.func.isRequired,
@@ -42,4 +42,4 @@ NavigationBar.defaultProps = {
 	black: false,
 };
 
-export default NavigationBar;
+export default withTheme(NavigationBar);

@@ -1,9 +1,11 @@
 import { css } from 'styled-components';
 import theme from './theme';
+import { FLEX } from './constants';
 
 const { colors, fonts, size, typo } = theme;
 const { acumin, cairo, sourceSans, superclarendon } = fonts;
 const { sizes } = typo;
+const { JUSTIFY_CONTENT, ALIGN_ITEMS, FLEX_DIRECTION } = FLEX;
 
 export default {
 	body: (backgroundColor = colors.ghostWhite) => css`
@@ -13,24 +15,17 @@ export default {
 		justify-content: center;
 		align-items: center;
 	`,
-	flex: (
-		justifyContent = 'center',
-		alignItems = 'center',
-		direction = 'column',
-		fullWidth = false
-	) => css`
-		justify-content: ${justifyContent};
-		align-items: ${alignItems};
-		flex-direction: ${direction};
+	flex: (justifyContent, alignItems, direction, fullWidth = false) => css`
+		justify-content: ${justifyContent || JUSTIFY_CONTENT};
+		align-items: ${alignItems || ALIGN_ITEMS};
+		flex-direction: ${direction || FLEX_DIRECTION};
 		width: ${fullWidth ? '100%' : 'auto'};
 	`,
-	flexWithoutSize: (
-		justifyContent = 'center',
-		alignItems = 'center',
-		direction = 'column'
-	) => css`
-		justify-content: ${justifyContent};
-		align-items: ${alignItems};
-		flex-direction: ${direction};
-	`,
+	flexWithoutSize: (justifyContent, alignItems, direction) => {
+		return css`
+			justify-content: ${justifyContent || JUSTIFY_CONTENT};
+			align-items: ${alignItems || ALIGN_ITEMS};
+			flex-direction: ${direction || FLEX_DIRECTION};
+		`;
+	},
 };

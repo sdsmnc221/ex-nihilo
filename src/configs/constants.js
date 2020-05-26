@@ -1,0 +1,20 @@
+const APP_ICON = {
+	ICONS_TRAY_WIDTH: 90,
+	ICONS_TRAY_WIDTH_NB: 0.9,
+	ICONS_TRAY_MARGE: 12,
+	ICONS_COUNT: 5,
+	ICON_MARGE: 12,
+	RATIO: 0.9,
+};
+
+const FLEX = {
+	JUSTIFY_CONTENT: 'center',
+	ALIGN_ITEMS: 'center',
+	FLEX_DIRECTION: 'column',
+};
+
+const STRINGS = {
+	ICON_PRESSED: '_PRESSED',
+};
+
+export { APP_ICON, FLEX, STRINGS };

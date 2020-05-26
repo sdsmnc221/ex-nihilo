@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Svg, { Path } from 'react-native-svg';
 
-const APPS = ({ width, height, color }) => (
+const APPS_PRESSED = ({ width, height, color }) => (
 	<Svg width={width} height={height} viewBox="0 0 13 13">
 		<Path
 			d="M1.5 3C2.32843 3 3 2.32843 3 1.5C3 0.671573 2.32843 0 1.5 0C0.671573 0 0 0.671573 0 1.5C0 2.32843 0.671573 3 1.5 3Z"
@@ -61,16 +61,16 @@ const APPS = ({ width, height, color }) => (
 	</Svg>
 );
 
-APPS.propTypes = {
+APPS_PRESSED.propTypes = {
 	width: PropTypes.number,
 	height: PropTypes.number,
 	color: PropTypes.string,
 };
 
-APPS.defaultProps = {
+APPS_PRESSED.defaultProps = {
 	width: 13,
 	height: 13,
-	color: '#4A4A4A',
+	color: '#CE976A',
 };
 
-export default APPS;
+export default APPS_PRESSED;

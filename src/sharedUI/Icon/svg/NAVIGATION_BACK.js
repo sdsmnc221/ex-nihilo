@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Svg, { Path } from 'react-native-svg';
 
 const NAVIGATION_BACK = ({ width, height, color }) => (
-	<Svg width={width} height={height} viewBox="0 0 18 22">
+	<Svg width={width} height={height} viewBox="0 0 16 18">
 		<Path
-			d="M17 19.6603L2 11L17 2.33975L17 19.6603Z"
+			d="M15 16.2902L2.03973 9L15 1.70985L15 16.2902Z"
 			stroke={color}
-			strokeWidth="2"
+			strokeWidth={2}
 		/>
 	</Svg>
 );
@@ -18,10 +18,11 @@ NAVIGATION_BACK.propTypes = {
 	color: PropTypes.string,
 };
 
+
 NAVIGATION_BACK.defaultProps = {
-	width: 18,
-	height: 22,
-	color: '#E8E8E8',
+	width: 16,
+	height: 18,
+	color: '#F5F4FF',
 };
 
 export default NAVIGATION_BACK;

@@ -91,7 +91,7 @@ const Notification = ({ theme, type, date, title, message }) => {
 
 					{/* Content */}
 					<FlexDiv direction="row" justifyContent="flex-start" fullWidth>
-						<AppIcon size={45} type="PERSON" />
+						<AppIcon size={45} type="PERSON" noBlink />
 						<View
 							css={css`
 								margin-left: 12px;

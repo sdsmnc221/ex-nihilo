@@ -1,3 +1,11 @@
+import { Dimensions } from 'react-native';
+
+const device = () => {
+	return {
+		...Dimensions.get('window'),
+	};
+};
+
 const cleanLineBreaks = (str, withValue = ' ') =>
 	str.replace(/\r?\n|\r/g, withValue);
 
@@ -49,6 +57,7 @@ const tick = (cb, delay) => setTimeout(cb, delay);
 
 export {
 	cleanLineBreaks,
+	device,
 	find,
 	random,
 	sample,

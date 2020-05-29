@@ -12,15 +12,15 @@ const Wrapper = styled.View`
 	height: 50px;
 	position: absolute;
 	bottom: 0;
-	background-color: ${({ black, theme }) =>
-		black ? theme.colors.white : 'transparent'};
+	background-color: ${({ transparent, theme }) =>
+		transparent ? 'transparent' : theme.colors.white};
 `;
 
-const NavigationBar = ({ onPressHome, black, theme }) => {
+const NavigationBar = ({ onPressHome, black, transparent, theme }) => {
 	const { whiskey, white } = theme.colors;
 
 	return (
-		<Wrapper black={black}>
+		<Wrapper transparent={transparent}>
 			<Icon type="NAVIGATION_BACK" color={black ? whiskey : white} />
 			<IconButton
 				type="NAVIGATION_HOME"
@@ -35,11 +35,13 @@ const NavigationBar = ({ onPressHome, black, theme }) => {
 NavigationBar.propTypes = {
 	onPressHome: PropTypes.func.isRequired,
 	black: PropTypes.bool,
+	transparent: PropTypes.bool,
 };
 
 NavigationBar.defaultProps = {
 	onPressHome: () => {},
 	black: false,
+	transparent: false,
 };
 
 export default withTheme(NavigationBar);

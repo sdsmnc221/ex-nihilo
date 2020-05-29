@@ -76,7 +76,10 @@ const HomeScreen = ({ navigation, theme }) => {
 					/>
 				</Icons>
 			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} />
+			<NavigationBar
+				onPressHome={() => navigation.navigate('HomeScreen')}
+				transparent
+			/>
 		</SafeAreaView>
 	);
 };

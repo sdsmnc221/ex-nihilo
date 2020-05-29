@@ -47,7 +47,7 @@ const FlatButton = ({
 
 	useEffect(() => {
 		if (buttonPressed) {
-			tick(pressHandler, 32);
+			pressHandler();
 			tick(() => setButtonPressed(false), 1200);
 		}
 	}, [buttonPressed, pressHandler]);

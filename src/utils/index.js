@@ -13,6 +13,11 @@ const isArrEmpty = (array) => array.length === 0;
 
 const find = (arr, key, value) => arr.find((element) => element[key] === value);
 
+const chunk = (arr, size) =>
+	Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+		arr.slice(i * size, i * size + size)
+	);
+
 const random = (odd = 0.5) => (Math.random() <= odd ? true : false);
 
 const sample = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -58,6 +63,7 @@ const truncate = (str, ln = 96, ellipsis = true) => {
 const tick = (cb, delay) => setTimeout(cb, delay);
 
 export {
+	chunk,
 	cleanLineBreaks,
 	device,
 	isArrEmpty,

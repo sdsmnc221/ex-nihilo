@@ -83,7 +83,7 @@ const PasswordLock = ({
 		<Wrapper>
 			{!noLockIcon && (
 				<IconWrapper>
-					<Icon type="LOCK" color={hintColor} />
+					<Icon type="LOCK_XL" color={hintColor} />
 				</IconWrapper>
 			)}
 			<Title>Mot de passe</Title>

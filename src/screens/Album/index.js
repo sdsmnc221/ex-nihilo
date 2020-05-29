@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
+import { SafeAreaView, StyleSheet, View, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import styled from 'styled-components';
-
-import { KEY_PUZZLE_B } from 'configs';
 
 import NavigationBar from 'sharedUI/NavigationBar';
 import PasswordLock from 'sharedUI/PasswordLock';
@@ -29,7 +26,7 @@ const AlbumScreen = ({ navigation }) => {
 
 	const [isLocked, setIsLocked] = useState(false);
 	const [passwordInput, setPasswordInput] = useState('');
-	const [albumPassword, setAlbumPassword] = useState(KEY_PUZZLE_B);
+	const [albumPassword, setAlbumPassword] = useState('0d1n');
 
 	const onSubmitPassword = () => {
 		if (passwordInput === albumPassword) {
@@ -45,7 +42,7 @@ const AlbumScreen = ({ navigation }) => {
 			animationOutTiming={800}
 			useNativeDriver>
 			<PasswordLock
-				hintColor="#fff"
+				color="#fff"
 				passwordInput={passwordInput}
 				onInputPassword={(text) => setPasswordInput(text)}
 				onSubmitPassword={onSubmitPassword}
@@ -55,22 +52,30 @@ const AlbumScreen = ({ navigation }) => {
 	);
 
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<PhotoGrid contentContainerStyle={styles.photoGridContainer}>
-					{[...Array(photoNb)].map((p, i) => (
-						<PhotoThumbnail
-							key={i}
-							size={photoSize}
-							color={i % 2 === 0 ? '#c4c4c4' : '#818181'}
-							onPress={() => navigation.navigate('AlbumPhotoScreen', { photoId: p })}
-						/>
-					))}
-				</PhotoGrid>
-				{renderPasswordLock()}
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+		<>
+			<SafeAreaView>
+				<View style={styles.body}>
+					<PhotoGrid contentContainerStyle={styles.photoGridContainer}>
+						{photos.slice(0, photoNb).map((p, i) => {
+							const { uri } = p.node.image;
+							return (
+								<PhotoThumbnail
+									key={i}
+									size={photoSize}
+									source={{ uri }}
+									onPress={() => navigation.navigate('AlbumPhotoScreen', { uri })}
+								/>
+							);
+						})}
+					</PhotoGrid>
+					{renderPasswordLock()}
+				</View>
+				<NavigationBar
+					onPressHome={() => navigation.navigate('HomeScreen')}
+					black
+				/>
+			</SafeAreaView>
+		</>
 	);
 };
 

@@ -18,6 +18,7 @@ export { default as HAMBURGER } from './HAMBURGER';
 export { default as LOADING } from './LOADING';
 export { default as LOGO } from './LOGO';
 export { default as LOCK } from './LOCK';
+export { default as LOCK_XL } from './LOCK_XL';
 export { default as NAVIGATION_BACK } from './NAVIGATION_BACK';
 export { default as NAVIGATION_GLITCH } from './NAVIGATION_GLITCH';
 export { default as NAVIGATION_HOME } from './NAVIGATION_HOME';

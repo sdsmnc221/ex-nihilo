@@ -43,11 +43,13 @@ const NotifsCount = styled.Text`
 `;
 
 const Label = styled.Text`
-	text-align: center;
-	font-size: 11px;
-	color: #000;
+	width: 200%;
 	position: absolute;
 	bottom: -24px;
+	text-align: center;
+	letter-spacing: 0.19px;
+	${({ theme }) => theme.styles.os.subtitle};
+	color: ${({ theme }) => theme.colors.charcoal};
 `;
 
 const AppIcon = ({
@@ -66,8 +68,8 @@ const AppIcon = ({
 
 	useEffect(() => {
 		if (buttonPressed) {
-			tick(onPress, 32);
-			tick(() => setButtonPressed(false), 1200);
+			onPress();
+			tick(() => setButtonPressed(false), 600);
 		}
 	}, [buttonPressed, onPress]);
 
@@ -79,7 +81,7 @@ const AppIcon = ({
 				width={size}
 				borderRadius={size}
 				style={theme.shadows.default}
-				inset={buttonPressed}>
+				inset={noBlink ? false : buttonPressed}>
 				<TouchableWrapper
 					size={size}
 					onPress={onPress_}

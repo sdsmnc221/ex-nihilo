@@ -3,6 +3,9 @@ import Config from 'react-native-config';
 const {
 	LOCALE,
 	GOOGLE_MAPS_API_KEY,
+	URL_WIKIHOW,
+	URL_INFO_DATA,
+	URL_ABOUT_US,
 	KEY_PUZZLE_A,
 	KEY_PUZZLE_B,
 	KEY_PUZZLE_C,
@@ -12,6 +15,9 @@ const {
 export {
 	LOCALE,
 	GOOGLE_MAPS_API_KEY,
+	URL_WIKIHOW,
+	URL_INFO_DATA,
+	URL_ABOUT_US,
 	KEY_PUZZLE_A,
 	KEY_PUZZLE_B,
 	KEY_PUZZLE_C,

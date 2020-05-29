@@ -85,6 +85,10 @@ target 'ex_nihilo' do
 
   pod 'react-native-config', :path => '../node_modules/react-native-config'
 
+
+
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
   target 'ex_nihiloTests' do
     inherit! :complete
     # Pods for testing

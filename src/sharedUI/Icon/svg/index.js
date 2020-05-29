@@ -4,6 +4,7 @@ export { default as ALBUM_PRESSED } from './ALBUM_PRESSED';
 export { default as APPS } from './APPS';
 export { default as APPS_PRESSED } from './APPS_PRESSED';
 export { default as ARROW_LEFT } from './ARROW_LEFT';
+export { default as BROWSER } from './BROWSER';
 export { default as CONTACTS } from './CONTACTS';
 export { default as CONTACTS_PRESSED } from './CONTACTS_PRESSED';
 export { default as DOTS_HORIZONTAL } from './DOTS_HORIZONTAL';

@@ -32,6 +32,7 @@ import FacebookLoginScreen from 'screens/Facebook/FacebookLogin';
 import EmailScreen from 'screens/Email';
 import EmailDetailsScreen from 'screens/Email/EmailDetails';
 import EmailLoginScreen from 'screens/Email/EmailLogin';
+import InternetScreen from 'screens/InternetScreen';
 import AllApps from 'screens/AllApps';
 
 // Example screens
@@ -147,6 +148,11 @@ const App = () => {
 								name="EmailDetailsScreen"
 								component={EmailDetailsScreen}
 								options={{ title: '' }}
+							/>
+							<Stack.Screen
+								name="InternetScreen"
+								component={InternetScreen}
+								options={{ headerShown: false }}
 							/>
 
 							{/* Example Screens */}

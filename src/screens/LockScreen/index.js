@@ -7,6 +7,8 @@ import GestureRecognizer from 'react-native-swipe-gestures';
 import BG_LOCKSCREEN from 'assets/images/BG-LockScreen.png';
 
 import BackgroundImage from 'sharedUI/BackgroundImage';
+import { KEY_PUZZLE_A } from 'configs';
+
 import PasswordLock from 'sharedUI/PasswordLock';
 
 const Solid = styled.View`
@@ -18,7 +20,7 @@ const Solid = styled.View`
 `;
 
 const LockScreen = ({ navigation, theme }) => {
-	const PASSWORD = 'Thierry';
+	const PASSWORD = KEY_PUZZLE_A;
 	const [numberOfTry, setNumberOfTry] = useState(0);
 	const [messageFailed, setMessageFailed] = useState('');
 	const [passwordInput, setPasswordInput] = useState('');

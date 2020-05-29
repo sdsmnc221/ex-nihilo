@@ -9,6 +9,7 @@ import {
 
 import moment from 'moment';
 import 'moment/locale/fr';
+import { LOCALE } from 'configs';
 
 import StoreProvider from 'states/StoreProvider';
 import ThemeProvider from 'configs/ThemeProvider';
@@ -44,7 +45,7 @@ const Stack = createStackNavigator();
 
 const App = () => {
 	// Set date time locale to FR
-	moment.locale('fr');
+	moment.locale(LOCALE);
 
 	// Disable Back native button
 	// useEffect, useCallback, useFocusEffect ==> enfin regarder la doc

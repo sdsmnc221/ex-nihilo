@@ -1,17 +1,24 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet, View, Image, Dimensions } from 'react-native';
 
 import NavigationBar from 'sharedUI/NavigationBar';
-import Icon from 'sharedUI/Icon';
 
 const AlbumPhotoScreen = ({ route, navigation }) => {
-	console.log(route);
+	const { uri } = route.params;
+	const { width: deviceW, height: deviceH } = Dimensions.get('window');
 
 	return (
 		<SafeAreaView>
 			<View style={styles.body}>
-				<Icon type="PHOTO_XL" />
+				<Image
+					style={{
+						width: deviceW,
+						height: deviceH,
+					}}
+					source={{ uri }}
+					resizeMode="contain"
+				/>
 			</View>
 			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
 		</SafeAreaView>

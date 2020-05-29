@@ -4,6 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
+import { KEY_PUZZLE_D } from 'configs';
+
 import NavigationBar from 'sharedUI/NavigationBar';
 import Icon from 'sharedUI/Icon';
 
@@ -76,7 +78,7 @@ const EmailLoginScreen = ({ navigation }) => {
 	const [emailInput, setEmailInput] = useState('sam.blanchard@gmail.com');
 	const [passwordInput, setPasswordInput] = useState('');
 	const [mailEmail, setMailEmail] = useState('sam.blanchard@gmail.com');
-	const [mailPassword, setMailPassword] = useState('Dormiens');
+	const [mailPassword, setMailPassword] = useState(KEY_PUZZLE_D);
 	const [failed, setFailed] = useState(false);
 
 	const onSubmit = () => {

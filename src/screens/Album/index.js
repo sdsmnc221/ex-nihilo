@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSelector } from 'react-redux';
 import Modal from 'react-native-modal';
 import styled from 'styled-components';
+
+import { KEY_PUZZLE_B } from 'configs';
 
 import NavigationBar from 'sharedUI/NavigationBar';
 import PasswordLock from 'sharedUI/PasswordLock';
@@ -15,13 +18,18 @@ const PhotoGrid = styled.ScrollView`
 `;
 
 const AlbumScreen = ({ navigation }) => {
+	const { gallery } = useSelector((state) => state.deviceData);
+
 	const deviceW = Dimensions.get('window').width;
 	const photoSize = deviceW / 3;
-	const photoNb = 32;
+	// Temporarily limit the photo numbers until
+	// rework Gallery (from ScrollView to FlatList)
+	const photoNb = Math.floor(gallery.count / 10);
+	const { edges: photos } = gallery.photos;
 
 	const [isLocked, setIsLocked] = useState(false);
 	const [passwordInput, setPasswordInput] = useState('');
-	const [albumPassword, setAlbumPassword] = useState('0d1n');
+	const [albumPassword, setAlbumPassword] = useState(KEY_PUZZLE_B);
 
 	const onSubmitPassword = () => {
 		if (passwordInput === albumPassword) {

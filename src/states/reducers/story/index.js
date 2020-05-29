@@ -1,6 +1,6 @@
 import initialStates from 'states/initialStates';
 
-function story(state = initialStates.contacts, action) {
+function story(state = initialStates.story, action) {
 	switch (action.type) {
 		default:
 			return state;

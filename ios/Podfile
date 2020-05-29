@@ -77,6 +77,14 @@ target 'ex_nihilo' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
+
+  pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
+
+  pod 'react-native-calendar-events', :path => '../node_modules/react-native-calendar-events'
+
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+
   target 'ex_nihiloTests' do
     inherit! :complete
     # Pods for testing

@@ -4,6 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
+import { KEY_PUZZLE_C } from 'configs';
+
 import NavigationBar from 'sharedUI/NavigationBar';
 import Icon from 'sharedUI/Icon';
 
@@ -89,7 +91,7 @@ const FacebookLoginScreen = ({ navigation }) => {
 	const [emailInput, setEmailInput] = useState('sam.blanchard@gmail.com');
 	const [passwordInput, setPasswordInput] = useState('');
 	const [fbEmail, setFbEmail] = useState('sam.blanchard@gmail.com');
-	const [fbPassword, setFbPassword] = useState('b1nouze');
+	const [fbPassword, setFbPassword] = useState(KEY_PUZZLE_C);
 	const [failed, setFailed] = useState(false);
 
 	const onSubmit = () => {

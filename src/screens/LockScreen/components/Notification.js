@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme, css } from 'styled-components';
 import { View, Text } from 'react-native';
-import { NeuView } from 'react-native-neu-element';
+import { NeuView } from 'utils/react-native-neu-element';
 
 import FlexDiv from 'sharedUI/FlexDiv';
 import Icon from 'sharedUI/Icon';

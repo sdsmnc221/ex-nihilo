@@ -23,7 +23,7 @@ const styledFlatButton = css`
 	padding: 12px 32px;
 `;
 
-const IntroScreen = ({ navigation }) => {
+const IntroScreen = ({ navigation, theme }) => {
 	usePermissions();
 	const contacts = useDeviceData();
 

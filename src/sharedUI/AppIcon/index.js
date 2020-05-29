@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css, withTheme } from 'styled-components';
 import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { NeuView } from 'react-native-neu-element';
+import { NeuView } from 'utils/react-native-neu-element';
 
 import Icon from 'sharedUI/Icon';
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { NeuView, NeuBorderView } from 'react-native-neu-element';
+import { NeuView, NeuBorderView } from 'utils/react-native-neu-element';
 
 const Wrapper = styled.TouchableOpacity`
 	margin-top: 14%;

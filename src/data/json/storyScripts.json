@@ -20,7 +20,7 @@
     {
         "ID": 2,
         "type": "MESSAGE",
-        "text": "ahahaha",
+        "text": "Hahaa",
         "choices": [],
         "nextID": 3
     },
@@ -29,73 +29,101 @@
         "type": "MESSAGE_WITH_CHOICES",
         "text": "Je suis Janus",
         "choices": [{
-                "text": "Je suis Sam",
+                "text": "Je m'appelle Sacha",
                 "nextID": 4
             },
             {
                 "text": "Moi c'est...",
-                "nextID": 6
+                "nextID": 8
             },
             {
-                "text": "Cool ta vie, on se connait ?",
-                "nextID": 5
+                "text": "Cool ta vie, on se connaît ?",
+                "nextID": 6
             }
         ],
         "nextID": null
     },
     {
         "ID": 4,
-        "type": "MESSAGE_WITH_CHOICES",
-        "text": "Je sais que tu n'est pas Sam",
-        "choices": [{
-            "text": "Je suis...",
-            "nextID": 6
-        }],
-        "nextID": null
+        "type": "MESSAGE",
+        "text": "Je sais que tu n'es pas Sacha",
+        "choices": [],
+        "nextID": 5
     },
     {
         "ID": 5,
         "type": "MESSAGE_WITH_CHOICES",
-        "text": "Nous devrions faire connaissance",
+        "text": "Alors réponds-moi, qui es-tu ?",
         "choices": [{
-            "text": "Je suis...",
-            "nextID": 6
+            "text": "ok ok ça va... je m’appelle...",
+            "nextID": 8
         }],
         "nextID": null
     },
     {
         "ID": 6,
-        "type": "INPUT",
-        "text": "Ton nom",
+        "type": "MESSAGE",
+        "text": "Non pas encore",
         "choices": [],
         "nextID": 7
     },
     {
         "ID": 7,
-        "type": "MESSAGE_WITH_PLACEHOLDER",
-        "text": "OK [$]",
-        "choices": [],
-        "nextID": 8
+        "type": "MESSAGE_WITH_CHOICES",
+        "text": "Mais nous devrions faire connaissance...",
+        "choices": [{
+            "text": "c’est bien mystérieux tout ça, mais d’accord je m’appelle...",
+            "nextID": 8
+        }],
+        "nextID": null
     },
     {
         "ID": 8,
+        "type": "INPUT",
+        "text": null,
+        "choices": [],
+        "nextID": 9
+    },
+    {
+        "ID": 9,
+        "type": "MESSAGE_WITH_PLACEHOLDER",
+        "text": "Bon je ne sais pas si tu as remarqué, [$], mais la personne à qui appartient ce téléphone avait disparu",
+        "choices": [],
+        "nextID": 10
+    },
+    {
+        "ID": 10,
+        "type": "MESSAGE",
+        "text": "Cette personne s’appelle Sacha",
+        "choices": [],
+        "nextID": 11
+    },
+    {
+        "ID": 11,
         "type": "MESSAGE_WITH_CHOICES",
-        "text": "Sam a disparu, il faute que tu retrouves Sam, je crois qu'iel a des ennuis",
+        "text": "Sacha a dû avoir des ennuis",
         "choices": [{
-                "text": "OK qu'est-ce que je peux faire ?",
-                "nextID": 9
+                "text": "Ok qu’est-ce que je peux faire ?",
+                "nextID": 12
             },
             {
-                "text": "OK je vais t'aider !",
-                "nextID": 9
+                "text": "Ok, je vais t’aider",
+                "nextID": 12
             }
         ],
         "nextID": null
     },
     {
-        "ID": 9,
-        "type": "MESSAGE_WITH_BREAKPOINT",
-        "text": "Un bon point de départ est de jeter un coup d'œil à ses mails. N'oublie pas que je suis là pour t'aider.",
+        "ID": 12,
+        "type": "MESSAGE",
+        "text": "Je pense que tu pourrais commencer par jeter un coup d’œil à ses mails",
+        "choices": [],
+        "nextID": 13
+    },
+    {
+        "ID": 13,
+        "type": "MESSAGE_WITH_PLACEHOLDER",
+        "text": "Surtout n’oublie pas [$] que je suis là pour t’aider.",
         "choices": [],
         "nextID": null
     }

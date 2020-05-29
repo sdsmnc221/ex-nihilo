@@ -2,7 +2,8 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { HeaderBackButton } from '@react-navigation/stack';
-import styled from 'styled-components';
+import { TextInput } from 'react-native-gesture-handler';
+import styled, { withTheme } from 'styled-components';
 import { useSelector } from 'react-redux';
 
 import NavigationBar from 'sharedUI/NavigationBar';
@@ -34,12 +35,24 @@ const ChoicesWrapper = styled.View`
 `;
 
 const InputOverlay = styled.View`
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.8);
+	justify-content: center;
+	align-items: center;
+`;
+
+const Input = styled.TextInput`
+	width: 64%;
+	height: 60px;
+	padding: 14px 26px;
+	border-radius: 50px;
+	background-color: ${({ theme }) => theme.colors.ghostWhite};
+	color: ${({ theme }) => theme.colors.dimGray};
+	${({ theme }) => theme.styles.os.body};
 `;
 
 const NoChoiceText = styled.Text`
@@ -78,7 +91,7 @@ const ChoicesContent = ({ script, activeChoiceIndex, onPressChoice }) => {
 	return content;
 };
 
-const JanusConversation = ({ navigation }) => {
+const JanusConversation = ({ navigation, theme }) => {
 	navigation.setOptions({
 		headerTitle: 'Janus',
 		headerLeft: () => (
@@ -87,6 +100,12 @@ const JanusConversation = ({ navigation }) => {
 	});
 
 	const smsListRef = useRef(null);
+
+	const [openInput, setOpenInput] = useState(false);
+	const [inputValue, setInputValue] = useState('');
+
+	const onInputValue = (text) => setInputValue(text);
+	const onSubmitValue = () => setOpenInput(false);
 
 	const { scripts, dialogueLog } = useSelector((state) => state.story);
 
@@ -119,10 +138,16 @@ const JanusConversation = ({ navigation }) => {
 
 		switch (activeScript.type) {
 			case 'MESSAGE':
+			case 'MESSAGE_WITH_PLACEHOLDER':
 				setActiveScript(find(scripts, 'ID', activeScript.nextID));
 				break;
 			case 'MESSAGE_WITH_CHOICES':
 				setChoices(activeScript.choices);
+				setActiveChoiceIndex(undefined);
+				break;
+			case 'INPUT':
+				setOpenInput(true);
+				setActiveScript(find(scripts, 'ID', activeScript.nextID));
 				setActiveChoiceIndex(undefined);
 				break;
 			default:
@@ -160,6 +185,18 @@ const JanusConversation = ({ navigation }) => {
 						/>
 					</ChoicesWrapper>
 				</InputWrapper>
+				{openInput && (
+					<InputOverlay>
+						<Input
+							theme={theme}
+							blurOnSubmit
+							onChangeText={onInputValue}
+							onSubmitEditing={onSubmitValue}
+							value={inputValue}
+							style={theme.shadows.default}
+						/>
+					</InputOverlay>
+				)}
 			</View>
 			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
 		</SafeAreaView>
@@ -182,4 +219,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default JanusConversation;
+export default withTheme(JanusConversation);

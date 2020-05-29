@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { css, withTheme } from 'styled-components';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
+
 import Contacts from 'react-native-contacts';
 import { useSelector } from 'react-redux';
 
@@ -11,7 +13,7 @@ import SmsShort from './components/SmsShort';
 import NavigationBar from 'sharedUI/NavigationBar';
 import AddButton from 'sharedUI/Button/AddButton';
 
-const SmsScreen = ({ navigation }) => {
+const SmsScreen = ({ navigation, theme }) => {
 	const [contacts, setContacts] = useState(
 		useSelector((state) => state.contacts).map(
 			(contact) => contact.name || contact.phoneNumber
@@ -49,16 +51,25 @@ const SmsScreen = ({ navigation }) => {
 		};
 	});
 
-	// .unshift({
-	//   date: 'Il y a 30s',
-	//   title: 'JANUS',
-	//   message: 'Salut toi'
-	// });
-
 	return (
 		<SafeAreaView>
-			<View style={styles.body}>
+			<View
+				css={`
+					${css`
+						${theme.styles.body()}
+					`}
+				`}>
 				<ScrollView contentContainerStyle={styles.scrollBody}>
+					<SmsShort
+						date="À l'instant"
+						title="Janus"
+						message="Bonjour toi"
+						onPress={() =>
+							navigation.navigate('JanusConversation', {
+								headerTitle: 'Janus',
+							})
+						}
+					/>
 					{smsList.map((s, i) => (
 						<SmsShort
 							key={i}
@@ -82,19 +93,11 @@ const SmsScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-	body: {
-		backgroundColor: '#fff',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
 	scrollBody: {
-		backgroundColor: '#fff',
 		width: '100%',
 		paddingTop: 36,
 		paddingBottom: 84,
 	},
 });
 
-export default SmsScreen;
+export default withTheme(SmsScreen);

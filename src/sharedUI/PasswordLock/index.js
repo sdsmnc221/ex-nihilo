@@ -93,7 +93,7 @@ const PasswordLock = ({
 				onChangeText={onInputPassword}
 				onSubmitEditing={onSubmitPassword}
 				onFocus={() => setInputFocused(true)}
-				onBlue={() => setInputFocused(false)}
+				onBlur={() => setInputFocused(false)}
 				value={passwordInput}
 				style={theme.shadows.default}
 				isFocused={inputFocused}

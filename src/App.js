@@ -103,7 +103,7 @@ const App = () => {
 							<Stack.Screen
 								name="SmsScreen"
 								component={SmsScreen}
-								options={{ title: 'Messagerie', headerLeft: null }}
+								options={{ headerShown: false }}
 							/>
 							<Stack.Screen name="SmsConversation" component={SmsConversation} />
 							<Stack.Screen name="JanusConversation" component={JanusConversation} />

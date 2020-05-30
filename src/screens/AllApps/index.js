@@ -1,6 +1,6 @@
 import React from 'react';
 import { withTheme, css } from 'styled-components';
-import { View, Dimensions } from 'react-native';
+import { View } from 'react-native';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import AppIcon from 'sharedUI/AppIcon';

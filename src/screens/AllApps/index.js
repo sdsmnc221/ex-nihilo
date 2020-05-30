@@ -1,13 +1,13 @@
 import React from 'react';
+import { withTheme, css } from 'styled-components';
 import { View, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { withTheme, css } from 'styled-components';
 
 import AppIcon from 'sharedUI/AppIcon';
 import FlexDiv from 'sharedUI/FlexDiv';
 import NavigationBar from 'sharedUI/NavigationBar';
 
-import apps from './configs';
+import { ALL_APPS } from 'configs';
 import { chunk } from 'utils';
 
 const AllApps = ({ navigation, theme }) => {
@@ -16,18 +16,18 @@ const AllApps = ({ navigation, theme }) => {
 
 	const onPress = (screen) => navigation.navigate(screen);
 
-	const renderAppIcon = ({ label, iconType, screen }, i) => (
+	const renderAppIcon = ({ label, iconType, screen, notifs }, i) => (
 		<AppIcon
 			key={i}
 			label={label}
 			type={iconType || 'LOCK'}
 			size={iconSize}
-			notifs={iconType === 'PHONE' ? 24 : iconType === 'SMS' ? 8 : 0}
+			notifs={notifs}
 			{...screen && { onPress: () => onPress(screen) }}
 		/>
 	);
 
-	const APPS = chunk(apps, 3);
+	const apps = chunk(ALL_APPS, 3);
 
 	return (
 		<SafeAreaView>
@@ -40,7 +40,7 @@ const AllApps = ({ navigation, theme }) => {
 						position: absolute;
 						top: 10%;
 					`}>
-					{APPS.map((apps_, index) => (
+					{apps.map((apps_, index) => (
 						<FlexDiv
 							key={index}
 							fullWidth

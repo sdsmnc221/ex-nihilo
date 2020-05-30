@@ -12,6 +12,7 @@ import NavigationBar from 'sharedUI/NavigationBar';
 
 import { device } from 'utils';
 import { APP_ICON } from 'configs/constants';
+import { HOME_APPS } from 'configs';
 
 const {
 	ICONS_TRAY_WIDTH,
@@ -39,6 +40,19 @@ const HomeScreen = ({ navigation, theme }) => {
 			ICON_MARGE) *
 		RATIO;
 
+	const onPress = (screen) => navigation.navigate(screen);
+
+	const renderAppIcon = ({ iconType, screen, notifs }, index) => (
+		<AppIcon
+			key={index}
+			type={iconType}
+			size={iconSize}
+			notifs={notifs}
+			{...screen && { onPress: () => onPress(screen) }}
+			withSpacing
+		/>
+	);
+
 	return (
 		<SafeAreaView>
 			<View
@@ -48,32 +62,9 @@ const HomeScreen = ({ navigation, theme }) => {
 				<BackgroundImage source={BG_HOMESCREEN} />
 				<Clock />
 				<Icons>
-					<AppIcon size={iconSize} type="PHONE" notifs={24} withSpacing />
-					<AppIcon
-						size={iconSize}
-						type="SMS"
-						notifs={8}
-						onPress={() => navigation.navigate('SmsScreen')}
-						withSpacing
-					/>
-					<AppIcon
-						size={iconSize}
-						type="APPS"
-						onPress={() => navigation.navigate('AllApps')}
-						withSpacing
-					/>
-					<AppIcon
-						size={iconSize}
-						type="CONTACTS"
-						onPress={() => navigation.navigate('ContactsScreen')}
-						withSpacing
-					/>
-					<AppIcon
-						size={iconSize}
-						type="ALBUM"
-						onPress={() => navigation.navigate('AlbumScreen')}
-						withSpacing
-					/>
+					{HOME_APPS.map((app, index) => (
+						<>{renderAppIcon(app, index)}</>
+					))}
 				</Icons>
 			</View>
 			<NavigationBar

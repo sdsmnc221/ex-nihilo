@@ -1,4 +1,5 @@
 import { Dimensions } from 'react-native';
+import { APP_ICON } from 'configs';
 
 const device = () => {
 	return {
@@ -62,6 +63,23 @@ const truncate = (str, ln = 96, ellipsis = true) => {
 
 const tick = (cb, delay) => setTimeout(cb, delay);
 
+const getIconSize = () => {
+	const { width: deviceW } = device();
+	const {
+		ICONS_TRAY_WIDTH_NB,
+		ICONS_TRAY_MARGE,
+		ICONS_COUNT,
+		ICON_MARGE,
+		RATIO,
+	} = APP_ICON;
+
+	return (
+		((deviceW * ICONS_TRAY_WIDTH_NB - ICONS_TRAY_MARGE * 2) / ICONS_COUNT -
+			ICON_MARGE) *
+		RATIO
+	);
+};
+
 export {
 	chunk,
 	cleanLineBreaks,
@@ -75,4 +93,5 @@ export {
 	sortContact,
 	tick,
 	truncate,
+	getIconSize,
 };

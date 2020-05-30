@@ -9,17 +9,8 @@ import BackgroundImage from 'sharedUI/BackgroundImage';
 import Clock from 'sharedUI/Clock';
 import AppIcon from 'sharedUI/AppIcon/';
 
-import { device } from 'utils';
-import { APP_ICON, HOME_APPS, SCREENS } from 'configs';
-
-const {
-	ICONS_TRAY_WIDTH,
-	ICONS_TRAY_WIDTH_NB,
-	ICONS_TRAY_MARGE,
-	ICONS_COUNT,
-	ICON_MARGE,
-	RATIO,
-} = APP_ICON;
+import { device, getIconSize } from 'utils';
+import { HOME_APPS, SCREENS } from 'configs';
 
 const Icons = styled.View`
 	position: absolute;
@@ -33,10 +24,7 @@ const Icons = styled.View`
 
 const HomeScreen = ({ navigation, theme }) => {
 	const { width: deviceW } = device();
-	const iconSize =
-		((deviceW * ICONS_TRAY_WIDTH_NB - ICONS_TRAY_MARGE * 2) / ICONS_COUNT -
-			ICON_MARGE) *
-		RATIO;
+	const iconSize = getIconSize();
 
 	const onPress = (screen) => navigation.navigate(screen);
 

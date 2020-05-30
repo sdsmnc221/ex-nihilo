@@ -8,11 +8,10 @@ import FlexDiv from 'sharedUI/FlexDiv';
 import NavigationBar from 'sharedUI/NavigationBar';
 
 import { ALL_APPS, SCREENS } from 'configs';
-import { chunk } from 'utils';
+import { chunk, getIconSize } from 'utils';
 
 const AllAppsScreen = ({ navigation, theme }) => {
-	const deviceW = Dimensions.get('window').width;
-	const iconSize = (deviceW - 12) / 5 - 12;
+	const iconSize = getIconSize();
 
 	const onPress = (screen) => navigation.navigate(screen);
 

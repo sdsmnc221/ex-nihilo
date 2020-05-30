@@ -14,6 +14,7 @@ export { default as EDIT_CONTACTS } from './EDIT_CONTACTS';
 export { default as EMAIL } from './EMAIL';
 export { default as EMAIL_REPLY } from './EMAIL_REPLY';
 export { default as EMAIL_XL } from './EMAIL_XL';
+export { default as FACEBOOK } from './FACEBOOK';
 export { default as FACEBOOK_XL } from './FACEBOOK_XL';
 export { default as FILES } from './FILES';
 export { default as HAMBURGER } from './HAMBURGER';

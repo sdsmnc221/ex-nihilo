@@ -1,18 +1,16 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import { View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BG_HOMESCREEN from 'assets/images/BG-HomeScreen.png';
 
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import BackgroundImage from 'sharedUI/BackgroundImage';
 import Clock from 'sharedUI/Clock';
 import AppIcon from 'sharedUI/AppIcon/';
-import NavigationBar from 'sharedUI/NavigationBar';
 
 import { device } from 'utils';
-import { APP_ICON } from 'configs/constants';
-import { HOME_APPS } from 'configs';
+import { APP_ICON, HOME_APPS, SCREENS } from 'configs';
 
 const {
 	ICONS_TRAY_WIDTH,
@@ -42,19 +40,8 @@ const HomeScreen = ({ navigation, theme }) => {
 
 	const onPress = (screen) => navigation.navigate(screen);
 
-	const renderAppIcon = ({ iconType, screen, notifs }, index) => (
-		<AppIcon
-			key={index}
-			type={iconType}
-			size={iconSize}
-			notifs={notifs}
-			{...screen && { onPress: () => onPress(screen) }}
-			withSpacing
-		/>
-	);
-
 	return (
-		<SafeAreaView>
+		<LayoutWrapper screenName={SCREENS.HOME}>
 			<View
 				css={`
 					${theme.styles.body()}
@@ -63,15 +50,18 @@ const HomeScreen = ({ navigation, theme }) => {
 				<Clock />
 				<Icons>
 					{HOME_APPS.map((app, index) => (
-						<>{renderAppIcon(app, index)}</>
+						<AppIcon
+							key={index}
+							type={app.iconType}
+							size={iconSize}
+							notifs={app.notifs}
+							{...app.screen && { onPress: () => onPress(app.screen) }}
+							withSpacing
+						/>
 					))}
 				</Icons>
 			</View>
-			<NavigationBar
-				onPressHome={() => navigation.navigate('HomeScreen')}
-				transparent
-			/>
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 

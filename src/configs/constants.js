@@ -17,4 +17,27 @@ const STRINGS = {
 	ICON_PRESSED: '_PRESSED',
 };
 
-export { APP_ICON, FLEX, STRINGS };
+const SCREENS = {
+	SPLASH: 'SplashScreen',
+	WARNING: 'WarningScreen',
+	INTRO: 'IntroScreen',
+	NOTIFICATIONS: 'NotificationsScreen',
+	LOCK: 'LockScreen',
+	HOME: 'HomeScreen',
+	ALL_APPS: 'AllAppsScreen',
+	SMS: 'SmsScreen',
+	SMS_CONVERSATION: 'SmsConversationScreen',
+	SMS_JANUS: 'JanusConversationScreen',
+	CONTACTS: 'ContactsScreen',
+	CONTACTS_DETAILS: 'ContactDetailsScreen',
+	ALBUM: 'AlbumScreen',
+	ALBUM_PHOTO: 'AlbumPhotoScreen',
+	FACEBOOK: 'FacebookScreen',
+	FACEBOOK_LOGIN: 'FacebookLoginScreen',
+	EMAIL: 'EmailScreen',
+	EMAIL_LOGIN: 'EmailLoginScreen',
+	EMAIL_DETAILS: 'EmailDetailsScreen',
+	INTERNET: 'InternetScreen',
+};
+
+export { APP_ICON, FLEX, STRINGS, SCREENS };

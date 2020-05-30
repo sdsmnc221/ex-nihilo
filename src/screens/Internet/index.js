@@ -15,7 +15,7 @@ const InternetScreen = ({ navigation, theme }) => (
 				${theme.styles.body()}
 			`}>
 			<WebScreen url={URL_WIKIHOW} />
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+			<NavigationBar transparentButtons />
 		</View>
 	</SafeAreaView>
 );

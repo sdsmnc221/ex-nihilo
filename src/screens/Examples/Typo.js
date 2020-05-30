@@ -86,7 +86,7 @@ const TypoScreen = ({ navigation }) => {
 
 				<Title>Dataviz</Title>
 			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+			<NavigationBar transparentButtons />
 		</SafeAreaView>
 	);
 };

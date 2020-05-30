@@ -93,7 +93,7 @@ const SmsConversation = ({ route, navigation }) => {
 					<SmsInput />
 				</InputField>
 			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+			<NavigationBar transparentButtons />
 		</SafeAreaView>
 	);
 };

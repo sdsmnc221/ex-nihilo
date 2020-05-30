@@ -1,16 +1,16 @@
 import React from 'react';
 import { withTheme, css } from 'styled-components';
 import { View, Dimensions } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import AppIcon from 'sharedUI/AppIcon';
 import FlexDiv from 'sharedUI/FlexDiv';
 import NavigationBar from 'sharedUI/NavigationBar';
 
-import { ALL_APPS } from 'configs';
+import { ALL_APPS, SCREENS } from 'configs';
 import { chunk } from 'utils';
 
-const AllApps = ({ navigation, theme }) => {
+const AllAppsScreen = ({ navigation, theme }) => {
 	const deviceW = Dimensions.get('window').width;
 	const iconSize = (deviceW - 12) / 5 - 12;
 
@@ -30,7 +30,7 @@ const AllApps = ({ navigation, theme }) => {
 	const apps = chunk(ALL_APPS, 3);
 
 	return (
-		<SafeAreaView>
+		<LayoutWrapper screenName={SCREENS.ALL_APPS}>
 			<View
 				css={`
 					${theme.styles.body(null, 'flex-start')}
@@ -55,14 +55,10 @@ const AllApps = ({ navigation, theme }) => {
 						</FlexDiv>
 					))}
 				</View>
-				<NavigationBar
-					onPressHome={() => navigation.navigate('HomeScreen')}
-					transparent
-					black
-				/>
+				<NavigationBar transparentButtons transparentBG />
 			</View>
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 
-export default withTheme(AllApps);
+export default withTheme(AllAppsScreen);

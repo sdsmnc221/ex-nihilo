@@ -172,7 +172,7 @@ const EmailScreen = ({ navigation }) => {
 				</ScrollView>
 				<AddButton />
 			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+			<NavigationBar transparentButtons />
 		</SafeAreaView>
 	);
 };

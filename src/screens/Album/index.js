@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { SafeAreaView, StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import styled from 'styled-components';
 
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import NavigationBar from 'sharedUI/NavigationBar';
 import PasswordLock from 'sharedUI/PasswordLock';
 import PhotoThumbnail from './components/PhotoThumbnail';
+
+import { SCREENS } from 'configs';
 
 const PhotoGrid = styled.ScrollView`
 	width: 100%;
@@ -47,35 +50,29 @@ const AlbumScreen = ({ navigation }) => {
 				onInputPassword={(text) => setPasswordInput(text)}
 				onSubmitPassword={onSubmitPassword}
 			/>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+			<NavigationBar transparentButtons />
 		</Modal>
 	);
 
 	return (
-		<>
-			<SafeAreaView>
-				<View style={styles.body}>
-					<PhotoGrid contentContainerStyle={styles.photoGridContainer}>
-						{photos.slice(0, photoNb).map((p, i) => {
-							const { uri } = p.node.image;
-							return (
-								<PhotoThumbnail
-									key={i}
-									size={photoSize}
-									source={{ uri }}
-									onPress={() => navigation.navigate('AlbumPhotoScreen', { uri })}
-								/>
-							);
-						})}
-					</PhotoGrid>
-					{renderPasswordLock()}
-				</View>
-				<NavigationBar
-					onPressHome={() => navigation.navigate('HomeScreen')}
-					black
-				/>
-			</SafeAreaView>
-		</>
+		<LayoutWrapper screenName={SCREENS.ALBUM}>
+			<View style={styles.body}>
+				<PhotoGrid contentContainerStyle={styles.photoGridContainer}>
+					{photos.slice(0, photoNb).map((p, i) => {
+						const { uri } = p.node.image;
+						return (
+							<PhotoThumbnail
+								key={i}
+								size={photoSize}
+								source={{ uri }}
+								onPress={() => navigation.navigate('AlbumPhotoScreen', { uri })}
+							/>
+						);
+					})}
+				</PhotoGrid>
+				{renderPasswordLock()}
+			</View>
+		</LayoutWrapper>
 	);
 };
 

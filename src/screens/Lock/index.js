@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import styled, { withTheme } from 'styled-components';
 import { View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
 import BG_LOCKSCREEN from 'assets/images/BG-LockScreen.png';
 
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import BackgroundImage from 'sharedUI/BackgroundImage';
-import { KEY_PUZZLE_A } from 'configs';
-
 import PasswordLock from 'sharedUI/PasswordLock';
+
+import { KEY_PUZZLE_A } from 'configs';
 
 const Solid = styled.View`
 	position: absolute;
@@ -57,7 +57,7 @@ const LockScreen = ({ navigation, theme }) => {
 	const onSwipeRight = () => navigation.navigate('NotificationsScreen');
 
 	return (
-		<SafeAreaView>
+		<LayoutWrapper>
 			<GestureRecognizer onSwipeRight={onSwipeRight}>
 				<View
 					css={`
@@ -79,7 +79,7 @@ const LockScreen = ({ navigation, theme }) => {
 					/>
 				</View>
 			</GestureRecognizer>
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 

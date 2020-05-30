@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import styled, { withTheme } from 'styled-components';
-import { Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Text, View } from 'react-native';
 
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import Icon from 'sharedUI/Icon';
 
 const Loader = styled.Text`
@@ -19,13 +19,15 @@ const SplashScreen = ({ navigation, theme }) => {
 	}, [navigation]);
 
 	return (
-		<SafeAreaView
-			css={`
-				${theme.styles.body(theme.colors.black)}
-			`}>
-			<Icon type="LOGO" />
-			<Loader>loading</Loader>
-		</SafeAreaView>
+		<LayoutWrapper>
+			<View
+				css={`
+					${theme.styles.body(theme.colors.black)}
+				`}>
+				<Icon type="LOGO" />
+				<Loader>loading</Loader>
+			</View>
+		</LayoutWrapper>
 	);
 };
 

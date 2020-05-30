@@ -126,7 +126,7 @@ const EmailLoginScreen = ({ navigation }) => {
 					</Button>
 				</ContentContainer>
 			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+			<NavigationBar transparentButtons />
 		</SafeAreaView>
 	);
 };

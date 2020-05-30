@@ -151,7 +151,7 @@ const FacebookLoginScreen = ({ navigation }) => {
 					</LanguagesContainer>
 				</ContentContainer>
 			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+			<NavigationBar transparentButtons />
 		</SafeAreaView>
 	);
 };

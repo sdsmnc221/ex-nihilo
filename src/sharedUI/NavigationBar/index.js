@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
+import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 
 import Icon from 'sharedUI/Icon';
@@ -12,36 +13,45 @@ const Wrapper = styled.View`
 	height: 50px;
 	position: absolute;
 	bottom: 0;
-	background-color: ${({ transparent, theme }) =>
-		transparent ? 'transparent' : theme.colors.white};
+	background-color: ${({ transparentBG, theme }) =>
+		transparentBG ? 'transparent' : theme.colors.white};
 `;
 
-const NavigationBar = ({ onPressHome, black, transparent, theme }) => {
+const NavigationBar = ({ transparentButtons, transparentBG, theme }) => {
 	const { whiskey, white } = theme.colors;
+	const navigation = useNavigation();
+
+	const onPressBack = () => navigation.goBack();
+	const onPressHome = () => navigation.navigate('HomeScreen');
 
 	return (
-		<Wrapper transparent={transparent}>
-			<Icon type="NAVIGATION_BACK" color={black ? whiskey : white} />
+		<Wrapper transparentBG={transparentBG}>
+			<IconButton
+				type="NAVIGATION_BACK"
+				color={transparentButtons ? white : whiskey}
+				onPress={onPressBack}
+			/>
 			<IconButton
 				type="NAVIGATION_HOME"
-				color={black ? whiskey : white}
+				color={transparentButtons ? white : whiskey}
 				onPress={onPressHome}
 			/>
-			<Icon type="NAVIGATION_GLITCH" color={black ? whiskey : white} />
+			<Icon
+				type="NAVIGATION_GLITCH"
+				color={transparentButtons ? white : whiskey}
+			/>
 		</Wrapper>
 	);
 };
 
 NavigationBar.propTypes = {
-	onPressHome: PropTypes.func.isRequired,
-	black: PropTypes.bool,
-	transparent: PropTypes.bool,
+	transparentButtons: PropTypes.bool,
+	transparentBG: PropTypes.bool,
 };
 
 NavigationBar.defaultProps = {
-	onPressHome: () => {},
-	black: false,
-	transparent: false,
+	transparentButtons: false,
+	transparentBG: false,
 };
 
 export default withTheme(NavigationBar);

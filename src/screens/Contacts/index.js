@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
-import Contacts from 'react-native-contacts';
 import { useSelector } from 'react-redux';
+import Contacts from 'react-native-contacts';
 
-import { sortContact } from 'utils';
-
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import AddButton from 'sharedUI/Button/AddButton';
 import Contact from './components/Contact';
+
+import { sortContact } from 'utils';
+import { SCREENS } from 'configs';
 
 const ContactsScreen = ({ navigation }) => {
 	const [contacts, setContacts] = useState(
@@ -50,7 +50,7 @@ const ContactsScreen = ({ navigation }) => {
 	}, []);
 
 	return (
-		<SafeAreaView>
+		<LayoutWrapper screenName={SCREENS.CONTACTS}>
 			<View style={styles.body}>
 				<ScrollView contentContainerStyle={styles.scrollBody}>
 					{contacts.map((c, i) => (
@@ -73,8 +73,7 @@ const ContactsScreen = ({ navigation }) => {
 				</ScrollView>
 				<AddButton />
 			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 

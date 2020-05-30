@@ -198,7 +198,7 @@ const JanusConversation = ({ navigation, theme }) => {
 					</InputOverlay>
 				)}
 			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+			<NavigationBar transparentButtons />
 		</SafeAreaView>
 	);
 };

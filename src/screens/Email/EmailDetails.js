@@ -145,7 +145,7 @@ const EmailDetailsScreen = ({ route, navigation }) => {
 					</Group>
 				</ScrollView>
 			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+			<NavigationBar transparentButtons />
 		</SafeAreaView>
 	);
 };

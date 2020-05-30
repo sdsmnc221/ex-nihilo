@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styled, { withTheme } from 'styled-components';
 import { useSelector } from 'react-redux';
 import { View, Text, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
 import BG_LOCKSCREEN from 'assets/images/BG-LockScreen.png';
 
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import BackgroundImage from 'sharedUI/BackgroundImage';
 import Clock from 'sharedUI/Clock';
 import Notification from './components/Notification';
@@ -61,8 +61,8 @@ const NotificationsScreen = ({ route, navigation, theme }) => {
 	);
 
 	return (
-		<GestureRecognizer onSwipeLeft={onSwipeLeft}>
-			<SafeAreaView>
+		<LayoutWrapper>
+			<GestureRecognizer onSwipeLeft={onSwipeLeft}>
 				<View
 					css={`
 						${theme.styles.body()}
@@ -85,8 +85,8 @@ const NotificationsScreen = ({ route, navigation, theme }) => {
 					</NotificationsList>
 					<Swiper onPress={onSwipeLeft} />
 				</View>
-			</SafeAreaView>
-		</GestureRecognizer>
+			</GestureRecognizer>
+		</LayoutWrapper>
 	);
 };
 

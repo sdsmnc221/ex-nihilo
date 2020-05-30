@@ -20,7 +20,7 @@ const AlbumPhotoScreen = ({ route, navigation }) => {
 					resizeMode="contain"
 				/>
 			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+			<NavigationBar transparentButtons />
 		</SafeAreaView>
 	);
 };

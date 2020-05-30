@@ -167,7 +167,7 @@ const FacebookScreen = ({ navigation }) => {
 					</Feeds>
 				</ScrollView>
 			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+			<NavigationBar transparentButtons />
 		</SafeAreaView>
 	);
 };

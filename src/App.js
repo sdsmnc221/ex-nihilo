@@ -9,22 +9,26 @@ import {
 
 import moment from 'moment';
 import 'moment/locale/fr';
+
+import FullScreen from 'utils/FullScreen';
 import { LOCALE } from 'configs';
+import { SCREENS } from 'configs/constants';
 
 import StoreProvider from 'states/StoreProvider';
 import ThemeProvider from 'configs/ThemeProvider';
 
-import SplashScreen from 'screens/SplashScreen';
+import SplashScreen from 'screens/Splash';
 import WarningScreen from 'screens/Warning';
 import IntroScreen from 'screens/Intro';
-import NotificationsScreen from 'screens/LockScreen/Notifications';
-import LockScreen from 'screens/LockScreen';
+import NotificationsScreen from 'screens/Lock/Notifications';
+import LockScreen from 'screens/Lock';
 import HomeScreen from 'screens/Home';
+import AllAppsScreen from 'screens/AllApps';
 import SmsScreen from 'screens/SMS';
 import SmsConversation from 'screens/SMS/SmsConversation';
 import JanusConversation from './screens/SMS/JanusConversation';
-import ContactsScreen from 'screens/ContactsScreen';
-import ContactDetails from 'screens/ContactsScreen/ContactDetails';
+import ContactsScreen from 'screens/Contacts';
+import ContactDetails from 'screens/Contacts/ContactDetails';
 import AlbumScreen from 'screens/Album';
 import AlbumPhotoScreen from 'screens/Album/AlbumPhoto';
 import FacebookScreen from 'screens/Facebook';
@@ -32,15 +36,12 @@ import FacebookLoginScreen from 'screens/Facebook/FacebookLogin';
 import EmailScreen from 'screens/Email';
 import EmailDetailsScreen from 'screens/Email/EmailDetails';
 import EmailLoginScreen from 'screens/Email/EmailLogin';
-import InternetScreen from 'screens/InternetScreen';
-import AllApps from 'screens/AllApps';
+import InternetScreen from 'screens/Internet';
 
 // Example screens
 import TypoScreen from 'screens/Examples/Typo';
 
 import Notification from './sharedUI/Notification';
-
-import FullScreen from 'utils/FullScreen';
 
 const Stack = createStackNavigator();
 
@@ -67,90 +68,96 @@ const App = () => {
 					<NavigationContainer ref={navContainerRef}>
 						<Stack.Navigator>
 							<Stack.Screen
-								name="SplashScreen"
+								name={SCREENS.SPLASH}
 								component={SplashScreen}
 								options={{ headerShown: false }}
 							/>
 							<Stack.Screen
-								name="WarningScreen"
+								name={SCREENS.WARNING}
 								component={WarningScreen}
 								options={{ headerShown: false }}
 							/>
 							<Stack.Screen
-								name="IntroScreen"
+								name={SCREENS.INTRO}
 								component={IntroScreen}
 								options={{ headerShown: false }}
 							/>
 							<Stack.Screen
-								name="NotificationsScreen"
+								name={SCREENS.NOTIFICATIONS}
 								component={NotificationsScreen}
 								options={{ headerShown: false }}
 							/>
 							<Stack.Screen
-								name="LockScreen"
+								name={SCREENS.LOCK}
 								component={LockScreen}
 								options={{ headerShown: false }}
 							/>
 							<Stack.Screen
-								name="HomeScreen"
+								name={SCREENS.HOME}
 								component={HomeScreen}
 								options={{ headerShown: false }}
 							/>
 							<Stack.Screen
-								name="AllApps"
-								component={AllApps}
+								name={SCREENS.ALL_APPS}
+								component={AllAppsScreen}
 								options={{ headerShown: false }}
 							/>
 							<Stack.Screen
-								name="SmsScreen"
+								name={SCREENS.SMS}
 								component={SmsScreen}
 								options={{ headerShown: false }}
 							/>
-							<Stack.Screen name="SmsConversation" component={SmsConversation} />
-							<Stack.Screen name="JanusConversation" component={JanusConversation} />
 							<Stack.Screen
-								name="ContactsScreen"
+								name={SCREENS.SMS_CONVERSATION}
+								component={SmsConversation}
+							/>
+							<Stack.Screen name={SCREENS.SMS_JANUS} component={JanusConversation} />
+							<Stack.Screen
+								name={SCREENS.CONTACTS}
 								component={ContactsScreen}
 								options={{ title: 'Contacts', headerLeft: null }}
 							/>
-							<Stack.Screen name="ContactDetails" component={ContactDetails} />
 							<Stack.Screen
-								name="AlbumScreen"
+								name={SCREENS.CONTACTS_DETAILS}
+								component={ContactDetails}
+							/>
+							<Stack.Screen
+								name={SCREENS.ALBUM}
 								component={AlbumScreen}
 								options={{ title: 'Photos', headerLeft: null, headerShown: false }}
 							/>
 							<Stack.Screen
-								name="AlbumPhotoScreen"
+								name={SCREENS.ALBUM_PHOTO}
 								component={AlbumPhotoScreen}
 								options={{ headerShown: false }}
 							/>
 							<Stack.Screen
-								name="FacebookScreen"
+								name={SCREENS.FACEBOOK}
 								component={FacebookScreen}
 								options={{ headerShown: false }}
 							/>
 							<Stack.Screen
-								name="FacebookLoginScreen"
+								name={SCREENS.FACEBOOK_LOGIN}
 								component={FacebookLoginScreen}
 								options={{ headerShown: false }}
 							/>
 							<Stack.Screen
-								name="EmailScreen"
+								name={SCREENS.EMAIL}
 								component={EmailScreen}
 								options={{ headerShown: false }}
 							/>
 							<Stack.Screen
-								name="EmailLoginScreen"
+								name={SCREENS.EMAIL_LOGIN}
 								component={EmailLoginScreen}
 								options={{ headerShown: false }}
 							/>
 							<Stack.Screen
-								name="EmailDetailsScreen"
+								name={SCREENS.EMAIL_DETAILS}
 								component={EmailDetailsScreen}
 								options={{ title: '' }}
 							/>
 							<Stack.Screen
-								name="InternetScreen"
+								name={SCREENS.INTERNET}
 								component={InternetScreen}
 								options={{ headerShown: false }}
 							/>

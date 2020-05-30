@@ -55,7 +55,7 @@ const ContactDetails = ({ route, navigation }) => {
 					<Separator />
 				</Wrapper>
 			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
+			<NavigationBar transparentButtons />
 		</SafeAreaView>
 	);
 };

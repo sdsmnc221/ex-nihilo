@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { css, withTheme } from 'styled-components';
-import { StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScrollView } from 'react-native-gesture-handler';
-
-import Contacts from 'react-native-contacts';
 import { useSelector } from 'react-redux';
+import { StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import Contacts from 'react-native-contacts';
+
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
+import SmsShort from './components/SmsShort';
+import AddButton from 'sharedUI/Button/AddButton';
 
 import { shuffle } from 'utils';
-
-import SmsShort from './components/SmsShort';
-import NavigationBar from 'sharedUI/NavigationBar';
-import AddButton from 'sharedUI/Button/AddButton';
+import { SCREENS } from 'configs';
 
 const SmsScreen = ({ navigation, theme }) => {
 	const [contacts, setContacts] = useState(
@@ -52,7 +51,7 @@ const SmsScreen = ({ navigation, theme }) => {
 	});
 
 	return (
-		<SafeAreaView>
+		<LayoutWrapper screenName={SCREENS.SMS}>
 			<View
 				css={`
 					${css`
@@ -86,9 +85,7 @@ const SmsScreen = ({ navigation, theme }) => {
 				</ScrollView>
 				<AddButton />
 			</View>
-
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 

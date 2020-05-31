@@ -9,7 +9,6 @@ import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import Icon from 'sharedUI/Icon';
 
 import { fonts, colors } from 'configs/theme';
-import { SCREENS } from 'configs';
 
 const LogoContainer = styled.View`
 	width: 100%;
@@ -87,7 +86,7 @@ const Dot = styled.View`
 	margin: 0 8px;
 `;
 
-const FacebookLoginScreen = ({ navigation }) => {
+const FacebookLoginScreen = ({ route, navigation }) => {
 	const [emailInput, setEmailInput] = useState('sam.blanchard@gmail.com');
 	const [passwordInput, setPasswordInput] = useState('');
 	const [fbEmail, setFbEmail] = useState('sam.blanchard@gmail.com');
@@ -105,52 +104,50 @@ const FacebookLoginScreen = ({ navigation }) => {
 	};
 
 	return (
-		<LayoutWrapper screenName={SCREENS.FACEBOOK_LOGIN}>
-			<View style={styles.body}>
-				<LogoContainer>
-					<Icon type="FACEBOOK_XL" />
-				</LogoContainer>
-				<ContentContainer>
-					<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
-					{failed && <Text color="#DDD">Email ou mot de passe incorrect.</Text>}
-					<Input
-						value={passwordInput}
-						secureTextEntry
-						blurOnSubmit
-						onSubmitEditing={onSubmit}
-						onChangeText={(text) => setPasswordInput(text)}
-					/>
-					<Button onPress={onSubmit}>
-						<StyledText size={14} bold>
-							Connexion
+		<LayoutWrapper screenName={route.name}>
+			<LogoContainer>
+				<Icon type="FACEBOOK_XL" />
+			</LogoContainer>
+			<ContentContainer>
+				<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
+				{failed && <Text color="#DDD">Email ou mot de passe incorrect.</Text>}
+				<Input
+					value={passwordInput}
+					secureTextEntry
+					blurOnSubmit
+					onSubmitEditing={onSubmit}
+					onChangeText={(text) => setPasswordInput(text)}
+				/>
+				<Button onPress={onSubmit}>
+					<StyledText size={14} bold>
+						Connexion
+					</StyledText>
+				</Button>
+				<SeparatorContainer>
+					<StyledText size={13} bold>
+						Mot de passe oublié ?
+					</StyledText>
+					<Separator>
+						<Line />
+						<StyledText size={10} margin="0 16px">
+							ou
 						</StyledText>
-					</Button>
-					<SeparatorContainer>
-						<StyledText size={13} bold>
-							Mot de passe oublié ?
-						</StyledText>
-						<Separator>
-							<Line />
-							<StyledText size={10} margin="0 16px">
-								ou
-							</StyledText>
-							<Line />
-						</Separator>
-					</SeparatorContainer>
-					<Button>
-						<StyledText size={14} bold>
-							Créer un nouveau compte Facebook
-						</StyledText>
-					</Button>
-					<LanguagesContainer>
-						<StyledText size={9}>English</StyledText>
-						<Dot />
-						<StyledText size={9}>Español</StyledText>
-						<Dot />
-						<StyledText size={9}>Plus...</StyledText>
-					</LanguagesContainer>
-				</ContentContainer>
-			</View>
+						<Line />
+					</Separator>
+				</SeparatorContainer>
+				<Button>
+					<StyledText size={14} bold>
+						Créer un nouveau compte Facebook
+					</StyledText>
+				</Button>
+				<LanguagesContainer>
+					<StyledText size={9}>English</StyledText>
+					<Dot />
+					<StyledText size={9}>Español</StyledText>
+					<Dot />
+					<StyledText size={9}>Plus...</StyledText>
+				</LanguagesContainer>
+			</ContentContainer>
 		</LayoutWrapper>
 	);
 };

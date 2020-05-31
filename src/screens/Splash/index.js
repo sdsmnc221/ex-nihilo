@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { Text, View } from 'react-native';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
@@ -13,22 +13,17 @@ const Loader = styled.Text`
 	letter-spacing: 0.75px;
 `;
 
-const SplashScreen = ({ navigation, theme }) => {
+const SplashScreen = ({ route, navigation }) => {
 	useEffect(() => {
 		setTimeout(() => navigation.navigate('WarningScreen'), 3200);
 	}, [navigation]);
 
 	return (
-		<LayoutWrapper>
-			<View
-				css={`
-					${theme.styles.body(theme.colors.black)}
-				`}>
-				<Icon type="LOGO" />
-				<Loader>loading</Loader>
-			</View>
+		<LayoutWrapper screenName={route.name}>
+			<Icon type="LOGO" />
+			<Loader>loading</Loader>
 		</LayoutWrapper>
 	);
 };
 
-export default withTheme(SplashScreen);
+export default SplashScreen;

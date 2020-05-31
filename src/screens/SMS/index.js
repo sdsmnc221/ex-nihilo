@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { css, withTheme } from 'styled-components';
+import { css } from 'styled-components';
 import { useSelector } from 'react-redux';
+import Contacts from 'react-native-contacts';
 import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import Contacts from 'react-native-contacts';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import SmsShort from './components/SmsShort';
 import AddButton from 'sharedUI/Button/AddButton';
 
 import { shuffle } from 'utils';
-import { SCREENS } from 'configs';
 
-const SmsScreen = ({ navigation, theme }) => {
+const SmsScreen = ({ route, navigation }) => {
 	const [contacts, setContacts] = useState(
 		useSelector((state) => state.contacts).map(
 			(contact) => contact.name || contact.phoneNumber
@@ -51,40 +50,33 @@ const SmsScreen = ({ navigation, theme }) => {
 	});
 
 	return (
-		<LayoutWrapper screenName={SCREENS.SMS}>
-			<View
-				css={`
-					${css`
-						${theme.styles.body()}
-					`}
-				`}>
-				<ScrollView contentContainerStyle={styles.scrollBody}>
+		<LayoutWrapper screenName={route.name}>
+			<ScrollView contentContainerStyle={styles.scrollBody}>
+				<SmsShort
+					date="À l'instant"
+					title="Janus"
+					message="Bonjour toi"
+					onPress={() =>
+						navigation.navigate('JanusConversationScreen', {
+							headerTitle: 'Janus',
+						})
+					}
+				/>
+				{smsList.map((s, i) => (
 					<SmsShort
-						date="À l'instant"
-						title="Janus"
-						message="Bonjour toi"
+						key={i}
+						date={s.date}
+						title={s.title}
+						message={s.message}
 						onPress={() =>
-							navigation.navigate('JanusConversationScreen', {
-								headerTitle: 'Janus',
+							navigation.navigate('SmsConversationScreen', {
+								headerTitle: s.title,
 							})
 						}
 					/>
-					{smsList.map((s, i) => (
-						<SmsShort
-							key={i}
-							date={s.date}
-							title={s.title}
-							message={s.message}
-							onPress={() =>
-								navigation.navigate('SmsConversationScreen', {
-									headerTitle: s.title,
-								})
-							}
-						/>
-					))}
-				</ScrollView>
-				<AddButton />
-			</View>
+				))}
+			</ScrollView>
+			<AddButton />
 		</LayoutWrapper>
 	);
 };
@@ -97,4 +89,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default withTheme(SmsScreen);
+export default SmsScreen;

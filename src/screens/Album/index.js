@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
-import styled from 'styled-components';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import NavigationBar from 'sharedUI/NavigationBar';
 import PasswordLock from 'sharedUI/PasswordLock';
 import PhotoThumbnail from './components/PhotoThumbnail';
-
-import { SCREENS } from 'configs';
 
 const PhotoGrid = styled.ScrollView`
 	width: 100%;
@@ -17,7 +15,7 @@ const PhotoGrid = styled.ScrollView`
 	margin-bottom: 40px;
 `;
 
-const AlbumScreen = ({ navigation }) => {
+const AlbumScreen = ({ route, navigation }) => {
 	const { gallery } = useSelector((state) => state.deviceData);
 
 	const deviceW = Dimensions.get('window').width;
@@ -55,23 +53,21 @@ const AlbumScreen = ({ navigation }) => {
 	);
 
 	return (
-		<LayoutWrapper screenName={SCREENS.ALBUM}>
-			<View style={styles.body}>
-				<PhotoGrid contentContainerStyle={styles.photoGridContainer}>
-					{photos.slice(0, photoNb).map((p, i) => {
-						const { uri } = p.node.image;
-						return (
-							<PhotoThumbnail
-								key={i}
-								size={photoSize}
-								source={{ uri }}
-								onPress={() => navigation.navigate('AlbumPhotoScreen', { uri })}
-							/>
-						);
-					})}
-				</PhotoGrid>
-				{renderPasswordLock()}
-			</View>
+		<LayoutWrapper screenName={route.name}>
+			<PhotoGrid contentContainerStyle={styles.photoGridContainer}>
+				{photos.slice(0, photoNb).map((p, i) => {
+					const { uri } = p.node.image;
+					return (
+						<PhotoThumbnail
+							key={i}
+							size={photoSize}
+							source={{ uri }}
+							onPress={() => navigation.navigate('AlbumPhotoScreen', { uri })}
+						/>
+					);
+				})}
+			</PhotoGrid>
+			{renderPasswordLock()}
 		</LayoutWrapper>
 	);
 };

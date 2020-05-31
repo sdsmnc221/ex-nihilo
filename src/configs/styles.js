@@ -7,6 +7,10 @@ const { acumin, cairo, sourceSans, superclarendon } = fonts;
 const { sizes } = typo;
 const { JUSTIFY_CONTENT, ALIGN_ITEMS, FLEX_DIRECTION } = FLEX;
 
+const additionalStyles = {};
+
+export { additionalStyles };
+
 export default {
 	safeAreaView: (gapForStatusBar, backgroundColor) => css`
 		background-color: ${backgroundColor || colors.ghostWhite};

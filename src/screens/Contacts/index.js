@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import Contacts from 'react-native-contacts';
+import { StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import AddButton from 'sharedUI/Button/AddButton';
 import Contact from './components/Contact';
 
 import { sortContact } from 'utils';
-import { SCREENS } from 'configs';
 
-const ContactsScreen = ({ navigation }) => {
+const ContactsScreen = ({ route, navigation }) => {
 	const [contacts, setContacts] = useState(
 		useSelector((state) => state.contacts).map((contact) => ({
 			name: contact.name,
@@ -50,29 +49,27 @@ const ContactsScreen = ({ navigation }) => {
 	}, []);
 
 	return (
-		<LayoutWrapper screenName={SCREENS.CONTACTS}>
-			<View style={styles.body}>
-				<ScrollView contentContainerStyle={styles.scrollBody}>
-					{contacts.map((c, i) => (
-						<Contact
-							key={i}
-							contact={c}
-							firstLetter={c.name ? c.name.charAt(0) : '#'}
-							onPress={() =>
-								navigation.navigate('ContactDetailsScreen', {
-									title: '',
-									headerStyle: {
-										elevation: 0,
-									},
-									contact: c,
-									firstLetter: c.name ? c.name.charAt(0) : '#',
-								})
-							}
-						/>
-					))}
-				</ScrollView>
-				<AddButton />
-			</View>
+		<LayoutWrapper screenName={route.name}>
+			<ScrollView contentContainerStyle={styles.scrollBody}>
+				{contacts.map((c, i) => (
+					<Contact
+						key={i}
+						contact={c}
+						firstLetter={c.name ? c.name.charAt(0) : '#'}
+						onPress={() =>
+							navigation.navigate('ContactDetailsScreen', {
+								title: '',
+								headerStyle: {
+									elevation: 0,
+								},
+								contact: c,
+								firstLetter: c.name ? c.name.charAt(0) : '#',
+							})
+						}
+					/>
+				))}
+			</ScrollView>
+			<AddButton />
 		</LayoutWrapper>
 	);
 };

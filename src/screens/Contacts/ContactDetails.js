@@ -6,8 +6,6 @@ import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import AppIcon from 'sharedUI/AppIcon';
 import PlaceHolder from 'sharedUI/PlaceHolder';
 
-import { SCREENS } from 'configs';
-
 const Wrapper = styled.View`
 	width: 75%;
 	display: flex;
@@ -30,7 +28,7 @@ const ContactDetailsScreen = ({ route, navigation }) => {
 	navigation.setOptions({ title, headerStyle });
 
 	return (
-		<LayoutWrapper screenName={SCREENS.CONTACTS_DETAILS}>
+		<LayoutWrapper screenName={route.name}>
 			<View style={styles.body}>
 				<PlaceHolder
 					color="#c4c4c4"

@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import styled, { withTheme } from 'styled-components';
 import { useSelector } from 'react-redux';
 import { StyleSheet, View, Text } from 'react-native';
-import { HeaderBackButton } from '@react-navigation/stack';
 import { TextInput } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
@@ -13,7 +12,6 @@ import SmsInput from './components/SmsInput';
 import DialogueMessage from 'data/classes/DialogueMessage';
 
 import { find } from 'utils';
-import { SCREENS } from 'configs';
 
 const SmsList = styled.ScrollView`
 	width: 100%;
@@ -91,14 +89,7 @@ const ChoicesContent = ({ script, activeChoiceIndex, onPressChoice }) => {
 	return content;
 };
 
-const JanusConversationScreen = ({ navigation, theme }) => {
-	navigation.setOptions({
-		headerTitle: 'Janus',
-		headerLeft: () => (
-			<HeaderBackButton onPress={() => navigation.navigate('SmsScreen')} />
-		),
-	});
-
+const JanusConversationScreen = ({ route, navigation, theme }) => {
 	const smsListRef = useRef(null);
 
 	const [openInput, setOpenInput] = useState(false);
@@ -156,7 +147,7 @@ const JanusConversationScreen = ({ navigation, theme }) => {
 	}, [activeScript]);
 
 	return (
-		<LayoutWrapper screenName={SCREENS.SMS_JANUS}>
+		<LayoutWrapper screenName={route.name}>
 			<View style={styles.body}>
 				<SmsList
 					ref={smsListRef}

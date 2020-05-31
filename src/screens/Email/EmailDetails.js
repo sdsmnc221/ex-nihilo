@@ -1,13 +1,14 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components';
+import { StyleSheet, View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import StarButton from 'sharedUI/Button/StarButton';
 import PlaceHolder from 'sharedUI/PlaceHolder';
 import IconButton from 'sharedUI/Button/IconButton';
+
+import { SCREENS } from 'configs';
 
 const Header = styled.View`
 	width: 100%;
@@ -91,7 +92,7 @@ const EmailDetailsScreen = ({ route, navigation }) => {
 	const groupButtons = ['Répondre', 'Répondre à tous', 'Transférer'];
 
 	return (
-		<SafeAreaView>
+		<LayoutWrapper screenName={SCREENS.EMAIL_DETAILS}>
 			<View style={styles.body}>
 				<ScrollView contentContainerStyle={styles.scrollBody}>
 					<Header>
@@ -145,8 +146,7 @@ const EmailDetailsScreen = ({ route, navigation }) => {
 					</Group>
 				</ScrollView>
 			</View>
-			<NavigationBar transparentButtons />
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 

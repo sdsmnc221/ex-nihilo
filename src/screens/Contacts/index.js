@@ -59,7 +59,7 @@ const ContactsScreen = ({ navigation }) => {
 							contact={c}
 							firstLetter={c.name ? c.name.charAt(0) : '#'}
 							onPress={() =>
-								navigation.navigate('ContactDetails', {
+								navigation.navigate('ContactDetailsScreen', {
 									title: '',
 									headerStyle: {
 										elevation: 0,

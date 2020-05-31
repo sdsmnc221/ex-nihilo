@@ -1,13 +1,14 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components';
+import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import PlaceHolder from 'sharedUI/PlaceHolder';
 import AddButton from 'sharedUI/Button/AddButton';
 import FacebookPost from './components/FacebookPost';
+
+import { SCREENS } from 'configs';
 
 const Header = styled.View`
 	width: 100%;
@@ -111,7 +112,7 @@ const FacebookScreen = ({ navigation }) => {
 	];
 
 	return (
-		<SafeAreaView>
+		<LayoutWrapper screenName={SCREENS.FACEBOOK}>
 			<View style={styles.body}>
 				<ScrollView contentContainerStyle={styles.scrollBody}>
 					<Header>
@@ -167,8 +168,7 @@ const FacebookScreen = ({ navigation }) => {
 					</Feeds>
 				</ScrollView>
 			</View>
-			<NavigationBar transparentButtons />
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 

@@ -1,15 +1,16 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, View, Image, Dimensions } from 'react-native';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
+
+import { SCREENS } from 'configs';
 
 const AlbumPhotoScreen = ({ route, navigation }) => {
 	const { uri } = route.params;
 	const { width: deviceW, height: deviceH } = Dimensions.get('window');
 
 	return (
-		<SafeAreaView>
+		<LayoutWrapper screenName={SCREENS.ALBUM_PHOTO}>
 			<View style={styles.body}>
 				<Image
 					style={{
@@ -20,8 +21,7 @@ const AlbumPhotoScreen = ({ route, navigation }) => {
 					resizeMode="contain"
 				/>
 			</View>
-			<NavigationBar transparentButtons />
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 

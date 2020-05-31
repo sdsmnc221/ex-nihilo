@@ -1,11 +1,12 @@
 import React, { useRef } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components';
+import { StyleSheet, View, Text } from 'react-native';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import SmsMessage from './components/SmsMessage';
 import SmsInput from './components/SmsInput';
+
+import { SCREENS } from 'configs';
 
 const SmsList = styled.ScrollView`
 	width: 100%;
@@ -24,14 +25,14 @@ const InputField = styled.View`
 	margin-top: 12px;
 `;
 
-const SmsConversation = ({ route, navigation }) => {
+const SmsConversationScreen = ({ route, navigation }) => {
 	const { headerTitle } = route.params;
 	navigation.setOptions({ headerTitle });
 
 	const smsListRef = useRef(null);
 
 	return (
-		<SafeAreaView>
+		<LayoutWrapper screenName={SCREENS.SMS_CONVERSATION}>
 			<View style={styles.body}>
 				<SmsList
 					ref={smsListRef}
@@ -93,8 +94,7 @@ const SmsConversation = ({ route, navigation }) => {
 					<SmsInput />
 				</InputField>
 			</View>
-			<NavigationBar transparentButtons />
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 
@@ -109,4 +109,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default SmsConversation;
+export default SmsConversationScreen;

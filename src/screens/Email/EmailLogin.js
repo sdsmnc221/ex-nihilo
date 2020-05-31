@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components';
+import { StyleSheet, View, Text } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 import { KEY_PUZZLE_D } from 'configs';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import Icon from 'sharedUI/Icon';
+
+import { SCREENS } from 'configs';
 
 const LogoContainer = styled.View`
 	width: 100%;
@@ -92,7 +93,7 @@ const EmailLoginScreen = ({ navigation }) => {
 	};
 
 	return (
-		<SafeAreaView>
+		<LayoutWrapper screenName={SCREENS.EMAIL_LOGIN}>
 			<View style={styles.body}>
 				<LogoContainer>
 					<Icon type="EMAIL_XL" />
@@ -126,8 +127,7 @@ const EmailLoginScreen = ({ navigation }) => {
 					</Button>
 				</ContentContainer>
 			</View>
-			<NavigationBar transparentButtons />
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 

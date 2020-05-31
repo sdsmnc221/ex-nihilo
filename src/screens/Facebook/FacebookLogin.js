@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components';
+import { StyleSheet, View, Text } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 import { KEY_PUZZLE_C } from 'configs';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import Icon from 'sharedUI/Icon';
 
 import { fonts, colors } from 'configs/theme';
+import { SCREENS } from 'configs';
 
 const LogoContainer = styled.View`
 	width: 100%;
@@ -105,7 +105,7 @@ const FacebookLoginScreen = ({ navigation }) => {
 	};
 
 	return (
-		<SafeAreaView>
+		<LayoutWrapper screenName={SCREENS.FACEBOOK_LOGIN}>
 			<View style={styles.body}>
 				<LogoContainer>
 					<Icon type="FACEBOOK_XL" />
@@ -151,8 +151,7 @@ const FacebookLoginScreen = ({ navigation }) => {
 					</LanguagesContainer>
 				</ContentContainer>
 			</View>
-			<NavigationBar transparentButtons />
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 

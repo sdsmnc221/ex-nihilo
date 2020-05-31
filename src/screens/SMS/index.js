@@ -64,7 +64,7 @@ const SmsScreen = ({ navigation, theme }) => {
 						title="Janus"
 						message="Bonjour toi"
 						onPress={() =>
-							navigation.navigate('JanusConversation', {
+							navigation.navigate('JanusConversationScreen', {
 								headerTitle: 'Janus',
 							})
 						}
@@ -76,7 +76,7 @@ const SmsScreen = ({ navigation, theme }) => {
 							title={s.title}
 							message={s.message}
 							onPress={() =>
-								navigation.navigate('SmsConversation', {
+								navigation.navigate('SmsConversationScreen', {
 									headerTitle: s.title,
 								})
 							}

@@ -25,10 +25,10 @@ import LockScreen from 'screens/Lock';
 import HomeScreen from 'screens/Home';
 import AllAppsScreen from 'screens/AllApps';
 import SmsScreen from 'screens/SMS';
-import SmsConversation from 'screens/SMS/SmsConversation';
-import JanusConversation from './screens/SMS/JanusConversation';
+import SmsConversationScreen from 'screens/SMS/SmsConversation';
+import JanusConversationScreen from './screens/SMS/JanusConversation';
 import ContactsScreen from 'screens/Contacts';
-import ContactDetails from 'screens/Contacts/ContactDetails';
+import ContactDetailsScreen from 'screens/Contacts/ContactDetails';
 import AlbumScreen from 'screens/Album';
 import AlbumPhotoScreen from 'screens/Album/AlbumPhoto';
 import FacebookScreen from 'screens/Facebook';
@@ -109,9 +109,12 @@ const App = () => {
 							/>
 							<Stack.Screen
 								name={SCREENS.SMS_CONVERSATION}
-								component={SmsConversation}
+								component={SmsConversationScreen}
 							/>
-							<Stack.Screen name={SCREENS.SMS_JANUS} component={JanusConversation} />
+							<Stack.Screen
+								name={SCREENS.SMS_JANUS}
+								component={JanusConversationScreen}
+							/>
 							<Stack.Screen
 								name={SCREENS.CONTACTS}
 								component={ContactsScreen}
@@ -119,7 +122,7 @@ const App = () => {
 							/>
 							<Stack.Screen
 								name={SCREENS.CONTACTS_DETAILS}
-								component={ContactDetails}
+								component={ContactDetailsScreen}
 							/>
 							<Stack.Screen
 								name={SCREENS.ALBUM}

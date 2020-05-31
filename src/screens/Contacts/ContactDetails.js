@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components';
+import { StyleSheet, View, Text } from 'react-native';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import AppIcon from 'sharedUI/AppIcon';
-
 import PlaceHolder from 'sharedUI/PlaceHolder';
+
+import { SCREENS } from 'configs';
+
 const Wrapper = styled.View`
 	width: 75%;
 	display: flex;
@@ -22,14 +23,14 @@ const Separator = styled.View`
 	margin-top: 10px;
 `;
 
-const ContactDetails = ({ route, navigation }) => {
+const ContactDetailsScreen = ({ route, navigation }) => {
 	const { contact } = route.params;
 	const { firstLetter } = route.params;
 	const { title, headerStyle } = route.params;
 	navigation.setOptions({ title, headerStyle });
 
 	return (
-		<SafeAreaView>
+		<LayoutWrapper screenName={SCREENS.CONTACTS_DETAILS}>
 			<View style={styles.body}>
 				<PlaceHolder
 					color="#c4c4c4"
@@ -55,8 +56,7 @@ const ContactDetails = ({ route, navigation }) => {
 					<Separator />
 				</Wrapper>
 			</View>
-			<NavigationBar transparentButtons />
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 
@@ -73,4 +73,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default ContactDetails;
+export default ContactDetailsScreen;

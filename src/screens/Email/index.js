@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components';
+import { StyleSheet, View, Text } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import AddButton from 'sharedUI/Button/AddButton';
 import IconButton from 'sharedUI/Button/IconButton';
 import EmailShort from './components/EmailShort';
 
 import { random } from 'utils';
+import { SCREENS } from 'configs';
 
 const Header = styled.View`
 	width: 100%;
@@ -134,7 +134,7 @@ const EmailScreen = ({ navigation }) => {
 	];
 
 	return (
-		<SafeAreaView>
+		<LayoutWrapper screenName={SCREENS.EMAIL}>
 			<View style={styles.body}>
 				<ScrollView contentContainerStyle={styles.scrollBody}>
 					<Header>
@@ -172,8 +172,7 @@ const EmailScreen = ({ navigation }) => {
 				</ScrollView>
 				<AddButton />
 			</View>
-			<NavigationBar transparentButtons />
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 

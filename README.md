@@ -46,11 +46,36 @@ $ react-native link
 $ react-native run-android
 ```
 
-## About WebView Screen
+## About Layout Wrapper
 
-- Checkout [WebScreen component](./src/sharedUI/WebScreen/index.js).
+- The [`LayoutWrapper` component](./src/sharedUI/LayoutWrapper/index.js) wraps around each screen, provides it with a `SafeAreaView` and, if necessary, common component such as:
 
-- Checkout [InternetScreen, a "fake" screen using react-native-webview](./src/screens/InternetScreen/index.js).
+  - [`NavigationBar`](./src/sharedUI/NavigationBar/index.js)
+  - [`StatusBar`](./src/sharedUI/StatusBar/index.js)
+
+- Pass (or not) to the `LayoutWrapper` the prop `screenName`, and base on it the [`getLayoutConfigs` function](./src/sharedUI/LayoutWrapper/configs.js) will provide the right layout for each screen:
+
+```javascript
+// ./src/screens/Home/index.js
+
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
+import { SCREENS } from 'configs';
+
+<LayoutWrapper screenName={SCREENS.HOME}>
+	<View>{/* Screen Content */}</View>
+</LayoutWrapper>;
+```
+
+```javascript
+// ./src/screens/Intro/index.js
+
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
+import { SCREENS } from 'configs';
+
+<LayoutWrapper>
+	<View>{/* Screen Content */}</View>
+</LayoutWrapper>;
+```
 
 ## Built With
 

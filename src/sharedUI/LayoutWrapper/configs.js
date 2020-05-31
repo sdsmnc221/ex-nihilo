@@ -51,8 +51,18 @@ const getLayoutConfigs = (screen) => {
 			};
 			break;
 		case SCREENS.SMS:
+		case SCREENS.SMS_CONVERSATION:
+		case SCREENS.SMS_JANUS:
 		case SCREENS.CONTACTS:
+		case SCREENS.CONTACTS_DETAILS:
 		case SCREENS.ALBUM:
+		case SCREENS.ALBUM_PHOTO:
+		case SCREENS.FACEBOOK:
+		case SCREENS.FACEBOOK_LOGIN:
+		case SCREENS.EMAIL:
+		case SCREENS.EMAIL_LOGIN:
+		case SCREENS.EMAIL_DETAILS:
+		case SCREENS.INTERNET:
 			configs = {
 				navigationBar: true,
 				navigationBarConfigs: navigationBarConfigs.whiteColor,

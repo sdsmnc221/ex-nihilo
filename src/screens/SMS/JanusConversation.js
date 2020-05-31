@@ -1,12 +1,11 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { HeaderBackButton } from '@react-navigation/stack';
-import { TextInput } from 'react-native-gesture-handler';
 import styled, { withTheme } from 'styled-components';
 import { useSelector } from 'react-redux';
+import { StyleSheet, View, Text } from 'react-native';
+import { HeaderBackButton } from '@react-navigation/stack';
+import { TextInput } from 'react-native-gesture-handler';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import SmsMessage from './components/SmsMessage';
 import AnswerChoice from './components/AnswerChoice';
 import SmsInput from './components/SmsInput';
@@ -14,6 +13,7 @@ import SmsInput from './components/SmsInput';
 import DialogueMessage from 'data/classes/DialogueMessage';
 
 import { find } from 'utils';
+import { SCREENS } from 'configs';
 
 const SmsList = styled.ScrollView`
 	width: 100%;
@@ -91,7 +91,7 @@ const ChoicesContent = ({ script, activeChoiceIndex, onPressChoice }) => {
 	return content;
 };
 
-const JanusConversation = ({ navigation, theme }) => {
+const JanusConversationScreen = ({ navigation, theme }) => {
 	navigation.setOptions({
 		headerTitle: 'Janus',
 		headerLeft: () => (
@@ -156,7 +156,7 @@ const JanusConversation = ({ navigation, theme }) => {
 	}, [activeScript]);
 
 	return (
-		<SafeAreaView>
+		<LayoutWrapper screenName={SCREENS.SMS_JANUS}>
 			<View style={styles.body}>
 				<SmsList
 					ref={smsListRef}
@@ -198,8 +198,7 @@ const JanusConversation = ({ navigation, theme }) => {
 					</InputOverlay>
 				)}
 			</View>
-			<NavigationBar transparentButtons />
-		</SafeAreaView>
+		</LayoutWrapper>
 	);
 };
 
@@ -219,4 +218,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default withTheme(JanusConversation);
+export default withTheme(JanusConversationScreen);

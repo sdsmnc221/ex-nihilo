@@ -1,4 +1,4 @@
-import { SCREENS } from 'configs/constants';
+import { SCREENS } from 'configs';
 
 const navigationBarConfigs = {
 	transparentWhite: {

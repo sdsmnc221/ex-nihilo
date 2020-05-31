@@ -33,7 +33,7 @@ const HomeScreen = ({ navigation, theme }) => {
 		<LayoutWrapper screenName={SCREENS.HOME}>
 			<View
 				css={`
-					${theme.styles.body()}
+					${theme.styles.body(null, null, null, false)}
 				`}>
 				<BackgroundImage source={BG_HOMESCREEN} />
 				<Clock />
@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation, theme }) => {
 							type={app.iconType}
 							size={iconSize}
 							notifs={app.notifs}
-							{...app.screen && { onPress: () => onPress(app.screen) }}
+							{...(app.screen && { onPress: () => onPress(app.screen) })}
 							withSpacing
 						/>
 					))}

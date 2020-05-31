@@ -48,6 +48,7 @@ const getLayoutConfigs = (screen) => {
 				navigationBarConfigs: navigationBarConfigs.transparentColor,
 				statusBar: true,
 				statusBarConfigs: statusBarConfigs.lightColorText,
+				gapForStatusBar: true,
 			};
 			break;
 		case SCREENS.SMS:
@@ -68,6 +69,7 @@ const getLayoutConfigs = (screen) => {
 				navigationBarConfigs: navigationBarConfigs.whiteColor,
 				statusBar: true,
 				statusBarConfigs: statusBarConfigs.lightColorText,
+				gapForStatusBar: true,
 			};
 			break;
 		default:

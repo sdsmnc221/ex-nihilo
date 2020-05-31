@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withTheme } from 'styled-components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import NavigationBar from 'sharedUI/NavigationBar';
@@ -7,16 +8,20 @@ import StatusBar from 'sharedUI/StatusBar';
 
 import getLayoutConfigs from './configs';
 
-const LayoutWrapper = ({ children, screenName }) => {
+const LayoutWrapper = ({ theme, children, screenName }) => {
 	const {
 		navigationBar,
 		navigationBarConfigs,
 		statusBar,
 		statusBarConfigs,
+		gapForStatusBar,
 	} = getLayoutConfigs(screenName);
 
 	return (
-		<SafeAreaView>
+		<SafeAreaView
+			css={`
+				${theme.styles.safeAreaView(gapForStatusBar)}
+			`}>
 			{children}
 			{statusBar && <StatusBar {...statusBarConfigs} />}
 			{navigationBar && <NavigationBar {...navigationBarConfigs} />}
@@ -33,4 +38,4 @@ LayoutWrapper.PropTypes = {
 	screenName: null,
 };
 
-export default LayoutWrapper;
+export default withTheme(LayoutWrapper);

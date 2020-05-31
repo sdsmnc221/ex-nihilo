@@ -13,6 +13,7 @@ import 'moment/locale/fr';
 import FullScreen from 'utils/FullScreen';
 import { LOCALE } from 'configs';
 import { SCREENS } from 'configs/constants';
+import { DEFAULT_HEADER_OPTIONS as headerOptions } from 'sharedUI/Header/configs';
 
 import StoreProvider from 'states/StoreProvider';
 import ThemeProvider from 'configs/ThemeProvider';
@@ -70,110 +71,109 @@ const App = () => {
 							<Stack.Screen
 								name={SCREENS.SPLASH}
 								component={SplashScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.WARNING}
 								component={WarningScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.INTRO}
 								component={IntroScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.NOTIFICATIONS}
 								component={NotificationsScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.LOCK}
 								component={LockScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.HOME}
 								component={HomeScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.ALL_APPS}
 								component={AllAppsScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.SMS}
 								component={SmsScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.SMS_CONVERSATION}
 								component={SmsConversationScreen}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.SMS_JANUS}
 								component={JanusConversationScreen}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.CONTACTS}
 								component={ContactsScreen}
-								options={{ title: 'Contacts', headerLeft: null }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.CONTACTS_DETAILS}
 								component={ContactDetailsScreen}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.ALBUM}
 								component={AlbumScreen}
-								options={{ title: 'Photos', headerLeft: null, headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.ALBUM_PHOTO}
 								component={AlbumPhotoScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.FACEBOOK}
 								component={FacebookScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.FACEBOOK_LOGIN}
 								component={FacebookLoginScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.EMAIL}
 								component={EmailScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.EMAIL_LOGIN}
 								component={EmailLoginScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.EMAIL_DETAILS}
 								component={EmailDetailsScreen}
-								options={{ title: '' }}
+								options={headerOptions}
 							/>
 							<Stack.Screen
 								name={SCREENS.INTERNET}
 								component={InternetScreen}
-								options={{ headerShown: false }}
+								options={headerOptions}
 							/>
 
 							{/* Example Screens */}
 							<Stack.Screen
 								name="TypoScreen"
 								component={TypoScreen}
-								options={{
-									title: 'Typo Example',
-									headerLeft: null,
-									headerShown: false,
-								}}
+								options={headerOptions}
 							/>
 						</Stack.Navigator>
 						{/* <Notification

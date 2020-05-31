@@ -44,7 +44,6 @@
     "react-native-svg": "^12.0.3",
     "react-native-swipe-gestures": "^1.0.4",
     "react-native-webview": "^8.0.3",
-    "react-navigation": "^4.3.9",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",

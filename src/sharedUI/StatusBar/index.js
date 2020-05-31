@@ -14,28 +14,32 @@ const Wrapper = styled.View`
 `;
 
 const Clock = styled.Text`
-	font-family: ${({ theme }) => theme.fonts.cairo.semiBold};
+	font-family: ${({ light, theme }) =>
+		light ? theme.fonts.cairo.semiBold : theme.fonts.superclarendon};
 	font-size: ${({ theme }) => theme.typo.sizes.body};
+	letter-spacing: ${({ light }) => (light ? 0 : -1)}px;
 	color: ${({ whiteText, theme }) =>
 		whiteText ? theme.colors.white : theme.colors.whiskey};
 	top: 1px;
 	margin-left: 10px;
 `;
 
-const StatusBar = ({ light, whiteText, theme }) => {
+const StatusBar = ({ light, whiteText }) => {
 	return (
 		<Wrapper>
-			<StyledIcon type="WIFI_LIGHT" />
-			<StyledIcon type="CELLULAR_LIGHT" />
+			<StyledIcon type={`WIFI_${light ? 'LIGHT' : 'DARK'}`} />
+			<StyledIcon type={`CELLULAR_${light ? 'LIGHT' : 'DARK'}`} />
 			<StyledIcon
-				type="BATTERY_LIGHT"
+				type={`BATTERY_${light ? 'LIGHT' : 'DARK'}`}
 				additionalStyle={`
 					${css`
 						margin-left: 8px;
 					`}
 				`}
 			/>
-			<Clock whiteText={whiteText}>13:52</Clock>
+			<Clock whiteText={whiteText} light={light}>
+				13:52
+			</Clock>
 		</Wrapper>
 	);
 };

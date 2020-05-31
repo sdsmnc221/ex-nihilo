@@ -24,6 +24,10 @@ const statusBarConfigs = {
 		light: true,
 		whiteText: false,
 	},
+	dark: {
+		light: false,
+		whiteText: true,
+	},
 };
 
 const getLayoutConfigs = (screen) => {

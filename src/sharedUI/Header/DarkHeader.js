@@ -11,8 +11,9 @@ import { SCREENS } from 'configs';
 import { HEADER_OPTIONS } from './configs';
 
 const Wrapper = styled.View`
+	margin-top: 12px;
 	${({ theme }) => theme.styles.flex(null, null, 'row', true)}
-	min-height: ${device().height * HEADER_OPTIONS.minHeightDark}px;
+	min-height: ${device().height * HEADER_OPTIONS.minHeight}px;
     background-color: ${({ theme }) => theme.colors.black};
 `;
 

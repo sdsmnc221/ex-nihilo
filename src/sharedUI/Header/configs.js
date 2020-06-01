@@ -6,7 +6,6 @@ const DEFAULT_HEADER_OPTIONS = {
 
 const HEADER_OPTIONS = {
 	minHeight: 0.12,
-	minHeightDark: 0.16,
 	padding: {
 		left: 30,
 		right: 12,

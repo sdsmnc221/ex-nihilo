@@ -1,10 +1,13 @@
 import React from 'react';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
+import WebScreen from 'sharedUI/WebScreen';
 
-const DataProtectionScreen = ({ route, navigation }) => (
+import { URL_INFO_DATA } from 'configs';
+
+const DataProtectionScreen = ({ route }) => (
 	<LayoutWrapper screenName={route.name}>
-		<></>
+		<WebScreen url={URL_INFO_DATA} />
 	</LayoutWrapper>
 );
 

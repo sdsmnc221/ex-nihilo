@@ -37,6 +37,7 @@ import EmailScreen from 'screens/Email';
 import EmailDetailsScreen from 'screens/Email/EmailDetails';
 import EmailLoginScreen from 'screens/Email/EmailLogin';
 import InternetScreen from 'screens/Internet';
+import EndMenuScreen from 'screens/EndMenu';
 
 // Example screens
 import TypoScreen from 'screens/Examples/Typo';
@@ -165,6 +166,11 @@ const App = () => {
 							<Stack.Screen
 								name={SCREENS.INTERNET}
 								component={InternetScreen}
+								options={headerOptions}
+							/>
+							<Stack.Screen
+								name={SCREENS.END_MENU}
+								component={EndMenuScreen}
 								options={headerOptions}
 							/>
 

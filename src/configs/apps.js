@@ -15,7 +15,7 @@ const ALL_APPS = [
 	{ label: 'Instagram' },
 	{ label: 'Paramètres' },
 	{ label: 'Fichiers' },
-	{ label: 'End Screen', screen: 'TypoScreen' },
+	{ label: 'End Screen', screen: SCREENS.END_MENU },
 ];
 
 const HOME_APPS = [

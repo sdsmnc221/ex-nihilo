@@ -73,6 +73,14 @@ const getLayoutConfigs = (screen) => {
 				gapForStatusBar: true,
 			};
 			break;
+		case SCREENS.END_MENU:
+			configs = {
+				navigationBar: true,
+				navigationBarConfigs: navigationBarConfigs.transparentWhite,
+				statusBar: true,
+				statusBarConfigs: statusBarConfigs.dark,
+			};
+			break;
 		default:
 			break;
 	}

@@ -22,6 +22,7 @@ const SCREENS = {
 	EMAIL_LOGIN: 'EmailLoginScreen',
 	EMAIL_DETAILS: 'EmailDetailsScreen',
 	INTERNET: 'InternetScreen',
+	END_MENU: 'EndMenuScreen',
 };
 
 const getHeaderName = (screen) => {
@@ -57,6 +58,7 @@ const getBodyColor = (screen) => {
 
 	switch (screen) {
 		case SCREENS.SPLASH:
+		case SCREENS.END_MENU:
 			bodyColor = black;
 			break;
 		case SCREENS.WARNING:

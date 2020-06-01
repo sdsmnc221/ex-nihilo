@@ -44,5 +44,10 @@ export default {
 			font-size: ${sizes.subtitle};
 		`,
 	},
-	dataviz: {},
+	dataviz: {
+		endMenuTitle: css`
+			font-family: ${superclarendon};
+			font-size: ${sizes.titleDataviz};
+		`,
+	},
 };

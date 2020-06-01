@@ -41,5 +41,9 @@ export default {
 			font-family: ${superclarendon};
 			font-size: ${sizes.titleDataviz};
 		`,
+		body: css`
+			font-family: ${superclarendon};
+			font-size: ${sizes.bodyDataviz};
+		`,
 	},
 };

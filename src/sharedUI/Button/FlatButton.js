@@ -29,10 +29,12 @@ const ButtonText = styled.Text`
 			? activeTextColor || theme.colors.charcoal
 			: inactiveTextColor || theme.colors.white};
 	text-align: center;
-	${({ theme }) => theme.styles.os.boldBody}
+	${({ dataviz, theme }) =>
+		dataviz ? theme.styles.dataviz.body : theme.styles.os.boldBody}
 `;
 
 const FlatButton = ({
+	dataviz,
 	text,
 	pressHandler,
 	additionalStyle,
@@ -63,6 +65,7 @@ const FlatButton = ({
 			activeButtonColor={activeButtonColor}
 			css={additionalStyle}>
 			<ButtonText
+				dataviz={dataviz}
 				active={buttonPressed}
 				inactiveTextColor={inactiveTextColor}
 				activeTextColor={activeTextColor}>
@@ -73,6 +76,7 @@ const FlatButton = ({
 };
 
 FlatButton.propTypes = {
+	dataviz: PropTypes.bool,
 	text: PropTypes.string.isRequired,
 	pressHandler: PropTypes.func,
 	additionalStyle: PropTypes.string,
@@ -84,6 +88,7 @@ FlatButton.propTypes = {
 };
 
 FlatButton.defaultProps = {
+	dataviz: false,
 	pressHandler: () => {},
 	additionalStyle: null,
 	borderColor: null,

@@ -15,7 +15,7 @@ const Title = styled.Text`
 `;
 
 const styledFlatButton = css`
-	width: 60%;
+	width: 54%;
 	margin-bottom: 12px;
 `;
 
@@ -53,6 +53,7 @@ const EndMenuScreen = ({ route, navigation }) => {
 			{MENU.map((button, index) => (
 				<FlatButton
 					key={index}
+					dataviz
 					text={button.text}
 					additionalStyle={`${styledFlatButton}`}
 					pressHandler={() => onPress(button.screen)}

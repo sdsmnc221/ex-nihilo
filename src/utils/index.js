@@ -7,6 +7,8 @@ const device = () => {
 	};
 };
 
+const rgba = (rgbaString, alpha) => rgbaString.replace('$a', alpha);
+
 const cleanLineBreaks = (str, withValue = ' ') =>
 	str.replace(/\r?\n|\r/g, withValue);
 
@@ -87,6 +89,7 @@ export {
 	isArrEmpty,
 	find,
 	random,
+	rgba,
 	sample,
 	sampleSize,
 	shuffle,

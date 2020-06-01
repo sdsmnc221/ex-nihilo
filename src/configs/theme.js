@@ -9,6 +9,8 @@ const theme = {
 		dimGray: '#707070',
 		ghostWhite: '#F5F4FF',
 		lime: '#14FF00',
+		persianRed: '#CC4141',
+		persianRedAlpha: 'rgba(204, 65, 65, $a)',
 		slateBlue: '#6B5CFF',
 		whiskey: '#CE976A',
 		white: '#FFF',

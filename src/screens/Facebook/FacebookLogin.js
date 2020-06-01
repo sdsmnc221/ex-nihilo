@@ -7,7 +7,7 @@ import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import Icon from 'sharedUI/Icon';
 import RectButton from 'sharedUI/Button/RectButton';
 
-import { ACCOUNT_FACEBOOK, KEY_PUZZLE_C, SCREENS } from 'configs';
+import { EMAIL_ACCOUNT, KEY_PUZZLE_C, SCREENS } from 'configs';
 
 const COMMON_SIZES = {
 	w: '72%',
@@ -15,7 +15,7 @@ const COMMON_SIZES = {
 };
 
 const PASSWORD = KEY_PUZZLE_C;
-const EMAIL = ACCOUNT_FACEBOOK;
+const EMAIL = EMAIL_ACCOUNT;
 
 const LogoContainer = styled.View`
 	height: 32%;
@@ -76,7 +76,7 @@ const Line = styled.View`
 `;
 
 const FacebookLoginScreen = ({ route, navigation, theme }) => {
-	const [emailInput, setEmailInput] = useState('sam.blanchard@gmail.com');
+	const [emailInput, setEmailInput] = useState(EMAIL);
 	const [passwordInput, setPasswordInput] = useState('');
 	const [failed, setFailed] = useState(false);
 
@@ -102,9 +102,7 @@ const FacebookLoginScreen = ({ route, navigation, theme }) => {
 			</LogoContainer>
 			<ContentContainer>
 				<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
-				{failed && (
-					<FailedText color="#DDD">Email ou mot de passe incorrect.</FailedText>
-				)}
+				{failed && <FailedText>Email ou mot de passe incorrect.</FailedText>}
 				<Input
 					value={passwordInput}
 					secureTextEntry
@@ -117,7 +115,7 @@ const FacebookLoginScreen = ({ route, navigation, theme }) => {
 					height={COMMON_SIZES.h}
 					text="connexion"
 					pressHandler={onSubmit}
-					additionalStyle={rectButtonTextStyle}
+					additionalTextStyle={rectButtonTextStyle}
 					backgroundColor={theme.colors.slateBlue}
 				/>
 				<SeparatorContainer>
@@ -144,7 +142,7 @@ const FacebookLoginScreen = ({ route, navigation, theme }) => {
 					width="72%"
 					height={42}
 					text="créer un compte facebook"
-					additionalStyle={rectButtonTextStyle}
+					additionalTextStyle={rectButtonTextStyle}
 					backgroundColor={theme.colors.slateBlue}
 				/>
 			</ContentContainer>

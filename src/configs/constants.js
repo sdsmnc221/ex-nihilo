@@ -5,6 +5,7 @@ const APP_ICON = {
 	ICONS_COUNT: 5,
 	ICON_MARGE: 12,
 	RATIO: 0.9,
+	RESET_PRESS_DURATION: 120,
 };
 
 const FLEX = {

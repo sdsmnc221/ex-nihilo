@@ -38,9 +38,9 @@ import EmailDetailsScreen from 'screens/Email/EmailDetails';
 import EmailLoginScreen from 'screens/Email/EmailLogin';
 import InternetScreen from 'screens/Internet';
 import EndMenuScreen from 'screens/EndMenu';
-
-// Example screens
-import TypoScreen from 'screens/Examples/Typo';
+import DatavizScreen from 'screens/Dataviz';
+import DataProtectionScreen from 'screens/DataProtection';
+import AboutUsScreen from 'screens/AboutUs';
 
 import Notification from './sharedUI/Notification';
 
@@ -173,11 +173,19 @@ const App = () => {
 								component={EndMenuScreen}
 								options={headerOptions}
 							/>
-
-							{/* Example Screens */}
 							<Stack.Screen
-								name="TypoScreen"
-								component={TypoScreen}
+								name={SCREENS.DATAVIZ}
+								component={DatavizScreen}
+								options={headerOptions}
+							/>
+							<Stack.Screen
+								name={SCREENS.DATA_PROTECTION}
+								component={DataProtectionScreen}
+								options={headerOptions}
+							/>
+							<Stack.Screen
+								name={SCREENS.ABOUT_US}
+								component={AboutUsScreen}
 								options={headerOptions}
 							/>
 						</Stack.Navigator>

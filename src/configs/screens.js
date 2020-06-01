@@ -23,6 +23,9 @@ const SCREENS = {
 	EMAIL_DETAILS: 'EmailDetailsScreen',
 	INTERNET: 'InternetScreen',
 	END_MENU: 'EndMenuScreen',
+	DATAVIZ: ' DatavizScreen',
+	DATA_PROTECTION: 'DataProtectionScreen',
+	ABOUT_US: 'AboutUsScreen',
 };
 
 const getHeaderName = (screen) => {
@@ -59,6 +62,9 @@ const getBodyColor = (screen) => {
 	switch (screen) {
 		case SCREENS.SPLASH:
 		case SCREENS.END_MENU:
+		case SCREENS.DATAVIZ:
+		case SCREENS.DATA_PROTECTION:
+		case SCREENS.ABOUT_US:
 			bodyColor = black;
 			break;
 		case SCREENS.WARNING:

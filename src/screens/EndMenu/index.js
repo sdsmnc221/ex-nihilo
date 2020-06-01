@@ -6,6 +6,7 @@ import DATAVIZ_PLACEHOLDER from 'assets/images/Dataviz-EndMenuScreen.png';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import FlatButton from 'sharedUI/Button/FlatButton';
+import { SCREENS } from '../../configs';
 
 const Title = styled.Text`
 	margin: 32px 0;
@@ -19,20 +20,20 @@ const styledFlatButton = css`
 `;
 
 const EndMenuScreen = ({ route, navigation }) => {
-	const onPress = () => {};
+	const onPress = (screen) => navigation.navigate(screen);
 
 	const MENU = [
 		{
 			text: 'Mon ADN Numérique',
-			pressHandler: onPress,
+			screen: SCREENS.DATAVIZ,
 		},
 		{
 			text: 'Protéger ses données',
-			pressHandler: onPress,
+			screen: SCREENS.DATA_PROTECTION,
 		},
 		{
 			text: 'En savoir plus',
-			pressHandler: onPress,
+			screen: SCREENS.ABOUT_US,
 		},
 	];
 
@@ -54,7 +55,7 @@ const EndMenuScreen = ({ route, navigation }) => {
 					key={index}
 					text={button.text}
 					additionalStyle={`${styledFlatButton}`}
-					pressHandler={button.pressHandler}
+					pressHandler={() => onPress(button.screen)}
 				/>
 			))}
 		</LayoutWrapper>

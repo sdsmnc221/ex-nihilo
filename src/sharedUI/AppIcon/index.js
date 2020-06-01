@@ -8,7 +8,7 @@ import { NeuView } from 'utils/react-native-neu-element';
 import Icon from 'sharedUI/Icon';
 
 import { tick } from 'utils';
-import { STRINGS } from 'configs/constants';
+import { APP_ICON, STRINGS } from 'configs/constants';
 
 const styledWrapper = css`
 	position: relative;
@@ -69,7 +69,7 @@ const AppIcon = ({
 	useEffect(() => {
 		if (buttonPressed) {
 			onPress();
-			tick(() => setButtonPressed(false), 600);
+			tick(() => setButtonPressed(false), APP_ICON.RESET_PRESS_DURATION);
 		}
 	}, [buttonPressed, onPress]);
 

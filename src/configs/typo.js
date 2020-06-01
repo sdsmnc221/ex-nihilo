@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import theme from './theme';
 
-const { acumin, cairo, sourceSans, superclarendon } = theme.fonts;
+const { cairo, sourceSans, superclarendon } = theme.fonts;
 const { sizes } = theme.typo;
 
 export default {
@@ -29,14 +29,6 @@ export default {
 		`,
 		notifsCount: css`
 			font-family: ${cairo.light};
-			font-size: ${sizes.body};
-		`,
-		bodyAlternativeA: css`
-			font-family: ${acumin.medium};
-			font-size: ${sizes.body};
-		`,
-		bodyAlternativeB: css`
-			font-family: ${sourceSans.semiBold};
 			font-size: ${sizes.body};
 		`,
 		subtitle: css`

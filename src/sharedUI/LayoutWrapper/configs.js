@@ -74,6 +74,9 @@ const getLayoutConfigs = (screen) => {
 			};
 			break;
 		case SCREENS.END_MENU:
+		case SCREENS.DATAVIZ:
+		case SCREENS.DATA_PROTECTION:
+		case SCREENS.ABOUT_US:
 			configs = {
 				navigationBar: true,
 				navigationBarConfigs: navigationBarConfigs.transparentWhite,

@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Modal from 'react-native-modal';
 import styled from 'styled-components';
 
-import FlexView from 'sharedUI/FlexView';
+import FlexDiv from 'sharedUI/FlexDiv';
 import Icon from 'sharedUI/Icon';
 
 import { truncate } from 'utils';
@@ -120,17 +120,17 @@ const Notification = ({
 			swipeDirection={['left', 'right', 'up']}
 			onSwipeComplete={onSwipe}>
 			<Wrapper style={styles.shadow} activeOpacity={0.8} onPress={switchScreen}>
-				<FlexView dir="row" justify="space-between" fullWidth>
-					<FlexView dir="row">
+				<FlexDiv dir="row" justifyContent="space-between" fullWidth>
+					<FlexDiv direction="row">
 						<Icon type={iconType} width={15} height={15} />
 						<Type>{type}</Type>
-					</FlexView>
+					</FlexDiv>
 					<Date>{date}</Date>
-				</FlexView>
-				<FlexView dir="column" align="flex-start" fullWidth>
+				</FlexDiv>
+				<FlexDiv alignItems="flex-start" fullWidth>
 					<Title>{title}</Title>
 					<Message>{truncate(message, 64)}</Message>
-				</FlexView>
+				</FlexDiv>
 			</Wrapper>
 		</Modal>
 	);

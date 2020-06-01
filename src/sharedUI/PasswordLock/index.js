@@ -38,7 +38,7 @@ const Input = styled.TextInput`
 				: theme.colors.cinnabar};
 	background-color: ${({ theme }) => theme.colors.ghostWhite};
 	color: ${({ theme }) => theme.colors.dimGray};
-	${({ theme }) => theme.styles.os.body};
+	${({ theme }) => theme.styles.os.input}
 `;
 
 const Hint = styled.Text`

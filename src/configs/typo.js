@@ -35,6 +35,14 @@ export default {
 			font-family: ${sourceSans.extraLight};
 			font-size: ${sizes.subtitle};
 		`,
+		input: css`
+			font-family: ${sourceSans.extraLight};
+			font-size: ${sizes.body};
+		`,
+		inputItalic: css`
+			font-family: ${sourceSans.italic};
+			font-size: ${sizes.body};
+		`,
 	},
 	dataviz: {
 		title: css`

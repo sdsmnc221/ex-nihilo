@@ -15,13 +15,17 @@ const WebScreen = ({ url, bodyColor, theme }) => {
 	const webviewRef = useRef(null);
 
 	const handleNavigationStateChange = (event) => {
-		if (event.url !== url) {
-			if (webviewRef.current) {
-				webviewRef.current.stopLoading();
-				webviewRef.current.goBack();
-				Linking.openURL(event.url);
-			}
+		if (event.url !== url && webviewRef.current) {
+			Linking.openURL(event.url);
+			webviewRef.current.stopLoading();
+			webviewRef.current.goBack();
 		}
+	};
+
+	const handlerContentProcessDidTerminate = (syntheticEvent) => {
+		const { nativeEvent } = syntheticEvent;
+		console.warn('Content process terminated, reloading', nativeEvent);
+		webviewRef.current && webviewRef.current.reload();
 	};
 
 	return (
@@ -37,11 +41,7 @@ const WebScreen = ({ url, bodyColor, theme }) => {
 				ref={webviewRef}
 				source={{ uri: url }}
 				onNavigationStateChange={handleNavigationStateChange}
-				onContentProcessDidTerminate={(syntheticEvent) => {
-					const { nativeEvent } = syntheticEvent;
-					console.warn('Content process terminated, reloading', nativeEvent);
-					webviewRef.current && webviewRef.current.reload();
-				}}
+				onContentProcessDidTerminate={handlerContentProcessDidTerminate}
 			/>
 		</Wrapper>
 	);

@@ -37,7 +37,7 @@ export default {
 		`,
 	},
 	dataviz: {
-		endMenuTitle: css`
+		title: css`
 			font-family: ${superclarendon};
 			font-size: ${sizes.titleDataviz};
 		`,

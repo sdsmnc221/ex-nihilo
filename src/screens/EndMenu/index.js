@@ -11,7 +11,7 @@ import { SCREENS } from '../../configs';
 const Title = styled.Text`
 	margin: 32px 0;
 	color: ${({ theme }) => theme.colors.white};
-	${({ theme }) => theme.styles.dataviz.endMenuTitle}
+	${({ theme }) => theme.styles.dataviz.title}
 `;
 
 const styledFlatButton = css`
@@ -24,7 +24,7 @@ const EndMenuScreen = ({ route, navigation }) => {
 
 	const MENU = [
 		{
-			text: 'Mon ADN Numérique',
+			text: 'Mon ADN numérique',
 			screen: SCREENS.DATAVIZ,
 		},
 		{

@@ -7,7 +7,12 @@ const { acumin, cairo, sourceSans, superclarendon } = fonts;
 const { sizes } = typo;
 const { JUSTIFY_CONTENT, ALIGN_ITEMS, FLEX_DIRECTION } = FLEX;
 
-const additionalStyles = {};
+const additionalStyles = {
+	flexStart: css`
+		align-items: flex-start;
+		justify-content: flex-start;
+	`,
+};
 
 export { additionalStyles };
 

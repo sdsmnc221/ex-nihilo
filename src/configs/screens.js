@@ -28,33 +28,6 @@ const SCREENS = {
 	ABOUT_US: 'AboutUsScreen',
 };
 
-const getHeaderName = (screen) => {
-	let headerName = false;
-
-	switch (screen) {
-		case SCREENS.SMS:
-			headerName = 'Messagerie';
-			break;
-		case SCREENS.JANUS:
-			headerName = 'Janus';
-			break;
-		case SCREENS.CONTACTS:
-			headerName = 'Contacts';
-			break;
-		case SCREENS.ALBUM:
-			headerName = 'Mes photos';
-			break;
-		case SCREENS.SMS_CONVERSATION:
-		case SCREENS.CONTACTS_DETAILS:
-			headerName = true;
-			break;
-		default:
-			break;
-	}
-
-	return headerName;
-};
-
 const getBodyColor = (screen) => {
 	const { black, charcoal, ghostWhite, slateBlue, white } = colors;
 	let bodyColor = ghostWhite;
@@ -89,6 +62,11 @@ const getBodyAddtionalStyle = (screen) => {
 	let additionalStyle = null;
 
 	switch (screen) {
+		case SCREENS.DATAVIZ:
+		case SCREENS.DATA_PROTECTION:
+		case SCREENS.ABOUT_US:
+			additionalStyle = additionalStyles.flexStart;
+			break;
 		default:
 			break;
 	}
@@ -98,14 +76,12 @@ const getBodyAddtionalStyle = (screen) => {
 
 const SCREENS_INFO = Object.entries(SCREENS).map((screen) => {
 	const [constantName, displayName] = screen;
-	const headerName = getHeaderName(displayName);
 	const bodyColor = getBodyColor(displayName);
 	const bodyAdditionalStyle = getBodyAddtionalStyle(displayName);
 
 	return {
 		constantName,
 		displayName,
-		headerName,
 		bodyColor,
 		bodyAdditionalStyle,
 	};

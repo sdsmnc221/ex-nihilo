@@ -91,6 +91,8 @@ const FacebookLoginScreen = ({ route, navigation, theme }) => {
 	const rectButtonTextStyle = css`
 		font-family: ${theme.fonts.sourceSans.semiBold};
 		font-size: ${theme.typo.sizes.body};
+		color: ${theme.colors.ghostWhite};
+		letter-spacing: 0.27px;
 	`;
 
 	return (
@@ -120,7 +122,7 @@ const FacebookLoginScreen = ({ route, navigation, theme }) => {
 				/>
 				<SeparatorContainer>
 					<StyledText size={12} letterSpacing={0.23}>
-						Mot de passe oublié ?
+						mot de passe oublié ?
 					</StyledText>
 					<Separator>
 						<Line />

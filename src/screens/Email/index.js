@@ -9,7 +9,6 @@ import IconButton from 'sharedUI/Button/IconButton';
 import EmailShort from './components/EmailShort';
 
 import { random } from 'utils';
-import { SCREENS } from 'configs';
 
 const Header = styled.View`
 	width: 100%;
@@ -47,7 +46,7 @@ const Inbox = styled.View`
 	margin-bottom: 108px;
 `;
 
-const EmailScreen = ({ navigation }) => {
+const EmailScreen = ({ route, navigation }) => {
 	const searchPlaceHolder = 'Rechercher dans messages...';
 	const [searchValue, setSearchValue] = useState(searchPlaceHolder);
 	const onSearchSubmit = () => {};
@@ -134,44 +133,42 @@ const EmailScreen = ({ navigation }) => {
 	];
 
 	return (
-		<LayoutWrapper screenName={SCREENS.EMAIL}>
-			<View style={styles.body}>
-				<ScrollView contentContainerStyle={styles.scrollBody}>
-					<Header>
-						<SearchBar>
-							<SearchInput
-								value={searchValue}
-								blurOnSubmit
-								clearTextOnFocus
-								onFocus={() => setSearchValue('')}
-								onSubmitEditing={onSearchSubmit}
-								onEndEditing={() =>
-									searchValue === '' && setSearchValue(searchPlaceHolder)
-								}
-								onChangeText={(text) => setSearchValue(text)}
-							/>
+		<LayoutWrapper screenName={route.name}>
+			<ScrollView contentContainerStyle={styles.scrollBody}>
+				<Header>
+					<SearchBar>
+						<SearchInput
+							value={searchValue}
+							blurOnSubmit
+							clearTextOnFocus
+							onFocus={() => setSearchValue('')}
+							onSubmitEditing={onSearchSubmit}
+							onEndEditing={() =>
+								searchValue === '' && setSearchValue(searchPlaceHolder)
+							}
+							onChangeText={(text) => setSearchValue(text)}
+						/>
 
-							<IconButton type="HAMBURGER" additionalStyles={styles.settingsIcon} />
-							<IconButton type="SEARCH" additionalStyles={styles.searchIcon} />
-						</SearchBar>
-						<Title>Boîte de réception</Title>
-					</Header>
-					<Inbox>
-						{emails.map((e, i) => (
-							<EmailShort
-								key={i}
-								sender={e.sender}
-								date={e.date}
-								title={e.title}
-								message={e.message}
-								starred={e.starred !== undefined ? e.starred : random(0.32)}
-								onPress={() => navigation.navigate('EmailDetailsScreen', { email: e })}
-							/>
-						))}
-					</Inbox>
-				</ScrollView>
-				<AddButton />
-			</View>
+						<IconButton type="HAMBURGER" additionalStyles={styles.settingsIcon} />
+						<IconButton type="SEARCH" additionalStyles={styles.searchIcon} />
+					</SearchBar>
+					<Title>Boîte de réception</Title>
+				</Header>
+				<Inbox>
+					{emails.map((e, i) => (
+						<EmailShort
+							key={i}
+							sender={e.sender}
+							date={e.date}
+							title={e.title}
+							message={e.message}
+							starred={e.starred !== undefined ? e.starred : random(0.32)}
+							onPress={() => navigation.navigate('EmailDetailsScreen', { email: e })}
+						/>
+					))}
+				</Inbox>
+			</ScrollView>
+			<AddButton />
 		</LayoutWrapper>
 	);
 };

@@ -62,29 +62,28 @@ const NotificationsScreen = ({ route, navigation, theme }) => {
 
 	return (
 		<LayoutWrapper>
-			<GestureRecognizer onSwipeLeft={onSwipeLeft}>
-				<View
-					css={`
-						${theme.styles.body()}
-						justify-content: flex-end;
-					`}>
-					<BackgroundImage source={BG_LOCKSCREEN} />
-					<Clock />
-					<NotificationsList
-						fadingEdgeLength={32}
-						showsVerticalScrollIndicator={false}>
-						{notifications.map((n, i) => (
-							<Notification
-								key={i}
-								type={n.type}
-								date={n.date}
-								title={n.title}
-								message={n.message}
-							/>
-						))}
-					</NotificationsList>
-					<Swiper onPress={onSwipeLeft} />
-				</View>
+			<GestureRecognizer
+				onSwipeLeft={onSwipeLeft}
+				css={`
+					${theme.styles.body()}
+					justify-content: flex-end;
+				`}>
+				<BackgroundImage source={BG_LOCKSCREEN} />
+				<Clock />
+				<NotificationsList
+					fadingEdgeLength={32}
+					showsVerticalScrollIndicator={false}>
+					{notifications.map((n, i) => (
+						<Notification
+							key={i}
+							type={n.type}
+							date={n.date}
+							title={n.title}
+							message={n.message}
+						/>
+					))}
+				</NotificationsList>
+				<Swiper onPress={onSwipeLeft} />
 			</GestureRecognizer>
 		</LayoutWrapper>
 	);

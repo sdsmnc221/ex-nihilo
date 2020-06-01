@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import theme from './theme';
 
-const { acumin, cairo, sourceSans, superclarendon } = theme.fonts;
+const { cairo, sourceSans, superclarendon } = theme.fonts;
 const { sizes } = theme.typo;
 
 export default {
@@ -31,18 +31,19 @@ export default {
 			font-family: ${cairo.light};
 			font-size: ${sizes.body};
 		`,
-		bodyAlternativeA: css`
-			font-family: ${acumin.medium};
-			font-size: ${sizes.body};
-		`,
-		bodyAlternativeB: css`
-			font-family: ${sourceSans.semiBold};
-			font-size: ${sizes.body};
-		`,
 		subtitle: css`
 			font-family: ${sourceSans.extraLight};
 			font-size: ${sizes.subtitle};
 		`,
 	},
-	dataviz: {},
+	dataviz: {
+		title: css`
+			font-family: ${superclarendon};
+			font-size: ${sizes.titleDataviz};
+		`,
+		body: css`
+			font-family: ${superclarendon};
+			font-size: ${sizes.bodyDataviz};
+		`,
+	},
 };

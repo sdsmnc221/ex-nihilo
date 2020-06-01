@@ -69,6 +69,7 @@ const theme = {
 			h3: '16px',
 			body: '14px',
 			bodyDataviz: '14px',
+			titleDataviz: '18px',
 			subtitle: '11px',
 		},
 		// Sizes without px unit (for React-Native StyleSheet)
@@ -78,6 +79,7 @@ const theme = {
 			h3: 16,
 			body: 14,
 			bodyDataviz: 14,
+			titleDataviz: 18,
 			subtitle: 11,
 		},
 	},

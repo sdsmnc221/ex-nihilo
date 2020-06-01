@@ -5,6 +5,7 @@ import { Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { tick } from 'utils';
+import { APP_ICON } from 'configs';
 
 const Button = styled.TouchableOpacity`
 	width: 50px;
@@ -28,10 +29,12 @@ const ButtonText = styled.Text`
 			? activeTextColor || theme.colors.charcoal
 			: inactiveTextColor || theme.colors.white};
 	text-align: center;
-	${({ theme }) => theme.styles.os.boldBody}
+	${({ dataviz, theme }) =>
+		dataviz ? theme.styles.dataviz.body : theme.styles.os.boldBody}
 `;
 
 const FlatButton = ({
+	dataviz,
 	text,
 	pressHandler,
 	additionalStyle,
@@ -48,7 +51,7 @@ const FlatButton = ({
 	useEffect(() => {
 		if (buttonPressed) {
 			pressHandler();
-			tick(() => setButtonPressed(false), 1200);
+			tick(() => setButtonPressed(false), APP_ICON.RESET_PRESS_DURATION);
 		}
 	}, [buttonPressed, pressHandler]);
 
@@ -62,6 +65,7 @@ const FlatButton = ({
 			activeButtonColor={activeButtonColor}
 			css={additionalStyle}>
 			<ButtonText
+				dataviz={dataviz}
 				active={buttonPressed}
 				inactiveTextColor={inactiveTextColor}
 				activeTextColor={activeTextColor}>
@@ -72,6 +76,7 @@ const FlatButton = ({
 };
 
 FlatButton.propTypes = {
+	dataviz: PropTypes.bool,
 	text: PropTypes.string.isRequired,
 	pressHandler: PropTypes.func,
 	additionalStyle: PropTypes.string,
@@ -83,6 +88,7 @@ FlatButton.propTypes = {
 };
 
 FlatButton.defaultProps = {
+	dataviz: false,
 	pressHandler: () => {},
 	additionalStyle: null,
 	borderColor: null,

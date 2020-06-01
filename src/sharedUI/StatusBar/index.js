@@ -9,6 +9,7 @@ const Wrapper = styled.View`
 	padding-right: 10px;
 	height: 30px;
 	position: absolute;
+	z-index: 99;
 	top: 0;
 	${({ theme }) => theme.styles.flex('flex-end', null, 'row', true)}
 `;

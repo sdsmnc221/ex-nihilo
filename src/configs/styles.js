@@ -7,6 +7,15 @@ const { acumin, cairo, sourceSans, superclarendon } = fonts;
 const { sizes } = typo;
 const { JUSTIFY_CONTENT, ALIGN_ITEMS, FLEX_DIRECTION } = FLEX;
 
+const additionalStyles = {
+	flexStart: css`
+		align-items: flex-start;
+		justify-content: flex-start;
+	`,
+};
+
+export { additionalStyles };
+
 export default {
 	safeAreaView: (gapForStatusBar, backgroundColor) => css`
 		background-color: ${backgroundColor || colors.ghostWhite};

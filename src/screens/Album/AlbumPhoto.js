@@ -3,14 +3,12 @@ import { StyleSheet, View, Image, Dimensions } from 'react-native';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 
-import { SCREENS } from 'configs';
-
 const AlbumPhotoScreen = ({ route, navigation }) => {
 	const { uri } = route.params;
 	const { width: deviceW, height: deviceH } = Dimensions.get('window');
 
 	return (
-		<LayoutWrapper screenName={SCREENS.ALBUM_PHOTO}>
+		<LayoutWrapper screenName={route.name}>
 			<View style={styles.body}>
 				<Image
 					style={{

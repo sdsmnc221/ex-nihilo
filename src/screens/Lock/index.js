@@ -58,26 +58,25 @@ const LockScreen = ({ navigation, theme }) => {
 
 	return (
 		<LayoutWrapper>
-			<GestureRecognizer onSwipeRight={onSwipeRight}>
-				<View
-					css={`
-						${theme.styles.body()}
-					`}>
-					<BackgroundImage source={BG_LOCKSCREEN} />
-					<Solid />
-					<PasswordLock
-						noLockIcon
-						submitButton
-						hintEnabled
-						hint={messageFailed}
-						hintColor={theme.colors.charcoal}
-						passwordInput={passwordInput}
-						passwordValid={passwordValid}
-						passwordSubmitted={passwordSubmitted}
-						onInputPassword={(text) => setPasswordInput(text)}
-						onSubmitPassword={onSubmit}
-					/>
-				</View>
+			<GestureRecognizer
+				onSwipeRight={onSwipeRight}
+				css={`
+					${theme.styles.body()}
+				`}>
+				<BackgroundImage source={BG_LOCKSCREEN} />
+				<Solid />
+				<PasswordLock
+					noLockIcon
+					submitButton
+					hintEnabled
+					hint={messageFailed}
+					hintColor={theme.colors.charcoal}
+					passwordInput={passwordInput}
+					passwordValid={passwordValid}
+					passwordSubmitted={passwordSubmitted}
+					onInputPassword={(text) => setPasswordInput(text)}
+					onSubmitPassword={onSubmit}
+				/>
 			</GestureRecognizer>
 		</LayoutWrapper>
 	);

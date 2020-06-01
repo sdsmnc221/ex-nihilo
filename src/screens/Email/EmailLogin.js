@@ -8,8 +8,6 @@ import { KEY_PUZZLE_D } from 'configs';
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import Icon from 'sharedUI/Icon';
 
-import { SCREENS } from 'configs';
-
 const LogoContainer = styled.View`
 	width: 100%;
 	height: 218px;
@@ -75,7 +73,7 @@ const Separator = styled.View`
 	background-color: #565656;
 `;
 
-const EmailLoginScreen = ({ navigation }) => {
+const EmailLoginScreen = ({ route, navigation }) => {
 	const [emailInput, setEmailInput] = useState('sam.blanchard@gmail.com');
 	const [passwordInput, setPasswordInput] = useState('');
 	const [mailEmail, setMailEmail] = useState('sam.blanchard@gmail.com');
@@ -93,40 +91,38 @@ const EmailLoginScreen = ({ navigation }) => {
 	};
 
 	return (
-		<LayoutWrapper screenName={SCREENS.EMAIL_LOGIN}>
-			<View style={styles.body}>
-				<LogoContainer>
-					<Icon type="EMAIL_XL" />
-				</LogoContainer>
-				<ContentContainer>
-					<Title>Connexion</Title>
-					<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
-					{failed && <Text color="#DDD">Email ou mot de passe incorrect.</Text>}
-					<Input
-						value={passwordInput}
-						secureTextEntry
-						blurOnSubmit
-						onSubmitEditing={onSubmit}
-						onChangeText={(text) => setPasswordInput(text)}
-					/>
-					<Button onPress={onSubmit}>
-						<StyledText size={14} bold>
-							Connexion
-						</StyledText>
-					</Button>
-					<SeparatorContainer>
-						<StyledText size={13} bold>
-							Mot de passe oublié ?
-						</StyledText>
-						<Separator />
-					</SeparatorContainer>
-					<Button>
-						<StyledText size={14} bold>
-							Se créer un compte
-						</StyledText>
-					</Button>
-				</ContentContainer>
-			</View>
+		<LayoutWrapper screenName={route.name}>
+			<LogoContainer>
+				<Icon type="EMAIL_XL" />
+			</LogoContainer>
+			<ContentContainer>
+				<Title>Connexion</Title>
+				<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
+				{failed && <Text color="#DDD">Email ou mot de passe incorrect.</Text>}
+				<Input
+					value={passwordInput}
+					secureTextEntry
+					blurOnSubmit
+					onSubmitEditing={onSubmit}
+					onChangeText={(text) => setPasswordInput(text)}
+				/>
+				<Button onPress={onSubmit}>
+					<StyledText size={14} bold>
+						Connexion
+					</StyledText>
+				</Button>
+				<SeparatorContainer>
+					<StyledText size={13} bold>
+						Mot de passe oublié ?
+					</StyledText>
+					<Separator />
+				</SeparatorContainer>
+				<Button>
+					<StyledText size={14} bold>
+						Se créer un compte
+					</StyledText>
+				</Button>
+			</ContentContainer>
 		</LayoutWrapper>
 	);
 };

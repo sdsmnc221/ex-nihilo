@@ -1,4 +1,4 @@
-import { SCREENS } from 'configs/constants';
+import { SCREENS, SCREENS_INFO } from 'configs';
 
 const navigationBarConfigs = {
 	transparentWhite: {
@@ -31,6 +31,7 @@ const statusBarConfigs = {
 };
 
 const getLayoutConfigs = (screen) => {
+	const screenInfo = SCREENS_INFO.find((s) => screen === s.displayName);
 	let configs = {};
 
 	switch (screen) {
@@ -72,11 +73,30 @@ const getLayoutConfigs = (screen) => {
 				gapForStatusBar: true,
 			};
 			break;
+		case SCREENS.END_MENU:
+		case SCREENS.DATAVIZ:
+		case SCREENS.DATA_PROTECTION:
+		case SCREENS.ABOUT_US:
+			configs = {
+				navigationBar: true,
+				navigationBarConfigs: navigationBarConfigs.transparentWhite,
+				statusBar: true,
+				statusBarConfigs: statusBarConfigs.dark,
+			};
+			break;
 		default:
 			break;
 	}
 
-	return configs;
+	return {
+		...configs,
+		...(screenInfo
+			? {
+					bodyColor: screenInfo.bodyColor,
+					bodyAdditionalStyle: screenInfo.bodyAdditionalStyle,
+			  }
+			: {}),
+	};
 };
 
 export default getLayoutConfigs;

@@ -12,6 +12,7 @@ const Wrapper = styled.View`
 	padding: 0 72px;
 	height: 50px;
 	position: absolute;
+	z-index: 99;
 	bottom: 0;
 	background-color: ${({ transparentBG, theme }) =>
 		transparentBG ? 'transparent' : theme.colors.white};

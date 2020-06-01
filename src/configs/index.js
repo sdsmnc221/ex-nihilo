@@ -1,7 +1,8 @@
 import Config from 'react-native-config';
 
+import { SCREENS, SCREENS_INFO } from './screens';
 import { ALL_APPS, HOME_APPS } from './apps';
-import { APP_ICON, FLEX, STRINGS, SCREENS } from './constants';
+import { APP_ICON, FLEX, STRINGS } from './constants';
 
 const {
 	LOCALE,
@@ -22,6 +23,7 @@ export {
 	FLEX,
 	STRINGS,
 	SCREENS,
+	SCREENS_INFO,
 	LOCALE,
 	GOOGLE_MAPS_API_KEY,
 	URL_WIKIHOW,

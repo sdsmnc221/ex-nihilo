@@ -6,8 +6,6 @@ import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import SmsMessage from './components/SmsMessage';
 import SmsInput from './components/SmsInput';
 
-import { SCREENS } from 'configs';
-
 const SmsList = styled.ScrollView`
 	width: 100%;
 	background-color: #fff;
@@ -32,7 +30,7 @@ const SmsConversationScreen = ({ route, navigation }) => {
 	const smsListRef = useRef(null);
 
 	return (
-		<LayoutWrapper screenName={SCREENS.SMS_CONVERSATION}>
+		<LayoutWrapper screenName={route.name}>
 			<View style={styles.body}>
 				<SmsList
 					ref={smsListRef}

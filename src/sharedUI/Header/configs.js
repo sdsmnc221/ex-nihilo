@@ -75,6 +75,7 @@ const getHeaderExtra = (screen) => {
 
 	switch (screen) {
 		case SCREENS.SMS:
+		case SCREENS.CONTACTS:
 			headerRight = true;
 			break;
 		default:

@@ -26,8 +26,8 @@ const SearchPlaceholder = ({ additionalStyle, theme }) => {
 			/>
 			<StyledIcon
 				type="TEXT_CURSOR"
-				iconW={12}
-				iconH={12}
+				width={12}
+				height={12}
 				additionalStyle={css`
 					position: absolute;
 					top: 4.5px;
@@ -36,8 +36,8 @@ const SearchPlaceholder = ({ additionalStyle, theme }) => {
 			/>
 			<StyledIcon
 				type="SEARCH"
-				iconW={12}
-				iconH={12}
+				width={12}
+				height={12}
 				additionalStyle={css`
 					position: absolute;
 					top: 4.5px;

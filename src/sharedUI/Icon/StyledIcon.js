@@ -12,28 +12,23 @@ const Wrapper = styled.View`
 	align-items: center;
 `;
 
-const StyledIcon = ({ type, size, iconW, iconH, additionalStyle, color }) => (
+const StyledIcon = ({ size, additionalStyle, ...iconProps }) => (
 	<Wrapper
 		size={size}
 		css={`
 			${additionalStyle}
 		`}>
-		<Icon type={type} color={color} width={iconW} height={iconH} />
+		<Icon {...iconProps} />
 	</Wrapper>
 );
 
 StyledIcon.propTypes = {
-	type: PropTypes.string.isRequired,
 	size: PropTypes.number,
-	iconW: PropTypes.number,
-	iconH: PropTypes.number,
 	additionalStyle: PropTypes.string,
 };
 
 StyledIcon.defaultProps = {
 	size: null,
-	iconW: undefined,
-	iconH: undefined,
 	additionalStyle: null,
 };
 

@@ -42,6 +42,7 @@ export { default as SMS_PRESSED } from './SMS_PRESSED';
 export { default as SMS_XS } from './SMS_XS';
 export { default as STAR } from './STAR';
 export { default as STAR_OUTLINE } from './STAR_OUTLINE';
+export { default as STAR_PRESSED } from './STAR_PRESSED';
 export { default as TEXT_CURSOR } from './TEXT_CURSOR';
 export { default as WIFI_DARK } from './WIFI_DARK';
 export { default as WIFI_LIGHT } from './WIFI_LIGHT';

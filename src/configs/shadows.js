@@ -21,4 +21,22 @@ export default {
 
 		elevation: 10,
 	},
+	softNeomorphism: {
+		customLightShadow: {
+			opacity: 0.6,
+			blur: 2,
+		},
+		customDarkShadow: {
+			opacity: 0.2,
+			blur: 6,
+		},
+		customInsetLightShadow: {
+			opacity: 0.6,
+			blur: 2,
+		},
+		customInsetDarkShadow: {
+			opacity: 0.2,
+			blur: 6,
+		},
+	},
 };

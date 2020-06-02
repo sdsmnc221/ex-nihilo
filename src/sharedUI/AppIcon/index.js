@@ -61,6 +61,7 @@ const AppIcon = ({
 	noBlink,
 	withSpacing,
 	theme,
+	...neuViewProps
 }) => {
 	const [buttonPressed, setButtonPressed] = useState(false);
 
@@ -81,7 +82,8 @@ const AppIcon = ({
 				width={size}
 				borderRadius={size}
 				style={theme.shadows.default}
-				inset={noBlink ? false : buttonPressed}>
+				inset={noBlink ? false : buttonPressed}
+				{...neuViewProps}>
 				<TouchableWrapper
 					size={size}
 					onPress={onPress_}

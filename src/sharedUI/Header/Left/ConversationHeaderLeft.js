@@ -22,7 +22,13 @@ const SmsConversationHeaderLeft = ({ theme }) => {
 					margin-right: 4px;
 				`}`}
 			/>
-			<AppIcon size={49} type="PERSON" noBlink withSpacing />
+			<AppIcon
+				size={49}
+				type="PERSON"
+				noBlink
+				withSpacing
+				{...theme.shadows.softNeomorphism}
+			/>
 		</>
 	);
 };

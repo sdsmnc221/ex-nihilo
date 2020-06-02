@@ -11,7 +11,7 @@ import Header from 'sharedUI/Header';
 import getLayoutConfigs from './configs';
 import getHeaderConfigs from 'sharedUI/Header/configs';
 
-const LayoutWrapper = ({ theme, children, screenName }) => {
+const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
 	const {
 		navigationBar,
 		navigationBarConfigs,
@@ -23,6 +23,10 @@ const LayoutWrapper = ({ theme, children, screenName }) => {
 	} = getLayoutConfigs(screenName);
 
 	const { header, headerConfigs } = getHeaderConfigs(screenName);
+
+	if (headerTitle) {
+		headerConfigs.title = headerTitle;
+	}
 
 	return (
 		<SafeAreaView
@@ -48,10 +52,12 @@ const LayoutWrapper = ({ theme, children, screenName }) => {
 LayoutWrapper.propTypes = {
 	children: PropTypes.object.isRequired,
 	screenName: PropTypes.string,
+	headerTitle: PropTypes.string,
 };
 
 LayoutWrapper.PropTypes = {
 	screenName: null,
+	headerTitle: null,
 };
 
 export default withTheme(LayoutWrapper);

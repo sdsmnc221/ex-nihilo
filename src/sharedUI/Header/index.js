@@ -13,7 +13,6 @@ const renderHeader = (type, title, otherConfigs) => {
 			return <ConversationHeader title={title} />;
 		case HEADER_TYPES.DARK:
 			return <DarkHeader title={title} />;
-
 		default:
 			return <BasicHeader title={title} {...otherConfigs} />;
 	}

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { StyleSheet, View, Text } from 'react-native';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
@@ -25,73 +25,70 @@ const InputField = styled.View`
 
 const SmsConversationScreen = ({ route, navigation }) => {
 	const { headerTitle } = route.params;
-	navigation.setOptions({ headerTitle });
 
 	const smsListRef = useRef(null);
 
 	return (
-		<LayoutWrapper screenName={route.name}>
-			<View style={styles.body}>
-				<SmsList
-					ref={smsListRef}
-					onContentSizeChange={() =>
-						smsListRef.current?.scrollToEnd({ animated: true })
-					}>
-					<SmsMessage message="Lorem ipsum dolor sit amet" />
-					<SmsMessage hasPlaceholder message="Lorem ipsum dolor sit amet" />
+		<LayoutWrapper screenName={route.name} headerTitle={headerTitle}>
+			<SmsList
+				ref={smsListRef}
+				onContentSizeChange={() =>
+					smsListRef.current?.scrollToEnd({ animated: true })
+				}>
+				<SmsMessage message="Lorem ipsum dolor sit amet" />
+				<SmsMessage hasPlaceholder message="Lorem ipsum dolor sit amet" />
 
-					<SmsMessage
-						isUser
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-					/>
+				<SmsMessage
+					isUser
+					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+				/>
 
-					<SmsMessage message="Lorem ipsum dolor sit amet" />
-					<SmsMessage
-						hasPlaceholder
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-					/>
+				<SmsMessage message="Lorem ipsum dolor sit amet" />
+				<SmsMessage
+					hasPlaceholder
+					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+				/>
 
-					<Date>10:42</Date>
+				<Date>10:42</Date>
 
-					<SmsMessage
-						isUser
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-					/>
+				<SmsMessage
+					isUser
+					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+				/>
 
-					<SmsMessage
-						hasPlaceholder
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-					/>
+				<SmsMessage
+					hasPlaceholder
+					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
+				/>
 
-					<Date>15:12</Date>
+				<Date>15:12</Date>
 
-					<SmsMessage
-						isUser
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-					/>
+				<SmsMessage
+					isUser
+					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+				/>
 
-					<SmsMessage
-						hasPlaceholder
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-					/>
+				<SmsMessage
+					hasPlaceholder
+					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
+				/>
 
-					<SmsMessage
-						hasPlaceholder
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-					/>
-					<SmsMessage
-						hasPlaceholder
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-					/>
-					<SmsMessage
-						hasPlaceholder
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-					/>
-				</SmsList>
-				<InputField>
-					<SmsInput />
-				</InputField>
-			</View>
+				<SmsMessage
+					hasPlaceholder
+					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
+				/>
+				<SmsMessage
+					hasPlaceholder
+					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
+				/>
+				<SmsMessage
+					hasPlaceholder
+					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
+				/>
+			</SmsList>
+			<InputField>
+				<SmsInput />
+			</InputField>
 		</LayoutWrapper>
 	);
 };
@@ -107,4 +104,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default SmsConversationScreen;
+export default withTheme(SmsConversationScreen);

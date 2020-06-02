@@ -108,7 +108,6 @@ const Notification = ({ theme, type, date, title, message }) => {
 };
 
 Notification.propTypes = {
-	withSpacing: PropTypes.bool,
 	type: PropTypes.string.isRequired,
 	date: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
@@ -116,7 +115,6 @@ Notification.propTypes = {
 };
 
 Notification.defaultProps = {
-	withSpacing: true,
 	message: '',
 };
 

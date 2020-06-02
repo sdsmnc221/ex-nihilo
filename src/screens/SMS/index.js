@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
 import Contacts from 'react-native-contacts';
 import { StyleSheet, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, FlatList } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import SmsShort from './components/SmsShort';
-import AddButton from 'sharedUI/Button/AddButton';
 
 import { shuffle } from 'utils';
+import { SCREENS } from 'configs';
+
+const flatListStyle = css`
+	width: 100%;
+`;
+
+const Gap = styled.View`
+	width: 100%;
+	height: 50px;
+`;
 
 const SmsScreen = ({ route, navigation }) => {
 	const [contacts, setContacts] = useState(
@@ -18,75 +27,69 @@ const SmsScreen = ({ route, navigation }) => {
 		)
 	);
 
-	useEffect(() => {
-		Contacts.getAllWithoutPhotos((err, contacts_) => {
-			if (err === 'denied') {
-				// error
-			} else {
-				let deviceContacts = contacts_.filter(
-					(contact) => contact.phoneNumbers.length > 0
-				);
+	// useEffect(() => {
+	// 	Contacts.getAllWithoutPhotos((err, contacts_) => {
+	// 		if (err === 'denied') {
+	// 			// error
+	// 		} else {
+	// 			let deviceContacts = contacts_.filter(
+	// 				(contact) => contact.phoneNumbers.length > 0
+	// 			);
 
-				if (deviceContacts.length > 0) {
-					deviceContacts = deviceContacts.map(
-						(contact) => contact.displayName || contact.phoneNumbers[0].number
-					);
+	// 			if (deviceContacts.length > 0) {
+	// 				deviceContacts = deviceContacts.map(
+	// 					(contact) => contact.displayName || contact.phoneNumbers[0].number
+	// 				);
 
-					setContacts((prevContacts) =>
-						shuffle([...prevContacts, ...deviceContacts])
-					);
-				}
-			}
-		});
-	}, []);
+	// 				setContacts((prevContacts) =>
+	// 					shuffle([...prevContacts, ...deviceContacts])
+	// 				);
+	// 			}
+	// 		}
+	// 	});
+	// }, []);
 
-	const smsList = contacts.map((contactName) => {
-		return {
-			date: 'Hier',
-			title: contactName,
-			message:
-				'Moi: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo',
-		};
+	const smsList = contacts.map((contactName) => ({
+		date: 'Hier',
+		title: contactName,
+		message:
+			'Moi: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo',
+	}));
+
+	smsList.unshift({
+		date: "À l'instant",
+		title: 'Janus',
+		message: 'Bonjour toi',
 	});
+
+	console.log(smsList.length);
 
 	return (
 		<LayoutWrapper screenName={route.name}>
-			<ScrollView contentContainerStyle={styles.scrollBody}>
-				<SmsShort
-					date="À l'instant"
-					title="Janus"
-					message="Bonjour toi"
-					onPress={() =>
-						navigation.navigate('JanusConversationScreen', {
-							headerTitle: 'Janus',
-						})
-					}
-				/>
-				{smsList.map((s, i) => (
+			<FlatList
+				css={`
+					${flatListStyle}
+				`}
+				data={smsList}
+				renderItem={({ item: sms }) => (
 					<SmsShort
-						key={i}
-						date={s.date}
-						title={s.title}
-						message={s.message}
+						date={sms.date}
+						title={sms.title}
+						message={sms.message}
 						onPress={() =>
-							navigation.navigate('SmsConversationScreen', {
-								headerTitle: s.title,
-							})
+							navigation.navigate(
+								sms.title === 'Janus' ? SCREENS.SMS_JANUS : SCREENS.SMS_CONVERSATION,
+								{
+									headerTitle: sms.title,
+								}
+							)
 						}
 					/>
-				))}
-			</ScrollView>
-			<AddButton />
+				)}
+			/>
+			<Gap />
 		</LayoutWrapper>
 	);
 };
-
-const styles = StyleSheet.create({
-	scrollBody: {
-		width: '100%',
-		paddingTop: 36,
-		paddingBottom: 84,
-	},
-});
 
 export default SmsScreen;

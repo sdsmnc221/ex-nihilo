@@ -63,7 +63,8 @@ const Notification = ({ theme, type, date, title, message }) => {
 				height={100}
 				color={theme.colors.ghostWhite}
 				borderRadius={24}
-				style={theme.shadows.default}>
+				style={theme.shadows.notificationShadow}
+				{...theme.shadows.notification}>
 				<Wrapper>
 					{/* HEADER */}
 					<FlexDiv
@@ -91,7 +92,12 @@ const Notification = ({ theme, type, date, title, message }) => {
 
 					{/* Content */}
 					<FlexDiv direction="row" justifyContent="flex-start" fullWidth>
-						<AppIcon size={45} type="PERSON" noBlink />
+						<AppIcon
+							size={45}
+							type="PERSON"
+							noBlink
+							{...theme.shadows.notificationAppIcon}
+						/>
 						<View
 							css={css`
 								margin-left: 12px;

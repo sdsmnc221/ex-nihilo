@@ -2,7 +2,6 @@ import React from 'react';
 import { css } from 'styled-components';
 
 import StyledIcon from 'sharedUI/Icon/StyledIcon';
-import SearchPlaceholder from '../components/SearchPlaceholder';
 
 const spacing = css`
 	margin-right: 12px;
@@ -10,12 +9,12 @@ const spacing = css`
 
 const ContactsHeaderRight = () => (
 	<>
-		<SearchPlaceholder additionalStyle={`${spacing}`} />
+		<StyledIcon type="FILTER" additionalStyle={`${spacing}`} />
 		<StyledIcon
 			useImg
-			type="STAR_PRESSED"
-			width={29}
-			height={27}
+			type="HEART"
+			width={31}
+			height={28}
 			additionalStyle={`${spacing} ${css`
 				top: 1px;
 			`}`}
@@ -23,7 +22,7 @@ const ContactsHeaderRight = () => (
 		<StyledIcon
 			type="DOTS_VERTICAL"
 			additionalStyle={`${css`
-				top: 2px;
+				top: -1px;
 			`}`}
 		/>
 	</>

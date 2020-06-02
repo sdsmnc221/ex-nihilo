@@ -72,18 +72,23 @@ const getHeaderType = (screen) => {
 
 const getHeaderExtra = (screen) => {
 	let headerLeft = false,
-		headerRight = false;
+		headerRight = false,
+		headerShadow = false;
 
 	switch (screen) {
 		case SCREENS.SMS:
 		case SCREENS.CONTACTS:
 			headerRight = true;
 			break;
+		case SCREENS.ALBUM:
+			headerRight = true;
+			headerShadow = true;
+			break;
 		default:
 			break;
 	}
 
-	return { headerLeft, headerRight };
+	return { headerLeft, headerRight, headerShadow };
 };
 
 const getHeaderConfigs = (screen) => {

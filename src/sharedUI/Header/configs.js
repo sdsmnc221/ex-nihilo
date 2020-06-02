@@ -77,7 +77,8 @@ const getHeaderType = (screen) => {
 const getHeaderExtra = (screen) => {
 	let headerLeft = false,
 		headerRight = false,
-		headerShadow = false;
+		headerShadow = false,
+		screenType = null;
 
 	switch (screen) {
 		case SCREENS.SMS:

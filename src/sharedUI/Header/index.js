@@ -10,9 +10,9 @@ import { HEADER_TYPES } from './configs';
 const renderHeader = (type, title, otherConfigs) => {
 	switch (type) {
 		case HEADER_TYPES.CONVERSATION:
-			return <ConversationHeader title={title} />;
+			return <ConversationHeader title={title} {...otherConfigs} />;
 		case HEADER_TYPES.DARK:
-			return <DarkHeader title={title} />;
+			return <DarkHeader title={title} {...otherConfigs} />;
 		default:
 			return <BasicHeader title={title} {...otherConfigs} />;
 	}

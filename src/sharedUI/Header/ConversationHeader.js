@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 
 import HeaderRight from './HeaderRight';
+import HeaderLeft from './HeaderLeft';
 import HeaderShadow from './components/HeaderShadow';
 
 import { device } from 'utils';
@@ -10,6 +11,7 @@ import { HEADER_OPTIONS } from './configs';
 
 const Wrapper = styled.View`
     position: relative;
+	z-index: 999;
 	${({ theme }) => theme.styles.flex('flex-start', null, 'row', true)}
 	min-height: ${device().height * HEADER_OPTIONS.minHeight}px;
     padding-left: ${HEADER_OPTIONS.padding.left}px;
@@ -18,18 +20,21 @@ const Wrapper = styled.View`
 `;
 
 const Title = styled.Text`
+	margin-left: 22%;
     ${({ theme }) => theme.styles.os.titleConversation}
-    color: ${({ theme }) => theme.colors.charcoal};
+    color: ${({ isJanus, theme }) =>
+					isJanus ? theme.colors.slateBlue : theme.colors.charcoal};
 `;
 
 const ConversationHeader = ({ theme, title, ...otherConfigs }) => {
 	const { screen, headerLeft, headerRight, headerShadow } = otherConfigs;
-	console.log(headerShadow);
+
 	return (
 		<Wrapper>
-			{headerShadow && <HeaderShadow />}
-			{title && <Title>{title}</Title>}
-			{headerRight && <HeaderRight type={screen} />}
+			{headerShadow && <HeaderShadow withoutExtraGap />}
+			{title && <Title isJanus={screen.includes('JANUS')}>{title}</Title>}
+			{headerLeft && <HeaderLeft type="CONVERSATION" />}
+			{headerRight && <HeaderRight type="CONVERSATION" />}
 		</Wrapper>
 	);
 };

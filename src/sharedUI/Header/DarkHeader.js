@@ -30,8 +30,8 @@ const DarkHeader = ({ title, theme }) => {
 			<IconButton
 				type="ARROW_LEFT"
 				color={theme.colors.white}
-				iconW={19.36}
-				iconH={13.94}
+				width={19.36}
+				height={13.94}
 				onPress={() => navigation.navigate(SCREENS.END_MENU)}
 				additionalStyle={`
 					${css`

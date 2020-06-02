@@ -10,6 +10,7 @@ import { HEADER_OPTIONS } from './configs';
 
 const Wrapper = styled.View`
     position: relative;
+	z-index: 999;
 	${({ theme }) => theme.styles.flex('flex-start', null, 'row', true)}
 	min-height: ${device().height * HEADER_OPTIONS.minHeight}px;
     padding-left: ${HEADER_OPTIONS.padding.left}px;

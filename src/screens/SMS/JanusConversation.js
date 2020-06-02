@@ -148,47 +148,45 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 
 	return (
 		<LayoutWrapper screenName={route.name}>
-			<View style={styles.body}>
-				<SmsList
-					ref={smsListRef}
-					onContentSizeChange={() =>
-						smsListRef.current?.scrollToEnd({ animated: true })
-					}>
-					{dialogueMessages.map((message, i) => (
-						<SmsMessage
-							key={i}
-							hasPlaceholder={!message.isUser}
-							isUser={message.isUser}
-							message={message.text}
-						/>
-					))}
-				</SmsList>
-				<InputWrapper>
-					<SmsInput
-						choice={choices ? choices[activeChoiceIndex] : undefined}
-						onPressSend={choices ? onPressSend : undefined}
+			<SmsList
+				ref={smsListRef}
+				onContentSizeChange={() =>
+					smsListRef.current?.scrollToEnd({ animated: true })
+				}>
+				{dialogueMessages.map((message, i) => (
+					<SmsMessage
+						key={i}
+						hasPlaceholder={!message.isUser}
+						isUser={message.isUser}
+						message={message.text}
 					/>
-					<ChoicesWrapper>
-						<ChoicesContent
-							script={activeScript}
-							activeChoiceIndex={activeChoiceIndex}
-							onPressChoice={onPressChoice}
-						/>
-					</ChoicesWrapper>
-				</InputWrapper>
-				{openInput && (
-					<InputOverlay>
-						<Input
-							theme={theme}
-							blurOnSubmit
-							onChangeText={onInputValue}
-							onSubmitEditing={onSubmitValue}
-							value={inputValue}
-							style={theme.shadows.default}
-						/>
-					</InputOverlay>
-				)}
-			</View>
+				))}
+			</SmsList>
+			<InputWrapper>
+				<SmsInput
+					choice={choices ? choices[activeChoiceIndex] : undefined}
+					onPressSend={choices ? onPressSend : undefined}
+				/>
+				<ChoicesWrapper>
+					<ChoicesContent
+						script={activeScript}
+						activeChoiceIndex={activeChoiceIndex}
+						onPressChoice={onPressChoice}
+					/>
+				</ChoicesWrapper>
+			</InputWrapper>
+			{openInput && (
+				<InputOverlay>
+					<Input
+						theme={theme}
+						blurOnSubmit
+						onChangeText={onInputValue}
+						onSubmitEditing={onSubmitValue}
+						value={inputValue}
+						style={theme.shadows.default}
+					/>
+				</InputOverlay>
+			)}
 		</LayoutWrapper>
 	);
 };

@@ -6,7 +6,7 @@ import { NeuView } from 'utils/react-native-neu-element';
 
 import FlexDiv from 'sharedUI/FlexDiv';
 import Icon from 'sharedUI/Icon';
-import AppIcon from 'sharedUI/AppIcon/';
+import AppIcon from 'sharedUI/AppIcon';
 
 import { truncate } from 'utils';
 

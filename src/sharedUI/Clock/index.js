@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import moment from 'moment';
 
 import { fonts, colors, shadows } from 'configs/theme';
@@ -27,7 +27,8 @@ const Date = styled.Text`
 	top: -40px;
 `;
 
-const Clock = () => {
+const Clock = ({ theme }) => {
+	const { default: shadow } = theme.shadows;
 	const now = moment().format('LLLL');
 	const [time, setTime] = useState(now.slice(-5));
 	const [date, setDate] = useState(
@@ -49,14 +50,14 @@ const Clock = () => {
 
 	return (
 		<Wrapper>
-			<Time style={shadows.default}>
+			<Time style={shadow}>
 				{time.slice(0, 2)}
 				{'\n'}
 				{time.slice(-2)}
 			</Time>
-			<Date style={shadows.default}>{date}</Date>
+			<Date style={shadow}>{date}</Date>
 		</Wrapper>
 	);
 };
 
-export default Clock;
+export default withTheme(Clock);

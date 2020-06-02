@@ -10,6 +10,7 @@ const HEADER_OPTIONS = {
 		left: 30,
 		right: 12,
 	},
+	extraGap: 28,
 };
 
 const HEADER_TYPES = {

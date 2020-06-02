@@ -14,6 +14,7 @@ const theme = {
 		slateBlue: '#6B5CFF',
 		whiskey: '#CE976A',
 		white: '#FFF',
+		whiteAlpha: 'rgba(255, 255, 255, $a)',
 	},
 	fonts: {
 		acumin: {
@@ -47,19 +48,6 @@ const theme = {
 		},
 		superclarendon: 'Superclarendon',
 	},
-	shadows: {
-		default: {
-			shadowColor: '#000',
-			shadowOffset: {
-				width: 0,
-				height: 6,
-			},
-			shadowOpacity: 0.37,
-			shadowRadius: 7.49,
-
-			elevation: 12,
-		},
-	},
 	/*
 	 * Go check /docs/guide-typo.png
 	 */
@@ -87,8 +75,8 @@ const theme = {
 	},
 };
 
-const { colors, fonts, shadows, typo } = theme;
+const { colors, fonts, typo } = theme;
 
-export { colors, fonts, shadows, typo };
+export { colors, fonts, typo };
 
 export default theme;

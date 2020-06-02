@@ -83,6 +83,7 @@ const AppIcon = ({
 				borderRadius={size}
 				style={theme.shadows.default}
 				inset={noBlink ? false : buttonPressed}
+				{...theme.shadows.appIcon}
 				{...neuViewProps}>
 				<TouchableWrapper
 					size={size}

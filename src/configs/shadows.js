@@ -39,6 +39,28 @@ export default {
 			blur: 6,
 		},
 	},
+	appIcon: {
+		customLightShadow: {
+			opacity: 0.6,
+			blur: 4,
+			spread: 2,
+		},
+		customDarkShadow: {
+			opacity: 0.3,
+			blur: 8,
+			spread: 1,
+		},
+		customInsetLightShadow: {
+			opacity: 0.6,
+			blur: 4,
+			spread: 2,
+		},
+		customInsetDarkShadow: {
+			opacity: 0.3,
+			blur: 8,
+			spread: 1,
+		},
+	},
 	notification: {
 		customLightShadow: {
 			opacity: 0.2,
@@ -55,28 +77,6 @@ export default {
 		customInsetDarkShadow: {
 			opacity: 0.4,
 			blur: 6,
-		},
-	},
-	notificationAppIcon: {
-		customLightShadow: {
-			opacity: 0.6,
-			blur: 4,
-			spread: 2,
-		},
-		customDarkShadow: {
-			opacity: 0.2,
-			blur: 8,
-			spread: 1,
-		},
-		customInsetLightShadow: {
-			opacity: 0.6,
-			blur: 4,
-			spread: 2,
-		},
-		customInsetDarkShadow: {
-			opacity: 0.2,
-			blur: 8,
-			spread: 1,
 		},
 	},
 	notificationShadow: {

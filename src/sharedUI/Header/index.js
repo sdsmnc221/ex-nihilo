@@ -6,16 +6,18 @@ import DarkHeader from './DarkHeader';
 
 import { HEADER_TYPES } from './configs';
 
-const renderHeader = (type, title) => {
+const renderHeader = (type, title, otherConfigs) => {
 	switch (type) {
 		case HEADER_TYPES.DARK:
 			return <DarkHeader title={title} />;
 		default:
-			return <BasicHeader title={title} />;
+			return <BasicHeader title={title} {...otherConfigs} />;
 	}
 };
 
-const Header = ({ title, type }) => <>{renderHeader(type, title)}</>;
+const Header = ({ title, type, ...otherConfigs }) => (
+	<>{renderHeader(type, title, otherConfigs)}</>
+);
 
 Header.propTypes = {
 	title: PropTypes.string,

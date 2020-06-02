@@ -69,19 +69,44 @@ const getHeaderType = (screen) => {
 	return headerType;
 };
 
+const getHeaderExtra = (screen) => {
+	let headerLeft = false,
+		headerRight = false;
+
+	switch (screen) {
+		case SCREENS.SMS:
+			headerRight = true;
+			break;
+		default:
+			break;
+	}
+
+	return { headerLeft, headerRight };
+};
+
 const getHeaderConfigs = (screen) => {
 	const screenInfo = SCREENS_INFO.find((s) => screen === s.displayName);
 	let configs = {};
 
 	if (screenInfo) {
-		const headerName = getHeaderName(screenInfo.displayName);
-		const headerType = getHeaderType(screenInfo.displayName);
+		const {
+			constantName: screenConstantName,
+			displayName: screenDisplayName,
+		} = screenInfo;
+		const headerName = getHeaderName(screenDisplayName);
+		const headerType = getHeaderType(screenDisplayName);
+		const headerExtra = getHeaderExtra(screenDisplayName);
 
 		configs = {
 			header: !!headerName,
 			headerConfigs: {
 				...(typeof headerName === 'string'
-					? { title: headerName, type: headerType }
+					? {
+							screen: screenConstantName,
+							title: headerName,
+							type: headerType,
+							...headerExtra,
+					  }
 					: {}),
 			},
 		};

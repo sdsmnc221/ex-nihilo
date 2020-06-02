@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { useNavigation } from '@react-navigation/native';
-import { View, Text } from 'react-native';
 
-import Icon from 'sharedUI/Icon';
-import IconButton from 'sharedUI/Button/IconButton';
+import HeaderRight from './HeaderRight';
 
 import { device } from 'utils';
 import { HEADER_OPTIONS } from './configs';
@@ -24,9 +21,15 @@ const Title = styled.Text`
     letter-spacing: 1.6px;
 `;
 
-const BasicHeader = ({ title }) => (
-	<Wrapper>{title && <Title>{title}</Title>}</Wrapper>
-);
+const BasicHeader = ({ title, ...otherConfigs }) => {
+	const { screen, headerLeft, headerRight } = otherConfigs;
+	return (
+		<Wrapper>
+			{title && <Title>{title}</Title>}
+			{headerRight && <HeaderRight type={screen} />}
+		</Wrapper>
+	);
+};
 
 BasicHeader.propTypes = {
 	title: PropTypes.string,

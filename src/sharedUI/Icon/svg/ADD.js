@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 import Svg, { Path } from 'react-native-svg';
 
 const ADD = ({ width, height, color }) => (
-	<Svg width={width} height={height} viewBox="0 0 25 25">
+	<Svg width={width} height={height} viewBox="0 0 21 29">
 		<Path
-			d="M13.7656 11.6562H24.1484V14.2812H13.7656V25.5781H10.9297V14.2812H0.757812V11.6562H10.9297V0.734375H13.7656V11.6562Z"
+			d="M10.5 27C16.299 27 21 22.299 21 16.5C21 10.701 16.299 6 10.5 6C4.70101 6 0 10.701 0 16.5C0 22.299 4.70101 27 10.5 27Z"
 			stroke="none"
 			fill={color}
+			fillRule="evenodd"
+		/>
+		<Path
+			d="M9.37 20.601H11.232V17.162H14.652V15.3H11.232V11.899H9.37V15.3H5.988V17.162H9.37V20.601Z"
+			stroke="none"
+			fill="white"
 			fillRule="evenodd"
 		/>
 	</Svg>
@@ -20,9 +26,9 @@ ADD.propTypes = {
 };
 
 ADD.defaultProps = {
-	width: 25,
-	height: 26,
-	color: '#E5E5E5',
+	width: 21,
+	height: 29,
+	color: '#CE976A',
 };
 
 export default ADD;

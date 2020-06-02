@@ -117,7 +117,7 @@ const getHeaderConfigs = (screen) => {
 		configs = {
 			header: !!headerName,
 			headerConfigs: {
-				...(typeof headerName === 'string'
+				...(typeof headerName === 'string' || headerName
 					? {
 							screen: screenConstantName,
 							title: headerName,

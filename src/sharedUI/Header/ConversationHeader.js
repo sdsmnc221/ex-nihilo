@@ -14,18 +14,17 @@ const Wrapper = styled.View`
 	min-height: ${device().height * HEADER_OPTIONS.minHeight}px;
     padding-left: ${HEADER_OPTIONS.padding.left}px;
     padding-right: ${HEADER_OPTIONS.padding.right}px;
-    margin-bottom: ${HEADER_OPTIONS.extraGap}px;
     background-color: ${({ theme }) => theme.colors.ghostWhite};
 `;
 
 const Title = styled.Text`
-    ${({ theme }) => theme.styles.os.h1}
-    color: ${({ theme }) => theme.colors.whiskey};
-    letter-spacing: 1.6px;
+    ${({ theme }) => theme.styles.os.titleConversation}
+    color: ${({ theme }) => theme.colors.charcoal};
 `;
 
 const ConversationHeader = ({ theme, title, ...otherConfigs }) => {
 	const { screen, headerLeft, headerRight, headerShadow } = otherConfigs;
+	console.log(headerShadow);
 	return (
 		<Wrapper>
 			{headerShadow && <HeaderShadow />}

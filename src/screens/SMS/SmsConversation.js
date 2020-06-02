@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import styled, { withTheme } from 'styled-components';
-import { StyleSheet, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import SmsMessage from './components/SmsMessage';
@@ -92,16 +92,5 @@ const SmsConversationScreen = ({ route, navigation }) => {
 		</LayoutWrapper>
 	);
 };
-
-const styles = StyleSheet.create({
-	body: {
-		backgroundColor: '#fff',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-		alignItems: 'center',
-		paddingBottom: 40,
-	},
-});
 
 export default withTheme(SmsConversationScreen);

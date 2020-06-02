@@ -27,6 +27,11 @@ export default {
 			font-family: ${sourceSans.bold};
 			font-size: ${sizes.h3};
 		`,
+		titleConversation: css`
+			font-family: ${sourceSans.bold};
+			font-size: ${sizes.h3_alt};
+			letter-spacing: 0.27px;
+		`,
 		notifsCount: css`
 			font-family: ${cairo.light};
 			font-size: ${sizes.body};

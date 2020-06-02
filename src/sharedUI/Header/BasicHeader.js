@@ -12,6 +12,7 @@ const Wrapper = styled.View`
 	min-height: ${device().height * HEADER_OPTIONS.minHeight}px;
     padding-left: ${HEADER_OPTIONS.padding.left}px;
     padding-right: ${HEADER_OPTIONS.padding.right}px;
+    margin-bottom: 28px;
     background-color: ${({ theme }) => theme.colors.ghostWhite};
 `;
 

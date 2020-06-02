@@ -24,8 +24,8 @@ const Title = styled.Text`
     letter-spacing: 1.6px;
 `;
 
-const BasicHeader = ({ theme, title, ...otherConfigs }) => {
-	const { screen, headerRight, headerShadow } = otherConfigs;
+const ConversationHeader = ({ theme, title, ...otherConfigs }) => {
+	const { screen, headerLeft, headerRight, headerShadow } = otherConfigs;
 	return (
 		<Wrapper>
 			{headerShadow && <HeaderShadow />}
@@ -35,12 +35,12 @@ const BasicHeader = ({ theme, title, ...otherConfigs }) => {
 	);
 };
 
-BasicHeader.propTypes = {
+ConversationHeader.propTypes = {
 	title: PropTypes.string,
 };
 
-BasicHeader.defaultProps = {
+ConversationHeader.defaultProps = {
 	title: null,
 };
 
-export default withTheme(BasicHeader);
+export default withTheme(ConversationHeader);

@@ -15,6 +15,7 @@ const HEADER_OPTIONS = {
 
 const HEADER_TYPES = {
 	BASIC: 'basic',
+	CONVERSATION: 'conversation',
 	DARK: 'dark',
 };
 
@@ -25,7 +26,7 @@ const getHeaderName = (screen) => {
 		case SCREENS.SMS:
 			headerName = 'Messagerie';
 			break;
-		case SCREENS.JANUS:
+		case SCREENS.SMS_JANUS:
 			headerName = 'Janus';
 			break;
 		case SCREENS.CONTACTS:
@@ -44,7 +45,6 @@ const getHeaderName = (screen) => {
 			headerName = 'En savoir plus';
 			break;
 		case SCREENS.SMS_CONVERSATION:
-		case SCREENS.CONTACTS_DETAILS:
 			headerName = true;
 			break;
 		default:
@@ -62,6 +62,10 @@ const getHeaderType = (screen) => {
 		case SCREENS.DATA_PROTECTION:
 		case SCREENS.ABOUT_US:
 			headerType = HEADER_TYPES.DARK;
+			break;
+		case SCREENS.SMS_CONVERSATION:
+		case SCREENS.SMS_JANUS:
+			headerType = HEADER_TYPES.CONVERSATION;
 			break;
 		default:
 			break;
@@ -81,6 +85,12 @@ const getHeaderExtra = (screen) => {
 			headerRight = true;
 			break;
 		case SCREENS.ALBUM:
+			headerRight = true;
+			headerShadow = true;
+			break;
+		case SCREENS.SMS_CONVERSATION:
+		case SCREENS.SMS_JANUS:
+			headerLeft = true;
 			headerRight = true;
 			headerShadow = true;
 			break;

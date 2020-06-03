@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import { Image } from 'react-native';
 
 import StyledIcon from 'sharedUI/Icon/StyledIcon';
+import HeartButton from '../../../sharedUI/Button/HeartButton';
 
 const Wrapper = styled.TouchableOpacity`
 	position: relative;
@@ -20,15 +21,15 @@ const PhotoThumbnail = ({ size, source, onPress }) => (
 			}}
 			source={source}
 		/>
-		<StyledIcon
-			type="HEART_PRESSED"
-			width={18}
-			height={18}
+		<HeartButton
+			initialActive={true}
 			additionalStyle={css`
 				position: absolute;
 				top: 8px;
 				left: 8px;
 			`}
+			width={18}
+			height={18}
 		/>
 	</Wrapper>
 );

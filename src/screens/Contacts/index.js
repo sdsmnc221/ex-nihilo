@@ -28,7 +28,7 @@ const ContactsScreen = ({ route, navigation }) => {
 		useSelector((state) => state.contacts).map((contact) => ({
 			name: contact.name,
 			number: contact.phoneNumber,
-			star: random(0.1),
+			star: random(0.4),
 		}))
 	);
 	useEffect(() => {
@@ -47,7 +47,7 @@ const ContactsScreen = ({ route, navigation }) => {
 						return {
 							name: displayName !== number ? displayName : null,
 							number: number.replace('+33 ', '0'),
-							star: random(0.1),
+							star: random(0.4),
 						};
 					});
 				}

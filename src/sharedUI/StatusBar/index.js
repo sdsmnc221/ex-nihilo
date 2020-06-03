@@ -5,9 +5,11 @@ import { View, Text } from 'react-native';
 
 import StyledIcon from 'sharedUI/Icon/StyledIcon';
 
+import { SIZES } from 'configs';
+
 const Wrapper = styled.View`
 	padding-right: 10px;
-	height: 30px;
+	height: ${SIZES.STT_BAR_H}px;
 	position: absolute;
 	z-index: 99;
 	top: 0;

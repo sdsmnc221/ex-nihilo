@@ -7,10 +7,12 @@ import { View } from 'react-native';
 import Icon from 'sharedUI/Icon';
 import IconButton from 'sharedUI/Button/IconButton';
 
+import { SIZES } from 'configs';
+
 const Wrapper = styled.View`
 	${({ theme }) => theme.styles.flex('space-between', null, 'row', true)}
 	padding: 0 72px;
-	height: 50px;
+	height: ${SIZES.NAV_BAR_H}px;
 	position: absolute;
 	z-index: 99;
 	bottom: 0;

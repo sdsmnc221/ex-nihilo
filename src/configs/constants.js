@@ -14,8 +14,13 @@ const FLEX = {
 	FLEX_DIRECTION: 'column',
 };
 
+const SIZES = {
+	NAV_BAR_H: 50,
+	STT_BAR_H: 30,
+};
+
 const STRINGS = {
 	ICON_PRESSED: '_PRESSED',
 };
 
-export { APP_ICON, FLEX, STRINGS };
+export { APP_ICON, FLEX, SIZES, STRINGS };

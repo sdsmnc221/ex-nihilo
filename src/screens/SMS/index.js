@@ -7,17 +7,13 @@ import { FlatList } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import SmsShort from './components/SmsShort';
+import FillGap from 'sharedUI/FillGap';
 
 import { shuffle } from 'utils';
 import { SCREENS } from 'configs';
 
 const flatListStyle = css`
 	width: 100%;
-`;
-
-const Gap = styled.View`
-	width: 100%;
-	height: 50px;
 `;
 
 const SmsScreen = ({ route, navigation }) => {
@@ -86,7 +82,7 @@ const SmsScreen = ({ route, navigation }) => {
 					/>
 				)}
 			/>
-			<Gap />
+			<FillGap />
 		</LayoutWrapper>
 	);
 };

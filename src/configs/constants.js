@@ -1,7 +1,10 @@
 import { device } from 'utils';
+import { HEADER_OPTIONS } from 'sharedUI/Header/configs';
 
 const NUMBERS = {
 	ALBUM_COLS: 3,
+	RESET_PRESS_DURATION: 120,
+	RESET_PRESS_DURATION_ALBUM: 12,
 };
 
 const APP_ICON = {
@@ -11,7 +14,6 @@ const APP_ICON = {
 	ICONS_COUNT: 5,
 	ICON_MARGE: 12,
 	RATIO: 0.9,
-	RESET_PRESS_DURATION: 120,
 };
 
 const FLEX = {
@@ -20,10 +22,16 @@ const FLEX = {
 	FLEX_DIRECTION: 'column',
 };
 
+const HEADER_H = device().height * HEADER_OPTIONS.minHeight;
+const HEADER_H_GAP = HEADER_H + HEADER_OPTIONS.extraGap;
+
 const SIZES = {
 	NAV_BAR_H: 50,
 	STT_BAR_H: 30,
+	HEADER_H,
+	HEADER_H_GAP,
 	ALBUM_PHOTO: device().width / NUMBERS.ALBUM_COLS,
+	ALBUM_LOCK_H: device().height - HEADER_H_GAP,
 };
 
 const STRINGS = {

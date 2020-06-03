@@ -7,13 +7,13 @@ import { View, Text } from 'react-native';
 import IconButton from 'sharedUI/Button/IconButton';
 
 import { device } from 'utils';
-import { SCREENS } from 'configs';
+import { SCREENS, SIZES } from 'configs';
 import { HEADER_OPTIONS } from './configs';
 
 const Wrapper = styled.View`
 	margin-top: 12px;
 	${({ theme }) => theme.styles.flex(null, null, 'row', true)}
-	min-height: ${device().height * HEADER_OPTIONS.minHeight}px;
+	min-height: ${SIZES.HEADER_H}px;
     background-color: ${({ theme }) => theme.colors.black};
 `;
 

@@ -1,55 +1,70 @@
 import React, { useState } from 'react';
-import { css } from 'styled-components';
+import styled, { css, withTheme } from 'styled-components';
 import { useSelector } from 'react-redux';
-import { StyleSheet } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import Modal from 'react-native-modal';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import FillGap from 'sharedUI/FillGap';
-import NavigationBar from 'sharedUI/NavigationBar';
 import PasswordLock from 'sharedUI/PasswordLock';
 import PhotoThumbnail from './components/PhotoThumbnail';
 
-import { NUMBERS, SCREENS, SIZES } from 'configs';
+import { tick } from 'utils';
+import { KEY_PUZZLE_B, NUMBERS, SCREENS, SIZES } from 'configs';
 
 const flatListStyle = css`
 	width: 100%;
 `;
 
-const AlbumScreen = ({ route, navigation }) => {
+const PasswordLockContainer = styled.View`
+	${({ theme }) => theme.styles.flex('flex-start', 'flex-start', null, true)}
+	position: absolute;
+	top: ${SIZES.HEADER_H_GAP}px;
+	width: 100%;
+	height: ${SIZES.ALBUM_LOCK_H}px;
+	padding-top: 36px;
+	background-color: ${({ theme }) => theme.colors.slateBlue};
+`;
+
+const AlbumScreen = ({ route, navigation, theme }) => {
 	const { gallery } = useSelector((state) => state.deviceData);
 	const photos = gallery.photos ? gallery.photos.edges : [];
 
 	const photoSize = SIZES.ALBUM_PHOTO;
 	const photoNb = Math.floor(gallery.count / 10);
 
-	const [isLocked, setIsLocked] = useState(false);
+	const PASSWORD = KEY_PUZZLE_B;
+	const [isLocked, setIsLocked] = useState(true);
 	const [passwordInput, setPasswordInput] = useState('');
-	const [albumPassword, setAlbumPassword] = useState('0d1n');
+	const [passwordValid, setPasswordValid] = useState(false);
+	const [passwordSubmitted, setPasswordSubmitted] = useState(false);
 
 	const onSubmitPassword = () => {
-		if (passwordInput === albumPassword) {
-			setIsLocked(false);
+		setPasswordSubmitted(true);
+
+		if (passwordInput !== PASSWORD) {
+			setPasswordValid(false);
+		} else {
+			setPasswordValid(true);
+			tick(() => setIsLocked(false), NUMBERS.RESET_PRESS_DURATION_ALBUM);
 		}
 	};
 
-	const renderPasswordLock = () => (
-		<Modal
-			isVisible={isLocked}
-			style={styles.modal}
-			animationInTiming={400}
-			animationOutTiming={800}
-			useNativeDriver>
-			<PasswordLock
-				color="#fff"
-				passwordInput={passwordInput}
-				onInputPassword={(text) => setPasswordInput(text)}
-				onSubmitPassword={onSubmitPassword}
-			/>
-			<NavigationBar transparentButtons />
-		</Modal>
-	);
+	const renderPasswordLock = () =>
+		isLocked ? (
+			<PasswordLockContainer>
+				<PasswordLock
+					fullBody={false}
+					bodyColor={theme.colors.slateBlue}
+					titleColor={theme.colors.ghostWhite}
+					inputBorder
+					passwordInput={passwordInput}
+					passwordValid={passwordValid}
+					passwordSubmitted={passwordSubmitted}
+					onInputPassword={(text) => setPasswordInput(text)}
+					onSubmitPassword={onSubmitPassword}
+				/>
+			</PasswordLockContainer>
+		) : null;
 
 	return (
 		<LayoutWrapper screenName={route.name}>
@@ -77,11 +92,4 @@ const AlbumScreen = ({ route, navigation }) => {
 	);
 };
 
-const styles = StyleSheet.create({
-	modal: {
-		flex: 1,
-		margin: 0,
-	},
-});
-
-export default AlbumScreen;
+export default withTheme(AlbumScreen);

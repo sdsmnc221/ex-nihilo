@@ -24,14 +24,14 @@ const LockScreen = ({ navigation, theme }) => {
 	const [numberOfTry, setNumberOfTry] = useState(0);
 	const [messageFailed, setMessageFailed] = useState('');
 	const [passwordInput, setPasswordInput] = useState('');
-	const [passwordValid, setPassWordValid] = useState(false);
-	const [passwordSubmitted, setPassWordSubmitted] = useState(false);
+	const [passwordValid, setPasswordValid] = useState(false);
+	const [passwordSubmitted, setPasswordSubmitted] = useState(false);
 
 	const onSubmit = () => {
-		setPassWordSubmitted(true);
+		setPasswordSubmitted(true);
 
 		if (passwordInput !== PASSWORD) {
-			setPassWordValid(false);
+			setPasswordValid(false);
 			setNumberOfTry(numberOfTry + 1);
 
 			if (numberOfTry >= 2) {
@@ -42,7 +42,7 @@ const LockScreen = ({ navigation, theme }) => {
 				setMessageFailed('Mot de passe incorrect');
 			}
 		} else {
-			setPassWordValid(true);
+			setPasswordValid(true);
 		}
 	};
 
@@ -66,11 +66,9 @@ const LockScreen = ({ navigation, theme }) => {
 				<BackgroundImage source={BG_LOCKSCREEN} />
 				<Solid />
 				<PasswordLock
-					noLockIcon
 					submitButton
 					hintEnabled
 					hint={messageFailed}
-					hintColor={theme.colors.charcoal}
 					passwordInput={passwordInput}
 					passwordValid={passwordValid}
 					passwordSubmitted={passwordSubmitted}

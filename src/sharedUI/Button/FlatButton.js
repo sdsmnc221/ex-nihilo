@@ -5,7 +5,7 @@ import { Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { tick } from 'utils';
-import { APP_ICON } from 'configs';
+import { NUMBERS } from 'configs';
 
 const Button = styled.TouchableOpacity`
 	width: 50px;
@@ -51,7 +51,7 @@ const FlatButton = ({
 	useEffect(() => {
 		if (buttonPressed) {
 			pressHandler();
-			tick(() => setButtonPressed(false), APP_ICON.RESET_PRESS_DURATION);
+			tick(() => setButtonPressed(false), NUMBERS.RESET_PRESS_DURATION);
 		}
 	}, [buttonPressed, pressHandler]);
 

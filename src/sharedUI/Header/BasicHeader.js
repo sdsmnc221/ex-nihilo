@@ -5,14 +5,14 @@ import styled, { withTheme } from 'styled-components';
 import HeaderRight from './HeaderRight';
 import HeaderShadow from './components/HeaderShadow';
 
-import { device } from 'utils';
+import { SIZES } from 'configs';
 import { HEADER_OPTIONS } from './configs';
 
 const Wrapper = styled.View`
     position: relative;
 	z-index: 999;
 	${({ theme }) => theme.styles.flex('flex-start', null, 'row', true)}
-	min-height: ${device().height * HEADER_OPTIONS.minHeight}px;
+	min-height: ${SIZES.HEADER_H}px;
     padding-left: ${HEADER_OPTIONS.padding.left}px;
     padding-right: ${HEADER_OPTIONS.padding.right}px;
     margin-bottom: ${HEADER_OPTIONS.extraGap}px;

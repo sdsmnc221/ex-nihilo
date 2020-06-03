@@ -63,7 +63,7 @@ const truncate = (str, ln = 96, ellipsis = true) => {
 	return truncatedStr;
 };
 
-const tick = (cb, delay) => setTimeout(cb, delay);
+const tick = (cb, delay = 0) => setTimeout(cb, delay);
 
 const getIconSize = () => {
 	const { width: deviceW } = device();

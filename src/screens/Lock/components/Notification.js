@@ -97,7 +97,7 @@ const Notification = ({ theme, type, date, title, message }) => {
 							css={css`
 								margin-left: 12px;
 							`}>
-							<Title>{title}</Title>
+							<Title>{truncate(title, 20)}</Title>
 							<Message>{messageText}</Message>
 						</View>
 					</FlexDiv>

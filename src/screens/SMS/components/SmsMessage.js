@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { css, withTheme } from 'styled-components';
 import { View, Text } from 'react-native';
-import styled, { css } from 'styled-components';
 
-import PlaceHolder from 'sharedUI/PlaceHolder';
+import StyledIcon from 'sharedUI/Icon/StyledIcon';
 
 const Wrapper = styled.View`
 	display: flex;
@@ -15,20 +15,42 @@ const Wrapper = styled.View`
 `;
 
 const SmsText = styled.Text`
-	padding: 12px;
-	background-color: #c4c4c4;
-	max-width: 56%;
-	margin-top: 12px;
-	font-size: 11px;
-	color: #565656;
-	margin-left: ${({ isUser, hasPlaceholder }) =>
-		isUser ? 0 : hasPlaceholder ? 12 : 40}px;
+	max-width: 60%;
+	${({ theme }) => theme.styles.os.smsText}
+	background-color: ${({ theme }) => theme.colors.ghostWhite};
+	color: ${({ theme }) => theme.colors.charcoal};
+	padding: 14px 12px;
+	margin-bottom: ${({ withAvatar }) => (withAvatar ? 0 : 12)}px;
+	margin-left: ${({ isUser, withAvatar }) =>
+		isUser ? 0 : withAvatar ? 8 : 48}px;
+	border-radius: 12px;
+	border-left-color: ${({ theme }) => theme.colors.white};
+	border-left-width: 0.6px;
+	border-top-color: ${({ theme }) => theme.colors.white};
+	border-top-width: 2px;
 `;
 
-const SmsMessage = ({ isUser, hasPlaceholder, message }) => (
+const avatarStyle = css`
+	border-radius: 100px;
+	border: 1px solid ${({ theme }) => theme.colors.white};
+	color: ${({ theme }) => theme.colors.ghostWhite};
+`;
+
+const SmsMessage = ({ isUser, withAvatar, message, theme }) => (
 	<Wrapper isUser={isUser}>
-		{hasPlaceholder && <PlaceHolder color="#c4c4c4" size={28} round />}
-		<SmsText isUser={isUser} hasPlaceholder={hasPlaceholder}>
+		{withAvatar && (
+			<StyledIcon
+				type="PERSON"
+				size={40}
+				width={16.17}
+				height={21.22}
+				additionalStyle={avatarStyle}
+			/>
+		)}
+		<SmsText
+			isUser={isUser}
+			withAvatar={withAvatar}
+			style={theme.shadows.smsMessage}>
 			{message}
 		</SmsText>
 	</Wrapper>
@@ -36,14 +58,13 @@ const SmsMessage = ({ isUser, hasPlaceholder, message }) => (
 
 SmsMessage.propTypes = {
 	isUser: PropTypes.bool,
-	hasPlaceholder: PropTypes.bool,
+	withAvatar: PropTypes.bool,
 	message: PropTypes.string.isRequired,
 };
 
 SmsMessage.defaultProps = {
 	isUser: false,
-	hasPlaceholder: false,
-	message: '',
+	withAvatar: false,
 };
 
-export default SmsMessage;
+export default withTheme(SmsMessage);

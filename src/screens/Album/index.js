@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled, { css, withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { useSelector } from 'react-redux';
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -10,10 +10,6 @@ import PhotoThumbnail from './components/PhotoThumbnail';
 
 import { tick } from 'utils';
 import { KEY_PUZZLE_B, NUMBERS, SCREENS, SIZES } from 'configs';
-
-const flatListStyle = css`
-	width: 100%;
-`;
 
 const PasswordLockContainer = styled.View`
 	${({ theme }) => theme.styles.flex('flex-start', 'flex-start', null, true)}
@@ -71,7 +67,7 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 		<LayoutWrapper screenName={route.name}>
 			<FlatList
 				css={`
-					${flatListStyle}
+					${theme.styles.list}
 				`}
 				data={photos.slice(0, photoNb)}
 				keyExtractor={(item, index) => index.toString()}

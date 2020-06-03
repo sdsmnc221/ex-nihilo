@@ -41,4 +41,7 @@ export default {
 			align-items: ${alignItems || ALIGN_ITEMS};
 			flex-direction: ${direction || FLEX_DIRECTION};
 		`,
+	list: css`
+		width: 100%;
+	`,
 };

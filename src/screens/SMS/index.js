@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
+import { withTheme } from 'styled-components';
 import { useSelector } from 'react-redux';
 import Contacts from 'react-native-contacts';
-import { View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
@@ -12,11 +11,7 @@ import FillGap from 'sharedUI/FillGap';
 import { shuffle } from 'utils';
 import { SCREENS } from 'configs';
 
-const flatListStyle = css`
-	width: 100%;
-`;
-
-const SmsScreen = ({ route, navigation }) => {
+const SmsScreen = ({ route, navigation, theme }) => {
 	const [contacts, setContacts] = useState(
 		useSelector((state) => state.contacts).map(
 			(contact) => contact.name || contact.phoneNumber
@@ -62,7 +57,7 @@ const SmsScreen = ({ route, navigation }) => {
 		<LayoutWrapper screenName={route.name}>
 			<FlatList
 				css={`
-					${flatListStyle}
+					${theme.styles.list}
 				`}
 				data={smsList}
 				keyExtractor={(item, index) => index.toString()}
@@ -88,4 +83,4 @@ const SmsScreen = ({ route, navigation }) => {
 	);
 };
 
-export default SmsScreen;
+export default withTheme(SmsScreen);

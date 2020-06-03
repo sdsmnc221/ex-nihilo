@@ -5,6 +5,7 @@ const theme = {
 	colors: {
 		black: '#000',
 		charcoal: '#4A4A4A',
+		charcoalAlpha: 'rgba(74, 74, 74, $a)',
 		cinnabar: '#DB4545',
 		dimGray: '#707070',
 		ghostWhite: '#F5F4FF',

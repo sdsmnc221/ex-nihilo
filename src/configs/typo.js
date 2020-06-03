@@ -52,6 +52,10 @@ export default {
 			font-family: ${sourceSans.italic};
 			font-size: ${sizes.body};
 		`,
+		smsText: css`
+			font-family: ${sourceSans.regular};
+			font-size: ${sizes.h3};
+		`,
 	},
 	dataviz: {
 		title: css`

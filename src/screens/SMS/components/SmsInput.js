@@ -1,39 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { View, StyleSheet } from 'react-native';
+import styled, { css, withTheme } from 'styled-components';
+import { View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
 import IconButton from 'sharedUI/Button/IconButton';
 
+import { rgba } from 'utils';
+import { SIZES } from 'configs';
+
 const Wrapper = styled.View`
 	position: relative;
+	width: 100%;
+	height: ${SIZES.SMS_INPUT_H}px;
 `;
 
 const InputField = styled.TextInput`
-	height: 44px;
-	padding: 0 18px;
-	background-color: #c4c4c4;
-	color: #818181;
-	font-size: 10px;
+	width: 100%;
+	height: 100%;
+	padding: 0 20px;
+	${({ theme }) => theme.styles.flexWithoutSize()}
+	${({ theme }) => theme.styles.os.body}
+	letter-spacing: 0.19px;
+	background-color: ${({ theme }) => rgba(theme.colors.charcoalAlpha, 0.451)};
+	color: ${({ theme }) => theme.colors.ghostWhite};
 `;
 
-const styles = StyleSheet.create({
-	sendIcon: {
-		position: 'absolute',
-		right: 12,
-		top: 12,
-	},
-});
+const sendButtonStyle = css`
+	position: absolute;
+	top: 14px;
+	right: 20px;
+`;
 
-const SmsInput = ({ choice, onPressSend }) => (
+const SmsInput = ({ choice, onPressSend, theme }) => (
 	<Wrapper>
 		<InputField editable={false} value={choice?.text || 'Écrire un SMS...'} />
 		<IconButton
 			type="SEND"
+			color={theme.colors.white}
+			width={14.3}
+			height={20.06}
 			noBlink={onPressSend === undefined}
 			onPress={onPressSend === undefined ? () => {} : () => onPressSend(choice)}
-			additionalStyles={styles.sendIcon}
+			additionalStyle={`${sendButtonStyle}`}
 		/>
 	</Wrapper>
 );
@@ -48,4 +57,4 @@ SmsInput.defaultProps = {
 	onPressSend: undefined,
 };
 
-export default SmsInput;
+export default withTheme(SmsInput);

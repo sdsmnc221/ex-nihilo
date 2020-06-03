@@ -43,6 +43,8 @@ const shuffle = ([...arr]) => {
 	return arr;
 };
 
+const last = (array) => array[array.length - 1];
+
 const sortContact = (a, b) => {
 	const contactA = a.name ? a.name.toUpperCase() : '';
 	const contactB = b.name ? b.name.toUpperCase() : '';
@@ -105,6 +107,7 @@ export {
 	device,
 	isArrEmpty,
 	find,
+	last,
 	random,
 	rgba,
 	sample,

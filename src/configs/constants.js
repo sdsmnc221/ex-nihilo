@@ -30,6 +30,7 @@ const SIZES = {
 	STT_BAR_H: 30,
 	HEADER_H,
 	HEADER_H_GAP,
+	SMS_INPUT_H: 48,
 	ALBUM_PHOTO: device().width / NUMBERS.ALBUM_COLS,
 	ALBUM_LOCK_H: device().height - HEADER_H_GAP,
 };

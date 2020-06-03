@@ -112,4 +112,15 @@ export default {
 			spread: 1,
 		},
 	},
+	smsMessage: {
+		shadowColor: 'rgba(0, 0, 0, 0.4)',
+		shadowOffset: {
+			width: 0,
+			height: 4,
+		},
+		shadowOpacity: 0.37,
+		shadowRadius: 7.49,
+
+		elevation: 4,
+	},
 };

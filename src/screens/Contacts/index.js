@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { useSelector } from 'react-redux';
 import Contacts from 'react-native-contacts';
 import { View, Text, SectionList } from 'react-native';
@@ -11,10 +11,6 @@ import Contact from './components/Contact';
 import { getSections, sortContact, random } from 'utils';
 import { SCREENS } from 'configs';
 
-const sectionListStyle = css`
-	width: 100%;
-`;
-
 const SectionTitle = styled.Text`
 	font-family: ${({ theme }) => theme.fonts.sourceSans.semiBold};
 	font-size: 19px;
@@ -23,7 +19,7 @@ const SectionTitle = styled.Text`
 	margin-bottom: 16px;
 `;
 
-const ContactsScreen = ({ route, navigation }) => {
+const ContactsScreen = ({ route, navigation, theme }) => {
 	const [contacts, setContacts] = useState(
 		useSelector((state) => state.contacts).map((contact) => ({
 			name: contact.name,
@@ -69,7 +65,7 @@ const ContactsScreen = ({ route, navigation }) => {
 		<LayoutWrapper screenName={route.name}>
 			<SectionList
 				css={`
-					${sectionListStyle}
+					${theme.styles.list}
 				`}
 				sections={getSections(contacts, 'name', 'number')}
 				keyExtractor={(item, index) => index.toString()}
@@ -93,4 +89,4 @@ const ContactsScreen = ({ route, navigation }) => {
 	);
 };
 
-export default ContactsScreen;
+export default withTheme(ContactsScreen);

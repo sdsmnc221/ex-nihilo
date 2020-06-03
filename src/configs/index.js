@@ -2,7 +2,7 @@ import Config from 'react-native-config';
 
 import { SCREENS, SCREENS_INFO } from './screens';
 import { ALL_APPS, HOME_APPS, CONTACT_DETAILS_APPS } from './apps';
-import { APP_ICON, FLEX, SIZES, STRINGS } from './constants';
+import { APP_ICON, FLEX, NUMBERS, SIZES, STRINGS } from './constants';
 
 const {
 	LOCALE,
@@ -23,6 +23,7 @@ export {
 	CONTACT_DETAILS_APPS,
 	APP_ICON,
 	FLEX,
+	NUMBERS,
 	SIZES,
 	STRINGS,
 	SCREENS,

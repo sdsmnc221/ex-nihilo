@@ -1,29 +1,28 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import { css } from 'styled-components';
 import { useSelector } from 'react-redux';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 import Modal from 'react-native-modal';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
+import FillGap from 'sharedUI/FillGap';
 import NavigationBar from 'sharedUI/NavigationBar';
 import PasswordLock from 'sharedUI/PasswordLock';
 import PhotoThumbnail from './components/PhotoThumbnail';
 
-const PhotoGrid = styled.ScrollView`
+import { NUMBERS, SCREENS, SIZES } from 'configs';
+
+const flatListStyle = css`
 	width: 100%;
-	background-color: #fff;
-	margin-bottom: 40px;
 `;
 
 const AlbumScreen = ({ route, navigation }) => {
 	const { gallery } = useSelector((state) => state.deviceData);
+	const photos = gallery.photos ? gallery.photos.edges : [];
 
-	const deviceW = Dimensions.get('window').width;
-	const photoSize = deviceW / 3;
-	// Temporarily limit the photo numbers until
-	// rework Gallery (from ScrollView to FlatList)
+	const photoSize = SIZES.ALBUM_PHOTO;
 	const photoNb = Math.floor(gallery.count / 10);
-	const { edges: photos } = gallery.photos;
 
 	const [isLocked, setIsLocked] = useState(false);
 	const [passwordInput, setPasswordInput] = useState('');
@@ -54,39 +53,31 @@ const AlbumScreen = ({ route, navigation }) => {
 
 	return (
 		<LayoutWrapper screenName={route.name}>
-			<PhotoGrid contentContainerStyle={styles.photoGridContainer}>
-				{photos.slice(0, photoNb).map((p, i) => {
-					const { uri } = p.node.image;
+			<FlatList
+				css={`
+					${flatListStyle}
+				`}
+				data={photos.slice(0, photoNb)}
+				keyExtractor={(item, index) => index.toString()}
+				numColumns={NUMBERS.ALBUM_COLS}
+				renderItem={({ item: photo }) => {
+					const { uri } = photo.node.image;
 					return (
 						<PhotoThumbnail
-							key={i}
 							size={photoSize}
 							source={{ uri }}
-							onPress={() => navigation.navigate('AlbumPhotoScreen', { uri })}
+							onPress={() => navigation.navigate(SCREENS.ALBUM_PHOTO, { uri })}
 						/>
 					);
-				})}
-			</PhotoGrid>
+				}}
+			/>
+			<FillGap />
 			{renderPasswordLock()}
 		</LayoutWrapper>
 	);
 };
 
 const styles = StyleSheet.create({
-	body: {
-		backgroundColor: '#fff',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	photoGridContainer: {
-		display: 'flex',
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'flex-start',
-		alignItems: 'flex-start',
-	},
 	modal: {
 		flex: 1,
 		margin: 0,

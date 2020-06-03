@@ -24,6 +24,7 @@ export { default as FILES } from './FILES';
 export { default as FILTER } from './FILTER';
 export { default as HAMBURGER } from './HAMBURGER';
 export { default as HEART } from './HEART';
+export { default as HEART_PRESSED } from './HEART_PRESSED';
 export { default as LOADING } from './LOADING';
 export { default as LOGO } from './LOGO';
 export { default as LOCK } from './LOCK';

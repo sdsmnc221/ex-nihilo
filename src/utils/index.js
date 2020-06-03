@@ -82,6 +82,23 @@ const getIconSize = () => {
 	);
 };
 
+const getSections = (array, key, subKey) => {
+	if (array.length === 0) {
+		return [];
+	}
+	return Object.values(
+		array.reduce((acc, item) => {
+			let firstLetter = item[key || subKey][0].toLocaleUpperCase();
+			if (!acc[firstLetter]) {
+				acc[firstLetter] = { title: firstLetter, data: [item] };
+			} else {
+				acc[firstLetter].data.push(item);
+			}
+			return acc;
+		}, {})
+	);
+};
+
 export {
 	chunk,
 	cleanLineBreaks,
@@ -97,4 +114,5 @@ export {
 	tick,
 	truncate,
 	getIconSize,
+	getSections,
 };

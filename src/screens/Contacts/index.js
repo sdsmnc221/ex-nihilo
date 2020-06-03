@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
 import Contacts from 'react-native-contacts';
-import { StyleSheet, View } from 'react-native';
-import { ScrollView, FlatList } from 'react-native-gesture-handler';
+import { View, Text, SectionList } from 'react-native';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
+import FillGap from 'sharedUI/FillGap';
 import Contact from './components/Contact';
 
-import { sortContact, random } from 'utils';
+import { getSections, sortContact, random } from 'utils';
 import { SCREENS } from 'configs';
 
-const flatListStyle = css`
+const sectionListStyle = css`
 	width: 100%;
+`;
+
+const SectionTitle = styled.Text`
+	font-family: ${({ theme }) => theme.fonts.sourceSans.semiBold};
+	font-size: 19px;
+	color: ${({ theme }) => theme.colors.charcoal};
+	margin-left: 16px;
+	margin-bottom: 16px;
 `;
 
 const ContactsScreen = ({ route, navigation }) => {
@@ -49,6 +57,8 @@ const ContactsScreen = ({ route, navigation }) => {
 						sortContact
 					);
 
+					console.log(sortedContacts, getSections(sortedContacts, 'name', 'number'));
+
 					return sortedContacts;
 				});
 			}
@@ -57,12 +67,15 @@ const ContactsScreen = ({ route, navigation }) => {
 
 	return (
 		<LayoutWrapper screenName={route.name}>
-			<FlatList
+			<SectionList
 				css={`
-					${flatListStyle}
+					${sectionListStyle}
 				`}
-				data={contacts}
+				sections={getSections(contacts, 'name', 'number')}
 				keyExtractor={(item, index) => index.toString()}
+				renderSectionHeader={({ section: { title } }) => (
+					<SectionTitle>{title}</SectionTitle>
+				)}
 				renderItem={({ item: contact }) => (
 					<Contact
 						contact={contact}
@@ -75,24 +88,9 @@ const ContactsScreen = ({ route, navigation }) => {
 					/>
 				)}
 			/>
+			<FillGap height={64} />
 		</LayoutWrapper>
 	);
 };
-
-const styles = StyleSheet.create({
-	body: {
-		backgroundColor: '#fff',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	scrollBody: {
-		backgroundColor: '#fff',
-		width: '100%',
-		paddingTop: 36,
-		paddingBottom: 84,
-	},
-});
 
 export default ContactsScreen;

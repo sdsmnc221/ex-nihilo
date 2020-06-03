@@ -106,7 +106,7 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 				onContentSizeChange={() =>
 					smsListRef.current && smsListRef.current.scrollToEnd()
 				}
-				renderItem={({ item: sms, index }) => (
+				renderItem={({ item: sms }) => (
 					<SmsMessage
 						withAvatar={!sms.isUser}
 						isUser={sms.isUser}

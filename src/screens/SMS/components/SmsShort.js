@@ -15,6 +15,7 @@ const WIDTH = device().width * 0.84;
 const Wrapper = styled.TouchableOpacity`
 	${({ theme }) => theme.styles.flex(null, null, null, true)}
 	margin-bottom: 16px;
+	margin-top: ${({ isFirst }) => (isFirst ? 8 : 0)}px;
 `;
 
 const Date = styled.Text`
@@ -41,48 +42,47 @@ const Message = styled.Text`
 	${({ theme }) => theme.styles.os.body};
 `;
 
-const SmsShort = ({ theme, date, title, message, onPress }) => {
-	return (
-		<Wrapper onPress={onPress} activeOpacity={0.8}>
-			<NeuView
-				width={WIDTH}
-				height={84}
-				color={theme.colors.ghostWhite}
-				borderRadius={13}
-				{...theme.shadows.smsShort}>
+const SmsShort = ({ theme, id, date, title, message, onPress }) => (
+	<Wrapper onPress={onPress} activeOpacity={0.8} isFirst={id === 0}>
+		<NeuView
+			width={WIDTH}
+			height={84}
+			color={theme.colors.ghostWhite}
+			borderRadius={13}
+			{...theme.shadows.smsShort}>
+			<FlexDiv
+				direction="row"
+				justifyContent="flex-start"
+				fullWidth
+				additionalStyle={`${css`
+					padding: 0 12px;
+				`}`}>
+				<AppIcon
+					size={49}
+					type="PERSON"
+					noBlink
+					{...theme.shadows.softNeomorphism}
+				/>
 				<FlexDiv
-					direction="row"
-					justifyContent="flex-start"
-					fullWidth
+					alignItems="flex-start"
 					additionalStyle={`${css`
-						padding: 0 12px;
+						margin-left: 16px;
+						padding-right: 12px;
+						width: 80%;
 					`}`}>
-					<AppIcon
-						size={49}
-						type="PERSON"
-						noBlink
-						{...theme.shadows.softNeomorphism}
-					/>
-					<FlexDiv
-						alignItems="flex-start"
-						additionalStyle={`${css`
-							margin-left: 16px;
-							padding-right: 12px;
-							width: 80%;
-						`}`}>
-						<FlexDiv direction="row" justifyContent="space-between" fullWidth>
-							<Title isJanus={title === 'Janus'}>{title}</Title>
-							<Date>{date}</Date>
-						</FlexDiv>
-						<Message>{truncate(message, 60)}</Message>
+					<FlexDiv direction="row" justifyContent="space-between" fullWidth>
+						<Title isJanus={title === 'Janus'}>{title}</Title>
+						<Date>{date}</Date>
 					</FlexDiv>
+					<Message>{truncate(message, 60)}</Message>
 				</FlexDiv>
-			</NeuView>
-		</Wrapper>
-	);
-};
+			</FlexDiv>
+		</NeuView>
+	</Wrapper>
+);
 
 SmsShort.propTypes = {
+	id: PropTypes.number.isRequired,
 	date: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
 	message: PropTypes.string,

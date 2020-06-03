@@ -69,8 +69,9 @@ const SmsScreen = ({ route, navigation }) => {
 					${flatListStyle}
 				`}
 				data={smsList}
-				renderItem={({ item: sms }) => (
+				renderItem={({ item: sms, index }) => (
 					<SmsShort
+						id={index}
 						date={sms.date}
 						title={sms.title}
 						message={sms.message}

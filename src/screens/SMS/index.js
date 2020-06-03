@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
 import Contacts from 'react-native-contacts';
-import { StyleSheet, View } from 'react-native';
-import { ScrollView, FlatList } from 'react-native-gesture-handler';
+import { View } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import SmsShort from './components/SmsShort';
@@ -61,8 +61,6 @@ const SmsScreen = ({ route, navigation }) => {
 		title: 'Janus',
 		message: 'Bonjour toi',
 	});
-
-	console.log(smsList.length);
 
 	return (
 		<LayoutWrapper screenName={route.name}>

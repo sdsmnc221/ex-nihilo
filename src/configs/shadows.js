@@ -90,4 +90,26 @@ export default {
 
 		elevation: 24,
 	},
+	smsShort: {
+		customLightShadow: {
+			opacity: 0.8,
+			blur: 6,
+			spread: 2,
+		},
+		customDarkShadow: {
+			opacity: 0.28,
+			blur: 8,
+			spread: 1,
+		},
+		customInsetLightShadow: {
+			opacity: 0.8,
+			blur: 6,
+			spread: 2,
+		},
+		customInsetDarkShadow: {
+			opacity: 0.28,
+			blur: 8,
+			spread: 1,
+		},
+	},
 };

@@ -10,19 +10,18 @@ import AppIcon from 'sharedUI/AppIcon';
 
 import { device, truncate } from 'utils';
 
-const TouchableWrapper = styled.TouchableOpacity`
+const WIDTH = device().width * 0.84;
+
+const Wrapper = styled.TouchableOpacity`
 	${({ theme }) => theme.styles.flex(null, null, null, true)}
 	margin-bottom: 16px;
 `;
 
-const Wrapper = styled.View`
-	padding: 8px 20px;
-	${({ theme }) => theme.styles.flex('center', 'center', 'column', true)}
-`;
-
-const Subtitle = styled.Text`
+const Date = styled.Text`
+	top: -8px;
+	left: 8px;
 	color: ${({ theme }) => theme.colors.charcoal};
-	line-height: ${({ theme }) => theme.typo.sizesNb.subtitle - 1}px;
+	line-height: ${({ theme }) => theme.typo.sizesNb.subtitle}px;
 	letter-spacing: 0.19px;
 	${({ theme }) => theme.styles.os.subtitle};
 `;
@@ -44,29 +43,42 @@ const Message = styled.Text`
 
 const SmsShort = ({ theme, date, title, message, onPress }) => {
 	return (
-		<TouchableWrapper onPress={onPress} activeOpacity={0.8}>
+		<Wrapper onPress={onPress} activeOpacity={0.8}>
 			<NeuView
-				width={device().width * 0.84}
+				width={WIDTH}
 				height={84}
 				color={theme.colors.ghostWhite}
-				borderRadius={24}
-				style={theme.shadows.notificationShadow}
-				{...theme.shadows.notification}>
-				<Wrapper>
-					<FlexDiv direction="row" justifyContent="flex-start" fullWidth>
-						<AppIcon size={45} type="PERSON" noBlink />
-						<View
-							css={css`
-								margin-left: 12px;
-							`}>
+				borderRadius={13}
+				{...theme.shadows.smsShort}>
+				<FlexDiv
+					direction="row"
+					justifyContent="flex-start"
+					fullWidth
+					additionalStyle={`${css`
+						padding: 0 12px;
+					`}`}>
+					<AppIcon
+						size={49}
+						type="PERSON"
+						noBlink
+						{...theme.shadows.softNeomorphism}
+					/>
+					<FlexDiv
+						alignItems="flex-start"
+						additionalStyle={`${css`
+							margin-left: 16px;
+							padding-right: 12px;
+							width: 80%;
+						`}`}>
+						<FlexDiv direction="row" justifyContent="space-between" fullWidth>
 							<Title isJanus={title === 'Janus'}>{title}</Title>
-							<Message>{truncate(message, 60)}</Message>
-							<Subtitle>{date}</Subtitle>
-						</View>
+							<Date>{date}</Date>
+						</FlexDiv>
+						<Message>{truncate(message, 60)}</Message>
 					</FlexDiv>
-				</Wrapper>
+				</FlexDiv>
 			</NeuView>
-		</TouchableWrapper>
+		</Wrapper>
 	);
 };
 

@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { css } from 'styled-components';
 import { useSelector } from 'react-redux';
 import Contacts from 'react-native-contacts';
 import { StyleSheet, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, FlatList } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
-import AddButton from 'sharedUI/Button/AddButton';
 import Contact from './components/Contact';
 
 import { sortContact } from 'utils';
+import { SCREENS } from 'configs';
+
+const flatListStyle = css`
+	width: 100%;
+`;
 
 const ContactsScreen = ({ route, navigation }) => {
 	const [contacts, setContacts] = useState(
@@ -50,26 +55,29 @@ const ContactsScreen = ({ route, navigation }) => {
 
 	return (
 		<LayoutWrapper screenName={route.name}>
-			<ScrollView contentContainerStyle={styles.scrollBody}>
-				{contacts.map((c, i) => (
+			<FlatList
+				css={`
+					${flatListStyle}
+				`}
+				data={contacts}
+				renderItem={({ item: contact, index }) => (
 					<Contact
-						key={i}
-						contact={c}
-						firstLetter={c.name ? c.name.charAt(0) : '#'}
+						id={index}
+						contact={contact}
+						firstLetter={contact.name ? contact.name.charAt(0) : '#'}
 						onPress={() =>
-							navigation.navigate('ContactDetailsScreen', {
+							navigation.navigate(SCREENS.CONTACTS_DETAILS, {
 								title: '',
 								headerStyle: {
 									elevation: 0,
 								},
-								contact: c,
-								firstLetter: c.name ? c.name.charAt(0) : '#',
+								contact,
+								firstLetter: contact.name ? contact.name.charAt(0) : '#',
 							})
 						}
 					/>
-				))}
-			</ScrollView>
-			<AddButton />
+				)}
+			/>
 		</LayoutWrapper>
 	);
 };

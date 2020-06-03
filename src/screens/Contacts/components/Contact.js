@@ -4,18 +4,11 @@ import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
-import PlaceHolder from 'sharedUI/PlaceHolder';
+import AppIcon from 'sharedUI/AppIcon';
 
 const Wrapper = styled.TouchableOpacity`
-	width: 100%;
-	height: 50px;
-	background-color: #fff;
-	margin-bottom: ${({ withSpacing }) => (withSpacing ? 36 : 0)}px;
-	padding: 12px 36px;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
+	${({ theme }) => theme.styles.flex(null, null, null, true)}
+	margin-bottom: 12px;
 `;
 
 const Content = styled.View`
@@ -35,7 +28,7 @@ const Title = styled.Text`
 const Contact = ({ withSpacing, contact, firstLetter, onPress }) => {
 	return (
 		<Wrapper withSpacing={withSpacing} onPress={onPress}>
-			<PlaceHolder color="#c4c4c4" size={50} text={firstLetter} round/>
+			<AppIcon size={45} type="PERSON" noBlink />
 			<Content>
 				<Title>{contact.name ? contact.name : contact.number}</Title>
 			</Content>

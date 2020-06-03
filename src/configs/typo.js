@@ -23,6 +23,10 @@ export default {
 			font-family: ${cairo.bold};
 			font-size: ${sizes.h2};
 		`,
+		h2_alt: css`
+			font-family: ${sourceSans.bold};
+			font-size: ${sizes.h2};
+		`,
 		h3: css`
 			font-family: ${sourceSans.bold};
 			font-size: ${sizes.h3};

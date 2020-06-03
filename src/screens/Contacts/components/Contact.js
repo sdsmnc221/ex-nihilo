@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
 import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import styled, { css } from 'styled-components';
 
 import FlexDiv from 'sharedUI/FlexDiv';
 import AppIcon from 'sharedUI/AppIcon';

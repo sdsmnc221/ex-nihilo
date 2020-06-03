@@ -124,7 +124,7 @@ const App = () => {
 								options={headerOptions}
 							/>
 							<Stack.Screen
-								name={SCREENS.CONTACTS_DETAILS}
+								name={SCREENS.CONTACT_DETAILS}
 								component={ContactDetailsScreen}
 								options={headerOptions}
 							/>

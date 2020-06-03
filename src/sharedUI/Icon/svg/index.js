@@ -33,6 +33,7 @@ export { default as NAVIGATION_GLITCH } from './NAVIGATION_GLITCH';
 export { default as NAVIGATION_HOME } from './NAVIGATION_HOME';
 export { default as NOTES } from './NOTES';
 export { default as PERSON } from './PERSON';
+export { default as PERSON_XL } from './PERSON_XL';
 export { default as PHONE } from './PHONE';
 export { default as PHONE_PRESSED } from './PHONE_PRESSED';
 export { default as PHONE_XS } from './PHONE_XS';

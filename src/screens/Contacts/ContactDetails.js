@@ -1,65 +1,93 @@
 import React from 'react';
-import styled from 'styled-components';
-import { StyleSheet, View, Text } from 'react-native';
+import styled, { withTheme, css } from 'styled-components';
+import { View, Text } from 'react-native';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
+import FlexDiv from 'sharedUI/FlexDiv';
 import AppIcon from 'sharedUI/AppIcon';
-import PlaceHolder from 'sharedUI/PlaceHolder';
+import StarButton from 'sharedUI/Button/StarButton';
+import ContactInfo from './components/ContactInfo';
 
-const Wrapper = styled.View`
-	width: 75%;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	margin-top: 14px;
-`;
-const Separator = styled.View`
-	width: 100%;
-	height: 4px;
-	background-color: #c4c4c4;
-	margin-top: 10px;
+import { CONTACT_DETAILS_APPS } from 'configs';
+
+const INFO = ['Mobile', 'Email', 'Date de naissance', 'Adresse'];
+
+const Title = styled.Text`
+	${({ theme }) => theme.styles.os.h2_alt}
+	letter-spacing: 0.46px;
+	color: ${({ theme }) => theme.colors.whiskey};
+	margin: 24px 0;
 `;
 
-const ContactDetailsScreen = ({ route, navigation }) => {
-	const { contact } = route.params;
+const appIconStyle = css`
+	margin: 0 18px;
+`;
+
+const infoFlexDivStyle = css`
+	margin-top: 36px;
+	margin-bottom: 10%;
+	padding: 0 24px;
+`;
+
+const ContactDetailsScreen = ({ route, navigation, theme }) => {
+	const { name, number, star } = route.params.contact;
+
+	const INFO_ = INFO.map((i) => ({
+		title: i,
+		...(i === 'Mobile' ? { info: number } : {}),
+	}));
 
 	return (
 		<LayoutWrapper screenName={route.name}>
-			<View style={styles.body}>
-				<PlaceHolder color="#c4c4c4" size={200} text={'A'} textSize={48} round />
-				<Wrapper>
-					<Text style={styles.name}>{contact.name}</Text>
-					<AppIcon size={32} type="EDIT_CONTACTS" />
-				</Wrapper>
-				<Wrapper style={{ justifyContent: 'space-around', marginTop: 28 }}>
-					<AppIcon size={48} type="PHONE" />
-					<AppIcon size={48} type="SMS" />
-					<AppIcon size={48} type="EMAIL" />
-				</Wrapper>
-				<Wrapper style={{ flexDirection: 'column', marginTop: 28 }}>
-					<Wrapper style={{ width: '100%', justifyContent: 'space-between' }}>
-						<Text>Mobile</Text>
-						<Text>{contact.number}</Text>
-					</Wrapper>
-					<Separator />
-				</Wrapper>
+			<View
+				css={`
+					${css`
+						position: relative;
+					`}
+				`}>
+				<AppIcon
+					size={180}
+					type="PERSON_XL"
+					noBlink
+					additionalStyle={`${css`
+						z-index: 0;
+						position: relative;
+					`}`}
+					{...theme.shadows.softNeomorphism}
+				/>
+				{star && (
+					<StarButton
+						initialActive={star}
+						noPress
+						width={36}
+						height={36}
+						additionalStyle={`${css`
+							position: absolute;
+							top: 24px;
+							left: 8px;
+						`}`}
+						useImg
+					/>
+				)}
 			</View>
+			<Title>{name}</Title>
+			<FlexDiv direction="row" fullWidth>
+				{CONTACT_DETAILS_APPS.map(({ iconType }, index) => (
+					<AppIcon
+						key={index}
+						size={46}
+						type={iconType}
+						additionalStyle={`${appIconStyle}`}
+					/>
+				))}
+			</FlexDiv>
+			<FlexDiv fullWidth additionalStyle={`${infoFlexDivStyle}`}>
+				{INFO_.map(({ title, info }, index) => (
+					<ContactInfo key={index} title={title} info={info} />
+				))}
+			</FlexDiv>
 		</LayoutWrapper>
 	);
 };
 
-const styles = StyleSheet.create({
-	body: {
-		backgroundColor: '#fff',
-		width: '100%',
-		height: '100%',
-		alignItems: 'center',
-	},
-	name: {
-		fontSize: 26,
-		fontWeight: 'bold',
-	},
-});
-
-export default ContactDetailsScreen;
+export default withTheme(ContactDetailsScreen);

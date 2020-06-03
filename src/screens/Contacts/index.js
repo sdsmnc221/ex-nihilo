@@ -81,7 +81,7 @@ const ContactsScreen = ({ route, navigation }) => {
 						contact={contact}
 						firstLetter={contact.name ? contact.name.charAt(0) : '#'}
 						onPress={() =>
-							navigation.navigate(SCREENS.CONTACTS_DETAILS, {
+							navigation.navigate(SCREENS.CONTACT_DETAILS, {
 								contact,
 							})
 						}

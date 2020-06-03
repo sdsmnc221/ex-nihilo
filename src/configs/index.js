@@ -1,7 +1,7 @@
 import Config from 'react-native-config';
 
 import { SCREENS, SCREENS_INFO } from './screens';
-import { ALL_APPS, HOME_APPS } from './apps';
+import { ALL_APPS, HOME_APPS, CONTACT_DETAILS_APPS } from './apps';
 import { APP_ICON, FLEX, SIZES, STRINGS } from './constants';
 
 const {
@@ -20,6 +20,7 @@ const {
 export {
 	ALL_APPS,
 	HOME_APPS,
+	CONTACT_DETAILS_APPS,
 	APP_ICON,
 	FLEX,
 	SIZES,

@@ -13,7 +13,7 @@ const SCREENS = {
 	SMS_CONVERSATION: 'SmsConversationScreen',
 	SMS_JANUS: 'JanusConversationScreen',
 	CONTACTS: 'ContactsScreen',
-	CONTACTS_DETAILS: 'ContactDetailsScreen',
+	CONTACT_DETAILS: 'ContactDetailsScreen',
 	ALBUM: 'AlbumScreen',
 	ALBUM_PHOTO: 'AlbumPhotoScreen',
 	FACEBOOK: 'FacebookScreen',

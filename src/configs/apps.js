@@ -26,4 +26,10 @@ const HOME_APPS = [
 	{ label: 'Galerie', iconType: 'ALBUM', screen: SCREENS.ALBUM },
 ];
 
-export { ALL_APPS, HOME_APPS };
+const CONTACT_DETAILS_APPS = [
+	{ label: 'Appels', iconType: 'PHONE' },
+	{ label: 'Messages', iconType: 'SMS' },
+	{ label: 'Mail', iconType: 'EMAIL' },
+];
+
+export { ALL_APPS, HOME_APPS, CONTACT_DETAILS_APPS };

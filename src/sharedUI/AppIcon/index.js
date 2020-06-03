@@ -60,6 +60,7 @@ const AppIcon = ({
 	onPress,
 	noBlink,
 	withSpacing,
+	additionalStyle,
 	theme,
 	...neuViewProps
 }) => {
@@ -75,7 +76,7 @@ const AppIcon = ({
 	}, [buttonPressed, onPress]);
 
 	return (
-		<Wrapper size={size} withSpacing={withSpacing}>
+		<Wrapper size={size} withSpacing={withSpacing} css={additionalStyle}>
 			<NeuView
 				color={theme.colors.ghostWhite}
 				height={size}
@@ -110,6 +111,7 @@ AppIcon.propTypes = {
 	onPress: PropTypes.func,
 	noBlink: PropTypes.bool,
 	withSpacing: PropTypes.bool,
+	additionalStyle: PropTypes.string,
 };
 
 AppIcon.defaultProps = {
@@ -120,6 +122,7 @@ AppIcon.defaultProps = {
 	onPress: () => {},
 	noBlink: false,
 	withSpacing: false,
+	additionalStyle: null,
 };
 
 export default withTheme(AppIcon);

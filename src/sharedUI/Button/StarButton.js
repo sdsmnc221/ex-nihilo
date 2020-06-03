@@ -7,10 +7,11 @@ const StarButton = ({
 	size,
 	initialActive,
 	additionalStyles,
+	noPress,
 	...otherProps
 }) => {
 	const [active, setActive] = useState(initialActive);
-	const onPress = () => setActive(!active);
+	const onPress = () => (noPress ? null : setActive(!active));
 
 	return (
 		<IconButton
@@ -28,12 +29,14 @@ StarButton.propTypes = {
 	size: PropTypes.number,
 	initialActive: PropTypes.bool,
 	additionalStyles: PropTypes.object,
+	noPress: PropTypes.bool,
 };
 
 StarButton.defaultProps = {
 	size: 20,
 	initialActive: false,
 	additionalStyles: {},
+	noPress: false,
 };
 
 export default StarButton;

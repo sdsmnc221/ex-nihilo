@@ -65,6 +65,7 @@ const SmsScreen = ({ route, navigation }) => {
 					${flatListStyle}
 				`}
 				data={smsList}
+				keyExtractor={(item, index) => index.toString()}
 				renderItem={({ item: sms, index }) => (
 					<SmsShort
 						id={index}

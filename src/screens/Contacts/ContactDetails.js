@@ -23,20 +23,11 @@ const Separator = styled.View`
 
 const ContactDetailsScreen = ({ route, navigation }) => {
 	const { contact } = route.params;
-	const { firstLetter } = route.params;
-	const { title, headerStyle } = route.params;
-	navigation.setOptions({ title, headerStyle });
 
 	return (
 		<LayoutWrapper screenName={route.name}>
 			<View style={styles.body}>
-				<PlaceHolder
-					color="#c4c4c4"
-					size={200}
-					text={firstLetter}
-					textSize={48}
-					round
-				/>
+				<PlaceHolder color="#c4c4c4" size={200} text={'A'} textSize={48} round />
 				<Wrapper>
 					<Text style={styles.name}>{contact.name}</Text>
 					<AppIcon size={32} type="EDIT_CONTACTS" />

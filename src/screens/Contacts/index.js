@@ -8,7 +8,7 @@ import { ScrollView, FlatList } from 'react-native-gesture-handler';
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import Contact from './components/Contact';
 
-import { sortContact } from 'utils';
+import { sortContact, random } from 'utils';
 import { SCREENS } from 'configs';
 
 const flatListStyle = css`
@@ -20,6 +20,7 @@ const ContactsScreen = ({ route, navigation }) => {
 		useSelector((state) => state.contacts).map((contact) => ({
 			name: contact.name,
 			number: contact.phoneNumber,
+			star: random(0.1),
 		}))
 	);
 	useEffect(() => {
@@ -38,6 +39,7 @@ const ContactsScreen = ({ route, navigation }) => {
 						return {
 							name: displayName !== number ? displayName : null,
 							number: number.replace('+33 ', '0'),
+							star: random(0.1),
 						};
 					});
 				}
@@ -60,19 +62,14 @@ const ContactsScreen = ({ route, navigation }) => {
 					${flatListStyle}
 				`}
 				data={contacts}
-				renderItem={({ item: contact, index }) => (
+				keyExtractor={(item, index) => index.toString()}
+				renderItem={({ item: contact }) => (
 					<Contact
-						id={index}
 						contact={contact}
 						firstLetter={contact.name ? contact.name.charAt(0) : '#'}
 						onPress={() =>
 							navigation.navigate(SCREENS.CONTACTS_DETAILS, {
-								title: '',
-								headerStyle: {
-									elevation: 0,
-								},
 								contact,
-								firstLetter: contact.name ? contact.name.charAt(0) : '#',
 							})
 						}
 					/>

@@ -34,7 +34,7 @@ const Input = styled.TextInput`
 		}) =>
 			passwordValid
 				? theme.colors.lime
-				: !isFocused || (isFocused && !passwordSubmitted) || !value
+				: (isFocused && !passwordSubmitted) || !value
 				? inputBorder
 					? theme.colors.white
 					: 'transparent'

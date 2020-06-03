@@ -32,6 +32,7 @@ const LockScreen = ({ navigation, theme }) => {
 
 		if (passwordInput !== PASSWORD) {
 			setPasswordValid(false);
+			setPasswordSubmitted(false);
 			setNumberOfTry(numberOfTry + 1);
 
 			if (numberOfTry >= 2) {

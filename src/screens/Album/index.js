@@ -43,6 +43,7 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 
 		if (passwordInput !== PASSWORD) {
 			setPasswordValid(false);
+			setPasswordSubmitted(false);
 		} else {
 			setPasswordValid(true);
 			tick(() => setIsLocked(false), NUMBERS.RESET_PRESS_DURATION_ALBUM);

@@ -1,36 +1,18 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import styled, { withTheme } from 'styled-components';
 import { useSelector } from 'react-redux';
-import { StyleSheet, View, Text } from 'react-native';
+import { View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
+import FillGap from 'sharedUI/FillGap';
 import SmsMessage from './components/SmsMessage';
-import AnswerChoice from './components/AnswerChoice';
-import SmsInput from './components/SmsInput';
+import JanusAnswerBlock from './components/JanusAnswerBlock';
 
 import DialogueMessage from 'data/classes/DialogueMessage';
 
 import { find } from 'utils';
-
-const SmsList = styled.ScrollView`
-	width: 100%;
-	background-color: #fff;
-`;
-
-const InputWrapper = styled.View`
-	height: 40%;
-	width: 100%;
-	margin-top: 12px;
-`;
-
-const ChoicesWrapper = styled.View`
-	width: 100%;
-	flex: 1;
-	background-color: #e8e8e8;
-	justify-content: center;
-	align-items: center;
-`;
 
 const InputOverlay = styled.View`
 	position: absolute;
@@ -52,42 +34,6 @@ const Input = styled.TextInput`
 	color: ${({ theme }) => theme.colors.dimGray};
 	${({ theme }) => theme.styles.os.body};
 `;
-
-const NoChoiceText = styled.Text`
-	font-size: 11px;
-	color: #818181;
-`;
-
-const NoChoice = () => (
-	<NoChoiceText>Pas de réponses disponibles pour le moment.</NoChoiceText>
-);
-
-const ChoicesContent = ({ script, activeChoiceIndex, onPressChoice }) => {
-	let content;
-
-	switch (script.type) {
-		case 'MESSAGE_WITH_CHOICES':
-			content = script.choices.map((c, i) => (
-				<AnswerChoice
-					key={i}
-					index={i}
-					active={i === activeChoiceIndex}
-					text={c.text}
-					onPressChoice={onPressChoice}
-				/>
-			));
-			break;
-		case 'INPUT':
-			content = <NoChoice />;
-			break;
-		case 'MESSAGE':
-		default:
-			content = <NoChoice />;
-			break;
-	}
-
-	return content;
-};
 
 const JanusConversationScreen = ({ route, navigation, theme }) => {
 	const smsListRef = useRef(null);
@@ -148,33 +94,37 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 
 	return (
 		<LayoutWrapper screenName={route.name}>
-			<SmsList
+			<FlatList
 				ref={smsListRef}
+				css={`
+					${theme.styles.list}
+					padding-top: 24px;
+				`}
+				data={dialogueMessages}
+				keyExtractor={(item, index) => index.toString()}
+				onScrollToIndexFailed={() => {}}
 				onContentSizeChange={() =>
-					smsListRef.current?.scrollToEnd({ animated: true })
-				}>
-				{dialogueMessages.map((message, i) => (
+					smsListRef.current && smsListRef.current.scrollToEnd()
+				}
+				renderItem={({ item: sms, index }) => (
 					<SmsMessage
-						key={i}
-						hasPlaceholder={!message.isUser}
-						isUser={message.isUser}
-						message={message.text}
+						withAvatar={!sms.isUser}
+						isUser={sms.isUser}
+						message={sms.text}
+						withSpacing
 					/>
-				))}
-			</SmsList>
-			<InputWrapper>
-				<SmsInput
-					choice={choices ? choices[activeChoiceIndex] : undefined}
-					onPressSend={choices ? onPressSend : undefined}
-				/>
-				<ChoicesWrapper>
-					<ChoicesContent
-						script={activeScript}
-						activeChoiceIndex={activeChoiceIndex}
-						onPressChoice={onPressChoice}
-					/>
-				</ChoicesWrapper>
-			</InputWrapper>
+				)}
+				ListFooterComponent={<FillGap height={36} />}
+			/>
+
+			<JanusAnswerBlock
+				choices={choices}
+				activeChoiceIndex={activeChoiceIndex}
+				activeScript={activeScript}
+				onPressSend={onPressSend}
+				onPressChoice={onPressChoice}
+			/>
+
 			{openInput && (
 				<InputOverlay>
 					<Input
@@ -187,24 +137,10 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 					/>
 				</InputOverlay>
 			)}
+
+			<FillGap />
 		</LayoutWrapper>
 	);
 };
-
-const styles = StyleSheet.create({
-	body: {
-		backgroundColor: '#fff',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-		alignItems: 'center',
-		paddingBottom: 40,
-	},
-	sendIcon: {
-		position: 'absolute',
-		right: 12,
-		top: 12,
-	},
-});
 
 export default withTheme(JanusConversationScreen);

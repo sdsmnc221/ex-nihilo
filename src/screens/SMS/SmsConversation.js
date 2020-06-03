@@ -3,10 +3,10 @@ import styled, { withTheme } from 'styled-components';
 import { Text, SectionList } from 'react-native';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
+import FillGap from 'sharedUI/FillGap';
 import SmsMessage from './components/SmsMessage';
 import SmsInput from './components/SmsInput';
 import Unscrollable from './components/Unscrollable';
-import FillGap from 'sharedUI/FillGap';
 
 const Date = styled.Text`
 	color: ${({ theme }) => theme.colors.charcoal};

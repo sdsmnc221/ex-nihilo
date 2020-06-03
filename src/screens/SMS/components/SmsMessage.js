@@ -12,13 +12,15 @@ const Wrapper = styled.View`
 	justify-content: ${({ isUser }) => (isUser ? 'flex-end' : 'flex-start')};
 	margin-right: ${({ isUser }) => (isUser ? 24 : 0)}px;
 	margin-left: ${({ isUser }) => (isUser ? 0 : 24)}px;
+	margin-bottom: ${({ withSpacing }) => (withSpacing ? 12 : 0)}px;
 `;
 
 const SmsText = styled.Text`
 	max-width: 60%;
 	${({ theme }) => theme.styles.os.smsText}
 	background-color: ${({ theme }) => theme.colors.ghostWhite};
-	color: ${({ theme }) => theme.colors.charcoal};
+	color: ${({ isUser, theme }) =>
+		isUser ? theme.colors.slateBlue : theme.colors.charcoal};
 	padding: 14px 12px;
 	margin-bottom: ${({ withAvatar }) => (withAvatar ? 0 : 12)}px;
 	margin-left: ${({ isUser, withAvatar }) =>
@@ -27,7 +29,7 @@ const SmsText = styled.Text`
 	border-left-color: ${({ theme }) => theme.colors.white};
 	border-left-width: 0.6px;
 	border-top-color: ${({ theme }) => theme.colors.white};
-	border-top-width: 2px;
+	border-top-width: 1.2px;
 `;
 
 const avatarStyle = css`
@@ -36,8 +38,8 @@ const avatarStyle = css`
 	color: ${({ theme }) => theme.colors.ghostWhite};
 `;
 
-const SmsMessage = ({ isUser, withAvatar, message, theme }) => (
-	<Wrapper isUser={isUser}>
+const SmsMessage = ({ isUser, withAvatar, withSpacing, message, theme }) => (
+	<Wrapper isUser={isUser} withSpacing={withSpacing}>
 		{withAvatar && (
 			<StyledIcon
 				type="PERSON"
@@ -59,12 +61,14 @@ const SmsMessage = ({ isUser, withAvatar, message, theme }) => (
 SmsMessage.propTypes = {
 	isUser: PropTypes.bool,
 	withAvatar: PropTypes.bool,
+	withSpacing: PropTypes.bool,
 	message: PropTypes.string.isRequired,
 };
 
 SmsMessage.defaultProps = {
 	isUser: false,
 	withAvatar: false,
+	withSpacing: false,
 };
 
 export default withTheme(SmsMessage);

@@ -4,13 +4,10 @@ import { Image } from 'react-native';
 import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import Icon from 'sharedUI/Icon';
-
 const StyledImage = styled.Image`
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	resize-mode: ${({ resizeMode }) => resizeMode};
 `;
 
 const BackgroundImage = ({ source, resizeMode }) => (

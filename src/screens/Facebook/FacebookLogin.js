@@ -7,6 +7,7 @@ import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import Icon from 'sharedUI/Icon';
 import RectButton from 'sharedUI/Button/RectButton';
 
+import useKeyBoard from 'hooks/useKeyboard';
 import { EMAIL_ACCOUNT, KEY_PUZZLE_C, SCREENS } from 'configs';
 
 const COMMON_SIZES = {
@@ -25,7 +26,7 @@ const LogoContainer = styled.View`
 
 const ContentContainer = styled.View`
 	flex: 1;
-	top: -4%;
+	top: ${({ keyboardShown }) => (keyboardShown ? 0 : -4)}%;
 	${({ theme }) => theme.styles.flex(null, null, null, true)};
 `;
 
@@ -76,6 +77,8 @@ const Line = styled.View`
 `;
 
 const FacebookLoginScreen = ({ route, navigation, theme }) => {
+	const { keyboardShown } = useKeyBoard();
+
 	const [emailInput, setEmailInput] = useState(EMAIL);
 	const [passwordInput, setPasswordInput] = useState('');
 	const [failed, setFailed] = useState(false);
@@ -100,7 +103,7 @@ const FacebookLoginScreen = ({ route, navigation, theme }) => {
 			<LogoContainer>
 				<Icon type="FACEBOOK_XL" />
 			</LogoContainer>
-			<ContentContainer>
+			<ContentContainer keyboardShown={keyboardShown}>
 				<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
 				{failed && <FailedText>Email ou mot de passe incorrect.</FailedText>}
 				<Input

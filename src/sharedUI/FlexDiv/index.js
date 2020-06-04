@@ -10,12 +10,14 @@ const FlexDiv = ({
 	alignItems,
 	direction,
 	fullWidth,
+	fullHeight,
 	additionalStyle,
 }) => (
 	<View
 		css={`
 			${theme.styles.flex(justifyContent, alignItems, direction, fullWidth)}
 			${additionalStyle}
+			${fullHeight ? 'height: 100%;' : ''}
 		`}>
 		{children}
 	</View>
@@ -26,6 +28,7 @@ FlexDiv.PropTypes = {
 	alignItems: PropTypes.string,
 	direction: PropTypes.string,
 	fullWidth: PropTypes.bool,
+	fullHeight: PropTypes.bool,
 	additionalStyle: PropTypes.string,
 };
 
@@ -34,6 +37,7 @@ FlexDiv.defaultProps = {
 	alignItems: 'center',
 	direction: 'column',
 	fullWidth: false,
+	fullHeight: false,
 	additionalStyle: null,
 };
 

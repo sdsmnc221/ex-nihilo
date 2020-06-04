@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css, withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { View, Text } from 'react-native';
 
 import StyledIcon from 'sharedUI/Icon/StyledIcon';
@@ -32,12 +32,6 @@ const SmsText = styled.Text`
 	border-top-width: 1.2px;
 `;
 
-const avatarStyle = css`
-	border-radius: 100px;
-	border: 1px solid ${({ theme }) => theme.colors.white};
-	color: ${({ theme }) => theme.colors.ghostWhite};
-`;
-
 const SmsMessage = ({ isUser, withAvatar, withSpacing, message, theme }) => (
 	<Wrapper isUser={isUser} withSpacing={withSpacing}>
 		{withAvatar && (
@@ -46,7 +40,7 @@ const SmsMessage = ({ isUser, withAvatar, withSpacing, message, theme }) => (
 				size={40}
 				width={16.17}
 				height={21.22}
-				additionalStyle={avatarStyle}
+				additionalStyle={theme.styles.avatar()}
 			/>
 		)}
 		<SmsText

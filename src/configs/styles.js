@@ -44,4 +44,9 @@ export default {
 	list: css`
 		width: 100%;
 	`,
+	avatar: (borderColor, bodyColor) => css`
+		border-radius: 100px;
+		border: 1px solid ${borderColor || colors.white};
+		background-color: ${bodyColor || colors.ghostWhite};
+	`,
 };

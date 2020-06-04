@@ -110,7 +110,7 @@ const EmailScreen = ({ route, navigation, theme }) => (
 				/>
 			)}
 		/>
-		<FillGap />
+		<FillGap height={64} />
 	</LayoutWrapper>
 );
 

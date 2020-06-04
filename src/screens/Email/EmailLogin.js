@@ -7,6 +7,7 @@ import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import Icon from 'sharedUI/Icon';
 import RectButton from 'sharedUI/Button/RectButton';
 
+import useKeyBoard from 'hooks/useKeyboard';
 import { rgba } from 'utils';
 import { EMAIL_ACCOUNT, KEY_PUZZLE_D, SCREENS } from 'configs';
 
@@ -27,7 +28,7 @@ const LogoContainer = styled.View`
 
 const ContentContainer = styled.View`
 	flex: 1;
-	top: -8%;
+	top: ${({ keyboardShown }) => (keyboardShown ? 0 : -8)}%;
 	${({ theme }) => theme.styles.flex(null, null, null, true)};
 `;
 
@@ -73,6 +74,8 @@ const Separator = styled.View`
 `;
 
 const EmailLoginScreen = ({ route, navigation, theme }) => {
+	const { keyboardShown } = useKeyBoard();
+
 	const [emailInput, setEmailInput] = useState(EMAIL);
 	const [passwordInput, setPasswordInput] = useState('');
 	const [failed, setFailed] = useState(false);
@@ -97,7 +100,7 @@ const EmailLoginScreen = ({ route, navigation, theme }) => {
 			<LogoContainer>
 				<Icon type="EMAIL_XL" />
 			</LogoContainer>
-			<ContentContainer>
+			<ContentContainer keyboardShown={keyboardShown}>
 				<StyledText
 					size={19}
 					letterSpacing={0.38}

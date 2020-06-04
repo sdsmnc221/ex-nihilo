@@ -4,6 +4,7 @@ export { default as ALBUM_PRESSED } from './ALBUM_PRESSED';
 export { default as APPS } from './APPS';
 export { default as APPS_PRESSED } from './APPS_PRESSED';
 export { default as ARROW_LEFT } from './ARROW_LEFT';
+export { default as ARROW_LEFT_THICK } from './ARROW_LEFT_THICK';
 export { default as BATTERY_DARK } from './BATTERY_DARK';
 export { default as BATTERY_LIGHT } from './BATTERY_LIGHT';
 export { default as BROWSER } from './BROWSER';

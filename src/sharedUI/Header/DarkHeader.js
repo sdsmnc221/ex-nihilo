@@ -6,9 +6,7 @@ import { View, Text } from 'react-native';
 
 import IconButton from 'sharedUI/Button/IconButton';
 
-import { device } from 'utils';
 import { SCREENS, SIZES } from 'configs';
-import { HEADER_OPTIONS } from './configs';
 
 const Wrapper = styled.View`
 	margin-top: 12px;

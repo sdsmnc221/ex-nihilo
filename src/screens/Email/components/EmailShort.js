@@ -56,7 +56,7 @@ const EmailShort = ({
 	onPress,
 	theme,
 }) => (
-	<Wrapper onPress={onPress}>
+	<Wrapper onPress={onPress} activeOpacity={0.6}>
 		<StyledIcon
 			type="PERSON"
 			size={56}

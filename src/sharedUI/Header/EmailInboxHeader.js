@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import HeaderSearchBar from './components/HeaderSearchBar';
 
@@ -22,10 +22,10 @@ const Title = styled.Text`
 	text-transform: lowercase;
 `;
 
-const EmailInboxHeader = ({ theme, title }) => (
+const EmailInboxHeader = ({ title }) => (
 	<Wrapper>
 		<HeaderSearchBar />
-		{title && <Title>{title}</Title>}
+		<Title>{title}</Title>
 	</Wrapper>
 );
 EmailInboxHeader.propTypes = {
@@ -36,4 +36,4 @@ EmailInboxHeader.defaultProps = {
 	title: null,
 };
 
-export default withTheme(EmailInboxHeader);
+export default EmailInboxHeader;

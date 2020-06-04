@@ -17,6 +17,7 @@ const HEADER_TYPES = {
 	BASIC: 'basic',
 	CONVERSATION: 'conversation',
 	DARK: 'dark',
+	EMAIL_DETAILS: 'email details',
 	EMAIL_INBOX: 'email inbox',
 };
 
@@ -49,6 +50,7 @@ const getHeaderName = (screen) => {
 			headerName = 'En savoir plus';
 			break;
 		case SCREENS.SMS_CONVERSATION:
+		case SCREENS.EMAIL_DETAILS:
 			headerName = true;
 			break;
 		default:
@@ -70,6 +72,9 @@ const getHeaderType = (screen) => {
 		case SCREENS.DATA_PROTECTION:
 		case SCREENS.ABOUT_US:
 			headerType = HEADER_TYPES.DARK;
+			break;
+		case SCREENS.EMAIL_DETAILS:
+			headerType = HEADER_TYPES.EMAIL_DETAILS;
 			break;
 		case SCREENS.EMAIL:
 			headerType = HEADER_TYPES.EMAIL_INBOX;

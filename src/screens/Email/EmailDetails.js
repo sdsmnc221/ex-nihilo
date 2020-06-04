@@ -119,17 +119,11 @@ const EmailDetailsScreen = ({ route, navigation }) => {
 				</SubHeader>
 				<Content>
 					<Message>{message}</Message>
+					<Message>{message}</Message>
+					<Message>{message}</Message>
+					<Message>{message}</Message>
 					<Gap />
 				</Content>
-				<Group
-					dir="row"
-					justify="space-between"
-					fullWidth
-					style={styles.groupButtons}>
-					{groupButtons.map((btn, i) => (
-						<PlaceHolder key={i} width={100} height={60} text={btn} color="#c4c4c4" />
-					))}
-				</Group>
 			</ScrollView>
 		</LayoutWrapper>
 	);
@@ -146,7 +140,6 @@ const styles = StyleSheet.create({
 	scrollBody: {
 		backgroundColor: '#fff',
 		width: '100%',
-		flex: 1,
 	},
 	starIcon: {
 		marginTop: 8,

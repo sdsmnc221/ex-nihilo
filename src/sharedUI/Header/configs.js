@@ -1,4 +1,4 @@
-import { SCREENS, SCREENS_INFO } from 'configs';
+import { SCREENS, SCREENS_INFO } from 'configs/screens';
 
 const DEFAULT_HEADER_OPTIONS = {
 	headerShown: false,

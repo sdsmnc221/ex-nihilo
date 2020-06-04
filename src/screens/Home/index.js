@@ -9,7 +9,7 @@ import BackgroundImage from 'sharedUI/BackgroundImage';
 import Clock from 'sharedUI/Clock';
 import AppIcon from 'sharedUI/AppIcon/';
 
-import { getIconSize } from 'utils';
+import getIconSize from 'utils/getIconSize';
 import { APP_ICON, HOME_APPS } from 'configs';
 
 const { ICONS_TRAY_WIDTH, ICONS_TRAY_MARGE } = APP_ICON;

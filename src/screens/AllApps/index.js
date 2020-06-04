@@ -7,7 +7,8 @@ import AppIcon from 'sharedUI/AppIcon';
 import FlexDiv from 'sharedUI/FlexDiv';
 
 import { ALL_APPS } from 'configs';
-import { chunk, getIconSize } from 'utils';
+import { chunk } from 'utils';
+import getIconSize from 'utils/getIconSize';
 
 const AllAppsScreen = ({ route, navigation }) => {
 	const iconSize = getIconSize();

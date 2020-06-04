@@ -1,5 +1,5 @@
 import { colors } from './theme';
-import { additionalStyles } from './styles';
+import additionalStyles from 'sharedUI/Header/styles';
 
 const SCREENS = {
 	SPLASH: 'SplashScreen',

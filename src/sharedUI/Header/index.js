@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import BasicHeader from './BasicHeader';
 import ConversationHeader from './ConversationHeader';
 import DarkHeader from './DarkHeader';
+import EmailInboxHeader from './EmailInboxHeader';
 
 import { HEADER_TYPES } from './configs';
 
@@ -13,6 +14,8 @@ const renderHeader = (type, title, otherConfigs) => {
 			return <ConversationHeader title={title} {...otherConfigs} />;
 		case HEADER_TYPES.DARK:
 			return <DarkHeader title={title} {...otherConfigs} />;
+		case HEADER_TYPES.EMAIL_INBOX:
+			return <EmailInboxHeader title={title} {...otherConfigs} />;
 		default:
 			return <BasicHeader title={title} {...otherConfigs} />;
 	}

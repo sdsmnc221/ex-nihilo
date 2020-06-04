@@ -17,6 +17,7 @@ const HEADER_TYPES = {
 	BASIC: 'basic',
 	CONVERSATION: 'conversation',
 	DARK: 'dark',
+	EMAIL_INBOX: 'email inbox',
 };
 
 const getHeaderName = (screen) => {
@@ -34,6 +35,9 @@ const getHeaderName = (screen) => {
 			break;
 		case SCREENS.ALBUM:
 			headerName = 'Mes photos';
+			break;
+		case SCREENS.EMAIL:
+			headerName = 'Boîte de réception';
 			break;
 		case SCREENS.DATAVIZ:
 			headerName = 'Mon ADN numérique';
@@ -58,14 +62,17 @@ const getHeaderType = (screen) => {
 	let headerType = HEADER_TYPES.BASIC;
 
 	switch (screen) {
+		case SCREENS.SMS_CONVERSATION:
+		case SCREENS.SMS_JANUS:
+			headerType = HEADER_TYPES.CONVERSATION;
+			break;
 		case SCREENS.DATAVIZ:
 		case SCREENS.DATA_PROTECTION:
 		case SCREENS.ABOUT_US:
 			headerType = HEADER_TYPES.DARK;
 			break;
-		case SCREENS.SMS_CONVERSATION:
-		case SCREENS.SMS_JANUS:
-			headerType = HEADER_TYPES.CONVERSATION;
+		case SCREENS.EMAIL:
+			headerType = HEADER_TYPES.EMAIL_INBOX;
 			break;
 		default:
 			break;
@@ -77,8 +84,7 @@ const getHeaderType = (screen) => {
 const getHeaderExtra = (screen) => {
 	let headerLeft = false,
 		headerRight = false,
-		headerShadow = false,
-		screenType = null;
+		headerShadow = false;
 
 	switch (screen) {
 		case SCREENS.SMS:

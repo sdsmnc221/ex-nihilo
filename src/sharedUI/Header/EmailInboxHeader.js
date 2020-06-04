@@ -4,9 +4,6 @@ import styled, { withTheme } from 'styled-components';
 
 import HeaderSearchBar from './components/HeaderSearchBar';
 
-import { SIZES } from 'configs';
-import { HEADER_OPTIONS } from './configs';
-
 const Wrapper = styled.View`
     position: relative;
 	z-index: 999;

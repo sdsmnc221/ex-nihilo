@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css, withTheme } from 'styled-components';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { NeuView } from 'utils/react-native-neu-element';
 
@@ -10,14 +10,6 @@ import StyledIcon from 'sharedUI/Icon/StyledIcon';
 
 import { rgba } from 'utils';
 import { SIZES } from 'configs';
-
-const Header = styled.View`
-	width: 100%;
-	height: 120px;
-	background-color: #fff;
-	padding: 24px;
-	justify-content: space-between;
-`;
 
 const SearchInput = styled.TextInput`
 	width: 100%;

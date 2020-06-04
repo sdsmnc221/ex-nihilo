@@ -40,8 +40,7 @@ export default {
 	contacts,
 	story: {
 		scripts: storyScripts,
-		dialogueLog: {
-			currentScriptID: 1,
-		},
+		dialogueLog: [],
+		currentScriptID: 1,
 	},
 };

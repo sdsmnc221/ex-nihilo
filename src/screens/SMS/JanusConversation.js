@@ -44,7 +44,9 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 	const onInputValue = (text) => setInputValue(text);
 	const onSubmitValue = () => setOpenInput(false);
 
-	const { scripts, dialogueLog } = useSelector((state) => state.story);
+	const { scripts, dialogueLog, currentScriptID } = useSelector(
+		(state) => state.story
+	);
 
 	const [activeScript, setActiveScript] = useState(
 		find(scripts, 'ID', dialogueLog.currentScriptID)
@@ -68,29 +70,33 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 	};
 
 	useEffect(() => {
-		console.log(activeScript, choices);
-		setTimeout(() => {
-			updateDialogueMessages(activeScript);
-		}, 240);
+		console.log(scripts, dialogueLog, currentScriptID);
+	}, [scripts, dialogueLog, currentScriptID]);
 
-		switch (activeScript.type) {
-			case 'MESSAGE':
-			case 'MESSAGE_WITH_PLACEHOLDER':
-				setActiveScript(find(scripts, 'ID', activeScript.nextID));
-				break;
-			case 'MESSAGE_WITH_CHOICES':
-				setChoices(activeScript.choices);
-				setActiveChoiceIndex(undefined);
-				break;
-			case 'INPUT':
-				setOpenInput(true);
-				setActiveScript(find(scripts, 'ID', activeScript.nextID));
-				setActiveChoiceIndex(undefined);
-				break;
-			default:
-				break;
-		}
-	}, [activeScript]);
+	// useEffect(() => {
+	// 	console.log(activeScript, choices);
+	// 	setTimeout(() => {
+	// 		updateDialogueMessages(activeScript);
+	// 	}, 240);
+
+	// 	switch (activeScript.type) {
+	// 		case 'MESSAGE':
+	// 		case 'MESSAGE_WITH_PLACEHOLDER':
+	// 			setActiveScript(find(scripts, 'ID', activeScript.nextID));
+	// 			break;
+	// 		case 'MESSAGE_WITH_CHOICES':
+	// 			setChoices(activeScript.choices);
+	// 			setActiveChoiceIndex(undefined);
+	// 			break;
+	// 		case 'INPUT':
+	// 			setOpenInput(true);
+	// 			setActiveScript(find(scripts, 'ID', activeScript.nextID));
+	// 			setActiveChoiceIndex(undefined);
+	// 			break;
+	// 		default:
+	// 			break;
+	// 	}
+	// }, [activeScript]);
 
 	return (
 		<LayoutWrapper screenName={route.name}>

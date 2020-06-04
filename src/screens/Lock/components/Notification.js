@@ -71,10 +71,8 @@ const Notification = ({ theme, type, date, title, message }) => {
 						direction="row"
 						justifyContent="space-between"
 						fullWidth
-						additionalStyle={`
-							${css`
-								margin-bottom: 8px;
-							`}
+						additionalStyle={css`
+							margin-bottom: 8px;
 						`}>
 						<FlexDiv direction="row">
 							<Icon type={typeIcon} />

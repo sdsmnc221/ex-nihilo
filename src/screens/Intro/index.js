@@ -16,13 +16,6 @@ const Content = styled.Text`
 	${({ theme }) => theme.styles.os.boldBody}
 `;
 
-const styledFlatButton = css`
-	position: absolute;
-	bottom: 12%;
-	width: auto;
-	padding: 12px 32px;
-`;
-
 const IntroScreen = ({ route, navigation }) => {
 	usePermissions();
 	const contacts = useDeviceData();
@@ -49,7 +42,12 @@ const IntroScreen = ({ route, navigation }) => {
 			</Content>
 			<FlatButton
 				text="commencer"
-				additionalStyle={`${styledFlatButton}`}
+				additionalStyle={css`
+					position: absolute;
+					bottom: 12%;
+					width: auto;
+					padding: 12px 32px;
+				`}
 				pressHandler={onPress}
 			/>
 		</LayoutWrapper>

@@ -57,8 +57,12 @@ NeuBorderView.propTypes = {
 	height: PropTypes.number.isRequired,
 	borderRadius: PropTypes.number.isRequired,
 	borderWidth: PropTypes.number.isRequired,
-	containerStyle: PropTypes.object.isRequired,
-	style: PropTypes.object.isRequired,
+	containerStyle: PropTypes.object,
+	style: PropTypes.object,
 };
 
+NeuBorderView.defaultProps = {
+	containerStyle: null,
+	style: null,
+};
 export default NeuBorderView;

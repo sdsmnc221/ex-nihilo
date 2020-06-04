@@ -19,16 +19,6 @@ const Title = styled.Text`
 	margin: 24px 0;
 `;
 
-const appIconStyle = css`
-	margin: 0 18px;
-`;
-
-const infoFlexDivStyle = css`
-	margin-top: 36px;
-	margin-bottom: 10%;
-	padding: 0 24px;
-`;
-
 const ContactDetailsScreen = ({ route, navigation, theme }) => {
 	const { name, number, star } = route.params.contact;
 
@@ -49,10 +39,10 @@ const ContactDetailsScreen = ({ route, navigation, theme }) => {
 					size={180}
 					type="PERSON_XL"
 					noBlink
-					additionalStyle={`${css`
+					additionalStyle={css`
 						z-index: 0;
 						position: relative;
-					`}`}
+					`}
 					{...theme.shadows.softNeomorphism}
 				/>
 				{star && (
@@ -61,11 +51,11 @@ const ContactDetailsScreen = ({ route, navigation, theme }) => {
 						noPress
 						width={36}
 						height={36}
-						additionalStyle={`${css`
+						additionalStyle={css`
 							position: absolute;
 							top: 24px;
 							left: 8px;
-						`}`}
+						`}
 						useImg
 					/>
 				)}
@@ -77,11 +67,19 @@ const ContactDetailsScreen = ({ route, navigation, theme }) => {
 						key={index}
 						size={46}
 						type={iconType}
-						additionalStyle={`${appIconStyle}`}
+						additionalStyle={css`
+							margin: 0 18px;
+						`}
 					/>
 				))}
 			</FlexDiv>
-			<FlexDiv fullWidth additionalStyle={`${infoFlexDivStyle}`}>
+			<FlexDiv
+				fullWidth
+				additionalStyle={css`
+					margin-top: 36px;
+					margin-bottom: 10%;
+					padding: 0 24px;
+				`}>
 				{INFO_.map(({ title, info }, index) => (
 					<ContactInfo key={index} title={title} info={info} />
 				))}

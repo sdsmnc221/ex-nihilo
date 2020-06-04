@@ -14,11 +14,6 @@ const Title = styled.Text`
 	${({ theme }) => theme.styles.dataviz.title}
 `;
 
-const styledFlatButton = css`
-	width: 54%;
-	margin-bottom: 12px;
-`;
-
 const EndMenuScreen = ({ route, navigation }) => {
 	const onPress = (screen) => navigation.navigate(screen);
 
@@ -55,7 +50,10 @@ const EndMenuScreen = ({ route, navigation }) => {
 					key={index}
 					dataviz
 					text={button.text}
-					additionalStyle={`${styledFlatButton}`}
+					additionalStyle={css`
+						width: 54%;
+						margin-bottom: 12px;
+					`}
 					pressHandler={() => onPress(button.screen)}
 				/>
 			))}

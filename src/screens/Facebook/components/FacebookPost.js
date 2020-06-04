@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text } from 'react-native';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { View, Text } from 'react-native';
 
 import PlaceHolder from 'sharedUI/PlaceHolder';
 import IconButton from 'sharedUI/Button/IconButton';
@@ -76,18 +76,14 @@ const FacebookPost = ({ user, date, content }) => (
 			<IconButton
 				type="DOTS_HORIZONTAL"
 				noBlink
-				additionalStyles={styles.settingsIcon}
+				additionalStyle={css`
+					margin-top: 8px;
+				`}
 			/>
 		</Header>
 		<Content>{content}</Content>
 	</Wrapper>
 );
-
-const styles = StyleSheet.create({
-	settingsIcon: {
-		marginTop: 8,
-	},
-});
 
 FacebookPost.propTypes = {
 	user: PropTypes.string.isRequired,

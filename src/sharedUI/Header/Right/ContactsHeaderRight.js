@@ -10,7 +10,7 @@ const spacing = css`
 
 const ContactsHeaderRight = () => (
 	<>
-		<SearchPlaceholder additionalStyle={`${spacing}`} />
+		<SearchPlaceholder additionalStyle={spacing} />
 		<StyledIcon
 			useImg
 			type="STAR_PRESSED"
@@ -22,9 +22,9 @@ const ContactsHeaderRight = () => (
 		/>
 		<StyledIcon
 			type="DOTS_VERTICAL"
-			additionalStyle={`${css`
+			additionalStyle={css`
 				top: 2px;
-			`}`}
+			`}
 		/>
 	</>
 );

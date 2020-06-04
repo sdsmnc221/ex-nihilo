@@ -29,10 +29,8 @@ const AllAppsScreen = ({ route, navigation }) => {
 						fullWidth
 						direction="row"
 						justifyContent="space-evenly"
-						additionalStyle={`
-							${css`
-								margin-top: 48px;
-							`}
+						additionalStyle={css`
+							margin-top: 48px;
 						`}>
 						{apps_.map((a, i) => (
 							<AppIcon

@@ -26,12 +26,6 @@ const InputField = styled.TextInput`
 	color: ${({ theme }) => theme.colors.ghostWhite};
 `;
 
-const sendButtonStyle = css`
-	position: absolute;
-	top: 14px;
-	right: 20px;
-`;
-
 const SmsInput = ({ choice, onPressSend, theme }) => (
 	<Wrapper>
 		<InputField editable={false} value={choice?.text || 'Écrire un SMS...'} />
@@ -42,7 +36,11 @@ const SmsInput = ({ choice, onPressSend, theme }) => (
 			height={20.06}
 			noBlink={onPressSend === undefined}
 			onPress={onPressSend === undefined ? () => {} : () => onPressSend(choice)}
-			additionalStyle={`${sendButtonStyle}`}
+			additionalStyle={css`
+				position: absolute;
+				top: 14px;
+				right: 20px;
+			`}
 		/>
 	</Wrapper>
 );

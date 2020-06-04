@@ -79,7 +79,7 @@ FlatButton.propTypes = {
 	dataviz: PropTypes.bool,
 	text: PropTypes.string.isRequired,
 	pressHandler: PropTypes.func,
-	additionalStyle: PropTypes.string,
+	additionalStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 	borderColor: PropTypes.string,
 	inactiveButtonColor: PropTypes.string,
 	inactiveTextColor: PropTypes.string,

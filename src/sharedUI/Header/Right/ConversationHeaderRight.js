@@ -7,16 +7,16 @@ const spacing = css`
 	margin-right: 12px;
 `;
 
-const SmsConversationHeaderRight = () => (
+const ConversationHeaderRight = () => (
 	<>
 		<StyledIcon
 			type="PHONE"
 			width={17.04}
 			height={22.71}
-			additionalStyle={`${spacing}`}
+			additionalStyle={spacing}
 		/>
 		<StyledIcon type="DOTS_VERTICAL" />
 	</>
 );
 
-export default SmsConversationHeaderRight;
+export default ConversationHeaderRight;

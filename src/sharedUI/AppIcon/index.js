@@ -111,7 +111,7 @@ AppIcon.propTypes = {
 	onPress: PropTypes.func,
 	noBlink: PropTypes.bool,
 	withSpacing: PropTypes.bool,
-	additionalStyle: PropTypes.string,
+	additionalStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };
 
 AppIcon.defaultProps = {

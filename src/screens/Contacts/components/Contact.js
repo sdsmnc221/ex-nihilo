@@ -34,18 +34,18 @@ const Contact = ({ contact, onPress }) => {
 			<FlexDiv direction="row" justifyContent="flex-start" fullWidth>
 				<StarButton
 					initialActive={star}
-					additionalStyle={`${css`
+					additionalStyle={css`
 						margin-right: 12px;
-					`}`}
+					`}
 					useImg
 				/>
 				<AppIcon size={45} type="PERSON" noBlink />
 				<FlexDiv
 					alignItems="flex-start"
-					additionalStyle={`${css`
+					additionalStyle={css`
 						width: 80%;
 						margin-left: 16px;
-					`}`}>
+					`}>
 					<Title>{name || number}</Title>
 					{name && <PhoneNumber>{number}</PhoneNumber>}
 				</FlexDiv>

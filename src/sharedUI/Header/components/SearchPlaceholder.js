@@ -13,10 +13,7 @@ const Wrapper = styled.View`
 
 const SearchPlaceholder = ({ additionalStyle, theme }) => {
 	return (
-		<Wrapper
-			css={`
-				${additionalStyle}
-			`}>
+		<Wrapper css={additionalStyle}>
 			<NeuView
 				color={theme.colors.ghostWhite}
 				width={57}
@@ -49,7 +46,7 @@ const SearchPlaceholder = ({ additionalStyle, theme }) => {
 };
 
 SearchPlaceholder.propTypes = {
-	additionalStyle: PropTypes.string,
+	additionalStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };
 
 SearchPlaceholder.defaultProps = {

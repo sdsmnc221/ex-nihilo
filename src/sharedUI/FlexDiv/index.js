@@ -23,13 +23,13 @@ const FlexDiv = ({
 	</View>
 );
 
-FlexDiv.PropTypes = {
+FlexDiv.propTypes = {
 	justifyContent: PropTypes.string,
 	alignItems: PropTypes.string,
 	direction: PropTypes.string,
 	fullWidth: PropTypes.bool,
 	fullHeight: PropTypes.bool,
-	additionalStyle: PropTypes.string,
+	additionalStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };
 
 FlexDiv.defaultProps = {

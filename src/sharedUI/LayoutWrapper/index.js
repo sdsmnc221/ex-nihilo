@@ -50,12 +50,12 @@ const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
 };
 
 LayoutWrapper.propTypes = {
-	children: PropTypes.object.isRequired,
+	children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
 	screenName: PropTypes.string,
 	headerTitle: PropTypes.string,
 };
 
-LayoutWrapper.PropTypes = {
+LayoutWrapper.defaultProps = {
 	screenName: null,
 	headerTitle: null,
 };

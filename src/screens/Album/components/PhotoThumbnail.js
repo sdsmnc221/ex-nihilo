@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { Image } from 'react-native';
 
-import StyledIcon from 'sharedUI/Icon/StyledIcon';
 import HeartButton from '../../../sharedUI/Button/HeartButton';
 
 const Wrapper = styled.TouchableOpacity`

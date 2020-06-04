@@ -34,10 +34,8 @@ const StatusBar = ({ light, whiteText }) => {
 			<StyledIcon type={`CELLULAR_${light ? 'LIGHT' : 'DARK'}`} />
 			<StyledIcon
 				type={`BATTERY_${light ? 'LIGHT' : 'DARK'}`}
-				additionalStyle={`
-					${css`
-						margin-left: 8px;
-					`}
+				additionalStyle={css`
+					margin-left: 8px;
 				`}
 			/>
 			<Clock whiteText={whiteText} light={light}>

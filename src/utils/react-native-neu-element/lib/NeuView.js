@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, ViewPropTypes } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Shadow from './Shadow';
 
 import { hexToHsl, hslToHex } from './utils';
@@ -187,12 +187,12 @@ NeuView.propTypes = {
 	width: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired,
 	radius: PropTypes.number,
-	customLightShadow: ViewPropTypes,
-	customDarkShadow: ViewPropTypes,
+	customLightShadow: PropTypes.object,
+	customDarkShadow: PropTypes.object,
 	borderRadius: PropTypes.number,
 	customGradient: PropTypes.array,
-	style: ViewPropTypes,
-	containerStyle: ViewPropTypes,
+	style: PropTypes.object,
+	containerStyle: PropTypes.object,
 	inset: PropTypes.bool,
 	convex: PropTypes.bool,
 	concave: PropTypes.bool,

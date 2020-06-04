@@ -16,10 +16,10 @@ const HeaderLeft = (props) => {
 	return GroupElementsLeft ? (
 		<FlexDiv
 			direction="row"
-			additionalStyle={`${css`
+			additionalStyle={css`
 				position: absolute;
 				left: 12px;
-			`}`}>
+			`}>
 			<GroupElementsLeft {...props} />
 		</FlexDiv>
 	) : null;

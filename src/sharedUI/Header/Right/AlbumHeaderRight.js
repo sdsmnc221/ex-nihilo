@@ -7,9 +7,9 @@ const spacing = css`
 	margin-right: 12px;
 `;
 
-const ContactsHeaderRight = () => (
+const AlbumHeaderRight = () => (
 	<>
-		<StyledIcon type="FILTER" additionalStyle={`${spacing}`} />
+		<StyledIcon type="FILTER" additionalStyle={spacing} />
 		<StyledIcon
 			useImg
 			type="HEART"
@@ -21,11 +21,11 @@ const ContactsHeaderRight = () => (
 		/>
 		<StyledIcon
 			type="DOTS_VERTICAL"
-			additionalStyle={`${css`
+			additionalStyle={css`
 				top: -1px;
-			`}`}
+			`}
 		/>
 	</>
 );
 
-export default ContactsHeaderRight;
+export default AlbumHeaderRight;

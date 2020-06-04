@@ -68,10 +68,10 @@ const EmailShort = ({
 		/>
 		<FlexDiv
 			alignItems="flex-start"
-			additionalStyle={`${css`
+			additionalStyle={css`
 				flex: 1;
 				margin-left: 10px;
-			`}`}>
+			`}>
 			<Sender>{sender}</Sender>
 			<Title>{title}</Title>
 			<Message>{truncate(message, 40)}</Message>
@@ -83,9 +83,9 @@ const EmailShort = ({
 				width={24}
 				height={24}
 				useImg
-				additionalStyle={`${css`
+				additionalStyle={css`
 					top: -12px;
-				`}`}
+				`}
 			/>
 		</FlexDiv>
 	</Wrapper>

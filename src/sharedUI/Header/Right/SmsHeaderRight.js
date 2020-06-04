@@ -10,13 +10,13 @@ const spacing = css`
 
 const SmsHeaderRight = () => (
 	<>
-		<StyledIcon type="ADD" additionalStyle={`${spacing}`} />
-		<SearchPlaceholder additionalStyle={`${spacing}`} />
+		<StyledIcon type="ADD" additionalStyle={spacing} />
+		<SearchPlaceholder additionalStyle={spacing} />
 		<StyledIcon
 			type="DOTS_VERTICAL"
-			additionalStyle={`${css`
+			additionalStyle={css`
 				top: 2px;
-			`}`}
+			`}
 		/>
 	</>
 );

@@ -18,7 +18,7 @@ const BackgroundImage = ({ source, resizeMode }) => (
 );
 
 BackgroundImage.propTypes = {
-	source: PropTypes.string.isRequired,
+	source: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 	resizeMode: PropTypes.string,
 };
 

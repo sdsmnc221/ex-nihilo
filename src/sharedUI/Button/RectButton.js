@@ -36,14 +36,8 @@ const RectButton = ({
 			backgroundColor={backgroundColor}
 			onPress={pressHandler}
 			activeOpacity={0.8}
-			css={`
-				${additionalStyle}
-			`}>
-			<ButtonText
-				textColor={textColor}
-				css={`
-					${additionalTextStyle}
-				`}>
+			css={additionalStyle}>
+			<ButtonText textColor={textColor} css={additionalTextStyle}>
 				{text}
 			</ButtonText>
 		</Button>
@@ -55,8 +49,8 @@ RectButton.propTypes = {
 	height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	text: PropTypes.string.isRequired,
 	pressHandler: PropTypes.func,
-	additionalStyle: PropTypes.string,
-	additionalTextStyle: PropTypes.string,
+	additionalStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+	additionalTextStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 	backgroundColor: PropTypes.string,
 	textColor: PropTypes.string,
 };

@@ -7,7 +7,7 @@ import IconButton from 'sharedUI/Button/IconButton';
 
 import { SCREENS } from 'configs';
 
-const SmsConversationHeaderLeft = ({ theme }) => {
+const ConversationHeaderLeft = ({ theme }) => {
 	const navigation = useNavigation();
 
 	return (
@@ -18,9 +18,9 @@ const SmsConversationHeaderLeft = ({ theme }) => {
 				width={19.36}
 				height={13.94}
 				onPress={() => navigation.navigate(SCREENS.SMS)}
-				additionalStyle={`${css`
+				additionalStyle={css`
 					margin-right: 4px;
-				`}`}
+				`}
 			/>
 			<AppIcon
 				size={49}
@@ -33,4 +33,4 @@ const SmsConversationHeaderLeft = ({ theme }) => {
 	);
 };
 
-export default withTheme(SmsConversationHeaderLeft);
+export default withTheme(ConversationHeaderLeft);

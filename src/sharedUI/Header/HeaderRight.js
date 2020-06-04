@@ -16,10 +16,10 @@ const HeaderRight = (props) => {
 	return GroupElementsRight ? (
 		<FlexDiv
 			direction="row"
-			additionalStyle={`${css`
+			additionalStyle={css`
 				position: absolute;
 				right: 12px;
-			`}`}>
+			`}>
 			<GroupElementsRight {...props} />
 		</FlexDiv>
 	) : null;

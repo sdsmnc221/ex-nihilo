@@ -29,7 +29,7 @@ const Header = ({ title, type, ...otherConfigs }) => (
 );
 
 Header.propTypes = {
-	title: PropTypes.string,
+	title: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 	type: PropTypes.string,
 };
 

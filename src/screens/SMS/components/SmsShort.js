@@ -54,9 +54,9 @@ const SmsShort = ({ theme, id, date, title, message, onPress }) => (
 				direction="row"
 				justifyContent="flex-start"
 				fullWidth
-				additionalStyle={`${css`
+				additionalStyle={css`
 					padding: 0 12px;
-				`}`}>
+				`}>
 				<AppIcon
 					size={49}
 					type="PERSON"
@@ -65,11 +65,11 @@ const SmsShort = ({ theme, id, date, title, message, onPress }) => (
 				/>
 				<FlexDiv
 					alignItems="flex-start"
-					additionalStyle={`${css`
+					additionalStyle={css`
 						margin-left: 16px;
 						padding-right: 12px;
 						width: 80%;
-					`}`}>
+					`}>
 					<FlexDiv direction="row" justifyContent="space-between" fullWidth>
 						<Title isJanus={title === 'Janus'}>{title}</Title>
 						<Date>{date}</Date>

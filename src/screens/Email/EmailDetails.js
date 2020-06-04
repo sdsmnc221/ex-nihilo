@@ -91,9 +91,9 @@ const EmailDetailsScreen = ({ route, theme }) => {
 						height={28}
 						useImg
 						redPress
-						additionalStyle={`${css`
+						additionalStyle={css`
 							top: 10px;
-						`}`}
+						`}
 					/>
 				</Header>
 				<SubHeader>
@@ -109,10 +109,10 @@ const EmailDetailsScreen = ({ route, theme }) => {
 					/>
 					<FlexDiv
 						alignItems="flex-start"
-						additionalStyle={`${css`
+						additionalStyle={css`
 							flex: 1;
 							margin-left: 8px;
-						`}`}>
+						`}>
 						<FlexDiv direction="row">
 							<Sender>{sender}</Sender>
 							<Date>{date}</Date>

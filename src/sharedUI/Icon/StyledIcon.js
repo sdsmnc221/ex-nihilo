@@ -13,18 +13,14 @@ const Wrapper = styled.View`
 `;
 
 const StyledIcon = ({ size, additionalStyle, ...iconProps }) => (
-	<Wrapper
-		size={size}
-		css={`
-			${additionalStyle}
-		`}>
+	<Wrapper size={size} css={additionalStyle}>
 		<Icon {...iconProps} />
 	</Wrapper>
 );
 
 StyledIcon.propTypes = {
 	size: PropTypes.number,
-	additionalStyle: PropTypes.string,
+	additionalStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };
 
 StyledIcon.defaultProps = {

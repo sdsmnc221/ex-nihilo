@@ -42,9 +42,9 @@ const HeaderSearchBar = ({ theme }) => {
 			direction="row"
 			fullWidth
 			justifyContent="space-between"
-			additionalStyle={`${css`
+			additionalStyle={css`
 				padding: 16px 20px;
-			`}`}>
+			`}>
 			<AppIcon size={30} type="HAMBURGER" noBlink {...softShadow} />
 			<View
 				css={`

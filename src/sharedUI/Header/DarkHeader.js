@@ -31,11 +31,9 @@ const DarkHeader = ({ title, theme }) => {
 				width={19.36}
 				height={13.94}
 				onPress={() => navigation.navigate(SCREENS.END_MENU)}
-				additionalStyle={`
-					${css`
-						position: absolute;
-						left: 20px;
-					`}
+				additionalStyle={css`
+					position: absolute;
+					left: 20px;
 				`}
 			/>
 			<Title>{title}</Title>

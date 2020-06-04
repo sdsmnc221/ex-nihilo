@@ -109,8 +109,9 @@ const EmailScreen = ({ route, navigation, theme }) => (
 					onPress={() => navigation.navigate(SCREENS.EMAIL_DETAILS, { email })}
 				/>
 			)}
+			ListFooterComponent={<FillGap height={18} />}
 		/>
-		<FillGap height={64} />
+		<FillGap />
 	</LayoutWrapper>
 );
 

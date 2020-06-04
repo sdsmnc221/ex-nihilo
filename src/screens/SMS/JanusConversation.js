@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import styled, { withTheme } from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { FlatList } from 'react-native-gesture-handler';
@@ -12,7 +12,19 @@ import JanusAnswerBlock from './components/JanusAnswerBlock';
 
 import DialogueMessage from 'data/classes/DialogueMessage';
 
-import { find } from 'utils';
+import { findScript } from 'hooks/DialogueManager/utils';
+import {
+	updateUserAction,
+	updateActiveChoiceIndex,
+	updateDialogueLog,
+	updateCurrentScriptID,
+} from '../../states/actions/storyActions';
+import {
+	isSafeToAddScript,
+	doProceedToNextScript,
+} from '../../hooks/DialogueManager/utils';
+import { tick, sleep } from '../../utils';
+import { NUMBERS } from '../../configs';
 
 const InputOverlay = styled.View`
 	position: absolute;
@@ -44,59 +56,56 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 	const onInputValue = (text) => setInputValue(text);
 	const onSubmitValue = () => setOpenInput(false);
 
-	const { scripts, dialogueLog, currentScriptID } = useSelector(
+	const dispatch = useDispatch();
+	const { scripts, dialogueLog, currentScriptID, userAction } = useSelector(
 		(state) => state.story
 	);
 
-	const [activeScript, setActiveScript] = useState(
-		find(scripts, 'ID', dialogueLog.currentScriptID)
-	);
-	const [dialogueMessages, setDialogueMessages] = useState([]);
-	const [choices, setChoices] = useState(activeScript.choices);
-	const [activeChoiceIndex, setActiveChoiceIndex] = useState(undefined);
+	const findActiveScript = useCallback(() => findScript(currentScriptID), [
+		currentScriptID,
+	]);
 
-	const updateDialogueMessages = useCallback(
-		(message) =>
-			setDialogueMessages((prevMessages) => [
-				...prevMessages,
-				new DialogueMessage(message),
-			]),
-		[]
-	);
-	const onPressChoice = (index) => setActiveChoiceIndex(index);
-	const onPressSend = (choice) => {
-		updateDialogueMessages(choice);
-		setActiveScript(find(scripts, 'ID', choice.nextID));
+	const onPressChoice = (activeChoiceIndex) =>
+		updateActiveChoiceIndex(dispatch, { activeChoiceIndex });
+
+	const onPressSend = async (choice) => {
+		const { text, isUser, nextID } = choice;
+
+		updateActiveChoiceIndex(dispatch, { activeChoiceIndex: null });
+		updateDialogueLog(dispatch, new DialogueMessage({ text, isUser }));
+
+		updateCurrentScriptID(dispatch, nextID);
 	};
 
 	useEffect(() => {
-		console.log(scripts, dialogueLog, currentScriptID);
-	}, [scripts, dialogueLog, currentScriptID]);
+		const update = async () => {
+			const activeScript = findActiveScript();
 
-	// useEffect(() => {
-	// 	console.log(activeScript, choices);
-	// 	setTimeout(() => {
-	// 		updateDialogueMessages(activeScript);
-	// 	}, 240);
+			await sleep(NUMBERS.JANUS_SMS_DELAY);
 
-	// 	switch (activeScript.type) {
-	// 		case 'MESSAGE':
-	// 		case 'MESSAGE_WITH_PLACEHOLDER':
-	// 			setActiveScript(find(scripts, 'ID', activeScript.nextID));
-	// 			break;
-	// 		case 'MESSAGE_WITH_CHOICES':
-	// 			setChoices(activeScript.choices);
-	// 			setActiveChoiceIndex(undefined);
-	// 			break;
-	// 		case 'INPUT':
-	// 			setOpenInput(true);
-	// 			setActiveScript(find(scripts, 'ID', activeScript.nextID));
-	// 			setActiveChoiceIndex(undefined);
-	// 			break;
-	// 		default:
-	// 			break;
-	// 	}
-	// }, [activeScript]);
+			// To prevent a same or previous script is added to the dialogue log
+			// e.g. when exit screen then return.
+			isSafeToAddScript(activeScript, dialogueLog) &&
+				updateDialogueLog(
+					dispatch,
+					new DialogueMessage({ text: activeScript.text })
+				);
+
+			updateUserAction(dispatch, {
+				type: activeScript.type,
+				choices: activeScript.choices,
+			});
+
+			await sleep(NUMBERS.JANUS_SMS_DELAY);
+
+			// Check if the current script has user action or not
+			// If it won't, proceed to the next script
+			doProceedToNextScript(activeScript) &&
+				updateCurrentScriptID(dispatch, activeScript.nextID);
+		};
+
+		update();
+	}, [currentScriptID, dialogueLog, findActiveScript, dispatch]);
 
 	return (
 		<LayoutWrapper screenName={route.name}>
@@ -106,7 +115,7 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 					${theme.styles.list}
 					padding-top: 24px;
 				`}
-				data={dialogueMessages}
+				data={dialogueLog}
 				keyExtractor={(item, index) => index.toString()}
 				onScrollToIndexFailed={() => {}}
 				onContentSizeChange={() =>
@@ -124,11 +133,9 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 			/>
 
 			<JanusAnswerBlock
-				choices={choices}
-				activeChoiceIndex={activeChoiceIndex}
-				activeScript={activeScript}
-				onPressSend={onPressSend}
+				userAction={userAction}
 				onPressChoice={onPressChoice}
+				onPressSend={onPressSend}
 			/>
 
 			{openInput && (

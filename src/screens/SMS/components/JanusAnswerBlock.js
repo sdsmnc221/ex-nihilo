@@ -20,20 +20,26 @@ const ChoicesWrapper = styled.View`
 `;
 
 const NoChoiceText = styled.Text`
-	font-size: 11px;
-	color: #818181;
+	font-family: ${({ theme }) => theme.fonts.sourceSans.light};
+	font-size: ${({ theme }) => theme.typo.sizes.body};
+	color: ${({ theme }) => theme.colors.charcoal};
+	letter-spacing: 0.2px;
+	top: -4px;
 `;
 
 const NoChoice = () => (
 	<NoChoiceText>Pas de réponses disponibles pour le moment.</NoChoiceText>
 );
 
-const ChoicesContent = ({ script, activeChoiceIndex, onPressChoice }) => {
-	let content;
+const renderChoicesContent = (
+	{ type, choices, activeChoiceIndex },
+	onPressChoice
+) => {
+	let content = <NoChoice />;
 
-	switch (script.type) {
+	switch (type) {
 		case 'MESSAGE_WITH_CHOICES':
-			content = script.choices.map((c, i) => (
+			content = choices.map((c, i) => (
 				<AnswerChoice
 					key={i}
 					index={i}
@@ -44,44 +50,35 @@ const ChoicesContent = ({ script, activeChoiceIndex, onPressChoice }) => {
 			));
 			break;
 		case 'INPUT':
-			content = <NoChoice />;
-			break;
 		case 'MESSAGE':
 		default:
-			content = <NoChoice />;
 			break;
 	}
 
 	return content;
 };
 
-ChoicesContent.propTypes = {};
+const JanusAnswerBlock = ({ userAction, onPressChoice, onPressSend }) => {
+	const { choices, activeChoiceIndex } = userAction;
 
-ChoicesContent.defaultProps = {};
-
-const JanusAnswerBlock = ({
-	choices,
-	activeChoiceIndex,
-	activeScript,
-	onPressSend,
-	onPressChoice,
-}) => (
-	<Wrapper>
-		<SmsInput
-			choice={choices ? choices[activeChoiceIndex] : undefined}
-			onPressSend={choices ? onPressSend : undefined}
-		/>
-		<ChoicesWrapper>
-			<ChoicesContent
-				script={activeScript}
-				activeChoiceIndex={activeChoiceIndex}
-				onPressChoice={onPressChoice}
+	return (
+		<Wrapper>
+			<SmsInput
+				choice={choices ? choices[activeChoiceIndex] : undefined}
+				onPressSend={onPressSend}
 			/>
-		</ChoicesWrapper>
-	</Wrapper>
-);
+			<ChoicesWrapper>
+				{renderChoicesContent(userAction, onPressChoice)}
+			</ChoicesWrapper>
+		</Wrapper>
+	);
+};
 
-JanusAnswerBlock.propTypes = {};
+JanusAnswerBlock.propTypes = {
+	userAction: PropTypes.object.isRequired,
+	onPressChoice: PropTypes.func.isRequired,
+	onPressSend: PropTypes.func.isRequired,
+};
 
 JanusAnswerBlock.defaultProps = {};
 

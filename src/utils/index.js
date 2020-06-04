@@ -66,6 +66,8 @@ const truncate = (str, ln = 96, ellipsis = true) => {
 
 const tick = (cb, delay = 0) => setTimeout(cb, delay);
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 const getSections = (array, key, subKey) => {
 	if (array.length === 0) {
 		return [];
@@ -97,6 +99,7 @@ export {
 	shuffle,
 	sortContact,
 	tick,
+	sleep,
 	truncate,
 	getSections,
 };

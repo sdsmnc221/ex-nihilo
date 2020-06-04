@@ -1,161 +1,135 @@
 import React from 'react';
-import styled from 'styled-components';
-import { StyleSheet, View, Text } from 'react-native';
+import styled, { css, withTheme } from 'styled-components';
+import { View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
+import FillGap from 'sharedUI/FillGap';
 import StarButton from 'sharedUI/Button/StarButton';
-import PlaceHolder from 'sharedUI/PlaceHolder';
-import IconButton from 'sharedUI/Button/IconButton';
+import StyledIcon from 'sharedUI/Icon/StyledIcon';
+
+import { rgba } from 'utils';
+import FlexDiv from '../../sharedUI/FlexDiv';
 
 const Header = styled.View`
-	width: 100%;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: flex-start;
-	padding: 24px;
-	background-color: #fff;
-`;
-
-const Group = styled.View`
-	width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
-	flex-direction: ${({ dir }) => dir};
-	justify-content: ${({ justify }) => justify || 'center'};
-	align-items: ${({ align }) => align || 'center'};
-`;
-
-const Title = styled.Text`
-	font-size: 18px;
-	font-weight: bold;
-`;
-
-const Category = styled.Text`
-	background-color: #c4c4c4;
-	font-size: 9px;
-	letter-spacing: 0.4px;
-	padding: 2px 6px;
-	margin-top: 8px;
+	${({ theme }) => theme.styles.flex('space-between', 'flex-start', 'row', true)}
+	margin-bottom: 16px;
 `;
 
 const SubHeader = styled.View`
-	width: 100%;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0 24px;
-	background-color: #fff;
-`;
-
-const Sender = styled.Text`
-	font-size: 13px;
-	margin-left: 36px;
-	margin-right: 8px;
-`;
-
-const Recipient = styled.Text`
-	font-size: 9px;
-	color: #818181;
-	margin-left: 36px;
-	margin-top: 4px;
-`;
-
-const Date = styled.Text`
-	font-size: 9px;
-	color: #818181;
-	top: 1.4px;
+	${({ theme }) => theme.styles.flex('space-between', null, 'row', true)}
 `;
 
 const Content = styled.View`
-	position: relative;
+	margin-top: 28px;
 	width: 100%;
 	flex: 1;
-	padding: 24px;
-	background-color: #fff;
+`;
+
+const Title = styled.Text`
+	${({ theme }) => theme.styles.os.h3_alt}
+	color: ${({ theme }) => theme.colors.charcoal};
+	letter-spacing: 0.34px;
+`;
+
+const Category = styled.Text`
+	background-color: ${({ theme }) => theme.colors.persianRed};
+	color: ${({ theme }) => theme.colors.ghostWhite};
+	font-family: ${({ theme }) => theme.fonts.cairo.semiBold};
+	font-size: ${({ theme }) => theme.typo.sizes.subtitle};
+	letter-spacing: 0.2px;
+	padding: 4px 8px;
+	margin-top: 8px;
+`;
+
+const Sender = styled.Text`
+	${({ theme }) => theme.styles.os.h3_alt}
+	color: ${({ theme }) => theme.colors.charcoal};
+	letter-spacing: 0.34px;
+	top: 2px;
+`;
+
+const Recipient = styled.Text`
+	color: ${({ theme }) => theme.colors.charcoal};
+	font-family: ${({ theme }) => theme.fonts.cairo.light};
+	font-size: 12px;
+	letter-spacing: 0.2px;
+	top: -2px;
+`;
+
+const Date = styled.Text`
+	color: ${({ theme }) => theme.colors.charcoal};
+	font-family: ${({ theme }) => theme.fonts.cairo.extraLight};
+	font-size: ${({ theme }) => theme.typo.sizes.subtitle};
+	letter-spacing: 0.2px;
+	top: 5px;
+	left: 10px;
 `;
 
 const Message = styled.Text`
-	font-size: 12px;
-	line-height: 20px;
-	padding-right: 16px;
+	padding-top: 4px;
+	${({ theme }) => theme.styles.os.body_alt}
+	letter-spacing: 0.24px;
+	line-height: 16px;
 `;
 
-const Gap = styled.View`
-	height: 120px;
-`;
-
-const EmailDetailsScreen = ({ route, navigation }) => {
+const EmailDetailsScreen = ({ route, theme }) => {
 	const { email } = route.params;
 	const { sender, date, title, message, starred } = email;
 
-	const groupButtons = ['Répondre', 'Répondre à tous', 'Transférer'];
-
 	return (
 		<LayoutWrapper screenName={route.name}>
-			<ScrollView contentContainerStyle={styles.scrollBody}>
+			<ScrollView contentContainerStyle={theme.styles.styleSheet.scrollBodyEmail}>
 				<Header>
-					<Group dir="column" align="flex-start">
+					<FlexDiv alignItems="flex-start">
 						<Title>{title}</Title>
 						<Category>Boîte de réception</Category>
-					</Group>
-					<StarButton initialActive={starred} additionalStyles={styles.starIcon} />
+					</FlexDiv>
+					<StarButton
+						initialActive={starred}
+						width={28}
+						height={28}
+						useImg
+						redPress
+						additionalStyle={`${css`
+							top: 10px;
+						`}`}
+					/>
 				</Header>
 				<SubHeader>
-					<PlaceHolder size={30} color="#c4c4c4" round style={styles.spacingRight} />
-					<Group dir="column" align="flex-start" style={styles.fullFlex}>
-						<Group dir="row">
+					<StyledIcon
+						type="PERSON"
+						size={48}
+						width={24}
+						height={24}
+						additionalStyle={theme.styles.avatar(
+							rgba(theme.colors.persianRedAlpha, 0.4),
+							theme.colors.white
+						)}
+					/>
+					<FlexDiv
+						alignItems="flex-start"
+						additionalStyle={`${css`
+							flex: 1;
+							margin-left: 8px;
+						`}`}>
+						<FlexDiv direction="row">
 							<Sender>{sender}</Sender>
 							<Date>{date}</Date>
-						</Group>
-						<Recipient>à Sam Blanchard</Recipient>
-					</Group>
-					<Group dir="row">
-						<IconButton
-							type="EMAIL_REPLY"
-							noBlink
-							additionalStyles={styles.spacingRight}
-						/>
-						<IconButton type="DOTS_VERTICAL" noBlink size="20" />
-					</Group>
+						</FlexDiv>
+						<Recipient>à moi</Recipient>
+					</FlexDiv>
 				</SubHeader>
 				<Content>
 					<Message>{message}</Message>
 					<Message>{message}</Message>
 					<Message>{message}</Message>
 					<Message>{message}</Message>
-					<Gap />
 				</Content>
 			</ScrollView>
+			<FillGap />
 		</LayoutWrapper>
 	);
 };
 
-const styles = StyleSheet.create({
-	body: {
-		backgroundColor: '#fff',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
-	},
-	scrollBody: {
-		backgroundColor: '#fff',
-		width: '100%',
-	},
-	starIcon: {
-		marginTop: 8,
-	},
-	spacingRight: {
-		marginRight: 30,
-	},
-	fullFlex: {
-		flex: 1,
-	},
-	groupButtons: {
-		position: 'absolute',
-		bottom: 64,
-		paddingLeft: 24,
-		paddingRight: 24,
-	},
-});
-
-export default EmailDetailsScreen;
+export default withTheme(EmailDetailsScreen);

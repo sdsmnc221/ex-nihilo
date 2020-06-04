@@ -10,6 +10,10 @@ export default {
 			font-family: ${sourceSans.regular};
 			font-size: ${sizes.body};
 		`,
+		body_alt: css`
+			font-family: ${cairo.light};
+			font-size: ${sizes.body};
+		`,
 		boldBody: css`
 			font-family: ${cairo.semiBold};
 			font-size: 15px;
@@ -30,6 +34,10 @@ export default {
 		h3: css`
 			font-family: ${sourceSans.bold};
 			font-size: ${sizes.h3};
+		`,
+		h3_alt: css`
+			font-family: ${cairo.semiBold};
+			font-size: ${sizes.h3_alt};
 		`,
 		titleConversation: css`
 			font-family: ${sourceSans.bold};

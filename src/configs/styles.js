@@ -1,10 +1,10 @@
+import { StyleSheet } from 'react-native';
 import { css } from 'styled-components';
+
 import theme from './theme';
 import { FLEX } from './constants';
 
-const { colors, fonts, size, typo } = theme;
-const { acumin, cairo, sourceSans, superclarendon } = fonts;
-const { sizes } = typo;
+const { colors } = theme;
 const { JUSTIFY_CONTENT, ALIGN_ITEMS, FLEX_DIRECTION } = FLEX;
 
 const additionalStyles = {
@@ -49,4 +49,13 @@ export default {
 		border: 1px solid ${borderColor || colors.white};
 		background-color: ${bodyColor || colors.ghostWhite};
 	`,
+	styleSheet: StyleSheet.create({
+		scrollBodyEmail: {
+			width: '100%',
+			padding: 22,
+		},
+		fullFlex: {
+			flex: 1,
+		},
+	}),
 };

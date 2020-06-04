@@ -7,7 +7,7 @@ import StyledIcon from 'sharedUI/Icon/StyledIcon';
 
 import { rgba, truncate } from 'utils';
 import StarButton from 'sharedUI/Button/StarButton';
-import FlexDiv from '../../../sharedUI/FlexDiv';
+import FlexDiv from 'sharedUI/FlexDiv';
 
 const Wrapper = styled.TouchableOpacity`
 	height: 64px;
@@ -17,8 +17,7 @@ const Wrapper = styled.TouchableOpacity`
 `;
 
 const Sender = styled.Text`
-	font-family: ${({ theme }) => theme.fonts.cairo.semiBold};
-	font-size: ${({ theme }) => theme.typo.sizes.h3_alt};
+	${({ theme }) => theme.styles.os.h3_alt}
 	color: ${({ theme }) => theme.colors.charcoal};
 	letter-spacing: 0.34px;
 	top: 8px;

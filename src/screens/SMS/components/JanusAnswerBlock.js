@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css, withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
+import { useSelector } from 'react-redux';
 import { View, Text } from 'react-native';
 
 import SmsInput from './SmsInput';
 import AnswerChoice from './AnswerChoice';
+import AnswerInput from './AnswerInput';
 
+import useKeyBoard from 'hooks/useKeyboard';
+import { STORY_TYPES } from 'hooks/DialogueManager/configs';
+import {
+	isInputAction,
+	replaceWithUsername,
+} from 'hooks/DialogueManager/utils';
 import { rgba } from 'utils';
 
 const Wrapper = styled.View`
 	height: 36%;
 	width: 100%;
+	top: ${({ keyboardShown }) => (keyboardShown ? 50 : 0)}px;
 `;
 
 const ChoicesWrapper = styled.View`
+	position: relative;
 	flex: 1;
 	background-color: ${({ theme }) => rgba(theme.colors.charcoalAlpha, 0.451)};
 	${({ theme }) => theme.styles.flex(null, null, null, true)}
@@ -33,24 +43,37 @@ const NoChoice = () => (
 
 const renderChoicesContent = (
 	{ type, choices, activeChoiceIndex },
-	onPressChoice
+	username,
+	onPressChoice,
+	onPressChoiceInput
 ) => {
 	let content = <NoChoice />;
 
+	const onPressChoiceActionInput = (i) => {
+		onPressChoice(i);
+		onPressChoiceInput();
+	};
+
 	switch (type) {
-		case 'MESSAGE_WITH_CHOICES':
-			content = choices.map((c, i) => (
-				<AnswerChoice
-					key={i}
-					index={i}
-					active={i === activeChoiceIndex}
-					text={c.text}
-					onPressChoice={onPressChoice}
-				/>
-			));
+		case STORY_TYPES.MESSAGE_WITH_CHOICES:
+			content = choices.map((c, i) => {
+				if (isInputAction(c) && username) {
+					c.changeText(replaceWithUsername(c.text, username, true));
+				}
+
+				return (
+					<AnswerChoice
+						key={i}
+						index={i}
+						active={i === activeChoiceIndex}
+						text={c.text}
+						onPressChoice={
+							isInputAction(c) && !username ? onPressChoiceActionInput : onPressChoice
+						}
+					/>
+				);
+			});
 			break;
-		case 'INPUT':
-		case 'MESSAGE':
 		default:
 			break;
 	}
@@ -59,17 +82,30 @@ const renderChoicesContent = (
 };
 
 const JanusAnswerBlock = ({ userAction, onPressChoice, onPressSend }) => {
+	const { keyboardShown } = useKeyBoard();
+
+	const { username } = useSelector((state) => state.story);
 	const { choices, activeChoiceIndex } = userAction;
 
+	const [inputShown, setInputShown] = useState(false);
+	const onPressChoiceInput = () => setInputShown(true);
+	const onSubmitInput = () => setInputShown(false);
+
 	return (
-		<Wrapper>
+		<Wrapper keyboardShown={keyboardShown}>
 			<SmsInput
 				choice={choices ? choices[activeChoiceIndex] : undefined}
 				onPressSend={onPressSend}
 			/>
 			<ChoicesWrapper>
-				{renderChoicesContent(userAction, onPressChoice)}
+				{renderChoicesContent(
+					userAction,
+					username,
+					onPressChoice,
+					onPressChoiceInput
+				)}
 			</ChoicesWrapper>
+			{inputShown && <AnswerInput onSubmit={onSubmitInput} />}
 		</Wrapper>
 	);
 };

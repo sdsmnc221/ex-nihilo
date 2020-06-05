@@ -4,6 +4,7 @@ import {
 	STORY_UPDATE_ACTIVE_CHOICE_INDEX,
 	STORY_UPDATE_DIALOGUE_LOG,
 	STORY_UPDATE_CURRENT_SCRIPT_ID,
+	STORY_UPDATE_USERNAME,
 } from 'states/actionTypes';
 
 function story(state = initialStates.story, action) {
@@ -26,6 +27,11 @@ function story(state = initialStates.story, action) {
 			return {
 				...state,
 				currentScriptID: action.payload.currentScriptID,
+			};
+		case STORY_UPDATE_USERNAME:
+			return {
+				...state,
+				username: action.payload.username,
 			};
 		default:
 			return state;

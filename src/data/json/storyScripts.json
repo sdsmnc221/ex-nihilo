@@ -34,6 +34,7 @@
             },
             {
                 "text": "Moi c'est...",
+                "action": "INPUT",
                 "nextID": 8
             },
             {
@@ -56,6 +57,7 @@
         "text": "Alors réponds-moi, qui es-tu ?",
         "choices": [{
             "text": "ok ok ça va... je m’appelle...",
+            "action": "INPUT",
             "nextID": 8
         }],
         "nextID": null
@@ -73,6 +75,7 @@
         "text": "Mais nous devrions faire connaissance...",
         "choices": [{
             "text": "c’est bien mystérieux tout ça, mais d’accord je m’appelle...",
+            "action": "INPUT",
             "nextID": 8
         }],
         "nextID": null

@@ -31,7 +31,9 @@ const SmsInput = ({ choice, onPressSend, theme }) => (
 		onPress={() => (onPressSend === undefined ? {} : onPressSend(choice))}>
 		<InputField
 			editable={false}
-			value={(choice && truncate(choice.text, 48)) || 'Écrire un SMS...'}
+			value={
+				(choice && choice.text && truncate(choice.text, 48)) || 'Écrire un SMS...'
+			}
 		/>
 		<StyledIcon
 			type="SEND"

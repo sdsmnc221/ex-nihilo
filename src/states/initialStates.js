@@ -1,17 +1,6 @@
-import Data from 'data';
-
-import dataContacts from 'data/json/contacts';
-import dataStoryScripts from 'data/json/storyScripts';
-
 import DialogueMessage from 'data/classes/DialogueMessage';
 
-const contacts = dataContacts.map((contact) => Data('CONTACT', contact));
-
-const storyScripts = dataStoryScripts.map((script) =>
-	Data('STORY_SCRIPT', script)
-);
-
-export { storyScripts };
+import { contacts, storyScripts as scripts } from './data';
 
 export default {
 	permissions: {
@@ -44,9 +33,10 @@ export default {
 	},
 	contacts,
 	story: {
-		scripts: storyScripts,
-		dialogueLog: [new DialogueMessage({ text: storyScripts[0].text })],
+		scripts,
+		dialogueLog: [new DialogueMessage({ text: scripts[0].text })],
 		currentScriptID: 1,
+		username: null,
 		userAction: {
 			type: null,
 			choices: [],

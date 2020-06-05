@@ -3,6 +3,7 @@ import {
 	STORY_UPDATE_ACTIVE_CHOICE_INDEX,
 	STORY_UPDATE_DIALOGUE_LOG,
 	STORY_UPDATE_CURRENT_SCRIPT_ID,
+	STORY_UPDATE_USERNAME,
 } from '../actionTypes';
 
 export const updateUserAction = (dispatch, userAction) =>
@@ -22,3 +23,6 @@ export const updateCurrentScriptID = (dispatch, currentScriptID) =>
 		type: STORY_UPDATE_CURRENT_SCRIPT_ID,
 		payload: { currentScriptID },
 	});
+
+export const updateUsername = (dispatch, username) =>
+	dispatch({ type: STORY_UPDATE_USERNAME, payload: { username } });

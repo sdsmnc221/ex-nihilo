@@ -23,4 +23,8 @@ export default class StoryScript {
 				break;
 		}
 	}
+
+	changeText(text) {
+		this.text = text;
+	}
 }

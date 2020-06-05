@@ -1,8 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import styled, { withTheme } from 'styled-components';
+import { withTheme } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { View } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
 import { FlatList } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
@@ -12,54 +10,33 @@ import JanusAnswerBlock from './components/JanusAnswerBlock';
 
 import DialogueMessage from 'data/classes/DialogueMessage';
 
-import { findScript } from 'hooks/DialogueManager/utils';
 import {
 	updateUserAction,
 	updateActiveChoiceIndex,
 	updateDialogueLog,
 	updateCurrentScriptID,
-} from '../../states/actions/storyActions';
+} from 'states/actions/storyActions';
 import {
-	isSafeToAddScript,
+	containsPlaceholder,
 	doProceedToNextScript,
-} from '../../hooks/DialogueManager/utils';
-import { tick, sleep } from '../../utils';
-import { NUMBERS } from '../../configs';
+	findScript,
+	isSafeToAddScript,
+	replaceWithUsername,
+} from 'hooks/DialogueManager/utils';
+import { sleep } from 'utils';
+import { NUMBERS } from 'configs';
 
-const InputOverlay = styled.View`
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.8);
-	justify-content: center;
-	align-items: center;
-`;
-
-const Input = styled.TextInput`
-	width: 64%;
-	height: 60px;
-	padding: 14px 26px;
-	border-radius: 50px;
-	background-color: ${({ theme }) => theme.colors.ghostWhite};
-	color: ${({ theme }) => theme.colors.dimGray};
-	${({ theme }) => theme.styles.os.body};
-`;
-
-const JanusConversationScreen = ({ route, navigation, theme }) => {
+const JanusConversationScreen = ({ route, theme }) => {
 	const smsListRef = useRef(null);
 
-	const [openInput, setOpenInput] = useState(false);
-	const [inputValue, setInputValue] = useState('');
-
-	const onInputValue = (text) => setInputValue(text);
-	const onSubmitValue = () => setOpenInput(false);
-
 	const dispatch = useDispatch();
-	const { scripts, dialogueLog, currentScriptID, userAction } = useSelector(
-		(state) => state.story
-	);
+	const {
+		scripts,
+		dialogueLog,
+		currentScriptID,
+		username,
+		userAction,
+	} = useSelector((state) => state.story);
 
 	const findActiveScript = useCallback(() => findScript(currentScriptID), [
 		currentScriptID,
@@ -81,19 +58,25 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 		const update = async () => {
 			const activeScript = findActiveScript();
 
-			await sleep(NUMBERS.JANUS_SMS_DELAY);
+			if (containsPlaceholder(activeScript)) {
+				activeScript.changeText(replaceWithUsername(activeScript.text, username));
+			}
 
-			// To prevent a same or previous script is added to the dialogue log
-			// e.g. when exit screen then return.
+			const { text, type, choices } = activeScript;
+
+			// To prevent a same or previous script, or a script that
+			// shoudn't be rendered is added to the dialogue log
 			isSafeToAddScript(activeScript, dialogueLog) &&
 				updateDialogueLog(
 					dispatch,
-					new DialogueMessage({ text: activeScript.text })
+					new DialogueMessage({
+						text,
+					})
 				);
 
 			updateUserAction(dispatch, {
-				type: activeScript.type,
-				choices: activeScript.choices,
+				type,
+				choices,
 			});
 
 			await sleep(NUMBERS.JANUS_SMS_DELAY);
@@ -105,7 +88,7 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 		};
 
 		update();
-	}, [currentScriptID, dialogueLog, findActiveScript, dispatch]);
+	}, [currentScriptID, dialogueLog, username, findActiveScript, dispatch]);
 
 	return (
 		<LayoutWrapper screenName={route.name}>
@@ -137,19 +120,6 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 				onPressChoice={onPressChoice}
 				onPressSend={onPressSend}
 			/>
-
-			{openInput && (
-				<InputOverlay>
-					<Input
-						theme={theme}
-						blurOnSubmit
-						onChangeText={onInputValue}
-						onSubmitEditing={onSubmitValue}
-						value={inputValue}
-						style={theme.shadows.default}
-					/>
-				</InputOverlay>
-			)}
 
 			<FillGap />
 		</LayoutWrapper>

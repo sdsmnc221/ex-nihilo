@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import { withTheme } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { FlatList } from 'react-native-gesture-handler';
@@ -20,12 +20,12 @@ import {
 	containsPlaceholder,
 	doProceedToNextScript,
 	findScript,
+	isBreakpoint,
 	isSafeToAddScript,
 	replaceWithUsername,
 } from 'hooks/DialogueManager/utils';
 import { sleep } from 'utils';
 import { NUMBERS } from 'configs';
-import { isBreakpoint } from '../../hooks/DialogueManager/utils';
 
 const JanusConversationScreen = ({ route, theme }) => {
 	const smsListRef = useRef(null);
@@ -54,8 +54,6 @@ const JanusConversationScreen = ({ route, theme }) => {
 	useEffect(() => {
 		const update = async () => {
 			const activeScript = findActiveScript();
-
-			console.log(activeScript);
 
 			if (isBreakpoint(activeScript)) {
 				await sleep(activeScript.delayTime);

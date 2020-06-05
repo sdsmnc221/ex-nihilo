@@ -142,7 +142,7 @@
         "type": "BREAKPOINT",
         "text": null,
         "choices": [],
-        "delayMinutes": 1,
+        "delayMinutes": 0.5,
         "nextID": 16
     },
     {
@@ -179,7 +179,7 @@
         "type": "BREAKPOINT",
         "text": null,
         "choices": [],
-        "delayMinutes": 1,
+        "delayMinutes": 0.5,
         "nextID": 20
     },
     {
@@ -216,7 +216,7 @@
         "type": "BREAKPOINT",
         "text": null,
         "choices": [],
-        "delayMinutes": 3,
+        "delayMinutes": 0.5,
         "nextID": 24
     }
 ]

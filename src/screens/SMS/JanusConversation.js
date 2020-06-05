@@ -25,18 +25,15 @@ import {
 } from 'hooks/DialogueManager/utils';
 import { sleep } from 'utils';
 import { NUMBERS } from 'configs';
+import { isBreakpoint } from '../../hooks/DialogueManager/utils';
 
 const JanusConversationScreen = ({ route, theme }) => {
 	const smsListRef = useRef(null);
 
 	const dispatch = useDispatch();
-	const {
-		scripts,
-		dialogueLog,
-		currentScriptID,
-		username,
-		userAction,
-	} = useSelector((state) => state.story);
+	const { dialogueLog, currentScriptID, username, userAction } = useSelector(
+		(state) => state.story
+	);
 
 	const findActiveScript = useCallback(() => findScript(currentScriptID), [
 		currentScriptID,
@@ -57,6 +54,12 @@ const JanusConversationScreen = ({ route, theme }) => {
 	useEffect(() => {
 		const update = async () => {
 			const activeScript = findActiveScript();
+
+			console.log(activeScript);
+
+			if (isBreakpoint(activeScript)) {
+				await sleep(activeScript.delayTime);
+			}
 
 			if (containsPlaceholder(activeScript)) {
 				activeScript.changeText(replaceWithUsername(activeScript.text, username));

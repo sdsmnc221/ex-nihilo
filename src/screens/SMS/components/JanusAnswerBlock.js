@@ -55,6 +55,7 @@ const renderChoicesContent = (
 	};
 
 	switch (type) {
+		case STORY_TYPES.MESSAGE_AFTER_BREAKPOINT:
 		case STORY_TYPES.MESSAGE_WITH_CHOICES:
 			content = choices.map((c, i) => {
 				if (isInputAction(c) && username) {

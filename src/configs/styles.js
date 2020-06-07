@@ -48,5 +48,8 @@ export default {
 		fullFlex: {
 			flex: 1,
 		},
+		flipX: {
+			transform: [{ scaleX: -1 }],
+		},
 	}),
 };

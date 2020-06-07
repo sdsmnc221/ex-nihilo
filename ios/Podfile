@@ -89,6 +89,8 @@ target 'ex_nihilo' do
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
+  pod 'RNColorMatrixImageFilters', :path => '../node_modules/react-native-color-matrix-image-filters'
+
   target 'ex_nihiloTests' do
     inherit! :complete
     # Pods for testing

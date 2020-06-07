@@ -28,6 +28,7 @@
     "react-native-account-manager": "^1.0.9",
     "react-native-calendar-events": "^1.7.3",
     "react-native-call-log": "^2.1.2",
+    "react-native-color-matrix-image-filters": "^5.2.4",
     "react-native-config": "^1.0.0",
     "react-native-contacts": "^5.1.0",
     "react-native-geocoding": "^0.4.0",

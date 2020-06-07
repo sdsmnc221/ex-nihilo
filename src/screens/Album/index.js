@@ -26,10 +26,10 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 	const photos = gallery.photos ? gallery.photos.edges : [];
 
 	const photoSize = SIZES.ALBUM_PHOTO;
-	const photoNb = Math.floor(gallery.count / 10);
+	const photoNb = NUMBERS.ALBUM_DEVICE_PHOTOS;
 
 	const PASSWORD = KEY_PUZZLE_B;
-	const [isLocked, setIsLocked] = useState(true);
+	const [isLocked, setIsLocked] = useState(false);
 	const [passwordInput, setPasswordInput] = useState('');
 	const [passwordValid, setPasswordValid] = useState(false);
 	const [passwordSubmitted, setPasswordSubmitted] = useState(false);
@@ -76,6 +76,7 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 					const { uri } = photo.node.image;
 					return (
 						<PhotoThumbnail
+							isDevicePhoto
 							size={photoSize}
 							source={{ uri }}
 							onPress={() => navigation.navigate(SCREENS.ALBUM_PHOTO, { uri })}

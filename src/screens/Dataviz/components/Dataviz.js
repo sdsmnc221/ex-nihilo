@@ -5,7 +5,7 @@ import styled, { css, withTheme } from 'styled-components';
 import WebScreen from 'sharedUI/WebScreen';
 
 const Dataviz = ({ ...webScreenprops }) => {
-	return <WebScreen url="https://oui.surge.sh/maths" {...webScreenprops} />;
+	return <WebScreen url="https://oui.surge.sh" {...webScreenprops} />;
 };
 
 Dataviz.propTypes = {};

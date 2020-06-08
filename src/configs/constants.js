@@ -66,6 +66,10 @@ const STRINGS = {
 		{ title: 'Adresse', key: 'address' },
 	],
 	ICON_PRESSED: '_PRESSED',
+	ARROW: {
+		UP: 'ARROW_UP',
+		DOWN: 'ARROW_DOWN',
+	},
 	EMAIL_CONTENT_TYPES,
 };
 

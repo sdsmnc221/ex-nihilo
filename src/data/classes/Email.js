@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { randomDate } from 'utils';
 
-export default class DialogueMessage {
+export default class Email {
 	constructor({ object, from, to, content, star }) {
 		this.object = object;
 		this.from = from;

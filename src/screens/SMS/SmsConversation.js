@@ -8,6 +8,8 @@ import SmsMessage from './components/SmsMessage';
 import SmsInput from './components/SmsInput';
 import Unscrollable from './components/Unscrollable';
 
+import { last } from 'utils';
+
 const Date = styled.Text`
 	color: ${({ theme }) => theme.colors.charcoal};
 	font-family: ${({ theme }) => theme.fonts.sourceSans.regular};
@@ -17,74 +19,9 @@ const Date = styled.Text`
 	margin: 16px 0;
 `;
 
-const smsList = [
-	{
-		title: '',
-		data: [
-			{
-				message: 'Sam tout va bien ?',
-			},
-			{
-				message: 'Sam décroche !',
-				withAvatar: true,
-			},
-			{
-				message: '👍',
-				isUser: true,
-			},
-			{
-				message: 'Qu’est-ce qu’il se passe ?',
-				withAvatar: true,
-			},
-		],
-	},
-	{
-		title: '12 Avril, 14:21',
-		data: [
-			{
-				message: 'Hello',
-			},
-			{
-				message:
-					'Je vais envoyer un mail de rappel à toute l’équipe pour que personne n’oublie',
-				withAvatar: true,
-			},
-			{
-				message: '👍',
-				isUser: true,
-			},
-		],
-	},
-	{
-		title: '13 Avril, 14:21',
-		data: [
-			{
-				message: 'Salut Sam, est-ce que ça va? tu ne viens pas aujourd’hui ?',
-				withAvatar: true,
-			},
-		],
-	},
-	{
-		title: '14 Avril, 14:21',
-		data: [
-			{
-				message:
-					'Hello Sam, tu n’est pas venu hier non plus est-ce que tout va bien ?',
-			},
-			{
-				message:
-					'Si tu es malade il faudrait que tu nous fasses parvenir ton arrêt maladie au plus vite.',
-			},
-			{
-				message: 'Qu’est-ce qu’il se passe ?',
-				withAvatar: true,
-			},
-		],
-	},
-];
-
-const SmsConversationScreen = ({ route, navigation, theme }) => {
-	const { headerTitle } = route.params;
+const SmsConversationScreen = ({ route, theme }) => {
+	const { sms: SMS } = route.params;
+	const { title: headerTitle, content: smsList } = SMS;
 
 	const smsListRef = useRef(null);
 
@@ -100,16 +37,21 @@ const SmsConversationScreen = ({ route, navigation, theme }) => {
 				onScrollToIndexFailed={() => {}}
 				onContentSizeChange={() =>
 					smsListRef.current &&
-					smsListRef.current.scrollToLocation({ sectionIndex: 3, itemIndex: 2 })
+					smsListRef.current.scrollToLocation({
+						sectionIndex: smsList.length - 1,
+						itemIndex: last(smsList).data.length - 1,
+					})
 				}
 				renderSectionHeader={({ section: { title } }) =>
 					title ? <Date>{title}</Date> : null
 				}
-				renderItem={({ item: sms }) => (
+				renderItem={({ item: sms, index, section }) => (
 					<SmsMessage
-						message={sms.message}
+						type={sms.type}
+						message={sms?.data}
 						withAvatar={sms.withAvatar}
 						isUser={sms.isUser}
+						withSpacing={sms.withAvatar && section.data[index + 1]?.isUser}
 					/>
 				)}
 				ListHeaderComponent={<Unscrollable />}

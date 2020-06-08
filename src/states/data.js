@@ -2,6 +2,7 @@ import Data from 'data';
 
 import dataContacts from 'data/json/contacts';
 import dataEmails from 'data/json/emails';
+import dataSms from 'data/json/sms';
 import dataStoryScripts from 'data/json/storyScripts';
 
 import { replaceTemplate } from 'utils';
@@ -24,8 +25,12 @@ const photos = [...Array(parseInt(FAKE_PHOTO_NB, 10))]
 	.map((index) => replaceTemplate(FAKE_PHOTO_NAME_TEMPLATE, index))
 	.map((photo) => Data('PHOTO', { isFakePhoto: true, source: photo }));
 
+const sms = dataSms
+	.map((sms_) => Data('SMS', sms_))
+	.sort((a, b) => b.startDate - a.startDate);
+
 const storyScripts = dataStoryScripts.map((script) =>
 	Data('STORY_SCRIPT', script)
 );
 
-export { accounts, contacts, emails, photos, storyScripts };
+export { accounts, contacts, emails, photos, sms, storyScripts };

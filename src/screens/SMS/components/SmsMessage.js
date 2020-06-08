@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
-import { View, Text } from 'react-native';
+import styled, { css, withTheme } from 'styled-components';
+import { View, Text, Image } from 'react-native';
 
 import StyledIcon from 'sharedUI/Icon/StyledIcon';
+
+import { device } from 'utils';
 
 const Wrapper = styled.View`
 	display: flex;
@@ -32,7 +34,27 @@ const SmsText = styled.Text`
 	border-top-width: 1.2px;
 `;
 
-const SmsMessage = ({ isUser, withAvatar, withSpacing, message, theme }) => (
+const ImageWrapper = styled.View`
+	background-color: ${({ theme }) => theme.colors.ghostWhite};
+	padding: 14px;
+	margin-bottom: ${({ withAvatar }) => (withAvatar ? 0 : 12)}px;
+	margin-left: ${({ isUser, withAvatar }) =>
+		isUser ? 0 : withAvatar ? 8 : 48}px;
+	border-radius: 12px;
+	border-left-color: ${({ theme }) => theme.colors.white};
+	border-left-width: 0.6px;
+	border-top-color: ${({ theme }) => theme.colors.white};
+	border-top-width: 1.2px;
+`;
+
+const SmsMessage = ({
+	isUser,
+	withAvatar,
+	withSpacing,
+	message,
+	type,
+	theme,
+}) => (
 	<Wrapper isUser={isUser} withSpacing={withSpacing}>
 		{withAvatar && (
 			<StyledIcon
@@ -43,12 +65,26 @@ const SmsMessage = ({ isUser, withAvatar, withSpacing, message, theme }) => (
 				additionalStyle={theme.styles.avatar()}
 			/>
 		)}
-		<SmsText
-			isUser={isUser}
-			withAvatar={withAvatar}
-			style={theme.shadows.smsMessage}>
-			{message}
-		</SmsText>
+		{type === 'text' ? (
+			<SmsText
+				isUser={isUser}
+				withAvatar={withAvatar}
+				style={theme.shadows.smsMessage}>
+				{message}
+			</SmsText>
+		) : (
+			<ImageWrapper style={theme.shadows.smsMessage}>
+				<Image
+					css={css`
+						width: ${device().width * 0.46}px;
+						height: ${device().height * 0.36}px;
+						border: 1px solid ${theme.colors.slateBlue};
+					`}
+					resizeMode="cover"
+					source={{ uri: message }}
+				/>
+			</ImageWrapper>
+		)}
 	</Wrapper>
 );
 
@@ -57,12 +93,14 @@ SmsMessage.propTypes = {
 	withAvatar: PropTypes.bool,
 	withSpacing: PropTypes.bool,
 	message: PropTypes.string.isRequired,
+	type: PropTypes.string,
 };
 
 SmsMessage.defaultProps = {
 	isUser: false,
 	withAvatar: false,
 	withSpacing: false,
+	type: 'text',
 };
 
 export default withTheme(SmsMessage);

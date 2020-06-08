@@ -1,0 +1,1475 @@
+[{
+        "title": "Maman",
+        "notification": true,
+        "content": [{
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "oui maman j’ai été voir le docteur, ça va"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Reste au chaud et fait toi des soupes."
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Pense à bien boire aussi"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Oui je sais, t’inquiète"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Bonjour mon coeur, tu viens toujours manger à la maison demain ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Oui"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Tu veux que je ramène quelque chose ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Desserts? Vin ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Non, on a tout ce qu’il faut. bisous"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "ok ça roule"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "le portail est fermé je peux pas rentrer répond"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "😡"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "ton père arrive"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Tu peux me rappeler la recette dont on a parlé la semaine dernière"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Les gougères ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "oui c’est ça"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "je te l’envoie par mail cet aprem"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "pourquoi par mail ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "envoie une photo"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "…?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Je t’ai envoyé la recette"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "j’ai rien reçu"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "tu as regardé tes mails ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "😑"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Maman est-ce que tout va bien ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Oui mon coeur qu’est-ce qu’il se passe ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "tu n’as rien remarqué de suspect ou des choses inhabituelles ?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Non rien de spécial qu’est-ce qu’il se passe tu me fais peur"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Tout va bien ?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Sacha répond moi"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Sacha je m’inquiète pourquoi tu ne me réponds pas ?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Je n’arrive pas à te joindre appelle moi."
+                    },
+                    {
+                        "type": "text",
+                        "data": "Sacha qu’est-ce qu’il se passe ça fait 2 jours que tu ne réponds à personne tout le monde s’inquiète"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Sacha il t’es arrivé quelque chose ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Sacha je vais appeler la police je suis allée chez toi tu n’y étais, personne ne sait ou tu es."
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "image",
+                        "data": "https://antr.tech/ex-nihilo/photos/fake_photo_54.jpg"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Sacha tout va bien ?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Qu’est-ce que c’est que cette photo?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Sacha décroche !"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Qu’est-ce qu’il se passe ?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Tu es en danger ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Sacha répond !"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Alex",
+        "notification": true,
+        "content": [{
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "ooouuuaaah j’étais éclaté hier"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "🤮🤮🤮🤮"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "roooh ça va c’était un petit vomi"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Parle pour toi"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Ptn je viens de relire les messages que j’ai envoyé finn il a rien dû comprendre"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "je cite: je manges des toc tac c bon mais j’arriv pas à viséé ma boiuche"
+                    },
+                    {
+                        "type": "text",
+                        "data": "haha je suis mort "
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "c’est nul qui soit pas venu"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "ouais mais il devait voir jack"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "on se refera ça soon"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "omg ils ont annoncé animal crossing"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "mmmh super"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "allez là c’est trop bien"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "ça pu"
+                    },
+                    {
+                        "type": "text",
+                        "data": "toi tu pues"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "j’ai trop haaaate"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "tu veux pas venir jouer à smash"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "maintenant?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "ouais"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "ok laisse moi 5min le temps de me co"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "ça marche"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "bon tu fais quoi ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "sorry ma soeur m’a appelé"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "ouais ouais c’est ça"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "hey dude"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "on sort ce soir ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "ouais carrément"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "on fait quoi ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Chepa des idées?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "mmmmh idk"
+                    },
+                    {
+                        "type": "text",
+                        "data": "bon on fait quoi au final ?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Sacha ?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Alloooooooo la terre"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Est-ce que tout va bien ?"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "type": "text",
+                        "data": "Sacha ça fait deux jours que tu réponds pas qu’est-ce qu’il se passe ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Sacha je viens d’avoir un appel de ta mère personne ne sait ou tu es on s’inquiète tous "
+                    },
+                    {
+                        "isUser": true,
+                        "type": "image",
+                        "data": "https://antr.tech/ex-nihilo/photos/fake_photo_54.jpg"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Wtf sam c’est quoi cette photo ?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "T’es ou là ?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Qu’est-ce qu’il se passe?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Répond !"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Si c’est une blague c’est vraiment pas drôle"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Lara Darot",
+        "content": [{
+            "title": null,
+            "data": [{
+                    "withAvatar": true,
+                    "type": "text",
+                    "data": "c’est quoi déjà le mot de passe ?"
+                },
+                {
+                    "isUser": true,
+                    "type": "text",
+                    "data": "samsam!49"
+                },
+                {
+                    "withAvatar": true,
+                    "type": "text",
+                    "data": "Merci !"
+                }
+            ]
+        }]
+    },
+    {
+        "title": "Stefan Butler",
+        "content": [{
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Salut Stefan!"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Tu avances sur ton projet ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Hello Sacha ! En ce moment je n’avance pas très vite"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Ah oui pourquoi ?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Je suis un peu à cours d’idée"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Je cherche un personnage qui pourrait représenter le principe de mon jeu"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Le fait que ça soit un jeu à choix multiple ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Oui entre autre, j’aimerai qu’il représente un peu les commencements, les fins et les choix."
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Mmmmmh un peu mystique tout ça"
+                    },
+                    {
+                        "type": "text",
+                        "data": "😅"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "C’est un peu complexe effectivement"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Hey Stefan !"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Hello ! comment vas-tu?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "ça va je repensais à notre conversation de la dernière fois, et j’ai trouvé peut être quelque chose pour toi!"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "ah oui ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "image",
+                        "data": "https://antr.tech/ex-nihilo/photos/fake_photo_54.jpg"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "C’est un dieu romain, il représente exactement ce que tu veux "
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Génial qui est-ce ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Son nom m’échappe, je l’ai sur le bout de la langue c’est J quelque chose"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "ok, je vais mener ma petite enquête merci Sacha !"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Enora Lecollet",
+        "notification": true,
+        "content": [{
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "J’ai mis à jour les fichiers sources, tu pourras les récupérer sur le drive"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Ça marche"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "C’est dans quel dossier ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "tu vas dans 2020, le dossier du partenaire et ensuite fichiers 2020 et fichiers sources"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "super merci !"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "on mange où ce midi ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "cantine ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Mmmh pas très envie "
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Je vais plutôt aller me chercher un truc dehors"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "tu veux aller où?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Jap je pense"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "aaah mais fallait me dire ça dès le début"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "haha"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Est-ce que Lana t’as dit qu’on avait une réunion à 15h demain? "
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Nan je ne suis pas au courant c’est à quel sujet ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "C’est pour faire un bilan trimestrielle et voir un peu notre avancement sur les projets en cours "
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "ok ça marche."
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Je vais envoyer un mail de rappel à toute l’équipe pour que personne n’oublie"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "👍"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "type": "text",
+                        "data": "Salut Sacha, est-ce que ça va? tu ne viens pas aujourd’hui ?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "Hello Sacha, tu n’est pas venu hier non plus est-ce que tout va bien ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Si tu es malade il faudrait que tu nous fasses parvenir ton arrêt maladie au plus vite."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Lana Gourgeau",
+        "notification": true,
+        "content": [{
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "T’as envoyé le fichier à gabriel ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Nan je l’ai envoyé enora"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Envoie le a gab aussi, je crois qu’il va en avoir besoin"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "👍"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "je vais être en retard, mon train est bloqué"
+                    },
+                    {
+                        "type": "text",
+                        "data": "bah moi aussi"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Les gens sont chiants dès le matin"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "🤷‍"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Tu m’as pas dit qu’on avait une réunion demain"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Oups j’ai oublié"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "C’est Enora qui vient de me le dire"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "C’est sur le bilan trimestrielle etc…"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Oui je sais du coup"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "On va passer 3h à rien faire..."
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Tant mieux"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "parle pour toi moi j’ai du taff, pas le temps de glander 3h pour les écouter nous dire qu’on doit accélérer au niveau du taf"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Mmmmmh"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "type": "text",
+                        "data": "T’es ou Sacha ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Je vais devoir récupérer tout ton taff si tu te pointes pas"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                    "withAvatar": true,
+                    "type": "text",
+                    "data": "Tu pourrais donner des nouvelles au moins j’ai tout ton travail sur les bras"
+                }]
+            }
+        ]
+    },
+    {
+        "title": "Papa",
+        "notification": true,
+        "content": [{
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Tu peux m’aider pour l’appli de la banque, je ne comprend pas comment on fait un virement ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Roooh papa je t’ai déjà expliqué 10 fois"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "oui mais je n’arrive pas à ajouter un bénéficiaire."
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Fait le sur l’ordinateur"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Ta mère l’utilise."
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "…"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "C’est compliqué de t’expliquer à distance, en plus je suis au travail là"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "ok, je t’appelle ce soir."
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "J’ai réservé le véhicule pour samedi mais il me faut ton attestation d’assurance avec ton nom mentionné dessus."
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Je t’envoie ça dans la journée, il faut que je la retrouve."
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Tu ne m’as toujours pas envoyé le papier"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Ah oui j’ai oublié je t’envoie ça tout de suite"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Est-ce que tu l’as bien reçu ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Oui parfait"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "type": "text",
+                        "data": "Sacha est-ce que tout va bien? Ta mère et moi on s’inquiète."
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Sacha si tu as des problèmes dit le nous, on va t’aider."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Finn",
+        "notification": true,
+        "content": [{
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Bon tu reviens quand, ça fait trop longtemps qu’on se s’est pas vu ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Fin mars"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "c’est noté dans mon agenda"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Haha"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Bon ce soir on sort ça fait trop longtemps qu’on s’est pas vu"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "je peux pas j’avais prévu d’aller voir une pièce de théâtre avec ma soeur"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "roooh tu pues, ça fait déjà deux semaines que t’es rentré et on ne s’est toujours pas vu"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Je sais désolé…😥"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "bon ba c bieeen domaage que tu né soiss pas venuu on s’set binen qmusé avce alex"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "je vois ça haha, fait attention en rentrant"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "roo t’se meme pas drole"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "…"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "je manges des toc tac c bon mais j’arriv pas à viséé ma boiuche"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "mmmh évite de les lancer dans ta bouche ça sera moins difficile"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Je saiis pas Papa ours y arriver"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Ok je suis un archéologue qui va devoir déchiffrer ce nouveau langage  😂"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Mdrrr, je suiis une moumie"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "faut vraimennt que j’aille fairee doodo ça fait toxtoc dans ma tete "
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "haha bonne nuit !"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "type": "text",
+                        "data": "Hey ! Est-ce ça va j’ai reçu un message d’alex il s’inquiète, tu ne réponds pas à ses messages"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Ta mère nous a appelé alex et moi, on s’inquiète tous !"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Adam Vinachin",
+        "content": [{
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Je crois que mon chef n’a pas d’humour."
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Qu’est-ce que t’as dit encore ?"
+                    },
+                    {
+                        "type": "text",
+                        "data": "il me demandait si je supportais bien la pression"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": " Je lui ai répondu : oui je peux en boire six ou sept avant d’être bourré !"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "haha en plus de passer pour un con, tu vas devenir l’alcoolo de service 😂"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Un sans faute."
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "J’ai réussi à la pecho !"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Congrats mais un bisous de ta mère c’est pas pécho"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "t’es bête j’ai pécho Jess !!"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "mais non"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "mais si"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "mais t’es au courant qu’elle sort avec Romain"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "mais non"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "OOOh que si!"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "et merde"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "t’es bien dans la mouise"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "bah j’étais pas au courant c’est pas ma faute "
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "🤷‍"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "T’es quand même dans la merde si romain l’apprend"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "et bien on parlera mais ce n’est pas de ma faute."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Ahmed Salti",
+        "content": [{
+            "title": null,
+            "data": [{
+                    "withAvatar": true,
+                    "type": "text",
+                    "data": "Hey salut qu’est ce que tu deviens ? Faudrait qu’on aille se boire un verre !"
+                },
+                {
+                    "isUser": true,
+                    "type": "text",
+                    "data": "Hellooo ! Bah ça va tranquille, faudrait qu’on se fasse un truc ouaiiis ! et toi tu fais quoi maintenant ??"
+                },
+                {
+                    "withAvatar": true,
+                    "type": "text",
+                    "data": "Bah dans deux mois je m’installe avec Maurine dans la même ville que tes parents"
+                },
+                {
+                    "isUser": true,
+                    "type": "text",
+                    "data": " Ouaaah trop bien congrats"
+                },
+                {
+                    "isUser": true,
+                    "type": "text",
+                    "data": "J’espère que ma mère viendra pas trop t'embêter haha"
+                },
+                {
+                    "withAvatar": true,
+                    "type": "text",
+                    "data": "Haha il y a pas de soucis, elle peut venir m’embêter quand elle veut. Ça fait un bail que je ne l’ai pas vu non plus en vrai."
+                },
+                {
+                    "isUser": true,
+                    "type": "text",
+                    "data": "Oui c’est vrai, on pourrait peut-être se faire un truc avec mes parents prochainement"
+                },
+                {
+                    "withAvatar": true,
+                    "type": "text",
+                    "data": "Oui pourquoi pas !"
+                }
+            ]
+        }]
+    },
+    {
+        "title": "Ben",
+        "content": [{
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Salut Ben ! T’as raison je fais une liste de mon côté et on met ça en commun"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Ça marche"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Hello Sacha ! On a eu des problèmes avec la voiture de loc, on part à peine. On devrait arriver à la gare d’ici 35min désolé."
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Ok! Pas de problèmes"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Envoie un message quand tu arrives !"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "t’inquiète j’arrive, je te vois au loin"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "okay cool, ça va bientôt commencer"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Diego",
+        "content": [{
+            "title": null,
+            "data": [{
+                    "type": "text",
+                    "data": "Coucou, samedi soir Guilenne et Jack viennent manger, tu veux venir ?"
+                },
+                {
+                    "withAvatar": true,
+                    "type": "text",
+                    "data": "C’est quand ta semaine de congé ?"
+                },
+                {
+                    "isUser": true,
+                    "type": "text",
+                    "data": "Hello ça va ? Je serai bien venu mais j’ai quelque chose de prévu déjà. Sinon mes congés sont la semaine prochaine."
+                },
+                {
+                    "withAvatar": true,
+                    "type": "text",
+                    "data": "Oooh dommage, une prochaine fois peut-etre."
+                }
+            ]
+        }]
+    },
+    {
+        "title": "Emile Mussy",
+        "content": [{
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Bonne année Sacha !"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Merci Emile bonne année aussi 🤗"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                    "withAvatar": true,
+                    "type": "text",
+                    "data": "Joyeux anniversaire Sacha ! Passe une bonne journée"
+                }]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Je te souhaite une bonne année Sacha !"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Merci Emile mes meilleurs voeux !"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Charlotte Laporte",
+        "content": [{
+            "title": null,
+            "data": [{
+                    "isUser": true,
+                    "type": "text",
+                    "data": "T’es sérieuse là ?"
+                },
+                {
+                    "withAvatar": true,
+                    "type": "text",
+                    "data": "Quoi ?"
+                },
+                {
+                    "isUser": true,
+                    "type": "text",
+                    "data": "Oups désolé je me suis trompé de conversation"
+                },
+                {
+                    "withAvatar": true,
+                    "type": "text",
+                    "data": "Ok pas de problèmes"
+                }
+            ]
+        }]
+    },
+    {
+        "title": "Kevin Paperin",
+        "content": [{
+            "title": null,
+            "data": [{
+                    "withAvatar": true,
+                    "type": "text",
+                    "data": "Hello, je sais pas si tu te souviens de moi, tu m’as donné ton numéro à la soirée de Jason."
+                },
+                {
+                    "isUser": true,
+                    "type": "text",
+                    "data": "Ah oui désolé, en fait c’était pour une pote, mais elle n’est plus intéressée."
+                }
+            ]
+        }]
+    },
+    {
+        "title": "Toto",
+        "content": [{
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Alors ta tante ça va ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Mmmmmh oui ça va pourquoi tu me parles de ma tante ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Bah on l’a laissé dans un sale état, on a fini à 4 dedans, les uns sur les autres, c’était galère …"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Waaaat 😳"
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Alors ta tante ça va ?"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Mmmmmh oui ça va pourquoi tu me parles de ma tante ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Bah on l’a laissé dans un sale état, on a fini à 4 dedans, les uns sur les autres, c’était galère …"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Waaaat 😳"
+                    },
+                    {
+                        "type": "text",
+                        "data": "rooh putain la bourde hahahaha"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Je voulais parler de ta tEnte pas de ta tante"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Ptn je vais avoir du mal à me sortir cette image de ma tête "
+                    }
+                ]
+            },
+            {
+                "title": null,
+                "data": [{
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Bon tu fais quoi là ça fait 10 plombes que j’attend en bas de chez toi"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "J’arrive désolé je cherche un truc"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "qu’est-ce que tu cherches ?"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "Mon téléphone"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Abruti"
+                    },
+                    {
+                        "type": "text",
+                        "data": "bah ça va heiin"
+                    },
+                    {
+                        "withAvatar": true,
+                        "type": "text",
+                        "data": "AAAAAH putain mais qu’est-ce que je suis con"
+                    },
+                    {
+                        "isUser": true,
+                        "type": "text",
+                        "data": "Je te le fais pas dire"
+                    }
+                ]
+            }
+        ]
+    }
+]

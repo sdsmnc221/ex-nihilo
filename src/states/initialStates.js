@@ -5,6 +5,7 @@ import {
 	emails,
 	contacts,
 	photos,
+	sms,
 	storyScripts as scripts,
 } from './data';
 
@@ -45,10 +46,7 @@ export default {
 			count: photos.length,
 			photos,
 		},
-		sms: {
-			count: 0,
-			list: null,
-		},
+		sms,
 		emails,
 	},
 	mergedData: {

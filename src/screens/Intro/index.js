@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
 import usePermissions from 'hooks/usePermissions';
 import useDeviceData from 'hooks/useDeviceData';

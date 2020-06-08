@@ -33,7 +33,7 @@ export default {
 	},
 	fakeData: {
 		accounts,
-		contacts: null,
+		contacts,
 		calls: null,
 		gallery: {
 			count: photos.length,

@@ -8,6 +8,29 @@ const device = () => {
 
 const rgba = (rgbaString, alpha) => rgbaString.replace('$a', alpha);
 
+// Adapt from http://jsfiddle.net/qfjjS/
+const replaceRandom = (string, complexity = 0.4) => {
+	const randsArr = '!@#$)**($#*)($#$()$()#$%^&*()%^$#$$#$^'
+		.split('')
+		.sort(function() {
+			return 0.5 - Math.random();
+		});
+	var stringArr = string.split('');
+	const result = stringArr
+		.map((el, i) =>
+			i === 0
+				? el
+				: Math.random() > complexity
+				? el
+				: randsArr.length
+				? randsArr.shift()
+				: el
+		)
+		.join('');
+
+	return result;
+};
+
 const replaceTemplate = (string, replaceValue, pattern = '[$]') =>
 	string.replace(pattern, replaceValue);
 
@@ -96,6 +119,7 @@ export {
 	find,
 	last,
 	random,
+	replaceRandom,
 	replaceTemplate,
 	rgba,
 	sample,

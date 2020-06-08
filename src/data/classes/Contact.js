@@ -1,4 +1,4 @@
-import { cleanLineBreaks, isArrEmpty, random } from 'utils';
+import { cleanLineBreaks, isArrEmpty, replaceRandom } from 'utils';
 import moment from 'moment';
 
 export default class Contact {
@@ -29,12 +29,12 @@ export default class Contact {
 				birthday,
 				postalAddresses,
 			} = deviceContactInfo;
-			this.name = displayName;
+			this.displayName = displayName;
+			this.name = replaceRandom(displayName);
 			this.phoneNumber = this.getDeviceNumber(phoneNumbers);
 			this.email = this.getDeviceEmail(emailAddresses);
 			this.dob = this.getDeviceDOB(birthday);
 			this.address = this.getDeviceAddress(postalAddresses);
-			this.hasSMS = random(0.32);
 		}
 	}
 

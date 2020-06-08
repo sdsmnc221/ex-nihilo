@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import FlexDiv from 'sharedUI/FlexDiv';
@@ -27,7 +27,7 @@ const PhoneNumber = styled.Text`
 `;
 
 const Contact = ({ contact, onPress }) => {
-	const { name, number, star } = contact;
+	const { name, phoneNumber, star } = contact;
 
 	return (
 		<Wrapper onPress={onPress} activeOpacity={0.6}>
@@ -46,8 +46,8 @@ const Contact = ({ contact, onPress }) => {
 						width: 80%;
 						margin-left: 16px;
 					`}>
-					<Title>{name || number}</Title>
-					{name && <PhoneNumber>{number}</PhoneNumber>}
+					<Title>{name || phoneNumber}</Title>
+					{name && <PhoneNumber>{phoneNumber}</PhoneNumber>}
 				</FlexDiv>
 			</FlexDiv>
 		</Wrapper>

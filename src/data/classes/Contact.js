@@ -1,4 +1,4 @@
-import { cleanLineBreaks, isArrEmpty, replaceRandom } from 'utils';
+import { cleanLineBreaks, isArrEmpty, random, replaceRandom } from 'utils';
 import moment from 'moment';
 
 export default class Contact {
@@ -13,6 +13,7 @@ export default class Contact {
 		deviceContactInfo,
 	}) {
 		this.fromDevice = fromDevice;
+		this.star = random(0.4);
 
 		if (!this.fromDevice) {
 			this.name = name;

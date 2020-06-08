@@ -45,6 +45,12 @@ const SIZES = {
 
 const STRINGS = {
 	ICON_PRESSED: '_PRESSED',
+	CONTACT_INFO: [
+		{ title: 'Mobile', key: 'phoneNumber' },
+		{ title: 'Email', key: 'email' },
+		{ title: 'Date de naissance', key: 'dob' },
+		{ title: 'Adresse', key: 'address' },
+	],
 };
 
 export { APP_ICON, FLEX, NUMBERS, SIZES, STRINGS };

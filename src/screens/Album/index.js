@@ -25,7 +25,6 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 	const { gallery } = useSelector((state) => state.mergedData);
 
 	const photoSize = SIZES.ALBUM_PHOTO;
-	const photoNb = NUMBERS.ALBUM_DEVICE_PHOTOS;
 
 	const PASSWORD = KEY_PUZZLE_B;
 	const [isLocked, setIsLocked] = useState(false);

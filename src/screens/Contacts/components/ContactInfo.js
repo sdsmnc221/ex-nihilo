@@ -16,6 +16,16 @@ const InfoText = styled.Text`
 	font-family: ${({ theme }) => theme.fonts.sourceSans.light};
 	font-size: ${({ theme }) => theme.typo.sizes.h3};
 	letter-spacing: 0.21px;
+	text-align: right;
+	color: ${({ theme }) => theme.colors.charcoal};
+`;
+
+const InfoTextAddress = styled.Text`
+	font-family: ${({ theme }) => theme.fonts.sourceSans.light};
+	font-size: ${({ theme }) => theme.typo.sizes.h3};
+	letter-spacing: 0.21px;
+	text-align: right;
+	margin-right: 16%;
 	color: ${({ theme }) => theme.colors.charcoal};
 `;
 
@@ -31,7 +41,11 @@ const ContactInfo = ({ title, info }) => (
 	<>
 		<FlexDiv fullWidth direction="row" justifyContent="space-between">
 			<InfoTitle>{title}</InfoTitle>
-			<InfoText>{info}</InfoText>
+			{title === 'Adresse' && info.length >= 50 ? (
+				<InfoTextAddress>{info}</InfoTextAddress>
+			) : (
+				<InfoText>{info}</InfoText>
+			)}
 		</FlexDiv>
 		<Separator />
 	</>

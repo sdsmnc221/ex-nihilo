@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import { useSelector } from 'react-redux';
-import Contacts from 'react-native-contacts';
-import { View, Text, SectionList } from 'react-native';
+import { Text, SectionList } from 'react-native';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import FillGap from 'sharedUI/FillGap';
 import Contact from './components/Contact';
 
-import { getSections, sortContact, random } from 'utils';
+import { getSections } from 'utils';
 import { SCREENS } from 'configs';
 
 const SectionTitle = styled.Text`
@@ -20,46 +19,7 @@ const SectionTitle = styled.Text`
 `;
 
 const ContactsScreen = ({ route, navigation, theme }) => {
-	const [contacts, setContacts] = useState(
-		useSelector((state) => state.contacts).map((contact) => ({
-			name: contact.name,
-			number: contact.phoneNumber,
-			star: random(0.4),
-		}))
-	);
-	useEffect(() => {
-		Contacts.getAllWithoutPhotos((err, contacts_) => {
-			if (err === 'denied') {
-				// error
-			} else {
-				let deviceContacts =
-					contacts_.filter((contact) => contact.phoneNumbers.length > 0) || [];
-
-				if (deviceContacts.length > 0) {
-					deviceContacts = deviceContacts.map((contact) => {
-						const { displayName, phoneNumbers } = contact;
-						const { number } = phoneNumbers[0];
-
-						return {
-							name: displayName !== number ? displayName : null,
-							number: number.replace('+33 ', '0'),
-							star: random(0.4),
-						};
-					});
-				}
-
-				setContacts((prevContacts) => {
-					const sortedContacts = [...prevContacts, ...deviceContacts].sort(
-						sortContact
-					);
-
-					console.log(sortedContacts, getSections(sortedContacts, 'name', 'number'));
-
-					return sortedContacts;
-				});
-			}
-		});
-	}, []);
+	const { contacts } = useSelector((state) => state.mergedData);
 
 	return (
 		<LayoutWrapper screenName={route.name}>
@@ -75,7 +35,7 @@ const ContactsScreen = ({ route, navigation, theme }) => {
 				renderItem={({ item: contact }) => (
 					<Contact
 						contact={contact}
-						firstLetter={contact.name ? contact.name.charAt(0) : '#'}
+						firstLetter={contact.name}
 						onPress={() =>
 							navigation.navigate(SCREENS.CONTACT_DETAILS, {
 								contact,

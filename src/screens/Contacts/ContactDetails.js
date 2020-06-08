@@ -8,9 +8,7 @@ import AppIcon from 'sharedUI/AppIcon';
 import StarButton from 'sharedUI/Button/StarButton';
 import ContactInfo from './components/ContactInfo';
 
-import { CONTACT_DETAILS_APPS } from 'configs';
-
-const INFO = ['Mobile', 'Email', 'Date de naissance', 'Adresse'];
+import { CONTACT_DETAILS_APPS, STRINGS } from 'configs';
 
 const Title = styled.Text`
 	${({ theme }) => theme.styles.os.h2_alt}
@@ -20,11 +18,12 @@ const Title = styled.Text`
 `;
 
 const ContactDetailsScreen = ({ route, navigation, theme }) => {
-	const { name, number, star } = route.params.contact;
+	const { contact } = route.params;
+	const { name, star } = contact;
 
-	const INFO_ = INFO.map((i) => ({
-		title: i,
-		...(i === 'Mobile' ? { info: number } : {}),
+	const INFO = STRINGS.CONTACT_INFO.map(({ title, key }) => ({
+		title,
+		info: contact[key],
 	}));
 
 	return (
@@ -80,7 +79,7 @@ const ContactDetailsScreen = ({ route, navigation, theme }) => {
 					margin-bottom: 10%;
 					padding: 0 24px;
 				`}>
-				{INFO_.map(({ title, info }, index) => (
+				{INFO.map(({ title, info }, index) => (
 					<ContactInfo key={index} title={title} info={info} />
 				))}
 			</FlexDiv>

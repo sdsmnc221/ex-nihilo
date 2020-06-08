@@ -76,7 +76,10 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 						size={photoSize}
 						source={photo.source}
 						onPress={() =>
-							navigation.navigate(SCREENS.ALBUM_PHOTO, { source: photo.source })
+							navigation.navigate(SCREENS.ALBUM_PHOTO, {
+								source: photo.source,
+								isFakePhoto: photo.isFakePhoto,
+							})
 						}
 					/>
 				)}

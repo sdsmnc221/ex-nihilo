@@ -43,7 +43,7 @@ const Notification = ({ theme, type, date, title, message }) => {
 
 	switch (type) {
 		case 'call':
-			typeText = 'appels';
+			typeText = 'appel';
 			typeIcon = 'PHONE_XS';
 			messageText = 'Appel manqué';
 			break;

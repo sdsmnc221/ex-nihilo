@@ -5,7 +5,7 @@ import dataEmails from 'data/json/emails';
 import dataSms from 'data/json/sms';
 import dataStoryScripts from 'data/json/storyScripts';
 
-import { replaceTemplate } from 'utils';
+import { replaceTemplate, shuffle } from 'utils';
 import {
 	EMAIL_ACCOUNT,
 	FAKE_PHOTO_NB,
@@ -29,8 +29,17 @@ const sms = dataSms
 	.map((sms_) => Data('SMS', sms_))
 	.sort((a, b) => b.startDate - a.startDate);
 
+const smsWithNotification = sms.filter((sms_) => sms_.notification);
+
+const notifications = shuffle(
+	[
+		...smsWithNotification.map((sms_) => ({ ...sms_, type: 'message' })),
+		...smsWithNotification.map((sms_) => ({ ...sms_, type: 'call' })),
+	].map((notification) => Data('NOTIFICATION', notification))
+);
+
 const storyScripts = dataStoryScripts.map((script) =>
 	Data('STORY_SCRIPT', script)
 );
 
-export { accounts, contacts, emails, photos, sms, storyScripts };
+export { accounts, contacts, emails, notifications, photos, sms, storyScripts };

@@ -9,6 +9,8 @@ import useMergedData from 'hooks/useMergedData';
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import FlatButton from 'sharedUI/Button/FlatButton';
 
+import { SCREENS } from 'configs';
+
 const Content = styled.Text`
 	margin-left: 12%;
 	margin-right: 30%;
@@ -19,10 +21,10 @@ const Content = styled.Text`
 
 const IntroScreen = ({ route, navigation }) => {
 	usePermissions();
-	const contacts = useDeviceData();
+	useDeviceData();
 	useMergedData();
 
-	const onPress = () => navigation.navigate('NotificationsScreen', { contacts });
+	const onPress = () => navigation.navigate(SCREENS.NOTIFICATIONS);
 
 	return (
 		<LayoutWrapper screenName={route.name}>

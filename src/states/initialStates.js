@@ -4,6 +4,7 @@ import {
 	accounts,
 	emails,
 	contacts,
+	notifications,
 	photos,
 	sms,
 	storyScripts as scripts,
@@ -59,6 +60,7 @@ export default {
 			count: 0,
 			list: null,
 		},
+		notifications,
 	},
 	contacts,
 	story: {

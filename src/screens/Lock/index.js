@@ -9,7 +9,7 @@ import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import BackgroundImage from 'sharedUI/BackgroundImage';
 import PasswordLock from 'sharedUI/PasswordLock';
 
-import { KEY_PUZZLE_A } from 'configs';
+import { KEY_PUZZLE_A, SCREENS } from 'configs';
 
 const Solid = styled.View`
 	position: absolute;
@@ -50,12 +50,12 @@ const LockScreen = ({ navigation, theme }) => {
 	useEffect(() => {
 		if (passwordValid) {
 			setTimeout(() => {
-				navigation.navigate('HomeScreen');
+				navigation.navigate(SCREENS.HOME);
 			}, 32);
 		}
 	}, [passwordValid, navigation]);
 
-	const onSwipeRight = () => navigation.navigate('NotificationsScreen');
+	const onSwipeRight = () => navigation.navigate(SCREENS.NOTIFICATIONS);
 
 	return (
 		<LayoutWrapper>

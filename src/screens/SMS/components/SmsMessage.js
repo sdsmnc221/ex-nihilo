@@ -78,7 +78,8 @@ const SmsMessage = ({
 					css={css`
 						width: ${device().width * 0.46}px;
 						height: ${device().height * 0.36}px;
-						border: 1px solid ${theme.colors.slateBlue};
+						border-width: 1.4px;
+						border-color: ${theme.colors.slateBlue};
 					`}
 					resizeMode="cover"
 					source={{ uri: message }}

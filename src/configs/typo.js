@@ -14,6 +14,10 @@ export default {
 			font-family: ${cairo.light};
 			font-size: ${sizes.body};
 		`,
+		body_alt_bold: css`
+			font-family: ${cairo.bold};
+			font-size: ${sizes.body};
+		`,
 		boldBody: css`
 			font-family: ${cairo.semiBold};
 			font-size: 15px;

@@ -1,6 +1,8 @@
 import { device } from 'utils';
 import { HEADER_OPTIONS } from 'sharedUI/Header/configs';
 
+import dataEmailContentTypes from 'data/json/emailContentTypes.json';
+
 const NUMBERS = {
 	ALBUM_COLS: 3,
 	ALBUM_DEVICE_PHOTOS: 37,
@@ -43,14 +45,21 @@ const SIZES = {
 	ALBUM_LOCK_H: device().height - HEADER_H_GAP,
 };
 
+const EMAIL_CONTENT_TYPES = {};
+
+dataEmailContentTypes.forEach(
+	(type) => (EMAIL_CONTENT_TYPES[type.toUpperCase()] = type)
+);
+
 const STRINGS = {
-	ICON_PRESSED: '_PRESSED',
 	CONTACT_INFO: [
 		{ title: 'Mobile', key: 'phoneNumber' },
 		{ title: 'Email', key: 'email' },
 		{ title: 'Date de naissance', key: 'dob' },
 		{ title: 'Adresse', key: 'address' },
 	],
+	ICON_PRESSED: '_PRESSED',
+	EMAIL_CONTENT_TYPES,
 };
 
 export { APP_ICON, FLEX, NUMBERS, SIZES, STRINGS };

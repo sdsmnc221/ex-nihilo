@@ -242,11 +242,11 @@
             },
             {
                 "type": "image",
-                "content": "finnlefinnois_02.png"
+                "content": "finnlefinnois_02.jpg"
             },
             {
                 "type": "image",
-                "content": "finnlefinnois_03.png"
+                "content": "finnlefinnois_03.jpg"
             }
         ]
     },
@@ -399,7 +399,7 @@
         ]
     },
     {
-        "object": " ",
+        "object": "❤",
         "from": "sacha.blanchard@gmail.com",
         "to": ["sacha.blanchard@gmail.com"],
         "star": true,
@@ -413,9 +413,22 @@
             }, {
                 "type": "text",
                 "content": " •❀.•❤•.¸✿¸.•❤•.❀• Je sens que nous allons bien nous amuser !  •❀.•❤•.¸✿¸.•❤•.❀•"
-            }, {
+            },
+            {
+                "type": "text",
+                "content": " "
+            },
+            {
                 "type": "placeholder_gps",
-                "content": "~ [$] ça te dit quelque chose ? Non, comme je suis une personne gentille et attentionnée je me permet de t’éviter quelques secondes de recherches sur google maps …. attention …. il s’agit de …. LES COORDONNÉES GPS DE TES PARENTS  ٩(◕‿◕｡)۶ ~"
+                "content": "~ [$] ~"
+            },
+            {
+                "type": "text",
+                "content": " "
+            },
+            {
+                "type": "text",
+                "content": "~ ça te dit quelque chose ? Non, comme je suis une personne gentille et attentionnée je me permet de t’éviter quelques secondes de recherches sur google maps …. attention …. il s’agit de …. LES COORDONNÉES GPS DE TES PARENTS  ٩(◕‿◕｡)۶ ~"
             },
             {
                 "type": "text",

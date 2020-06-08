@@ -9,6 +9,8 @@ import Geocoder from 'react-native-geocoding';
 import CallLogs from 'react-native-call-log';
 import AccountManager from 'react-native-account-manager';
 
+import Data from 'data';
+
 import {
 	getDeviceContactsStart,
 	getDeviceContactsFailure,
@@ -41,7 +43,6 @@ import {
 } from 'states/actions/deviceDataActions';
 
 import { GOOGLE_MAPS_API_KEY, LOCALE } from 'configs';
-
 import { isArrEmpty } from 'utils';
 
 const useDeviceData = (defaultContacts = []) => {
@@ -90,10 +91,13 @@ const useDeviceData = (defaultContacts = []) => {
 					const count = albums
 						.map((a) => a.count)
 						.reduce((prev, current) => prev + current);
-					const photos = await CameraRoll.getPhotos({
+					const photosData = await CameraRoll.getPhotos({
 						first: count,
-						assetType: 'All',
+						assetType: 'Photos',
 					});
+					const photos = photosData.edges.map(({ node }) =>
+						Data('PHOTO', { isFakePhoto: false, source: node.image.uri })
+					);
 
 					getDeviceGallerySuccess(dispatch);
 					setDeviceGallery(dispatch, { count, albums, photos });

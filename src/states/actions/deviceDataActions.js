@@ -63,7 +63,6 @@ export const getDeviceGalleryFailure = (dispatch) =>
 	dispatch({ type: DEVICE_GET_GALLERY_FAILURE });
 
 export const setDeviceGallery = (dispatch, gallery) => {
-	// TODO : Format Photos perhaps
 	dispatch({ type: DEVICE_SET_GALLERY, payload: { ...gallery } });
 };
 

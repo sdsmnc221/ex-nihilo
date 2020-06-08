@@ -22,8 +22,7 @@ const PasswordLockContainer = styled.View`
 `;
 
 const AlbumScreen = ({ route, navigation, theme }) => {
-	const { gallery } = useSelector((state) => state.deviceData);
-	const photos = gallery.photos ? gallery.photos.edges : [];
+	const { gallery } = useSelector((state) => state.mergedData);
 
 	const photoSize = SIZES.ALBUM_PHOTO;
 	const photoNb = NUMBERS.ALBUM_DEVICE_PHOTOS;
@@ -69,20 +68,19 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 				css={`
 					${theme.styles.list}
 				`}
-				data={photos.slice(0, photoNb)}
+				data={gallery.photos}
 				keyExtractor={(item, index) => index.toString()}
 				numColumns={NUMBERS.ALBUM_COLS}
-				renderItem={({ item: photo }) => {
-					const { uri } = photo.node.image;
-					return (
-						<PhotoThumbnail
-							isDevicePhoto
-							size={photoSize}
-							source={{ uri }}
-							onPress={() => navigation.navigate(SCREENS.ALBUM_PHOTO, { uri })}
-						/>
-					);
-				}}
+				renderItem={({ item: photo }) => (
+					<PhotoThumbnail
+						isFakePhoto={photo.isFakePhoto}
+						size={photoSize}
+						source={photo.source}
+						onPress={() =>
+							navigation.navigate(SCREENS.ALBUM_PHOTO, { source: photo.source })
+						}
+					/>
+				)}
 			/>
 			<FillGap />
 			{renderPasswordLock()}

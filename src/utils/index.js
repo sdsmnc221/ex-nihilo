@@ -8,6 +8,9 @@ const device = () => {
 
 const rgba = (rgbaString, alpha) => rgbaString.replace('$a', alpha);
 
+const replaceTemplate = (string, replaceValue, pattern = '[$]') =>
+	string.replace(pattern, replaceValue);
+
 const cleanLineBreaks = (str, withValue = ' ') =>
 	str.replace(/\r?\n|\r/g, withValue);
 
@@ -93,6 +96,7 @@ export {
 	find,
 	last,
 	random,
+	replaceTemplate,
 	rgba,
 	sample,
 	sampleSize,

@@ -12,7 +12,8 @@ import {
 } from 'react-native-color-matrix-image-filters';
 
 import HeartButton from 'sharedUI/Button/HeartButton';
-import { random } from '../../../utils';
+
+import { random } from 'utils';
 
 const Wrapper = styled.TouchableOpacity`
 	position: relative;
@@ -20,9 +21,17 @@ const Wrapper = styled.TouchableOpacity`
 	height: ${({ size }) => size}px;
 `;
 
-const PhotoThumbnail = ({ isDevicePhoto, size, source, onPress, theme }) => (
+const PhotoThumbnail = ({ isFakePhoto, size, source, onPress, theme }) => (
 	<Wrapper size={size} onPress={onPress} activeOpacity={0.8}>
-		{isDevicePhoto ? (
+		{isFakePhoto ? (
+			<Image
+				style={{
+					width: size,
+					height: size,
+				}}
+				source={source}
+			/>
+		) : (
 			<ColorMatrix
 				matrix={concatColorMatrices([
 					saturate(2.4),
@@ -41,14 +50,6 @@ const PhotoThumbnail = ({ isDevicePhoto, size, source, onPress, theme }) => (
 					blurRadius={0.4}
 				/>
 			</ColorMatrix>
-		) : (
-			<Image
-				style={{
-					width: size,
-					height: size,
-				}}
-				source={source}
-			/>
 		)}
 
 		<HeartButton
@@ -65,14 +66,14 @@ const PhotoThumbnail = ({ isDevicePhoto, size, source, onPress, theme }) => (
 );
 
 PhotoThumbnail.propTypes = {
-	isDevicePhoto: PropTypes.bool,
+	isFakePhoto: PropTypes.bool,
 	size: PropTypes.number.isRequired,
 	source: PropTypes.object.isRequired,
 	onPress: PropTypes.func,
 };
 
 PhotoThumbnail.defaultProps = {
-	isDevicePhoto: false,
+	isFakePhoto: true,
 	onPress: () => {},
 };
 

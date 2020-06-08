@@ -6,7 +6,7 @@ import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import { device } from 'utils';
 
 const AlbumPhotoScreen = ({ route }) => {
-	const { uri } = route.params;
+	const { source } = route.params;
 	const { width, height } = device();
 
 	return (
@@ -16,7 +16,7 @@ const AlbumPhotoScreen = ({ route }) => {
 					width,
 					height,
 				}}
-				source={{ uri }}
+				source={source}
 				resizeMode="contain"
 			/>
 		</LayoutWrapper>

@@ -4,6 +4,7 @@ import { Text, View } from 'react-native';
 
 import usePermissions from 'hooks/usePermissions';
 import useDeviceData from 'hooks/useDeviceData';
+import useMergedData from 'hooks/useMergedData';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import FlatButton from 'sharedUI/Button/FlatButton';
@@ -19,6 +20,7 @@ const Content = styled.Text`
 const IntroScreen = ({ route, navigation }) => {
 	usePermissions();
 	const contacts = useDeviceData();
+	useMergedData();
 
 	const onPress = () => navigation.navigate('NotificationsScreen', { contacts });
 

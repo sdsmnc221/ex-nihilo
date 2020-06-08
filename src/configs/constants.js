@@ -3,6 +3,8 @@ import { HEADER_OPTIONS } from 'sharedUI/Header/configs';
 
 import dataEmailContentTypes from 'data/json/emailContentTypes.json';
 
+const { width: deviceW, height: deviceH } = device();
+
 const NUMBERS = {
 	ALBUM_COLS: 3,
 	ALBUM_DEVICE_PHOTOS: 37,
@@ -26,7 +28,7 @@ const FLEX = {
 	FLEX_DIRECTION: 'column',
 };
 
-const HEADER_H = device().height * HEADER_OPTIONS.minHeight;
+const HEADER_H = deviceH * HEADER_OPTIONS.minHeight;
 const HEADER_H_GAP = HEADER_H + HEADER_OPTIONS.extraGap;
 
 const SIZES = {
@@ -35,14 +37,18 @@ const SIZES = {
 	HEADER_H,
 	HEADER_H_GAP,
 	HEADER_SEARCH_BAR: {
-		W: device().width * 0.75,
+		W: deviceW * 0.75,
 		H: 30,
 		R: 30,
 	},
 	HEADER_BACK_H: 50,
 	SMS_INPUT_H: 48,
-	ALBUM_PHOTO: device().width / NUMBERS.ALBUM_COLS,
-	ALBUM_LOCK_H: device().height - HEADER_H_GAP,
+	ALBUM_PHOTO: deviceW / NUMBERS.ALBUM_COLS,
+	ALBUM_LOCK_H: deviceH - HEADER_H_GAP,
+	CANVAS: {
+		W: deviceW,
+		H: deviceH - HEADER_H,
+	},
 };
 
 const EMAIL_CONTENT_TYPES = {};

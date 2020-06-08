@@ -45,9 +45,10 @@ const SIZES = {
 	SMS_INPUT_H: 48,
 	ALBUM_PHOTO: deviceW / NUMBERS.ALBUM_COLS,
 	ALBUM_LOCK_H: deviceH - HEADER_H_GAP,
-	CANVAS: {
+	DATAVIZ: {
 		W: deviceW,
-		H: deviceH - HEADER_H,
+		H: deviceH * 0.6,
+		H_SHRINK: deviceH * 0.48,
 	},
 };
 

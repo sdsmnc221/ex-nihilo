@@ -8,7 +8,11 @@ import { URL_INFO_DATA } from 'configs';
 
 const DataProtectionScreen = ({ route, theme }) => (
 	<LayoutWrapper screenName={route.name}>
-		<WebScreen url={URL_INFO_DATA} bodyColor={theme.colors.black} />
+		<WebScreen
+			url={URL_INFO_DATA}
+			bodyColor={theme.colors.black}
+			fillGapHeight={150}
+		/>
 	</LayoutWrapper>
 );
 

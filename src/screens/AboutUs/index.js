@@ -8,7 +8,11 @@ import { URL_ABOUT_US } from 'configs';
 
 const AboutUsScreen = ({ route, theme }) => (
 	<LayoutWrapper screenName={route.name}>
-		<WebScreen url={URL_ABOUT_US} bodyColor={theme.colors.black} />
+		<WebScreen
+			url={URL_ABOUT_US}
+			bodyColor={theme.colors.black}
+			fillGapHeight={150}
+		/>
 	</LayoutWrapper>
 );
 

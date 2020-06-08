@@ -3,9 +3,10 @@ import styled, { css, withTheme } from 'styled-components';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import Dataviz from './components/Dataviz';
+import TabBar from './components/TabBar';
+import ArrowButton from './components/ArrowButton';
 
 import { SIZES, STRINGS } from 'configs';
-import ArrowButton from './components/ArrowButton';
 
 const DatavizScreen = ({ route, navigation, theme }) => {
 	const { W, H, H_SHRINK } = SIZES.DATAVIZ;
@@ -18,6 +19,7 @@ const DatavizScreen = ({ route, navigation, theme }) => {
 	return (
 		<LayoutWrapper screenName={route.name}>
 			<Dataviz width={W} height={datavizShrunk ? H_SHRINK : H} />
+			<TabBar />
 			<ArrowButton
 				pressHandler={onPressButton}
 				iconType={datavizShrunk ? UP : DOWN}

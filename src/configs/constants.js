@@ -47,8 +47,12 @@ const SIZES = {
 	ALBUM_LOCK_H: deviceH - HEADER_H_GAP,
 	DATAVIZ: {
 		W: deviceW,
-		H: deviceH * 0.6,
+		H: deviceH * 0.68,
 		H_SHRINK: deviceH * 0.48,
+	},
+	DATAVIZ_TAB_BAR: {
+		W: deviceW * 0.9,
+		H: 36,
 	},
 };
 
@@ -65,6 +69,24 @@ const STRINGS = {
 		{ title: 'Date de naissance', key: 'dob' },
 		{ title: 'Adresse', key: 'address' },
 	],
+	DATAVIZ_TAB_BAR: [
+		{ label: 'SMS', color: 'slateBlue' },
+		{ label: 'Photos', color: 'lime' },
+		{ label: 'Contacts', color: 'neonCarrot' },
+		{ label: 'Appels', color: 'electricIndigo' },
+	],
+	DATAVIZ_TAB_TEXT: {
+		primaryInfoStart: 'Nous avons accès à ',
+		primaryInfoEnd: ' sur votre téléphone.',
+		secondaryInfoStart: ' En moyenne un utilisateur stock ',
+		secondaryInfoEnd: ' sur leur téléphone.',
+		info: [
+			{ label: 'SMS', secondary: 3339, secondarySuffix: 'chaque mois ' },
+			{ label: 'photos', secondary: 630 },
+			{ label: 'contacts', secondary: 611 },
+			{ label: 'appels', secondary: 3000, secondarySuffix: 'chaque année ' },
+		],
+	},
 	ICON_PRESSED: '_PRESSED',
 	ARROW: {
 		UP: 'ARROW_UP',

@@ -16,7 +16,7 @@ const Button = styled.TouchableOpacity`
 	border: 1px solid ${({ theme }) => theme.colors.white};
 	background-color: ${({ active, theme }) =>
 		active ? theme.colors.white : theme.colors.black};
-    margin: 12px 0;
+    margin: 16px 0;
     align-self: center;
 	${({ theme }) => theme.styles.flexWithoutSize()}
 `;

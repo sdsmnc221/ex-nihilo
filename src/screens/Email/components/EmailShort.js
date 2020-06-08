@@ -72,9 +72,9 @@ const EmailShort = ({
 				flex: 1;
 				margin-left: 10px;
 			`}>
-			<Sender>{sender}</Sender>
+			<Sender>{sender.slice(0, sender.indexOf('@'))}</Sender>
 			<Title>{title}</Title>
-			<Message>{truncate(message, 40)}</Message>
+			<Message>{truncate(message, 32)}</Message>
 		</FlexDiv>
 		<FlexDiv fullHeight justifyContent="space-between">
 			<Date>{date}</Date>

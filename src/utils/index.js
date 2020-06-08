@@ -48,6 +48,12 @@ const chunk = (arr, size) =>
 
 const random = (odd = 0.5) => (Math.random() <= odd ? true : false);
 
+const randomDate = (
+	start = new Date(2020, 0, 1),
+	end = new Date(2020, 4, 31)
+) =>
+	new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+
 const sample = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const sampleSize = ([...arr], n = 1) => {
@@ -119,6 +125,7 @@ export {
 	find,
 	last,
 	random,
+	randomDate,
 	replaceRandom,
 	replaceTemplate,
 	rgba,

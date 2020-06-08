@@ -1,6 +1,12 @@
 import DialogueMessage from 'data/classes/DialogueMessage';
 
-import { accounts, contacts, photos, storyScripts as scripts } from './data';
+import {
+	accounts,
+	emails,
+	contacts,
+	photos,
+	storyScripts as scripts,
+} from './data';
 
 export default {
 	permissions: {
@@ -43,10 +49,7 @@ export default {
 			count: 0,
 			list: null,
 		},
-		mails: {
-			count: 0,
-			list: null,
-		},
+		emails,
 	},
 	mergedData: {
 		contacts: null,
@@ -55,10 +58,6 @@ export default {
 			photos: [],
 		},
 		sms: {
-			count: 0,
-			list: null,
-		},
-		mails: {
 			count: 0,
 			list: null,
 		},

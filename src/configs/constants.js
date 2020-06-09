@@ -7,7 +7,8 @@ const { width: deviceW, height: deviceH } = device();
 
 const NUMBERS = {
 	ALBUM_COLS: 3,
-	ALBUM_DEVICE_PHOTOS: 37,
+	ALBUM_DEVICE_PHOTOS: 36,
+	DEVICE_SMS: 12,
 	RESET_PRESS_DURATION: 120,
 	RESET_PRESS_DURATION_ALBUM: 12,
 	JANUS_SMS_DELAY: 12,

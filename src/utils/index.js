@@ -54,6 +54,14 @@ const randomDate = (
 ) =>
 	new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 
+const groupBy = (arr, fn) =>
+	arr
+		.map(typeof fn === 'function' ? fn : (val) => val[fn])
+		.reduce((acc, val, i) => {
+			acc[val] = (acc[val] || []).concat(arr[i]);
+			return acc;
+		}, {});
+
 const sample = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const sampleSize = ([...arr], n = 1) => {
@@ -123,6 +131,7 @@ export {
 	device,
 	isArrEmpty,
 	find,
+	groupBy,
 	last,
 	random,
 	randomDate,

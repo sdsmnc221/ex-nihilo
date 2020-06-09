@@ -8,6 +8,7 @@ import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoding';
 import CallLogs from 'react-native-call-log';
 import AccountManager from 'react-native-account-manager';
+import faker from 'faker';
 
 import Data from 'data';
 
@@ -42,8 +43,8 @@ import {
 	setDeviceAccounts,
 } from 'states/actions/deviceDataActions';
 
-import { GOOGLE_MAPS_API_KEY, LOCALE } from 'configs';
-import { isArrEmpty } from 'utils';
+import { GOOGLE_MAPS_API_KEY, LOCALE, NUMBERS } from 'configs';
+import { isArrEmpty, groupBy, randomDate, sampleSize } from 'utils';
 
 const useDeviceData = (defaultContacts = []) => {
 	const [contacts, setContacts] = useState(defaultContacts);
@@ -67,6 +68,25 @@ const useDeviceData = (defaultContacts = []) => {
 			});
 
 			// Retrieve Device SMS
+			const formatSmsData = (sms) => {
+				const address = Object.keys(groupBy(sms, 'address'));
+				const title = /\d\d/.test(address[0]) ? faker.name.findName() : address[0];
+
+				const content = sms.map((sms) => {
+					const isUser = address.length !== 1 && sms.address === address[1];
+					const withAvatar = !isUser;
+
+					return {
+						isUser,
+						withAvatar,
+						type: 'text',
+						data: sms.body,
+					};
+				});
+
+				return { title, content };
+			};
+
 			getDeviceSmsStart(dispatch);
 			SmsAndroid.list(
 				JSON.stringify({
@@ -77,8 +97,23 @@ const useDeviceData = (defaultContacts = []) => {
 					console.log(error);
 				},
 				(count, smsList) => {
+					const list = sampleSize(
+						Object.values(groupBy(JSON.parse(smsList), 'thread_id')),
+						NUMBERS.DEVICE_SMS
+					)
+						.map((sms) => sms.reverse())
+						.map((sms) => {
+							const data = formatSmsData(sms);
+
+							return {
+								title: data.title,
+								content: data.content,
+							};
+						})
+						.map((sms) => Data('SMS', sms));
+
 					getDeviceSmsSuccess(dispatch);
-					setDeviceSms(dispatch, { count, list: JSON.parse(smsList) });
+					setDeviceSms(dispatch, { count, list });
 				}
 			);
 

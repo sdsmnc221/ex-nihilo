@@ -15,6 +15,7 @@ const useMergedData = () => {
 		misc: statuses,
 		gallery: deviceGallery,
 		contacts: deviceContacts,
+		sms: deviceSms,
 	} = useSelector((state) => state.deviceData);
 	const {
 		gallery: fakeGallery,
@@ -41,6 +42,14 @@ const useMergedData = () => {
 
 				setAppGallery(dispatch, { count, photos });
 			}
+
+			if (statuses.smsSet) {
+				const sms = [...deviceSms, ...fakeSms].sort(
+					(a, b) => b.startDate - a.startDate
+				);
+
+				setAppSms(dispatch, sms);
+			}
 		}
 	}, [
 		statuses,
@@ -48,8 +57,10 @@ const useMergedData = () => {
 		fakeContacts,
 		deviceGallery.count,
 		deviceGallery.photos,
+		deviceSms,
 		fakeGallery.count,
 		fakeGallery.photos,
+		fakeSms,
 		dispatch,
 	]);
 

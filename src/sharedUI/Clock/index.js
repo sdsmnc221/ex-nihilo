@@ -1,10 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import styled, { css, withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { useFocusEffect } from '@react-navigation/native';
 import moment from 'moment';
 import { View, Text } from 'react-native';
-
-import { fonts, colors, shadows } from 'configs/theme';
 
 const Wrapper = styled.View`
 	position: absolute;

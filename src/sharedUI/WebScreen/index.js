@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, withTheme } from 'styled-components';
+import { useFocusEffect } from '@react-navigation/native';
 import { View, Linking } from 'react-native';
 import { WebView } from 'react-native-webview';
 
@@ -19,7 +20,16 @@ const Wrapper = styled.View`
 	background-color: ${({ bodyColor, theme }) => bodyColor || 'transparent'};
 `;
 
-const WebScreen = ({ width, height, url, bodyColor, fillGapHeight, theme }) => {
+const WebScreen = ({
+	width,
+	height,
+	url,
+	bodyColor,
+	fillGapHeight,
+	injectJS,
+	theme,
+	...webViewProps
+}) => {
 	const webviewRef = useRef(null);
 
 	const handleNavigationStateChange = (event) => {
@@ -36,6 +46,12 @@ const WebScreen = ({ width, height, url, bodyColor, fillGapHeight, theme }) => {
 		webviewRef.current && webviewRef.current.reload();
 	};
 
+	useFocusEffect(() => {
+		if (injectJS && webviewRef.current) {
+			injectJS(webviewRef.current);
+		}
+	}, [injectJS]);
+
 	return (
 		<Wrapper bodyColor={bodyColor} width={width} height={height}>
 			<WebView
@@ -51,6 +67,7 @@ const WebScreen = ({ width, height, url, bodyColor, fillGapHeight, theme }) => {
 				source={{ uri: url }}
 				onNavigationStateChange={handleNavigationStateChange}
 				onContentProcessDidTerminate={handlerContentProcessDidTerminate}
+				{...webViewProps}
 			/>
 			{fillGapHeight && <FillGap height={fillGapHeight} />}
 		</Wrapper>
@@ -63,6 +80,7 @@ WebScreen.propTypes = {
 	url: PropTypes.string.isRequired,
 	bodyColor: PropTypes.string,
 	fillGapHeight: PropTypes.number,
+	injectJS: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
 
 WebScreen.defaultProps = {
@@ -70,6 +88,7 @@ WebScreen.defaultProps = {
 	height: null,
 	bodyColor: null,
 	fillGapHeight: null,
+	injectJS: null,
 };
 
 export default withTheme(WebScreen);

@@ -47,14 +47,7 @@ const ImageWrapper = styled.View`
 	border-top-width: 1.2px;
 `;
 
-const SmsMessage = ({
-	isUser,
-	withAvatar,
-	withSpacing,
-	message,
-	type,
-	theme,
-}) => (
+const SmsMessage = ({ isUser, withAvatar, withSpacing, data, type, theme }) => (
 	<Wrapper isUser={isUser} withSpacing={withSpacing}>
 		{withAvatar && (
 			<StyledIcon
@@ -70,19 +63,19 @@ const SmsMessage = ({
 				isUser={isUser}
 				withAvatar={withAvatar}
 				style={theme.shadows.smsMessage}>
-				{message}
+				{data}
 			</SmsText>
 		) : (
 			<ImageWrapper style={theme.shadows.smsMessage}>
 				<Image
 					css={css`
-						width: ${device().width * 0.46}px;
-						height: ${device().height * 0.36}px;
+						width: ${data.size.width * 0.48}px;
+						height: ${data.size.height * 0.48}px;
 						border-width: 1.4px;
 						border-color: ${theme.colors.slateBlue};
 					`}
 					resizeMode="cover"
-					source={{ uri: message }}
+					source={{ uri: data.url }}
 				/>
 			</ImageWrapper>
 		)}
@@ -93,7 +86,7 @@ SmsMessage.propTypes = {
 	isUser: PropTypes.bool,
 	withAvatar: PropTypes.bool,
 	withSpacing: PropTypes.bool,
-	message: PropTypes.string.isRequired,
+	data: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
 	type: PropTypes.string,
 };
 

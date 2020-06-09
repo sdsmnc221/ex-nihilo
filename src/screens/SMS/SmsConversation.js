@@ -48,7 +48,7 @@ const SmsConversationScreen = ({ route, theme }) => {
 				renderItem={({ item: sms, index, section }) => (
 					<SmsMessage
 						type={sms.type}
-						message={sms?.data}
+						data={sms?.data}
 						withAvatar={sms.withAvatar}
 						isUser={sms.isUser}
 						withSpacing={sms.withAvatar && section.data[index + 1]?.isUser}

@@ -193,7 +193,13 @@
                 "data": [{
                         "isUser": true,
                         "type": "image",
-                        "data": "https://antr.tech/ex-nihilo/photos/fake_photo_54.jpg"
+                        "data": {
+                            "url": "https://antr.tech/ex-nihilo/sms/maman.gif",
+                            "size": {
+                                "width": 544,
+                                "height": 300
+                            }
+                        }
                     },
                     {
                         "type": "text",
@@ -417,7 +423,13 @@
                     {
                         "isUser": true,
                         "type": "image",
-                        "data": "https://antr.tech/ex-nihilo/photos/fake_photo_54.jpg"
+                        "data": {
+                            "url": "https://antr.tech/ex-nihilo/sms/alex.gif",
+                            "size": {
+                                "width": 500,
+                                "height": 275
+                            }
+                        }
                     },
                     {
                         "type": "text",
@@ -550,7 +562,13 @@
                     {
                         "isUser": true,
                         "type": "image",
-                        "data": "https://antr.tech/ex-nihilo/greek.gif"
+                        "data": {
+                            "url": "https://antr.tech/ex-nihilo/sms/janus.gif",
+                            "size": {
+                                "width": 337,
+                                "height": 500
+                            }
+                        }
                     },
                     {
                         "isUser": true,

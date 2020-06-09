@@ -128,7 +128,7 @@ const JanusConversationScreen = ({ route, theme }) => {
 					<SmsMessage
 						withAvatar={!sms.isUser}
 						isUser={sms.isUser}
-						message={sms.text}
+						data={sms.text}
 						withSpacing
 					/>
 				)}

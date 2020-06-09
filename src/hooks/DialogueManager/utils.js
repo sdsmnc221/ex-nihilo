@@ -34,11 +34,14 @@ const isSafeToAddScript = ({ text, type }, dialogueLog) =>
 
 const isSafeToTrigger = ({ condition }, gameObject) => !!gameObject[condition];
 
-const replaceWithUsername = (string, username, isUser = false) =>
-	string.replace(
-		isUser ? new RegExp('...' + '$') : '[$]',
-		`${isUser ? ' ' : ''}${username.toUpperCase()}`
-	);
+const replaceWithUsername = (string, username, isUser = false) => {
+	const USERNAME = ` ${username.toUpperCase()} `;
+	if (isUser) {
+		return string.slice(0, string.lastIndexOf('...')) + USERNAME;
+	} else {
+		return string.replace('[$]', USERNAME);
+	}
+};
 
 export {
 	containsPlaceholder,

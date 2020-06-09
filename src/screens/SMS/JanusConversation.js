@@ -16,11 +16,13 @@ import {
 	updateDialogueLog,
 	updateCurrentScriptID,
 } from 'states/actions/storyActions';
+import { updateJanusLastMessage } from 'states/actions/mergedDataActions';
 import {
 	containsPlaceholder,
 	doProceedToNextScript,
 	findScript,
 	isBreakpoint,
+	isEnding,
 	isNeedToTrigger,
 	isSafeToTrigger,
 	isSafeToAddScript,
@@ -28,7 +30,6 @@ import {
 } from 'hooks/DialogueManager/utils';
 import { sleep } from 'utils';
 import { NUMBERS } from 'configs';
-import { isEnding } from '../../hooks/DialogueManager/utils';
 
 const JanusConversationScreen = ({ route, theme }) => {
 	const smsListRef = useRef(null);
@@ -79,7 +80,9 @@ const JanusConversationScreen = ({ route, theme }) => {
 					new DialogueMessage({
 						text,
 					})
-				);
+				) &&
+				// Also update Janus last message back in the SMS List screen
+				updateJanusLastMessage(dispatch, text);
 
 			updateUserAction(dispatch, {
 				type,

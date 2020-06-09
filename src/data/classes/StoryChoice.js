@@ -4,9 +4,13 @@ export default class StoryChoice {
 		this.action = action;
 		this.nextID = nextID;
 		this.isUser = true;
+		this.changeTextCount = 0;
 	}
 
 	changeText(text) {
-		this.text = text;
+		if (this.changeTextCount === 0) {
+			this.text = text;
+		}
+		this.changeTextCount++;
 	}
 }

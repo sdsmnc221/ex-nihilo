@@ -32,8 +32,16 @@ const NotifsCount = styled.Text`
 	height: 20px;
 	border-radius: 20px;
 	position: absolute;
-	right: -4px;
-	top: -4px;
+	${({ notifsLeft }) =>
+		notifsLeft
+			? css`
+					left: -6px;
+					top: 0;
+			  `
+			: css`
+					right: -4px;
+					top: -4px;
+			  `}
 	text-align: center;
 	line-height: 22px;
 	background-color: ${({ theme }) => theme.colors.slateBlue};
@@ -56,6 +64,7 @@ const AppIcon = ({
 	type,
 	label,
 	notifs,
+	notifsLeft,
 	size,
 	onPress,
 	noBlink,
@@ -90,7 +99,7 @@ const AppIcon = ({
 					size={size}
 					onPress={onPress_}
 					activeOpacity={noBlink ? 1.0 : 0.8}>
-					{notifs > 0 && <NotifsCount>{notifs}</NotifsCount>}
+					{notifs > 0 && <NotifsCount notifsLeft={notifsLeft}>{notifs}</NotifsCount>}
 					{type && (
 						<Icon
 							type={type + (!noBlink && buttonPressed ? STRINGS.ICON_PRESSED : '')}
@@ -107,6 +116,7 @@ AppIcon.propTypes = {
 	type: PropTypes.string,
 	label: PropTypes.string,
 	notifs: PropTypes.number,
+	notifsLeft: PropTypes.bool,
 	size: PropTypes.number,
 	onPress: PropTypes.func,
 	noBlink: PropTypes.bool,
@@ -118,6 +128,7 @@ AppIcon.defaultProps = {
 	type: undefined,
 	label: undefined,
 	notifs: 0,
+	notifsLeft: false,
 	size: 45,
 	onPress: () => {},
 	noBlink: false,

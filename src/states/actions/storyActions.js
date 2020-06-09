@@ -4,6 +4,8 @@ import {
 	STORY_UPDATE_DIALOGUE_LOG,
 	STORY_UPDATE_CURRENT_SCRIPT_ID,
 	STORY_UPDATE_USERNAME,
+	STORY_HIDE_NOTIFICATION,
+	STORY_SHOW_NOTIFICATION,
 } from '../actionTypes';
 
 export const updateUserAction = (dispatch, userAction) =>
@@ -26,3 +28,9 @@ export const updateCurrentScriptID = (dispatch, currentScriptID) =>
 
 export const updateUsername = (dispatch, username) =>
 	dispatch({ type: STORY_UPDATE_USERNAME, payload: { username } });
+
+export const hideNotification = (dispatch) =>
+	dispatch({ type: STORY_HIDE_NOTIFICATION });
+
+export const showNotification = (dispatch) =>
+	dispatch({ type: STORY_SHOW_NOTIFICATION });

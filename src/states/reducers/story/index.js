@@ -5,6 +5,8 @@ import {
 	STORY_UPDATE_DIALOGUE_LOG,
 	STORY_UPDATE_CURRENT_SCRIPT_ID,
 	STORY_UPDATE_USERNAME,
+	STORY_HIDE_NOTIFICATION,
+	STORY_SHOW_NOTIFICATION,
 } from 'states/actionTypes';
 
 function story(state = initialStates.story, action) {
@@ -32,6 +34,22 @@ function story(state = initialStates.story, action) {
 			return {
 				...state,
 				username: action.payload.username,
+			};
+		case STORY_HIDE_NOTIFICATION:
+			return {
+				...state,
+				notification: {
+					...state.notification,
+					shown: false,
+				},
+			};
+		case STORY_SHOW_NOTIFICATION:
+			return {
+				...state,
+				notification: {
+					...state.notification,
+					shown: true,
+				},
 			};
 		default:
 			return state;

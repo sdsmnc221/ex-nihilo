@@ -51,5 +51,11 @@ export default {
 		flipX: {
 			transform: [{ scaleX: -1 }],
 		},
+		modal: {
+			flex: 1,
+			margin: 0,
+			justifyContent: 'flex-start',
+			alignItems: 'center',
+		},
 	}),
 };

@@ -42,6 +42,8 @@ import DatavizScreen from 'screens/Dataviz';
 import DataProtectionScreen from 'screens/DataProtection';
 import AboutUsScreen from 'screens/AboutUs';
 
+import Notification from 'sharedUI/Notification';
+
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -187,6 +189,8 @@ const App = () => {
 								options={headerOptions}
 							/>
 						</Stack.Navigator>
+
+						<Notification navigationRef={navContainerRef} />
 					</NavigationContainer>
 				</SafeAreaProvider>
 			</ThemeProvider>

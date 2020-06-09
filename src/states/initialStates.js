@@ -69,6 +69,12 @@ export default {
 			choices: [],
 			activeChoiceIndex: null,
 		},
+		notification: {
+			shown: false,
+			date: "À l'instant",
+			title: 'Janus',
+			message: scripts[0].text,
+		},
 	},
 	game: {
 		UNLOCK_APP: false,

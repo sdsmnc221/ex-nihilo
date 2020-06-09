@@ -9,6 +9,7 @@ import {
 	setAppSms,
 	updateSmsWithJanus,
 } from 'states/actions/mergedDataActions';
+import { showNotification } from 'states/actions/storyActions';
 
 import { NUMBERS } from 'configs';
 import { shuffle, sortContact, tick } from 'utils';
@@ -66,10 +67,12 @@ const useMergedData = () => {
 	useEffect(() => {
 		if (UNLOCK_APP) {
 			const JanusSms = Data('SMS', JANUS_SMS);
-			tick(
-				() => updateSmsWithJanus(dispatch, JanusSms),
-				convertDelayTime(NUMBERS.JANUS_APPEARS_DELAY_MINUTES)
-			);
+			const actions = () => {
+				updateSmsWithJanus(dispatch, JanusSms);
+				showNotification(dispatch);
+			};
+
+			tick(() => actions(), convertDelayTime(NUMBERS.JANUS_APPEARS_DELAY_MINUTES));
 		}
 	}, [UNLOCK_APP, dispatch]);
 

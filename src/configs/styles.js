@@ -40,6 +40,13 @@ export default {
 		border: 1px solid ${borderColor || colors.white};
 		background-color: ${bodyColor || colors.ghostWhite};
 	`,
+	janusVoice: css`
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	`,
 	styleSheet: StyleSheet.create({
 		scrollBodyEmail: {
 			width: '100%',

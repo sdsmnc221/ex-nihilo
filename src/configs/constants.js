@@ -50,7 +50,7 @@ const SIZES = {
 	DATAVIZ: {
 		W: deviceW,
 		H: deviceH * 0.68,
-		H_SHRINK: deviceH * 0.48,
+		H_SHRINK: deviceH * 0.56,
 	},
 	DATAVIZ_TAB_BAR: {
 		W: deviceW * 0.9,

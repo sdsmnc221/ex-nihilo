@@ -5,6 +5,7 @@ import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import Dataviz from './components/Dataviz';
 import TabBar from './components/TabBar';
 import ArrowButton from './components/ArrowButton';
+import InfoText from './components/InfoText';
 
 import { SIZES, STRINGS } from 'configs';
 
@@ -24,6 +25,7 @@ const DatavizScreen = ({ route, navigation, theme }) => {
 				pressHandler={onPressButton}
 				iconType={datavizShrunk ? UP : DOWN}
 			/>
+			{datavizShrunk && <InfoText />}
 		</LayoutWrapper>
 	);
 };

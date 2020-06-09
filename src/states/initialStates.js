@@ -74,6 +74,7 @@ export default {
 			date: "À l'instant",
 			title: 'Janus',
 			message: scripts[0].text,
+			repeatCount: 0,
 		},
 	},
 	game: {

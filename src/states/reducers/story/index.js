@@ -7,6 +7,7 @@ import {
 	STORY_UPDATE_USERNAME,
 	STORY_HIDE_NOTIFICATION,
 	STORY_SHOW_NOTIFICATION,
+	STORY_REPEAT_NOTIFICATION,
 } from 'states/actionTypes';
 
 function story(state = initialStates.story, action) {
@@ -41,6 +42,7 @@ function story(state = initialStates.story, action) {
 				notification: {
 					...state.notification,
 					shown: false,
+					repeatCount: 0,
 				},
 			};
 		case STORY_SHOW_NOTIFICATION:
@@ -49,6 +51,15 @@ function story(state = initialStates.story, action) {
 				notification: {
 					...state.notification,
 					shown: true,
+					repeatCount: 1,
+				},
+			};
+		case STORY_REPEAT_NOTIFICATION:
+			return {
+				...state,
+				notification: {
+					...state.notification,
+					repeatCount: state.notification.repeatCount + 1,
 				},
 			};
 		default:

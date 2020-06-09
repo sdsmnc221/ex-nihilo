@@ -10,9 +10,15 @@ import Modal from 'react-native-modal';
 import FlexDiv from 'sharedUI/FlexDiv';
 import AppIcon from 'sharedUI/AppIcon';
 
+import DialogueMessage from 'data/classes/DialogueMessage';
+
 import { device, tick, truncate } from 'utils';
 import { NUMBERS, SCREENS } from 'configs';
-import { hideNotification } from 'states/actions/storyActions';
+import {
+	hideNotification,
+	repeatNotification,
+	updateDialogueLog,
+} from 'states/actions/storyActions';
 
 const WIDTH = device().width * 0.84;
 
@@ -48,12 +54,31 @@ const Notification = ({ reappearDelay, navigationRef, theme }) => {
 	const dispatch = useDispatch();
 
 	const { notification } = useSelector((state) => state.story);
-	const { shown, date, title, message } = notification;
+	const { shown, date, title, message, repeatCount } = notification;
 
 	const [reappearEnabled, setReappearEnabled] = useState(shown);
 	const [isVisible, setIsVisible] = useState(shown);
+	const [notifs, setNotifs] = useState(repeatCount);
 
 	let interval = useRef(null);
+
+	useEffect(() => {
+		setIsVisible(shown);
+		setReappearEnabled(shown);
+	}, [shown]);
+
+	useEffect(() => {
+		setNotifs(repeatCount);
+
+		if (repeatCount > 1) {
+			updateDialogueLog(
+				dispatch,
+				new DialogueMessage({
+					text: message,
+				})
+			);
+		}
+	}, [repeatCount]);
 
 	/*
 	 * - if the notification is turned off (by swiping), it will reappear
@@ -71,6 +96,7 @@ const Notification = ({ reappearDelay, navigationRef, theme }) => {
 			setReappearEnabled(true);
 		}
 		setIsVisible(false);
+		repeatNotification(dispatch);
 	};
 
 	const onPress = () => {
@@ -116,7 +142,7 @@ const Notification = ({ reappearDelay, navigationRef, theme }) => {
 							size={49}
 							type="PERSON"
 							noBlink
-							notifs={1}
+							notifs={notifs}
 							notifsLeft
 							{...theme.shadows.softNeomorphism}
 						/>

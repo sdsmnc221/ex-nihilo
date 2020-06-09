@@ -71,8 +71,8 @@ const useMergedData = () => {
 				updateSmsWithJanus(dispatch, JanusSms);
 				showNotification(dispatch);
 			};
-
-			tick(() => actions(), convertDelayTime(NUMBERS.JANUS_APPEARS_DELAY_MINUTES));
+			actions();
+			// tick(() => actions(), convertDelayTime(NUMBERS.JANUS_APPEARS_DELAY_MINUTES));
 		}
 	}, [UNLOCK_APP, dispatch]);
 

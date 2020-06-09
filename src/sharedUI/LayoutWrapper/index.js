@@ -7,7 +7,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import NavigationBar from 'sharedUI/NavigationBar';
 import StatusBar from 'sharedUI/StatusBar';
 import Header from 'sharedUI/Header';
-import Notification from 'sharedUI/Notification';
 
 import getLayoutConfigs from './configs';
 import getHeaderConfigs from 'sharedUI/Header/configs';

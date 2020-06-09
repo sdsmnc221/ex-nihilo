@@ -6,6 +6,7 @@ import {
 	STORY_UPDATE_USERNAME,
 	STORY_HIDE_NOTIFICATION,
 	STORY_SHOW_NOTIFICATION,
+	STORY_REPEAT_NOTIFICATION,
 } from '../actionTypes';
 
 export const updateUserAction = (dispatch, userAction) =>
@@ -34,3 +35,6 @@ export const hideNotification = (dispatch) =>
 
 export const showNotification = (dispatch) =>
 	dispatch({ type: STORY_SHOW_NOTIFICATION });
+
+export const repeatNotification = (dispatch) =>
+	dispatch({ type: STORY_REPEAT_NOTIFICATION });

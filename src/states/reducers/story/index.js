@@ -8,6 +8,7 @@ import {
 	STORY_HIDE_NOTIFICATION,
 	STORY_SHOW_NOTIFICATION,
 	STORY_REPEAT_NOTIFICATION,
+	STORY_UPDATE_NOTIFICATION_MESSAGE,
 } from 'states/actionTypes';
 
 function story(state = initialStates.story, action) {
@@ -60,6 +61,15 @@ function story(state = initialStates.story, action) {
 				notification: {
 					...state.notification,
 					repeatCount: state.notification.repeatCount + 1,
+				},
+			};
+		case STORY_UPDATE_NOTIFICATION_MESSAGE:
+			const { message } = action.payload;
+			return {
+				...state,
+				notification: {
+					...state.notification,
+					message,
 				},
 			};
 		default:

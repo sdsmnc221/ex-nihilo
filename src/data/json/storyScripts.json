@@ -228,7 +228,7 @@
     },
     {
         "ID": 25,
-        "type": "MESSAGE",
+        "type": "MESSAGE_AFTER_BREAKPOINT_NO_CHOICE",
         "text": "Les plus grandes te donneront la réponse",
         "choices": [],
         "nextID": 26

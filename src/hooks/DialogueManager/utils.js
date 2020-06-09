@@ -8,6 +8,8 @@ const {
 	BREAKPOINT_TRIGGER,
 	END,
 	INPUT,
+	MESSAGE_AFTER_BREAKPOINT,
+	MESSAGE_AFTER_BREAKPOINT_NO_CHOICE,
 	MESSAGE_WITH_PLACEHOLDER,
 } = STORY_TYPES;
 
@@ -19,6 +21,9 @@ const doProceedToNextScript = ({ choices, nextID }) =>
 	!choices || choices.length === 0 || nextID;
 
 const findScript = (id) => find(storyScripts, 'ID', id);
+
+const doTriggerNotification = ({ type }) =>
+	[MESSAGE_AFTER_BREAKPOINT, MESSAGE_AFTER_BREAKPOINT_NO_CHOICE].includes(type);
 
 const isBreakpoint = ({ type }) => type === BREAKPOINT;
 
@@ -47,6 +52,7 @@ export {
 	containsPlaceholder,
 	convertDelayTime,
 	doProceedToNextScript,
+	doTriggerNotification,
 	findScript,
 	isBreakpoint,
 	isEnding,

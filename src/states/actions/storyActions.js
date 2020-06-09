@@ -7,6 +7,7 @@ import {
 	STORY_HIDE_NOTIFICATION,
 	STORY_SHOW_NOTIFICATION,
 	STORY_REPEAT_NOTIFICATION,
+	STORY_UPDATE_NOTIFICATION_MESSAGE,
 } from '../actionTypes';
 
 export const updateUserAction = (dispatch, userAction) =>
@@ -38,3 +39,6 @@ export const showNotification = (dispatch) =>
 
 export const repeatNotification = (dispatch) =>
 	dispatch({ type: STORY_REPEAT_NOTIFICATION });
+
+export const updateNotificationMessage = (dispatch, message) =>
+	dispatch({ type: STORY_UPDATE_NOTIFICATION_MESSAGE, payload: { message } });

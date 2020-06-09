@@ -70,7 +70,7 @@ const Notification = ({ reappearDelay, navigationRef, theme }) => {
 	useEffect(() => {
 		setNotifs(repeatCount);
 
-		if (repeatCount > 1) {
+		if (repeatCount >= 1) {
 			updateDialogueLog(
 				dispatch,
 				new DialogueMessage({

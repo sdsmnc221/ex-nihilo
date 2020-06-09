@@ -1,20 +1,14 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Data from 'data';
-
 import {
 	setAppContacts,
 	setAppGallery,
 	setAppSms,
-	updateSmsWithJanus,
 } from 'states/actions/mergedDataActions';
-import { showNotification } from 'states/actions/storyActions';
 
 import { NUMBERS } from 'configs';
-import { shuffle, sortContact, tick } from 'utils';
-import { convertDelayTime } from './DialogueManager/utils';
-import { JANUS_SMS } from './DialogueManager/configs';
+import { shuffle, sortContact } from 'utils';
 
 const useMergedData = () => {
 	const {
@@ -27,7 +21,6 @@ const useMergedData = () => {
 		contacts: fakeContacts,
 		sms: fakeSms,
 	} = useSelector((state) => state.fakeData);
-	const { UNLOCK_APP } = useSelector((state) => state.game);
 
 	const dispatch = useDispatch();
 
@@ -63,18 +56,6 @@ const useMergedData = () => {
 	useEffect(() => {
 		setAppSms(dispatch, fakeSms);
 	}, [fakeSms, dispatch]);
-
-	useEffect(() => {
-		if (UNLOCK_APP) {
-			const JanusSms = Data('SMS', JANUS_SMS);
-			const actions = () => {
-				updateSmsWithJanus(dispatch, JanusSms);
-				showNotification(dispatch);
-			};
-			actions();
-			// tick(() => actions(), convertDelayTime(NUMBERS.JANUS_APPEARS_DELAY_MINUTES));
-		}
-	}, [UNLOCK_APP, dispatch]);
 
 	return;
 };

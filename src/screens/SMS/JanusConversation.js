@@ -29,9 +29,9 @@ import {
 	replaceWithUsername,
 } from 'hooks/DialogueManager/utils';
 import { sleep } from 'utils';
-import { NUMBERS } from 'configs';
+import { NUMBERS, SCREENS } from 'configs';
 
-const JanusConversationScreen = ({ route, theme }) => {
+const JanusConversationScreen = ({ route, navigation, theme }) => {
 	const smsListRef = useRef(null);
 
 	const dispatch = useDispatch();
@@ -104,6 +104,8 @@ const JanusConversationScreen = ({ route, theme }) => {
 					doProceedToNextScript(activeScript) &&
 						updateCurrentScriptID(dispatch, activeScript.nextID);
 				}
+			} else {
+				navigation.navigate(SCREENS.JANUS);
 			}
 		};
 

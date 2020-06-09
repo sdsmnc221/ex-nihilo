@@ -11,7 +11,7 @@ import PhotoThumbnail from './components/PhotoThumbnail';
 import { tick } from 'utils';
 import { KEY_PUZZLE_B, NUMBERS, SCREENS, SIZES } from 'configs';
 
-import { unlockAlbum } from 'states/actions/gameActions';
+import { unlockAlbum, incrementChanges } from 'states/actions/gameActions';
 
 const PasswordLockContainer = styled.View`
 	${({ theme }) => theme.styles.flex('flex-start', 'flex-start', null, true)}
@@ -46,6 +46,7 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 			setPasswordValid(true);
 			tick(() => setIsLocked(false), NUMBERS.RESET_PRESS_DURATION_ALBUM);
 			unlockAlbum(dispatch);
+			incrementChanges(dispatch);
 		}
 	};
 

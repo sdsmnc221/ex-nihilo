@@ -224,7 +224,7 @@
         "type": "MESSAGE_AFTER_BREAKPOINT_NO_CHOICE",
         "text": "Les premières sont la clés",
         "choices": [],
-        "nextID": 25
+        "nextID": 42
     },
     {
         "ID": 25,
@@ -383,5 +383,13 @@
         "text": "Mais tu me connais déjà",
         "choices": [],
         "nextID": null
-    }
+    },
+    {
+        "ID": 42,
+        "type": "BREAKPOINT",
+        "text": null,
+        "choices": [],
+        "delayMinutes": 0.1,
+        "nextID": 25
+    },
 ]

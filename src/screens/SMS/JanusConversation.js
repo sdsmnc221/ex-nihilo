@@ -108,7 +108,7 @@ const JanusConversationScreen = ({ route, theme }) => {
 		};
 
 		update();
-	}, [currentScriptID, dialogueLog, username, game.changesCount]);
+	}, [currentScriptID, dialogueLog, username]);
 
 	return (
 		<LayoutWrapper screenName={route.name}>

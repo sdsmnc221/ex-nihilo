@@ -7,6 +7,7 @@ import { updateSmsWithJanus } from 'states/actions/mergedDataActions';
 import {
 	showNotification,
 	updateNotificationMessage,
+	updateCurrentScriptID,
 } from 'states/actions/storyActions';
 
 import { NUMBERS } from 'configs';
@@ -21,7 +22,9 @@ import { JANUS_SMS } from './DialogueManager/configs';
 const useGlobalGame = () => {
 	const dispatch = useDispatch();
 
-	const { UNLOCK_APP } = useSelector((state) => state.game);
+	const { UNLOCK_APP, UNLOCK_ALBUM, UNLOCK_EMAIL } = useSelector(
+		(state) => state.game
+	);
 
 	useEffect(() => {
 		if (UNLOCK_APP) {
@@ -30,8 +33,8 @@ const useGlobalGame = () => {
 				updateSmsWithJanus(dispatch, JanusSms);
 				showNotification(dispatch);
 			};
-			actions();
-			// tick(() => actions(), convertDelayTime(NUMBERS.JANUS_APPEARS_DELAY_MINUTES));
+
+			tick(() => actions(), convertDelayTime(NUMBERS.JANUS_APPEARS_DELAY_MINUTES));
 		}
 	}, [UNLOCK_APP]);
 
@@ -49,6 +52,13 @@ const useGlobalGame = () => {
 			updateNotificationMessage(dispatch, activeScript.text) &&
 			showNotification(dispatch);
 	}, [currentScriptID]);
+
+	useEffect(() => {
+		if (UNLOCK_ALBUM || UNLOCK_EMAIL) {
+			const activeScript = findActiveScript();
+			updateCurrentScriptID(dispatch, activeScript.nextID);
+		}
+	}, [UNLOCK_ALBUM, UNLOCK_EMAIL]);
 
 	return;
 };

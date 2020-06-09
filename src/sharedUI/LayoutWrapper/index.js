@@ -45,6 +45,9 @@ const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
 			</View>
 			{statusBar && <StatusBar {...statusBarConfigs} />}
 			{navigationBar && <NavigationBar {...navigationBarConfigs} />}
+			{/* <Notification
+						onPress={() => navContainerRef.current?.navigate('JanusConversation')}
+					/> */}
 		</SafeAreaView>
 	);
 };

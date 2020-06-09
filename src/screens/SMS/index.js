@@ -10,13 +10,7 @@ import FillGap from 'sharedUI/FillGap';
 import { SCREENS } from 'configs';
 
 const SmsScreen = ({ route, navigation, theme }) => {
-	const { sms: smsList } = useSelector((state) => state.fakeData);
-
-	smsList.unshift({
-		lastDate: "À l'instant",
-		title: 'Janus',
-		lastMessage: 'Bonjour toi',
-	});
+	const { sms: smsList } = useSelector((state) => state.mergedData);
 
 	return (
 		<LayoutWrapper screenName={route.name}>

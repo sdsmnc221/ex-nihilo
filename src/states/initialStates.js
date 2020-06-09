@@ -56,10 +56,7 @@ export default {
 			count: 0,
 			photos: [],
 		},
-		sms: {
-			count: 0,
-			list: null,
-		},
+		sms: null,
 		notifications,
 	},
 	story: {

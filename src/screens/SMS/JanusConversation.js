@@ -28,6 +28,7 @@ import {
 } from 'hooks/DialogueManager/utils';
 import { sleep } from 'utils';
 import { NUMBERS } from 'configs';
+import { isEnding } from '../../hooks/DialogueManager/utils';
 
 const JanusConversationScreen = ({ route, theme }) => {
 	const smsListRef = useRef(null);
@@ -58,6 +59,8 @@ const JanusConversationScreen = ({ route, theme }) => {
 		const update = async () => {
 			const activeScript = findActiveScript();
 
+			console.log(activeScript);
+
 			if (isBreakpoint(activeScript)) {
 				await sleep(activeScript.delayTime);
 			}
@@ -85,21 +88,24 @@ const JanusConversationScreen = ({ route, theme }) => {
 
 			await sleep(NUMBERS.JANUS_SMS_DELAY);
 
-			// Check if the next script needs to be triggered or not
-			if (isNeedToTrigger(activeScript)) {
-				isSafeToTrigger(activeScript, game) &&
+			// Check to proceed to the next script
+			// Do not proceed to next script if reach the ending
+			if (!isEnding(activeScript)) {
+				// Check if the next script needs to be triggered or not
+				if (isNeedToTrigger(activeScript)) {
+					isSafeToTrigger(activeScript, game) &&
+						doProceedToNextScript(activeScript) &&
+						updateCurrentScriptID(dispatch, activeScript.nextID);
+				} else {
+					// Check if the current script has user action or not
 					doProceedToNextScript(activeScript) &&
-					updateCurrentScriptID(dispatch, activeScript.nextID);
-			} else {
-				// Check if the current script has user action or not
-				// If it won't, proceed to the next script
-				doProceedToNextScript(activeScript) &&
-					updateCurrentScriptID(dispatch, activeScript.nextID);
+						updateCurrentScriptID(dispatch, activeScript.nextID);
+				}
 			}
 		};
 
 		update();
-	}, [currentScriptID, dialogueLog, username, game.changesCount, dispatch]);
+	}, [currentScriptID, dialogueLog, username, game.changesCount]);
 
 	return (
 		<LayoutWrapper screenName={route.name}>

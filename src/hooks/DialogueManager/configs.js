@@ -6,4 +6,8 @@ dataStoryTypes.forEach((type) => (STORY_TYPES[type] = type));
 
 const DEFAULT_USERNAME = 'Moi';
 
-export { STORY_TYPES, DEFAULT_USERNAME };
+const JANUS_SMS = {
+	title: 'Janus',
+};
+
+export { STORY_TYPES, DEFAULT_USERNAME, JANUS_SMS };

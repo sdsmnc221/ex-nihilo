@@ -4,8 +4,10 @@ import styled, { css, withTheme } from 'styled-components';
 
 import WebScreen from 'sharedUI/WebScreen';
 
+import { URL_DATAVIZ } from 'configs';
+
 const Dataviz = ({ ...webScreenprops }) => {
-	return <WebScreen url="https://oui.surge.sh/" {...webScreenprops} />;
+	return <WebScreen url={URL_DATAVIZ} {...webScreenprops} />;
 };
 
 Dataviz.propTypes = {};

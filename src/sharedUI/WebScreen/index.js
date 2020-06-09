@@ -16,8 +16,7 @@ const Wrapper = styled.View`
 			: css`
 					min-height: 100%;
 			  `}
-	background-color: ${({ bodyColor, theme }) =>
-		bodyColor || theme.colors.ghostWhite};
+	background-color: ${({ bodyColor, theme }) => bodyColor || 'transparent'};
 `;
 
 const WebScreen = ({ width, height, url, bodyColor, fillGapHeight, theme }) => {
@@ -44,7 +43,7 @@ const WebScreen = ({ width, height, url, bodyColor, fillGapHeight, theme }) => {
 					${css`
 						width: 100%;
 						min-height: 100%;
-						background-color: ${bodyColor || theme.colors.ghostWhite};
+						background-color: ${bodyColor || 'transparent'};
 						margin-bottom: 30%;
 					`}
 				`}

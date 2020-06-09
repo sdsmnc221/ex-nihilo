@@ -10,6 +10,11 @@ export default {
 
 		elevation: 12,
 	},
+	clock: {
+		textShadowColor: 'rgba(0, 0, 0, 0.1608)',
+		textShadowOffset: { width: 0, height: 3 },
+		textShadowRadius: 6,
+	},
 	header: {
 		shadowColor: '#000',
 		shadowOffset: {

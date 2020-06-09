@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme, css } from 'styled-components';
+import { useFocusEffect } from '@react-navigation/native';
+import moment from 'moment';
 import { View, Text } from 'react-native';
 
 import StyledIcon from 'sharedUI/Icon/StyledIcon';
@@ -28,6 +30,24 @@ const Clock = styled.Text`
 `;
 
 const StatusBar = ({ light, whiteText }) => {
+	const getTime = () => moment().format('hh:mm');
+
+	const [time, setTime] = useState(getTime());
+
+	const tick = useCallback(() => {
+		const now = getTime();
+		if (now !== time) {
+			setTime(now);
+		}
+	}, [time]);
+
+	useFocusEffect(() => {
+		let timerID = setInterval(tick, 1000);
+		return () => {
+			clearInterval(timerID);
+		};
+	}, [time]);
+
 	return (
 		<Wrapper>
 			<StyledIcon type={`WIFI_${light ? 'LIGHT' : 'DARK'}`} />
@@ -39,7 +59,7 @@ const StatusBar = ({ light, whiteText }) => {
 				`}
 			/>
 			<Clock whiteText={whiteText} light={light}>
-				13:52
+				{time}
 			</Clock>
 		</Wrapper>
 	);

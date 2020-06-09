@@ -1,6 +1,6 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
-import Video from 'react-native-video';
+// import Video from 'react-native-video';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 

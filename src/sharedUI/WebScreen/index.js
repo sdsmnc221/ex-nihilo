@@ -7,13 +7,20 @@ import { WebView } from 'react-native-webview';
 import FillGap from 'sharedUI/FillGap';
 
 const Wrapper = styled.View`
-	width: 100%;
-	min-height: 100%;
+	width: ${({ width }) => (width ? `${width}px` : '100%')};
+	${({ height }) =>
+		height
+			? css`
+					height: ${height}px;
+			  `
+			: css`
+					min-height: 100%;
+			  `}
 	background-color: ${({ bodyColor, theme }) =>
 		bodyColor || theme.colors.ghostWhite};
 `;
 
-const WebScreen = ({ url, bodyColor, fillGapHeight, theme }) => {
+const WebScreen = ({ width, height, url, bodyColor, fillGapHeight, theme }) => {
 	const webviewRef = useRef(null);
 
 	const handleNavigationStateChange = (event) => {
@@ -31,7 +38,7 @@ const WebScreen = ({ url, bodyColor, fillGapHeight, theme }) => {
 	};
 
 	return (
-		<Wrapper bodyColor={bodyColor}>
+		<Wrapper bodyColor={bodyColor} width={width} height={height}>
 			<WebView
 				css={`
 					${css`
@@ -52,12 +59,16 @@ const WebScreen = ({ url, bodyColor, fillGapHeight, theme }) => {
 };
 
 WebScreen.propTypes = {
+	width: PropTypes.number,
+	height: PropTypes.number,
 	url: PropTypes.string.isRequired,
 	bodyColor: PropTypes.string,
 	fillGapHeight: PropTypes.number,
 };
 
 WebScreen.defaultProps = {
+	width: null,
+	height: null,
 	bodyColor: null,
 	fillGapHeight: null,
 };

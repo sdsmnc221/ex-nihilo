@@ -78,5 +78,9 @@ export default {
 			font-family: ${superclarendon};
 			font-size: ${sizes.bodyDataviz};
 		`,
+		tab: css`
+			font-family: ${sourceSans.bold};
+			font-size: ${sizes.bodyDataviz};
+		`,
 	},
 };

@@ -14,6 +14,14 @@ import { APP_ICON, HOME_APPS } from 'configs';
 
 const { ICONS_TRAY_WIDTH, ICONS_TRAY_MARGE } = APP_ICON;
 
+const Solid = styled.View`
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: ${({ theme }) => theme.colors.ghostWhite};
+	opacity: 0.24;
+`;
+
 const Icons = styled.View`
 	position: absolute;
 	bottom: 64px;
@@ -32,6 +40,7 @@ const HomeScreen = ({ route, navigation }) => {
 	return (
 		<LayoutWrapper screenName={route.name}>
 			<BackgroundImage source={BG_HOMESCREEN} />
+			<Solid />
 			<Clock />
 			<Icons>
 				{HOME_APPS.map((app, index) => (

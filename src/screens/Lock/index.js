@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { withTheme } from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { View } from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
@@ -11,6 +12,8 @@ import PasswordLock from 'sharedUI/PasswordLock';
 
 import { KEY_PUZZLE_A, SCREENS } from 'configs';
 
+import { unlockApp } from 'states/actions/gameActions';
+
 const Solid = styled.View`
 	position: absolute;
 	width: 100%;
@@ -20,6 +23,8 @@ const Solid = styled.View`
 `;
 
 const LockScreen = ({ navigation, theme }) => {
+	const dispatch = useDispatch();
+
 	const PASSWORD = KEY_PUZZLE_A;
 	const [numberOfTry, setNumberOfTry] = useState(0);
 	const [messageFailed, setMessageFailed] = useState('');
@@ -44,6 +49,7 @@ const LockScreen = ({ navigation, theme }) => {
 			}
 		} else {
 			setPasswordValid(true);
+			unlockApp(dispatch);
 		}
 	};
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { css } from 'styled-components';
+import { useSelector } from 'react-redux';
 import { View } from 'react-native';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
@@ -11,6 +12,8 @@ import { chunk } from 'utils';
 import getIconSize from 'utils/getIconSize';
 
 const AllAppsScreen = ({ route, navigation }) => {
+	const { UNLOCK_EMAIL } = useSelector((state) => state.game);
+
 	const iconSize = getIconSize();
 
 	const onPress = (screen) => navigation.navigate(screen);
@@ -40,7 +43,10 @@ const AllAppsScreen = ({ route, navigation }) => {
 								type={a.iconType || 'LOCK'}
 								size={iconSize}
 								notifs={a.notifs}
-								{...a.screen && { onPress: () => onPress(a.screen) }}
+								{...a.screen && {
+									onPress: () =>
+										onPress(UNLOCK_EMAIL && a.screenUnlock ? a.screenUnlock : a.screen),
+								}}
 							/>
 						))}
 					</FlexDiv>

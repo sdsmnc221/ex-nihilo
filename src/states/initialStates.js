@@ -62,7 +62,6 @@ export default {
 		},
 		notifications,
 	},
-	contacts,
 	story: {
 		scripts,
 		dialogueLog: [new DialogueMessage({ text: scripts[0].text })],
@@ -73,5 +72,11 @@ export default {
 			choices: [],
 			activeChoiceIndex: null,
 		},
+	},
+	game: {
+		UNLOCK_APP: false,
+		UNLOCK_ALBUM: false,
+		UNLOCK_EMAIL: false,
+		changesCount: 0,
 	},
 };

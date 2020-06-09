@@ -207,7 +207,7 @@
     {
         "ID": 22,
         "type": "MESSAGE",
-        "text": "Le poème",
+        "text": "Grand et velus nous sommes\nOn aime les boîtes de thon\n\nC’est dans la rue qu’on fait nos biftons\nHotel poubelle, orgie de vieilles pommes\nEn fouillant bien on y trouve des merveilles couleur\nKiwi, croûte de moisi\n\nTout est couleur kiwi, faites nous une faveur\nEn disposant eau et poissons frais\nSur le pas de vos portes nous viendrons à l’heure\n\nSonner, passer par dessus la haie\nMerci pour cet élan de générosité\nSerpents de l’ombre chéris et aimés",
         "choices": [],
         "nextID": 23
     },
@@ -218,5 +218,170 @@
         "choices": [],
         "delayMinutes": 0.5,
         "nextID": 24
+    },
+    {
+        "ID": 24,
+        "type": "MESSAGE_AFTER_BREAKPOINT_NO_CHOICE",
+        "text": "Les premières sont la clés",
+        "choices": [],
+        "nextID": 25
+    },
+    {
+        "ID": 25,
+        "type": "MESSAGE",
+        "text": "Les plus grandes te donneront la réponse",
+        "choices": [],
+        "nextID": 26
+    },
+    {
+        "ID": 26,
+        "type": "BREAKPOINT_TRIGGER",
+        "text": null,
+        "choices": [],
+        "condition": "UNLOCK_ALBUM",
+        "nextID": 27
+    },
+    {
+        "ID": 27,
+        "type": "MESSAGE_AFTER_BREAKPOINT",
+        "text": "Super! Tu as réussi à déverrouiller la galerie !",
+        "choices": [{
+                "text": "Comment tu sais tout ça ?!",
+                "nextID": 28
+            },
+            {
+                "text": "Merci ! :)",
+                "nextID": 29
+            }
+        ],
+        "nextID": null
+    },
+    {
+        "ID": 28,
+        "type": "BUG",
+        "text": "•❀.•❤•.¸✿¸.•❤•.❀•",
+        "choices": [],
+        "nextID": 29
+    },
+    {
+        "ID": 29,
+        "type": "MESSAGE",
+        "text": "Tu devrais sûrement trouver un indice pour déverrouiller la boîte mail",
+        "choices": [],
+        "nextID": 30
+    },
+    {
+        "ID": 30,
+        "type": "BREAKPOINT",
+        "text": null,
+        "choices": [],
+        "delayMinutes": 0.5,
+        "nextID": 31
+    },
+    {
+        "ID": 31,
+        "type": "MESSAGE_AFTER_BREAKPOINT_NO_CHOICE",
+        "text": "Examine bien les photos",
+        "choices": [],
+        "nextID": 32
+    },
+    {
+        "ID": 32,
+        "type": "BREAKPOINT_TRIGGER",
+        "text": null,
+        "choices": [],
+        "condition": "UNLOCK_EMAIL",
+        "nextID": 33
+    },
+    {
+        "ID": 33,
+        "type": "MESSAGE_AFTER_BREAKPOINT",
+        "text": "Alors as-tu trouvé un indice sur la disparition de Sacha ?",
+        "choices": [{
+                "text": "Je pense que Sacha était menacé, j’ai trouvé un mail de chantage",
+                "nextID": 36
+            },
+            {
+                "text": "Oui j’ai trouvé quelque chose mais comment tu savais que j’allais trouver quelque chose?",
+                "nextID": 34
+            }
+        ],
+        "nextID": null
+    },
+    {
+        "ID": 34,
+        "type": "BUG",
+        "text": "•❀.•❤•.¸✿¸.•❤•.❀•",
+        "choices": [],
+        "nextID": 35
+    },
+    {
+        "ID": 35,
+        "type": "MESSAGE_WITH_CHOICES",
+        "text": "Alors as-tu trouvé un indices sur la disparition de Sacha ?",
+        "choices": [{
+
+            "text": "ok... bon d’accord j’ai trouvé quelque chose, on lui faisait du chantage",
+            "nextID": 36
+        }],
+        "nextID": null
+    },
+    {
+        "ID": 36,
+        "type": "MESSAGE_WITH_CHOICES",
+        "text": "Aaah mais ça je le savais déjà!",
+        "choices": [{
+                "text": "Maintenant ça suffit ! Comment tu sais tout ça ?",
+                "nextID": 37
+            },
+            {
+                "text": "Ecoute-moi bien... j’ai trouvé d’autres choses suspectes dans ce téléphone !\nEt toi t’es aussi suspect!",
+                "nextID": 37
+            }
+        ],
+        "nextID": null
+    },
+    {
+        "ID": 37,
+        "type": "MESSAGE_WITH_CHOICES",
+        "text": "Aaah mais ça je le savais déjà!",
+        "choices": [{
+                "text": "T’es qui à la fin?!",
+                "nextID": 38
+            },
+            {
+                "text": "C’est toi le maître chanteur avoue!",
+                "nextID": 38
+            }
+        ],
+        "nextID": null
+    },
+    {
+        "ID": 38,
+        "type": "MESSAGE",
+        "text": "Tu n’as toujours pas compris",
+        "choices": [],
+        "nextID": 39
+    },
+    {
+        "ID": 39,
+        "type": "MESSAGE",
+        "text": "Je vais te dire qui je suis",
+        "choices": [],
+        "nextID": 40
+    },
+    {
+        "ID": 40,
+        "type": "MESSAGE",
+        "text": "Aaah mais ça tu le savais déjà",
+        "choices": [],
+        "nextID": 41
+    },
+    {
+        "ID": 41,
+        "type": "END",
+        "text": "Mais tu me connais déjà",
+        "choices": [],
+        "nextID": null
     }
 ]

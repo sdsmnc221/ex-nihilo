@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { withTheme } from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { FlatList } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
@@ -10,6 +10,8 @@ import PhotoThumbnail from './components/PhotoThumbnail';
 
 import { tick } from 'utils';
 import { KEY_PUZZLE_B, NUMBERS, SCREENS, SIZES } from 'configs';
+
+import { unlockAlbum } from 'states/actions/gameActions';
 
 const PasswordLockContainer = styled.View`
 	${({ theme }) => theme.styles.flex('flex-start', 'flex-start', null, true)}
@@ -22,12 +24,14 @@ const PasswordLockContainer = styled.View`
 `;
 
 const AlbumScreen = ({ route, navigation, theme }) => {
+	const dispatch = useDispatch();
 	const { gallery } = useSelector((state) => state.mergedData);
+	const { UNLOCK_ALBUM } = useSelector((state) => state.game);
 
 	const photoSize = SIZES.ALBUM_PHOTO;
 
 	const PASSWORD = KEY_PUZZLE_B;
-	const [isLocked, setIsLocked] = useState(false);
+	const [isLocked, setIsLocked] = useState(!UNLOCK_ALBUM);
 	const [passwordInput, setPasswordInput] = useState('');
 	const [passwordValid, setPasswordValid] = useState(false);
 	const [passwordSubmitted, setPasswordSubmitted] = useState(false);
@@ -41,6 +45,7 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 		} else {
 			setPasswordValid(true);
 			tick(() => setIsLocked(false), NUMBERS.RESET_PRESS_DURATION_ALBUM);
+			unlockAlbum(dispatch);
 		}
 	};
 

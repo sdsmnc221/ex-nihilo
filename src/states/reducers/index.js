@@ -1,19 +1,19 @@
 import { combineReducers } from 'redux';
 
-import contacts from './contacts';
+import permissions from './permissions';
 import deviceData from './deviceData';
 import fakeData from './fakeData';
 import mergedData from './mergedData';
-import permissions from './permissions';
 import story from './story';
+import game from './game';
 
 const appReducer = combineReducers({
 	permissions,
 	deviceData,
 	fakeData,
 	mergedData,
-	contacts,
 	story,
+	game,
 });
 
 const rootReducer = (state, action) => appReducer(state, action);

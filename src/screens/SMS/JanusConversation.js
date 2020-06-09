@@ -21,6 +21,8 @@ import {
 	doProceedToNextScript,
 	findScript,
 	isBreakpoint,
+	isNeedToTrigger,
+	isSafeToTrigger,
 	isSafeToAddScript,
 	replaceWithUsername,
 } from 'hooks/DialogueManager/utils';
@@ -34,6 +36,7 @@ const JanusConversationScreen = ({ route, theme }) => {
 	const { dialogueLog, currentScriptID, username, userAction } = useSelector(
 		(state) => state.story
 	);
+	const { game } = useSelector((state) => state);
 
 	const findActiveScript = useCallback(() => findScript(currentScriptID), [
 		currentScriptID,
@@ -82,14 +85,21 @@ const JanusConversationScreen = ({ route, theme }) => {
 
 			await sleep(NUMBERS.JANUS_SMS_DELAY);
 
-			// Check if the current script has user action or not
-			// If it won't, proceed to the next script
-			doProceedToNextScript(activeScript) &&
-				updateCurrentScriptID(dispatch, activeScript.nextID);
+			// Check if the next script needs to be triggered or not
+			if (isNeedToTrigger(activeScript)) {
+				isSafeToTrigger(activeScript, game) &&
+					doProceedToNextScript(activeScript) &&
+					updateCurrentScriptID(dispatch, activeScript.nextID);
+			} else {
+				// Check if the current script has user action or not
+				// If it won't, proceed to the next script
+				doProceedToNextScript(activeScript) &&
+					updateCurrentScriptID(dispatch, activeScript.nextID);
+			}
 		};
 
 		update();
-	}, [currentScriptID, dialogueLog, username, findActiveScript, dispatch]);
+	}, [currentScriptID, dialogueLog, username, game.changesCount, dispatch]);
 
 	return (
 		<LayoutWrapper screenName={route.name}>

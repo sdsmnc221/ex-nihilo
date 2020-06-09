@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css, withTheme } from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { View, Text } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
@@ -10,6 +11,8 @@ import RectButton from 'sharedUI/Button/RectButton';
 import useKeyBoard from 'hooks/useKeyboard';
 import { rgba } from 'utils';
 import { EMAIL_ACCOUNT, KEY_PUZZLE_D, SCREENS } from 'configs';
+
+import { unlockEmail } from 'states/actions/gameActions';
 
 const COMMON_SIZES = {
 	w: '64%',
@@ -74,6 +77,7 @@ const Separator = styled.View`
 `;
 
 const EmailLoginScreen = ({ route, navigation, theme }) => {
+	const dispatch = useDispatch();
 	const { keyboardShown } = useKeyBoard();
 
 	const [emailInput, setEmailInput] = useState(EMAIL);
@@ -85,6 +89,7 @@ const EmailLoginScreen = ({ route, navigation, theme }) => {
 			setFailed(true);
 		} else {
 			navigation.navigate(SCREENS.EMAIL);
+			unlockEmail(dispatch);
 		}
 	};
 

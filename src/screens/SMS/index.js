@@ -12,11 +12,11 @@ import { SCREENS } from 'configs';
 const SmsScreen = ({ route, navigation, theme }) => {
 	const { sms: smsList } = useSelector((state) => state.fakeData);
 
-	// smsList.unshift({
-	// 	date: "À l'instant",
-	// 	title: 'Janus',
-	// 	message: 'Bonjour toi',
-	// });
+	smsList.unshift({
+		lastDate: "À l'instant",
+		title: 'Janus',
+		lastMessage: 'Bonjour toi',
+	});
 
 	return (
 		<LayoutWrapper screenName={route.name}>

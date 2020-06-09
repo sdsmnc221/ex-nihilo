@@ -2,7 +2,12 @@ import { SCREENS } from './screens';
 
 const ALL_APPS = [
 	{ label: 'Contacts', iconType: 'CONTACTS', screen: SCREENS.CONTACTS },
-	{ label: 'Mail', iconType: 'EMAIL', screen: SCREENS.EMAIL_LOGIN },
+	{
+		label: 'Mail',
+		iconType: 'EMAIL',
+		screen: SCREENS.EMAIL_LOGIN,
+		screenUnlock: SCREENS.EMAIL,
+	},
 	{ label: 'Messages', iconType: 'SMS', screen: SCREENS.SMS, notifs: 24 },
 	{ label: 'Internet', iconType: 'BROWSER', screen: SCREENS.INTERNET },
 	{ label: 'Mes Notes', iconType: 'NOTES' },

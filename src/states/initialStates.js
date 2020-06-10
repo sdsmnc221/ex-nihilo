@@ -82,6 +82,8 @@ export default {
 		UNLOCK_ALBUM: false,
 		UNLOCK_EMAIL: false,
 		changesCount: 0,
+		glitchEnabled: false,
+		glitchAmount: 0,
 	},
 	dataviz: {
 		tabIndex: null,

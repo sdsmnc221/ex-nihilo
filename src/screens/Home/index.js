@@ -49,7 +49,9 @@ const HomeScreen = ({ route, navigation }) => {
 						type={app.iconType}
 						size={iconSize}
 						notifs={app.notifs}
-						{...app.screen && { onPress: () => onPress(app.screen) }}
+						{...(app.screen
+							? { onPress: () => onPress(app.screen) }
+							: { noPressEffect: true })}
 						withSpacing
 					/>
 				))}

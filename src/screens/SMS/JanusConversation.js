@@ -10,18 +10,24 @@ import JanusAnswerBlock from './components/JanusAnswerBlock';
 
 import DialogueMessage from 'data/classes/DialogueMessage';
 
+import { updateJanusLastMessage } from 'states/actions/mergedDataActions';
+import {
+	activateSmallGlitch,
+	activateBigGlitch,
+} from 'states/actions/gameActions';
 import {
 	updateUserAction,
 	updateActiveChoiceIndex,
 	updateDialogueLog,
 	updateCurrentScriptID,
 } from 'states/actions/storyActions';
-import { updateJanusLastMessage } from 'states/actions/mergedDataActions';
+
 import {
 	containsPlaceholder,
 	doProceedToNextScript,
 	findScript,
 	isBreakpoint,
+	isBugging,
 	isEnding,
 	isNeedToTrigger,
 	isSafeToTrigger,
@@ -72,6 +78,8 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 
 			const { text, type, choices } = activeScript;
 
+			isBugging(activeScript) && activateSmallGlitch(dispatch);
+
 			// To prevent a same or previous script, or a script that
 			// shoudn't be rendered is added to the dialogue log
 			isSafeToAddScript(activeScript, dialogueLog) &&
@@ -105,6 +113,10 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 						updateCurrentScriptID(dispatch, activeScript.nextID);
 				}
 			} else {
+				activateBigGlitch(dispatch);
+
+				await sleep(NUMBERS.GLITCH_XL * NUMBERS.GLITCH_INTERVAL);
+
 				navigation.navigate(SCREENS.JANUS);
 			}
 		};

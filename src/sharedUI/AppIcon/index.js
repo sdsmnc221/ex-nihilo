@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, withTheme } from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NeuView } from 'utils/react-native-neu-element';
@@ -9,6 +10,8 @@ import Icon from 'sharedUI/Icon';
 
 import { tick } from 'utils';
 import { NUMBERS, STRINGS } from 'configs/constants';
+
+import { activateSmallGlitch } from 'states/actions/gameActions';
 
 const styledWrapper = css`
 	position: relative;
@@ -67,19 +70,27 @@ const AppIcon = ({
 	notifsLeft,
 	size,
 	onPress,
+	noPressEffect,
 	noBlink,
 	withSpacing,
 	additionalStyle,
 	theme,
 	...neuViewProps
 }) => {
+	const dispatch = useDispatch();
+
 	const [buttonPressed, setButtonPressed] = useState(false);
 
 	const onPress_ = () => setButtonPressed(!buttonPressed);
 
 	useEffect(() => {
 		if (buttonPressed) {
-			onPress();
+			if (!noPressEffect) {
+				onPress();
+			} else {
+				activateSmallGlitch(dispatch);
+			}
+
 			tick(() => setButtonPressed(false), NUMBERS.RESET_PRESS_DURATION);
 		}
 	}, [buttonPressed, onPress]);
@@ -119,6 +130,7 @@ AppIcon.propTypes = {
 	notifsLeft: PropTypes.bool,
 	size: PropTypes.number,
 	onPress: PropTypes.func,
+	noPressEffect: PropTypes.bool,
 	noBlink: PropTypes.bool,
 	withSpacing: PropTypes.bool,
 	additionalStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
@@ -131,6 +143,7 @@ AppIcon.defaultProps = {
 	notifsLeft: false,
 	size: 45,
 	onPress: () => {},
+	noPressEffect: false,
 	noBlink: false,
 	withSpacing: false,
 	additionalStyle: null,

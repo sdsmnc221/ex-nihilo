@@ -4,7 +4,12 @@ import {
 	GAME_UNLOCK_APP,
 	GAME_UNLOCK_ALBUM,
 	GAME_UNLOCK_EMAIL,
+	GAME_ACTIVATE_SMALL_GLITCH,
+	GAME_ACTIVATE_BIG_GLITCH,
+	GAME_RESET_GLITCH,
 } from 'states/actionTypes';
+
+import { NUMBERS } from 'configs';
 
 function game(state = initialStates.game, action) {
 	switch (action.type) {
@@ -27,6 +32,23 @@ function game(state = initialStates.game, action) {
 			return {
 				...state,
 				UNLOCK_EMAIL: true,
+			};
+		case GAME_ACTIVATE_SMALL_GLITCH:
+			return {
+				...state,
+				glitchEnabled: true,
+				glitchAmount: NUMBERS.GLITCH_XS,
+			};
+		case GAME_ACTIVATE_BIG_GLITCH:
+			return {
+				...state,
+				glitchEnabled: true,
+				glitchAmount: NUMBERS.GLITCH_XL,
+			};
+		case GAME_RESET_GLITCH:
+			return {
+				...state,
+				glitchEnabled: false,
 			};
 		default:
 			return state;

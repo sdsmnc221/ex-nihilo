@@ -91,6 +91,10 @@ const STRINGS = {
 			{ label: 'appels', secondary: 250, secondarySuffix: ' chaque mois' },
 		],
 	},
+	DATAVIZ_EVENT_TYPES: {
+		REACT_NATIVE_INFO: 'update_REACT_NATIVE_INFO',
+		SET_ACTIVE_TYPE: 'set_ACTIVE_TYPE',
+	},
 	ICON_PRESSED: '_PRESSED',
 	ARROW: {
 		UP: 'ARROW_UP',

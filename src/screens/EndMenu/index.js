@@ -1,12 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Text, View, Image } from 'react-native';
-
-import DATAVIZ_PLACEHOLDER from 'assets/images/Dataviz-EndMenuScreen.png';
+import { Text, View } from 'react-native';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import FlatButton from 'sharedUI/Button/FlatButton';
-import { SCREENS } from '../../configs';
+import Dataviz from 'screens/Dataviz/components/Dataviz';
+
+import { SCREENS, SIZES } from 'configs';
 
 const Title = styled.Text`
 	margin: 32px 0;
@@ -15,6 +15,7 @@ const Title = styled.Text`
 `;
 
 const EndMenuScreen = ({ route, navigation }) => {
+	const { w, h } = SIZES.DATAVIZ;
 	const onPress = (screen) => navigation.navigate(screen);
 
 	const MENU = [
@@ -34,16 +35,7 @@ const EndMenuScreen = ({ route, navigation }) => {
 
 	return (
 		<LayoutWrapper screenName={route.name}>
-			<Image
-				css={`
-					${css`
-						width: 240px;
-						height: 240px;
-					`}
-				`}
-				source={DATAVIZ_PLACEHOLDER}
-				resizeMode="contain"
-			/>
+			<Dataviz width={w} height={h} />
 			<Title>Menu</Title>
 			{MENU.map((button, index) => (
 				<FlatButton

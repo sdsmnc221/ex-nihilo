@@ -1,6 +1,4 @@
-import React, { useRef } from 'react';
-import PropTypes from 'prop-types';
-import styled, { css, withTheme } from 'styled-components';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 import WebScreen from 'sharedUI/WebScreen';
@@ -70,15 +68,11 @@ const Dataviz = ({ ...webScreenprops }) => {
 	return (
 		<WebScreen
 			url={URL_DATAVIZ}
-			injectedJavaScript={runScript}
+			// injectedJavaScript={runScript}
 			injectJS={run}
 			{...webScreenprops}
 		/>
 	);
 };
 
-Dataviz.propTypes = {};
-
-Dataviz.defaultProps = {};
-
-export default withTheme(Dataviz);
+export default Dataviz;

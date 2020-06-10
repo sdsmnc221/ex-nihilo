@@ -10,6 +10,10 @@ export default {
 			font-family: ${sourceSans.regular};
 			font-size: ${sizes.body};
 		`,
+		bodyBold: css`
+			font-family: ${sourceSans.bold};
+			font-size: ${sizes.body};
+		`,
 		body_alt: css`
 			font-family: ${cairo.light};
 			font-size: ${sizes.body};

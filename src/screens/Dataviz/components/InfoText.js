@@ -1,7 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
-import { View, Text } from 'react-native-animatable';
+import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { View, Text } from 'react-native';
+
+import { STRINGS } from 'configs';
+
+const { DATAVIZ_TAB_TEXT, DATAVIZ_TAB_BAR } = STRINGS;
+
+const {
+	nullText,
+	primaryInfoStart,
+	primaryInfoEnd,
+	secondaryInfoStart,
+	secondaryInfoEnd,
+} = DATAVIZ_TAB_TEXT;
 
 const Wrapper = styled.View`
 	padding: 0 10%;
@@ -15,19 +27,48 @@ const StyledText = styled.Text`
 	${({ theme }) => theme.styles.os.body}
 `;
 
-const InfoText = ({ theme }) => {
+const StyledTextBold = styled.Text`
+	color: ${({ colorKey, theme }) => theme.colors[colorKey || 'white']};
+	letter-spacing: 0.54px;
+	line-height: 20px;
+	${({ theme }) => theme.styles.os.bodyBold}
+`;
+
+const InfoText = () => {
+	const { tabIndex } = useSelector((state) => state.dataviz);
+	const { sms, gallery, contacts, calls } = useSelector(
+		(state) => state.deviceData
+	);
+
+	const deviceInfo = [
+		(sms && sms.count) || 0,
+		(gallery && gallery.count) || 0,
+		(contacts && contacts.length) || 0,
+		(calls && calls.length) || 0,
+	];
+
+	const textContent = DATAVIZ_TAB_TEXT.info[tabIndex];
+
 	return (
 		<Wrapper>
-			<StyledText>
-				Nous avons accès à 1200 photos sur votre téléphone. En moyenne un
-				utilisateur stock 2300 SMS sur leur téléphone.
-			</StyledText>
+			{!textContent ? (
+				<StyledText>{nullText}</StyledText>
+			) : (
+				<StyledText>
+					{primaryInfoStart}
+					<StyledTextBold colorKey={DATAVIZ_TAB_BAR[tabIndex].color}>{`${
+						deviceInfo[tabIndex]
+					} ${textContent.label}`}</StyledTextBold>
+					{primaryInfoEnd}
+					{secondaryInfoStart}
+					<StyledTextBold>{`${textContent.secondary} ${
+						textContent.label
+					}${textContent.secondarySuffix || ''}`}</StyledTextBold>
+					{secondaryInfoEnd}
+				</StyledText>
+			)}
 		</Wrapper>
 	);
 };
 
-InfoText.propTypes = {};
-
-InfoText.defaultProps = {};
-
-export default withTheme(InfoText);
+export default InfoText;

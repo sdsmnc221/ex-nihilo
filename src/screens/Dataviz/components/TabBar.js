@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { View, Text } from 'react-native-animatable';
-
+import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import { setTabIndex } from 'states/actions/datavizAction';
+
 import { SIZES, STRINGS } from 'configs';
-import { setTabIndex } from '../../../states/actions/datavizAction';
 
 const { DATAVIZ_TAB_BAR: TAB_BAR_SIZE } = SIZES;
 const { DATAVIZ_TAB_BAR: TAB_BAR_CONTENT } = STRINGS;

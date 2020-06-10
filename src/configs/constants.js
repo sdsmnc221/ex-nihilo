@@ -78,15 +78,17 @@ const STRINGS = {
 		{ label: 'Appels', color: 'electricIndigo' },
 	],
 	DATAVIZ_TAB_TEXT: {
+		nullText:
+			'Grâce à vos permissions, nous avons accès à plusieurs de vos données personnelles, parmi lesquelles voici 4 catégories particulières.\nCliquez sur chaque catégorie pour la découvrir.',
 		primaryInfoStart: 'Nous avons accès à ',
-		primaryInfoEnd: ' sur votre téléphone.',
-		secondaryInfoStart: ' En moyenne un utilisateur stock ',
+		primaryInfoEnd: ' sur votre téléphone. ',
+		secondaryInfoStart: 'En moyenne un utilisateur stock ',
 		secondaryInfoEnd: ' sur leur téléphone.',
 		info: [
-			{ label: 'SMS', secondary: 3339, secondarySuffix: 'chaque mois ' },
+			{ label: 'SMS', secondary: 3339, secondarySuffix: ' chaque mois' },
 			{ label: 'photos', secondary: 630 },
 			{ label: 'contacts', secondary: 611 },
-			{ label: 'appels', secondary: 3000, secondarySuffix: 'chaque année ' },
+			{ label: 'appels', secondary: 250, secondarySuffix: ' chaque mois' },
 		],
 	},
 	ICON_PRESSED: '_PRESSED',

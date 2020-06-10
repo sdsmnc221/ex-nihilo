@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, withTheme } from 'styled-components';
-
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import StyledIcon from 'sharedUI/Icon/StyledIcon';

@@ -83,4 +83,7 @@ export default {
 		UNLOCK_EMAIL: false,
 		changesCount: 0,
 	},
+	dataviz: {
+		tabIndex: null,
+	},
 };

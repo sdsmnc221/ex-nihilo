@@ -1,10 +1,13 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, withTheme } from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { useFocusEffect } from '@react-navigation/native';
 
 import WebScreen from 'sharedUI/WebScreen';
 
 import { URL_DATAVIZ } from 'configs';
+import { resetTabIndex } from '../../../states/actions/datavizAction';
 
 const Dataviz = ({ ...webScreenprops }) => {
 	const runScript = `
@@ -17,6 +20,14 @@ const Dataviz = ({ ...webScreenprops }) => {
 		console.log(webView);
 		webView && webView.injectJavaScript(runScript);
 	};
+
+	const dispatch = useDispatch();
+
+	useFocusEffect(() => {
+		return () => {
+			resetTabIndex(dispatch);
+		};
+	}, []);
 
 	return (
 		<WebScreen

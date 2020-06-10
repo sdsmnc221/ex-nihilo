@@ -142,7 +142,7 @@
         "type": "BREAKPOINT",
         "text": null,
         "choices": [],
-        "delayMinutes": 0.5,
+        "delayMinutes": 0.25,
         "nextID": 16
     },
     {
@@ -179,7 +179,7 @@
         "type": "BREAKPOINT",
         "text": null,
         "choices": [],
-        "delayMinutes": 0.5,
+        "delayMinutes": 0.25,
         "nextID": 20
     },
     {
@@ -216,7 +216,7 @@
         "type": "BREAKPOINT",
         "text": null,
         "choices": [],
-        "delayMinutes": 0.5,
+        "delayMinutes": 0.25,
         "nextID": 24
     },
     {
@@ -275,7 +275,7 @@
         "type": "BREAKPOINT",
         "text": null,
         "choices": [],
-        "delayMinutes": 0.5,
+        "delayMinutes": 0.25,
         "nextID": 31
     },
     {
@@ -291,7 +291,7 @@
         "text": null,
         "choices": [],
         "condition": "UNLOCK_EMAIL",
-        "nextID": 33
+        "nextID": 43
     },
     {
         "ID": 33,
@@ -389,7 +389,22 @@
         "type": "BREAKPOINT",
         "text": null,
         "choices": [],
-        "delayMinutes": 0.1,
+        "delayMinutes": 0.25,
         "nextID": 25
     },
+    {
+        "ID": 43,
+        "type": "MESSAGE_AFTER_BREAKPOINT_NO_CHOICE",
+        "text": "Super ! Continue d'examiner les mails 💖 💖 💖 ",
+        "choices": [],
+        "nextID": 44
+    },
+    {
+        "ID": 44,
+        "type": "BREAKPOINT",
+        "text": null,
+        "choices": [],
+        "delayMinutes": 0.5,
+        "nextID": 33
+    }
 ]

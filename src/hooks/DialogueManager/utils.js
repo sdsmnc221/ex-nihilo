@@ -37,6 +37,7 @@ const isInputAction = ({ action }) => action === INPUT;
 const isNeedToTrigger = ({ type }) => type === BREAKPOINT_TRIGGER;
 
 const isSafeToAddScript = ({ text, type }, dialogueLog) =>
+	text &&
 	text !== last(dialogueLog).text &&
 	(type !== INPUT && type !== BREAKPOINT && type !== BREAKPOINT_TRIGGER);
 

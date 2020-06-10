@@ -15,10 +15,11 @@ const JanusScreen = ({ route, navigation, theme }) => (
 			fullscreen
 			css={theme.styles.janusVoice}
 			onEnd={() =>
-				setTimeout(
-					() => navigation.navigate(SCREENS.END_MENU),
-					NUMBERS.END_MENU_APPEARS_DELAY
-				)
+				// setTimeout(
+				// 	() => navigation.navigate(SCREENS.END_MENU),
+				// 	NUMBERS.END_MENU_APPEARS_DELAY
+				// )
+				navigation.navigate(SCREENS.END_MENU)
 			}
 		/>
 	</LayoutWrapper>

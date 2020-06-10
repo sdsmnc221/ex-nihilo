@@ -51,7 +51,13 @@ const SmsConversationScreen = ({ route, theme }) => {
 						data={sms?.data}
 						withAvatar={sms.withAvatar}
 						isUser={sms.isUser}
-						withSpacing={sms.withAvatar && section.data[index + 1]?.isUser}
+						withSpacing={
+							sms.withAvatar &&
+							(index === 0 ||
+								section.data[index - 1]?.withAvatar ||
+								section.data[index - 1]?.isUser ||
+								section.data[index + 1]?.isUser)
+						}
 					/>
 				)}
 				ListHeaderComponent={<Unscrollable />}

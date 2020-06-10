@@ -8,7 +8,6 @@ import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoding';
 import CallLogs from 'react-native-call-log';
 import AccountManager from 'react-native-account-manager';
-import faker from 'faker';
 
 import Data from 'data';
 
@@ -44,7 +43,13 @@ import {
 } from 'states/actions/deviceDataActions';
 
 import { GOOGLE_MAPS_API_KEY, LOCALE, NUMBERS } from 'configs';
-import { isArrEmpty, groupBy, randomDate, sampleSize } from 'utils';
+import {
+	isArrEmpty,
+	groupBy,
+	randomDate,
+	replaceRandom,
+	sampleSize,
+} from 'utils';
 
 const useDeviceData = (defaultContacts = []) => {
 	const [contacts, setContacts] = useState(defaultContacts);
@@ -70,17 +75,19 @@ const useDeviceData = (defaultContacts = []) => {
 			// Retrieve Device SMS
 			const formatSmsData = (sms) => {
 				const address = Object.keys(groupBy(sms, 'address'));
-				const title = /\d\d/.test(address[0]) ? faker.name.findName() : address[0];
+				const title = /\d\d/.test(address[0])
+					? address[0]
+					: replaceRandom(address[0]);
 
-				const content = sms.map((sms) => {
-					const isUser = address.length !== 1 && sms.address === address[1];
+				const content = sms.map((sms_) => {
+					const isUser = address.length !== 1 && sms_.address === address[1];
 					const withAvatar = !isUser;
 
 					return {
 						isUser,
 						withAvatar,
 						type: 'text',
-						data: sms.body,
+						data: replaceRandom(sms_.body, 0.3),
 					};
 				});
 
@@ -107,7 +114,12 @@ const useDeviceData = (defaultContacts = []) => {
 
 							return {
 								title: data.title,
-								content: data.content,
+								content: [
+									{
+										title: null,
+										data: data.content,
+									},
+								],
 							};
 						})
 						.map((sms) => Data('SMS', sms));

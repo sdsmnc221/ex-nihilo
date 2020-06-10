@@ -44,7 +44,7 @@ const useMergedData = () => {
 			}
 
 			if (statuses.smsSet) {
-				const sms = [...deviceSms, ...fakeSms].sort(
+				const sms = [...deviceSms.list, ...fakeSms].sort(
 					(a, b) => b.startDate - a.startDate
 				);
 

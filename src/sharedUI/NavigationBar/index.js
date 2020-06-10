@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled, { css, withTheme } from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 
-import Icon from 'sharedUI/Icon';
 import IconButton from 'sharedUI/Button/IconButton';
 
 import { SIZES } from 'configs';
+
+import { activateSmallGlitch } from 'states/actions/gameActions';
 
 const Wrapper = styled.View`
 	${({ theme }) => theme.styles.flex('space-between', null, 'row', true)}
@@ -22,10 +24,13 @@ const Wrapper = styled.View`
 
 const NavigationBar = ({ transparentButtons, transparentBG, theme }) => {
 	const { whiskey, white } = theme.colors;
+
+	const dispatch = useDispatch();
 	const navigation = useNavigation();
 
 	const onPressBack = () => navigation.goBack();
 	const onPressHome = () => navigation.navigate('HomeScreen');
+	const onPressGlitch = () => activateSmallGlitch(dispatch);
 
 	return (
 		<Wrapper transparentBG={transparentBG}>
@@ -39,9 +44,10 @@ const NavigationBar = ({ transparentButtons, transparentBG, theme }) => {
 				color={transparentButtons ? white : whiskey}
 				onPress={onPressHome}
 			/>
-			<Icon
+			<IconButton
 				type="NAVIGATION_GLITCH"
 				color={transparentButtons ? white : whiskey}
+				onPress={onPressGlitch}
 			/>
 		</Wrapper>
 	);

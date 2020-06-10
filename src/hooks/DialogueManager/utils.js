@@ -6,6 +6,7 @@ import { STORY_TYPES } from './configs';
 const {
 	BREAKPOINT,
 	BREAKPOINT_TRIGGER,
+	BUG,
 	END,
 	INPUT,
 	MESSAGE_AFTER_BREAKPOINT,
@@ -26,6 +27,8 @@ const doTriggerNotification = ({ type }) =>
 	[MESSAGE_AFTER_BREAKPOINT, MESSAGE_AFTER_BREAKPOINT_NO_CHOICE].includes(type);
 
 const isBreakpoint = ({ type }) => type === BREAKPOINT;
+
+const isBugging = ({ type }) => (type = BUG);
 
 const isEnding = ({ type }) => type === END;
 
@@ -55,6 +58,7 @@ export {
 	doTriggerNotification,
 	findScript,
 	isBreakpoint,
+	isBugging,
 	isEnding,
 	isInputAction,
 	isNeedToTrigger,

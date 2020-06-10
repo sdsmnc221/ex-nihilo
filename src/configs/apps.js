@@ -21,6 +21,7 @@ const ALL_APPS = [
 	{ label: 'Paramètres' },
 	{ label: 'Fichiers' },
 	{ label: 'ES', screen: SCREENS.END_MENU },
+	{ label: 'JANUS', screen: SCREENS.JANUS },
 ];
 
 const HOME_APPS = [

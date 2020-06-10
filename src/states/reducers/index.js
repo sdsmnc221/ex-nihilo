@@ -6,6 +6,7 @@ import fakeData from './fakeData';
 import mergedData from './mergedData';
 import story from './story';
 import game from './game';
+import dataviz from './dataviz';
 
 const appReducer = combineReducers({
 	permissions,
@@ -14,6 +15,7 @@ const appReducer = combineReducers({
 	mergedData,
 	story,
 	game,
+	dataviz,
 });
 
 const rootReducer = (state, action) => appReducer(state, action);

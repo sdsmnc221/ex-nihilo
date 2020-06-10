@@ -40,6 +40,13 @@ export default {
 		border: 1px solid ${borderColor || colors.white};
 		background-color: ${bodyColor || colors.ghostWhite};
 	`,
+	janusVoice: css`
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	`,
 	styleSheet: StyleSheet.create({
 		scrollBodyEmail: {
 			width: '100%',
@@ -48,8 +55,8 @@ export default {
 		fullFlex: {
 			flex: 1,
 		},
-		flipX: {
-			transform: [{ scaleX: -1 }],
+		flip: {
+			transform: [{ scaleX: -1 }, { scaleY: -1 }],
 		},
 		modal: {
 			flex: 1,

@@ -26,6 +26,7 @@ const SCREENS = {
 	DATAVIZ: ' DatavizScreen',
 	DATA_PROTECTION: 'DataProtectionScreen',
 	ABOUT_US: 'AboutUsScreen',
+	JANUS: 'JanusScreen',
 };
 
 const getBodyColor = (screen) => {
@@ -38,6 +39,7 @@ const getBodyColor = (screen) => {
 		case SCREENS.DATAVIZ:
 		case SCREENS.DATA_PROTECTION:
 		case SCREENS.ABOUT_US:
+		case SCREENS.JANUS:
 			bodyColor = black;
 			break;
 		case SCREENS.WARNING:

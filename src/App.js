@@ -42,6 +42,7 @@ import EndMenuScreen from 'screens/EndMenu';
 import DatavizScreen from 'screens/Dataviz';
 import DataProtectionScreen from 'screens/DataProtection';
 import AboutUsScreen from 'screens/AboutUs';
+import JanusScreen from 'screens/Janus';
 
 import Notification from 'sharedUI/Notification';
 
@@ -188,6 +189,11 @@ const App = () => {
 								<Stack.Screen
 									name={SCREENS.ABOUT_US}
 									component={AboutUsScreen}
+									options={headerOptions}
+								/>
+								<Stack.Screen
+									name={SCREENS.JANUS}
+									component={JanusScreen}
 									options={headerOptions}
 								/>
 							</Stack.Navigator>

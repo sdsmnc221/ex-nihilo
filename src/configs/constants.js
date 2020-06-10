@@ -11,8 +11,12 @@ const NUMBERS = {
 	DEVICE_SMS: 12,
 	RESET_PRESS_DURATION: 120,
 	RESET_PRESS_DURATION_ALBUM: 12,
+	GLITCH_INTERVAL: 120,
+	GLITCH_XS: 2,
+	GLITCH_XL: 10,
 	JANUS_SMS_DELAY: 12,
 	JANUS_APPEARS_DELAY_MINUTES: 0.5,
+	END_MENU_APPEARS_DELAY: 640,
 };
 
 const APP_ICON = {
@@ -50,7 +54,9 @@ const SIZES = {
 	DATAVIZ: {
 		W: deviceW,
 		H: deviceH * 0.68,
-		H_SHRINK: deviceH * 0.48,
+		H_SHRINK: deviceH * 0.56,
+		w: deviceW * 0.8,
+		h: deviceH * 0.4,
 	},
 	DATAVIZ_TAB_BAR: {
 		W: deviceW * 0.9,
@@ -78,16 +84,22 @@ const STRINGS = {
 		{ label: 'Appels', color: 'electricIndigo' },
 	],
 	DATAVIZ_TAB_TEXT: {
+		nullText:
+			'Grâce à vos permissions, nous avons accès à plusieurs de vos données personnelles, parmi lesquelles voici 4 catégories particulières.\nCliquez sur chaque catégorie pour la découvrir.',
 		primaryInfoStart: 'Nous avons accès à ',
-		primaryInfoEnd: ' sur votre téléphone.',
-		secondaryInfoStart: ' En moyenne un utilisateur stock ',
+		primaryInfoEnd: ' sur votre téléphone. ',
+		secondaryInfoStart: 'En moyenne un utilisateur stock ',
 		secondaryInfoEnd: ' sur leur téléphone.',
 		info: [
-			{ label: 'SMS', secondary: 3339, secondarySuffix: 'chaque mois ' },
+			{ label: 'SMS', secondary: 3339, secondarySuffix: ' chaque mois' },
 			{ label: 'photos', secondary: 630 },
 			{ label: 'contacts', secondary: 611 },
-			{ label: 'appels', secondary: 3000, secondarySuffix: 'chaque année ' },
+			{ label: 'appels', secondary: 250, secondarySuffix: ' chaque mois' },
 		],
+	},
+	DATAVIZ_EVENT_TYPES: {
+		REACT_NATIVE_INFO: 'update_REACT_NATIVE_INFO',
+		SET_ACTIVE_TYPE: 'set_ACTIVE_TYPE',
 	},
 	ICON_PRESSED: '_PRESSED',
 	ARROW: {
@@ -95,6 +107,7 @@ const STRINGS = {
 		DOWN: 'ARROW_DOWN',
 	},
 	EMAIL_CONTENT_TYPES,
+	JANUS_VOICE: () => require('../assets/sound/JANUS_VOICE.mp4'),
 };
 
 export { APP_ICON, FLEX, NUMBERS, SIZES, STRINGS };

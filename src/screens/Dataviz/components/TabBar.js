@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
-import { View, Text } from 'react-native-animatable';
-
+import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+
+import { setTabIndex } from 'states/actions/datavizAction';
 
 import { SIZES, STRINGS } from 'configs';
 
@@ -23,20 +24,30 @@ const Wrapper = styled.View`
 const Button = styled.TouchableOpacity`
 	width: ${100 / TAB_BAR_CONTENT.length}%;
 	height: 100%;
-	background-color: transparent;
+	border-radius: 50px;
+	background-color: ${({ active, colorKey, theme }) =>
+		active ? theme.colors[colorKey] : 'transparent'};
 	${({ theme }) => theme.styles.flexWithoutSize()};
 `;
 
 const ButtonText = styled.Text`
-	color: ${({ theme }) => theme.colors.dimGray};
+	color: ${({ active, theme }) =>
+		active ? theme.colors.white : theme.colors.dimGray};
 	letter-spacing: 0.27px;
 	${({ theme }) => theme.styles.dataviz.tab}
 `;
 
-const TabBar = ({ theme }) => {
+const TabBar = () => {
+	const dispatch = useDispatch();
+
+	const { tabIndex } = useSelector((state) => state.dataviz);
+
 	const [buttonPressed, setButtonPressed] = useState(false);
 
-	const onPress = () => setButtonPressed(!buttonPressed);
+	const onPress = (index) => {
+		setButtonPressed(!buttonPressed);
+		setTabIndex(dispatch, index);
+	};
 
 	useEffect(() => {
 		if (buttonPressed) {
@@ -47,16 +58,17 @@ const TabBar = ({ theme }) => {
 	return (
 		<Wrapper>
 			{TAB_BAR_CONTENT.map((tab, i) => (
-				<Button key={i} activeOpacity={0.8}>
-					<ButtonText>{tab.label}</ButtonText>
+				<Button
+					key={i}
+					onPress={() => onPress(i)}
+					activeOpacity={0.8}
+					active={i === tabIndex}
+					colorKey={tab.color}>
+					<ButtonText active={i === tabIndex}>{tab.label}</ButtonText>
 				</Button>
 			))}
 		</Wrapper>
 	);
 };
 
-TabBar.propTypes = {};
-
-TabBar.defaultProps = {};
-
-export default withTheme(TabBar);
+export default TabBar;

@@ -91,6 +91,8 @@ target 'ex_nihilo' do
 
   pod 'RNColorMatrixImageFilters', :path => '../node_modules/react-native-color-matrix-image-filters'
 
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
   target 'ex_nihiloTests' do
     inherit! :complete
     # Pods for testing

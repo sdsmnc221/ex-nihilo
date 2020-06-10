@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, withTheme } from 'styled-components';
-
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import StyledIcon from 'sharedUI/Icon/StyledIcon';
@@ -16,7 +15,7 @@ const Button = styled.TouchableOpacity`
 	border: 1px solid ${({ theme }) => theme.colors.white};
 	background-color: ${({ active, theme }) =>
 		active ? theme.colors.white : theme.colors.black};
-    margin: 16px 0;
+    margin: 20px 0;
     align-self: center;
 	${({ theme }) => theme.styles.flexWithoutSize()}
 `;

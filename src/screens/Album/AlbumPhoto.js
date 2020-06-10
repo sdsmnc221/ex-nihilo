@@ -42,7 +42,7 @@ const AlbumPhotoScreen = ({ route, theme }) => {
 								width,
 								height,
 							},
-							theme.styles.styleSheet.flipX,
+							theme.styles.styleSheet.flip,
 						]}
 						source={source}
 						resizeMode="contain"

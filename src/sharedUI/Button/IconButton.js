@@ -44,7 +44,6 @@ IconButton.defaultProps = {
 	onPress: () => {},
 	noBlink: false,
 	pressOpacity: 0.8,
-
 	additionalStyle: null,
 };
 

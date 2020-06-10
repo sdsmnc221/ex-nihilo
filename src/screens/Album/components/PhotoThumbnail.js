@@ -44,7 +44,7 @@ const PhotoThumbnail = ({ isFakePhoto, size, source, onPress, theme }) => (
 							width: size,
 							height: size,
 						},
-						theme.styles.styleSheet.flipX,
+						theme.styles.styleSheet.flip,
 					]}
 					source={source}
 					blurRadius={0.4}

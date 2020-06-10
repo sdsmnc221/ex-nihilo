@@ -55,8 +55,8 @@ export default {
 		fullFlex: {
 			flex: 1,
 		},
-		flipX: {
-			transform: [{ scaleX: -1 }],
+		flip: {
+			transform: [{ scaleX: -1 }, { scaleY: -1 }],
 		},
 		modal: {
 			flex: 1,

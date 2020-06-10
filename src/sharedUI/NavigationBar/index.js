@@ -48,9 +48,6 @@ const NavigationBar = ({ transparentButtons, transparentBG, theme }) => {
 				type="NAVIGATION_GLITCH"
 				color={transparentButtons ? white : whiskey}
 				onPress={onPressGlitch}
-				additionalStyle={css`
-					top: -2px;
-				`}
 			/>
 		</Wrapper>
 	);

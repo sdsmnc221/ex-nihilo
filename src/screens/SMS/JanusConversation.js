@@ -76,7 +76,7 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 				activeScript.changeText(replaceWithUsername(activeScript.text, username));
 			}
 
-			const { text, type, choices } = activeScript;
+			const { text, type, smsActionType, choices } = activeScript;
 
 			isBugging(activeScript) && activateSmallGlitch(dispatch);
 
@@ -87,6 +87,7 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 					dispatch,
 					new DialogueMessage({
 						text,
+						smsActionType,
 					})
 				) &&
 				// Also update Janus last message back in the SMS List screen
@@ -145,7 +146,8 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 						withAvatar={!sms.isUser}
 						isUser={sms.isUser}
 						data={sms.text}
-						withSpacing
+						smsActionType={sms.smsActionType}
+						withSpacing={!sms.isUser}
 					/>
 				)}
 				ListFooterComponent={<FillGap height={36} />}

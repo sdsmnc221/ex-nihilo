@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
+import { useSafeArea } from 'react-native-safe-area-context';
 import { View, Keyboard } from 'react-native';
 
 import BG_HOMESCREEN from 'assets/images/BG-HomeScreen.png';
@@ -16,7 +17,7 @@ const { ICONS_TRAY_WIDTH, ICONS_TRAY_MARGE } = APP_ICON;
 
 const Icons = styled.View`
 	position: absolute;
-	bottom: 64px;
+	bottom: ${({ notFullScreenDisplay }) => (notFullScreenDisplay ? 32 : 64)}px;
 	width: ${ICONS_TRAY_WIDTH}%;
 	padding: ${ICONS_TRAY_MARGE}px;
 	border-radius: 50px;
@@ -25,6 +26,8 @@ const Icons = styled.View`
 `;
 
 const HomeScreen = ({ route, navigation, theme }) => {
+	const insets = useSafeArea();
+
 	Keyboard.dismiss();
 
 	const iconSize = getIconSize();
@@ -41,7 +44,7 @@ const HomeScreen = ({ route, navigation, theme }) => {
 			/>
 
 			<Clock />
-			<Icons>
+			<Icons notFullScreenDisplay={!!insets.bottom}>
 				{HOME_APPS.map((app, index) => (
 					<AppIcon
 						key={index}

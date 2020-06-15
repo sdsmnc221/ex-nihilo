@@ -7,16 +7,14 @@ import { FLEX } from './constants';
 
 const { colors } = theme;
 const { JUSTIFY_CONTENT, ALIGN_ITEMS, FLEX_DIRECTION } = FLEX;
-const { width, height, navigationBarHeight, realHeight } = device();
 
 export default {
 	safeAreaView: (gapForStatusBar, backgroundColor) => css`
 		background-color: ${backgroundColor || 'transparent'};
 		padding-top: ${gapForStatusBar ? 30 : 0}px;
 		position: relative;
-		width: ${width}px;
+		width: ${device().width}px;
 		flex: 1;
-		/* height: ${realHeight}px; */
 	`,
 	body: (backgroundColor, justifyContent, alignItems) =>
 		css`

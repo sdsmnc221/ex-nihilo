@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { withTheme, css } from 'styled-components';
+import { withTheme } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+import { useSafeArea } from 'react-native-safe-area-context';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -18,6 +19,8 @@ import { NUMBERS } from 'configs';
 import { resetGlitch } from 'states/actions/gameActions';
 
 const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
+	const insets = useSafeArea();
+
 	const {
 		navigationBar,
 		navigationBarConfigs,
@@ -79,7 +82,7 @@ const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
 				`}>
 				{header && <Header {...headerConfigs} />}
 				{children}
-				{hasFillGap && <FillGap />}
+				{!insets.bottom && hasFillGap && <FillGap />}
 			</View>
 			{navigationBar && <NavigationBar {...navigationBarConfigs} />}
 			{statusBar && <StatusBar {...statusBarConfigs} />}

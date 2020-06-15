@@ -1,66 +1,152 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Text } from 'react-native';
-import styled from 'styled-components';
+import styled, { css, withTheme } from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { NeuView } from 'utils/react-native-neu-element';
 
 import Icon from 'sharedUI/Icon';
 
-const Wrapper = styled.TouchableOpacity`
+import { tick } from 'utils';
+import { NUMBERS, STRINGS } from 'configs/constants';
+
+import { activateSmallGlitch } from 'states/actions/gameActions';
+
+const styledWrapper = css`
 	position: relative;
-	background-color: #e8e8e8;
 	width: ${({ size }) => size}px;
 	height: ${({ size }) => size}px;
 	border-radius: ${({ size }) => size}px;
-	margin: 0 6px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	margin: ${({ withSpacing }) => (withSpacing ? '0 6px' : 0)};
+	${({ theme }) => theme.styles.flexWithoutSize()}
+`;
+
+const Wrapper = styled.View`
+	${styledWrapper}
+`;
+
+const TouchableWrapper = styled.TouchableOpacity`
+	${styledWrapper}
 `;
 
 const NotifsCount = styled.Text`
-	color: #c4c4c4;
-	background-color: #565656;
-	font-size: 11px;
-	width: 18px;
-	height: 18px;
-	border-radius: 18px;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
 	position: absolute;
-	right: 0;
-	top: 0;
+	${({ notifsLeft }) =>
+		notifsLeft
+			? css`
+					left: -6px;
+					top: 0;
+			  `
+			: css`
+					right: -4px;
+					top: -4px;
+			  `}
 	text-align: center;
+	line-height: 22px;
+	background-color: ${({ theme }) => theme.colors.slateBlue};
+	color: ${({ theme }) => theme.colors.white};
+	${({ theme }) => theme.styles.os.notifsCount}
+	${({ theme }) => theme.styles.flexWithoutSize()}
 `;
 
 const Label = styled.Text`
-	text-align: center;
-	font-size: 11px;
-	color: #000;
+	width: 200%;
 	position: absolute;
 	bottom: -24px;
+	text-align: center;
+	letter-spacing: 0.19px;
+	${({ theme }) => theme.styles.os.subtitle};
+	color: ${({ theme }) => theme.colors.charcoal};
 `;
 
-const AppIcon = ({ type, label, notifs, size, onPress }) => (
-	<Wrapper size={size} onPress={onPress}>
-		{notifs > 0 && <NotifsCount>{notifs}</NotifsCount>}
-		{type && <Icon type={type} />}
-		{label && <Label>{label}</Label>}
-	</Wrapper>
-);
+const AppIcon = ({
+	type,
+	label,
+	notifs,
+	notifsLeft,
+	size,
+	onPress,
+	noPressEffect,
+	noBlink,
+	withSpacing,
+	additionalStyle,
+	theme,
+	...neuViewProps
+}) => {
+	const dispatch = useDispatch();
+
+	const [buttonPressed, setButtonPressed] = useState(false);
+
+	const onPress_ = () => setButtonPressed(!buttonPressed);
+
+	useEffect(() => {
+		if (buttonPressed) {
+			if (!noPressEffect) {
+				onPress();
+			} else {
+				activateSmallGlitch(dispatch);
+			}
+
+			tick(() => setButtonPressed(false), NUMBERS.RESET_PRESS_DURATION);
+		}
+	}, [buttonPressed, onPress]);
+
+	return (
+		<Wrapper size={size} withSpacing={withSpacing} css={additionalStyle}>
+			<NeuView
+				color={theme.colors.ghostWhite}
+				height={size}
+				width={size}
+				borderRadius={size}
+				style={theme.shadows.default}
+				inset={noBlink ? false : buttonPressed}
+				{...theme.shadows.appIcon}
+				{...neuViewProps}>
+				<TouchableWrapper
+					size={size}
+					onPress={onPress_}
+					activeOpacity={noBlink ? 1.0 : 0.8}>
+					{notifs > 0 && <NotifsCount notifsLeft={notifsLeft}>{notifs}</NotifsCount>}
+					{type && (
+						<Icon
+							type={type + (!noBlink && buttonPressed ? STRINGS.ICON_PRESSED : '')}
+						/>
+					)}
+					{label && <Label>{label}</Label>}
+				</TouchableWrapper>
+			</NeuView>
+		</Wrapper>
+	);
+};
 
 AppIcon.propTypes = {
 	type: PropTypes.string,
 	label: PropTypes.string,
 	notifs: PropTypes.number,
+	notifsLeft: PropTypes.bool,
 	size: PropTypes.number,
 	onPress: PropTypes.func,
+	noPressEffect: PropTypes.bool,
+	noBlink: PropTypes.bool,
+	withSpacing: PropTypes.bool,
+	additionalStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };
 
 AppIcon.defaultProps = {
 	type: undefined,
 	label: undefined,
 	notifs: 0,
+	notifsLeft: false,
 	size: 45,
 	onPress: () => {},
+	noPressEffect: false,
+	noBlink: false,
+	withSpacing: false,
+	additionalStyle: null,
 };
 
-export default AppIcon;
+export default withTheme(AppIcon);

@@ -1,116 +1,118 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Text, StyleSheet } from 'react-native';
+import styled, { css, withTheme } from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { NeuView } from 'utils/react-native-neu-element';
 import Modal from 'react-native-modal';
-import styled from 'styled-components';
 
-import FlexView from 'sharedUI/FlexView';
-import Icon from 'sharedUI/Icon';
+import FlexDiv from 'sharedUI/FlexDiv';
+import AppIcon from 'sharedUI/AppIcon';
 
-import { truncate } from 'utils';
+import DialogueMessage from 'data/classes/DialogueMessage';
+
+import { device, tick, truncate } from 'utils';
+import { NUMBERS, SCREENS } from 'configs';
+import {
+	hideNotification,
+	repeatNotification,
+	updateDialogueLog,
+} from 'states/actions/storyActions';
+
+const WIDTH = device().width * 0.84;
 
 const Wrapper = styled.TouchableOpacity`
-	width: 92%;
-	height: 11.5%;
-	background-color: #c4c4c4;
-	margin: 12px;
-	padding: 12px 24px;
-	justify-content: center;
-	align-items: flex-start;
-`;
-
-const Type = styled.Text`
-	font-size: 10px;
-	margin-left: 12px;
+	${({ theme }) => theme.styles.flex(null, null, null, true)}
+	margin: 8% 0;
 `;
 
 const Date = styled.Text`
-	font-size: 9px;
+	top: -8px;
+	left: 8px;
+	color: ${({ theme }) => theme.colors.charcoal};
+	line-height: ${({ theme }) => theme.typo.sizesNb.subtitle}px;
+	letter-spacing: 0.19px;
+	${({ theme }) => theme.styles.os.subtitle};
 `;
 
 const Title = styled.Text`
-	font-size: 11px;
-	font-weight: bold;
-	margin-top: 8px;
 	margin-bottom: 4px;
+	color: ${({ isJanus, theme }) => theme.colors.slateBlue};
+	letter-spacing: 0.27px;
+	${({ theme }) => theme.styles.os.h3};
 `;
 
 const Message = styled.Text`
-	font-size: 11px;
+	color: ${({ theme }) => theme.colors.charcoal};
+	letter-spacing: 0.23px;
+	line-height: 15px;
+	${({ theme }) => theme.styles.os.body};
 `;
 
-const styles = StyleSheet.create({
-	modal: {
-		flex: 1,
-		margin: 0,
-		justifyContent: 'flex-start',
-		alignItems: 'center',
-	},
-	shadow: {
-		shadowColor: '#000',
-		shadowOffset: {
-			width: 0,
-			height: 3,
-		},
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
-		elevation: 6, // android
-	},
-});
+const Notification = ({ reappearDelay, navigationRef, theme }) => {
+	const dispatch = useDispatch();
 
-const Notification = ({
-	triggerDelay,
-	reappearDelay,
-	type,
-	iconType,
-	date,
-	title,
-	message,
-	onPress,
-}) => {
-	const [reappearEnabled, setReappearEnabled] = useState(false);
-	const [isVisible, setIsVisible] = useState(false);
-	const [isNotPressed, setIsNotPressed] = useState(true);
+	const { notification } = useSelector((state) => state.story);
+	const { shown, date, title, message, repeatCount } = notification;
+
+	const [reappearEnabled, setReappearEnabled] = useState(shown);
+	const [isVisible, setIsVisible] = useState(shown);
+	const [notifs, setNotifs] = useState(repeatCount);
 
 	let interval = useRef(null);
-	let timeout = useRef(null);
+
+	useEffect(() => {
+		setIsVisible(shown);
+		setReappearEnabled(shown);
+	}, [shown]);
+
+	useEffect(() => {
+		setNotifs(repeatCount);
+
+		if (repeatCount >= 1) {
+			updateDialogueLog(
+				dispatch,
+				new DialogueMessage({
+					text: message,
+				})
+			);
+		}
+	}, [repeatCount]);
 
 	/*
-	 * - if the notification appears for the first time, it will appear
-	 *   after a 'triggerDelay' amount of time (which is kinda long).
-	 *
 	 * - if the notification is turned off (by swiping), it will reappear
 	 *   every 'reappearDelay' amount of time (which is short),
 	 *   to remind the user to press on it and go check it out.
 	 */
 	useEffect(() => {
-		if (!reappearEnabled) {
-			interval.current = setTimeout(() => setIsVisible(true), triggerDelay);
-		} else {
-			clearTimeout(timeout.current);
+		if (reappearEnabled) {
 			interval.current = setInterval(() => setIsVisible(true), reappearDelay);
 		}
-	}, [reappearEnabled, triggerDelay, reappearDelay]);
+	}, [reappearEnabled, reappearDelay]);
 
 	const onSwipe = () => {
 		if (!reappearEnabled) {
 			setReappearEnabled(true);
 		}
 		setIsVisible(false);
+		repeatNotification(dispatch);
 	};
 
-	const switchScreen = () => {
+	const onPress = () => {
+		hideNotification(dispatch);
+		tick(
+			() => navigationRef.current?.navigate(SCREENS.SMS_JANUS),
+			NUMBERS.RESET_PRESS_DURATION
+		);
 		setIsVisible(false);
-		setIsNotPressed(false);
-		setTimeout(() => onPress(), 160);
 		clearInterval(interval.current);
 	};
 
 	return (
 		<Modal
 			isVisible={isVisible}
-			style={styles.modal}
+			style={theme.styles.styleSheet.modal}
 			hasBackdrop={false}
 			animationIn="slideInDown"
 			animationOut="slideOutUp"
@@ -119,43 +121,58 @@ const Notification = ({
 			useNativeDriver
 			swipeDirection={['left', 'right', 'up']}
 			onSwipeComplete={onSwipe}>
-			<Wrapper style={styles.shadow} activeOpacity={0.8} onPress={switchScreen}>
-				<FlexView dir="row" justify="space-between" fullWidth>
-					<FlexView dir="row">
-						<Icon type={iconType} width={15} height={15} />
-						<Type>{type}</Type>
-					</FlexView>
-					<Date>{date}</Date>
-				</FlexView>
-				<FlexView dir="column" align="flex-start" fullWidth>
-					<Title>{title}</Title>
-					<Message>{truncate(message, 64)}</Message>
-				</FlexView>
+			<Wrapper
+				onPress={onPress}
+				activeOpacity={0.8}
+				style={theme.shadows.notificationShadow}>
+				<NeuView
+					width={WIDTH}
+					height={92}
+					color={theme.colors.ghostWhite}
+					borderRadius={18}
+					{...theme.shadows.notification}>
+					<FlexDiv
+						direction="row"
+						justifyContent="flex-start"
+						fullWidth
+						additionalStyle={css`
+							padding: 20px;
+						`}>
+						<AppIcon
+							size={49}
+							type="PERSON"
+							noBlink
+							notifs={notifs}
+							notifsLeft
+							{...theme.shadows.softNeomorphism}
+						/>
+						<FlexDiv
+							alignItems="flex-start"
+							additionalStyle={css`
+								margin-left: 16px;
+								padding-right: 12px;
+								width: 80%;
+							`}>
+							<FlexDiv direction="row" justifyContent="space-between" fullWidth>
+								<Title>{title}</Title>
+								<Date>{date}</Date>
+							</FlexDiv>
+							<Message>{truncate(message, 60)}</Message>
+						</FlexDiv>
+					</FlexDiv>
+				</NeuView>
 			</Wrapper>
 		</Modal>
 	);
 };
 
 Notification.propTypes = {
-	triggerDelay: PropTypes.number,
 	reappearDelay: PropTypes.number,
-	type: PropTypes.string,
-	iconType: PropTypes.string,
-	date: PropTypes.string,
-	title: PropTypes.string,
-	message: PropTypes.string,
-	onPress: PropTypes.func,
+	navigationRef: PropTypes.object.isRequired,
 };
 
 Notification.defaultProps = {
-	triggerDelay: 20000,
 	reappearDelay: 4000,
-	type: 'Messages',
-	iconType: 'SMS',
-	date: "À l'instant",
-	title: 'Janus',
-	message: 'Bonjour toi !',
-	onPress: () => {},
 };
 
-export default Notification;
+export default withTheme(Notification);

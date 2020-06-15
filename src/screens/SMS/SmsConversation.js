@@ -1,112 +1,72 @@
 import React, { useRef } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
+import { Text, SectionList } from 'react-native';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
+import FillGap from 'sharedUI/FillGap';
 import SmsMessage from './components/SmsMessage';
 import SmsInput from './components/SmsInput';
+import Unscrollable from './components/Unscrollable';
 
-const SmsList = styled.ScrollView`
-	width: 100%;
-	background-color: #fff;
-`;
+import { last } from 'utils';
 
 const Date = styled.Text`
-	font-size: 10px;
-	color: #565656;
+	color: ${({ theme }) => theme.colors.charcoal};
+	font-family: ${({ theme }) => theme.fonts.sourceSans.regular};
+	font-size: 12px;
+	text-transform: uppercase;
 	text-align: center;
-	margin-top: 12px;
+	margin: 16px 0;
 `;
 
-const InputField = styled.View`
-	width: 100%;
-	margin-top: 12px;
-`;
-
-const SmsConversation = ({ route, navigation }) => {
-	const { headerTitle } = route.params;
-	navigation.setOptions({ headerTitle });
+const SmsConversationScreen = ({ route, theme }) => {
+	const { sms: SMS } = route.params;
+	const { title: headerTitle, content: smsList } = SMS;
 
 	const smsListRef = useRef(null);
 
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<SmsList
-					ref={smsListRef}
-					onContentSizeChange={() =>
-						smsListRef.current?.scrollToEnd({ animated: true })
-					}>
-					<SmsMessage message="Lorem ipsum dolor sit amet" />
-					<SmsMessage hasPlaceholder message="Lorem ipsum dolor sit amet" />
-
+		<LayoutWrapper screenName={route.name} headerTitle={headerTitle}>
+			<SectionList
+				ref={smsListRef}
+				css={`
+					${theme.styles.list}
+				`}
+				sections={smsList}
+				keyExtractor={(item, index) => index.toString()}
+				onScrollToIndexFailed={() => {}}
+				onContentSizeChange={() =>
+					smsListRef.current &&
+					smsListRef.current.scrollToLocation({
+						sectionIndex: smsList.length - 1,
+						itemIndex: last(smsList).data.length - 1,
+					})
+				}
+				renderSectionHeader={({ section: { title } }) =>
+					title ? <Date>{title}</Date> : null
+				}
+				renderItem={({ item: sms, index, section }) => (
 					<SmsMessage
-						isUser
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+						type={sms.type}
+						data={sms?.data}
+						withAvatar={sms.withAvatar}
+						isUser={sms.isUser}
+						withSpacing={
+							sms.withAvatar &&
+							(index === 0 ||
+								section.data[index - 1]?.withAvatar ||
+								section.data[index - 1]?.isUser ||
+								section.data[index + 1]?.isUser)
+						}
 					/>
-
-					<SmsMessage message="Lorem ipsum dolor sit amet" />
-					<SmsMessage
-						hasPlaceholder
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-					/>
-
-					<Date>10:42</Date>
-
-					<SmsMessage
-						isUser
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-					/>
-
-					<SmsMessage
-						hasPlaceholder
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-					/>
-
-					<Date>15:12</Date>
-
-					<SmsMessage
-						isUser
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-					/>
-
-					<SmsMessage
-						hasPlaceholder
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-					/>
-
-					<SmsMessage
-						hasPlaceholder
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-					/>
-					<SmsMessage
-						hasPlaceholder
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-					/>
-					<SmsMessage
-						hasPlaceholder
-						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non arcu lobortis, lobortis ipsum et, aliquet leo."
-					/>
-				</SmsList>
-				<InputField>
-					<SmsInput />
-				</InputField>
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+				)}
+				ListHeaderComponent={<Unscrollable />}
+				ListFooterComponent={<FillGap height={18} />}
+			/>
+			<SmsInput />
+			<FillGap />
+		</LayoutWrapper>
 	);
 };
 
-const styles = StyleSheet.create({
-	body: {
-		backgroundColor: '#fff',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-		alignItems: 'center',
-		paddingBottom: 40,
-	},
-});
-
-export default SmsConversation;
+export default withTheme(SmsConversationScreen);

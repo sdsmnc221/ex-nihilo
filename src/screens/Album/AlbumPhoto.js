@@ -1,31 +1,57 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { withTheme } from 'styled-components';
+import { Image } from 'react-native';
+import {
+	ColorMatrix,
+	concatColorMatrices,
+	saturate,
+	warm,
+	cool,
+	kodachrome,
+} from 'react-native-color-matrix-image-filters';
 
-import NavigationBar from 'sharedUI/NavigationBar';
-import Icon from 'sharedUI/Icon';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 
-const AlbumPhotoScreen = ({ route, navigation }) => {
-	console.log(route);
+import { device, random } from 'utils';
+
+const AlbumPhotoScreen = ({ route, theme }) => {
+	const { source, isFakePhoto } = route.params;
+	const { width, height } = device();
 
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<Icon type="PHOTO_XL" />
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+		<LayoutWrapper screenName={route.name}>
+			{isFakePhoto ? (
+				<Image
+					style={{
+						width,
+						height,
+					}}
+					source={source}
+					resizeMode="contain"
+				/>
+			) : (
+				<ColorMatrix
+					matrix={concatColorMatrices([
+						saturate(2.4),
+						random() ? warm() : cool(),
+						kodachrome(),
+					])}>
+					<Image
+						style={[
+							{
+								width,
+								height,
+							},
+							theme.styles.styleSheet.flip,
+						]}
+						source={source}
+						resizeMode="contain"
+						blurRadius={1.2}
+					/>
+				</ColorMatrix>
+			)}
+		</LayoutWrapper>
 	);
 };
 
-const styles = StyleSheet.create({
-	body: {
-		backgroundColor: '#c4c4c4',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-});
-
-export default AlbumPhotoScreen;
+export default withTheme(AlbumPhotoScreen);

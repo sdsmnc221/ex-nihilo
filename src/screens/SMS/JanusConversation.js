@@ -1,185 +1,165 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { HeaderBackButton } from '@react-navigation/stack';
-import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import React, { useRef, useEffect, useCallback } from 'react';
+import { withTheme } from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { FlatList } from 'react-native-gesture-handler';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
+import FillGap from 'sharedUI/FillGap';
 import SmsMessage from './components/SmsMessage';
-import AnswerChoice from './components/AnswerChoice';
-import SmsInput from './components/SmsInput';
+import JanusAnswerBlock from './components/JanusAnswerBlock';
 
 import DialogueMessage from 'data/classes/DialogueMessage';
 
-import { find } from 'utils';
+import { updateJanusLastMessage } from 'states/actions/mergedDataActions';
+import {
+	activateSmallGlitch,
+	activateBigGlitch,
+} from 'states/actions/gameActions';
+import {
+	updateUserAction,
+	updateActiveChoiceIndex,
+	updateDialogueLog,
+	updateCurrentScriptID,
+} from 'states/actions/storyActions';
 
-const SmsList = styled.ScrollView`
-	width: 100%;
-	background-color: #fff;
-`;
+import {
+	containsPlaceholder,
+	doProceedToNextScript,
+	findScript,
+	isBreakpoint,
+	isBugging,
+	isEnding,
+	isNeedToTrigger,
+	isSafeToTrigger,
+	isSafeToAddScript,
+	replaceWithUsername,
+} from 'hooks/DialogueManager/utils';
+import { sleep } from 'utils';
+import { NUMBERS, SCREENS } from 'configs';
 
-const InputWrapper = styled.View`
-	height: 40%;
-	width: 100%;
-	margin-top: 12px;
-`;
-
-const ChoicesWrapper = styled.View`
-	width: 100%;
-	flex: 1;
-	background-color: #e8e8e8;
-	justify-content: center;
-	align-items: center;
-`;
-
-const InputOverlay = styled.View`
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.8);
-`;
-
-const NoChoiceText = styled.Text`
-	font-size: 11px;
-	color: #818181;
-`;
-
-const NoChoice = () => (
-	<NoChoiceText>Pas de réponses disponibles pour le moment.</NoChoiceText>
-);
-
-const ChoicesContent = ({ script, activeChoiceIndex, onPressChoice }) => {
-	let content;
-
-	switch (script.type) {
-		case 'MESSAGE_WITH_CHOICES':
-			content = script.choices.map((c, i) => (
-				<AnswerChoice
-					key={i}
-					index={i}
-					active={i === activeChoiceIndex}
-					text={c.text}
-					onPressChoice={onPressChoice}
-				/>
-			));
-			break;
-		case 'INPUT':
-			content = <NoChoice />;
-			break;
-		case 'MESSAGE':
-		default:
-			content = <NoChoice />;
-			break;
-	}
-
-	return content;
-};
-
-const JanusConversation = ({ navigation }) => {
-	navigation.setOptions({
-		headerTitle: 'Janus',
-		headerLeft: () => (
-			<HeaderBackButton onPress={() => navigation.navigate('SmsScreen')} />
-		),
-	});
-
+const JanusConversationScreen = ({ route, navigation, theme }) => {
 	const smsListRef = useRef(null);
 
-	const { scripts, dialogueLog } = useSelector((state) => state.story);
-
-	const [activeScript, setActiveScript] = useState(
-		find(scripts, 'ID', dialogueLog.currentScriptID)
+	const dispatch = useDispatch();
+	const { dialogueLog, currentScriptID, username, userAction } = useSelector(
+		(state) => state.story
 	);
-	const [dialogueMessages, setDialogueMessages] = useState([]);
-	const [choices, setChoices] = useState(activeScript.choices);
-	const [activeChoiceIndex, setActiveChoiceIndex] = useState(undefined);
+	const { game } = useSelector((state) => state);
 
-	const updateDialogueMessages = useCallback(
-		(message) =>
-			setDialogueMessages((prevMessages) => [
-				...prevMessages,
-				new DialogueMessage(message),
-			]),
-		[]
-	);
-	const onPressChoice = (index) => setActiveChoiceIndex(index);
-	const onPressSend = (choice) => {
-		updateDialogueMessages(choice);
-		setActiveScript(find(scripts, 'ID', choice.nextID));
+	const findActiveScript = useCallback(() => findScript(currentScriptID), [
+		currentScriptID,
+	]);
+
+	const onPressChoice = (activeChoiceIndex) =>
+		updateActiveChoiceIndex(dispatch, { activeChoiceIndex });
+
+	const onPressSend = async (choice) => {
+		const { text, isUser, nextID } = choice;
+
+		updateActiveChoiceIndex(dispatch, { activeChoiceIndex: null });
+		updateDialogueLog(dispatch, new DialogueMessage({ text, isUser }));
+
+		updateCurrentScriptID(dispatch, nextID);
 	};
 
 	useEffect(() => {
-		console.log(activeScript, choices);
-		setTimeout(() => {
-			updateDialogueMessages(activeScript);
-		}, 240);
+		const update = async () => {
+			const activeScript = findActiveScript();
 
-		switch (activeScript.type) {
-			case 'MESSAGE':
-				setActiveScript(find(scripts, 'ID', activeScript.nextID));
-				break;
-			case 'MESSAGE_WITH_CHOICES':
-				setChoices(activeScript.choices);
-				setActiveChoiceIndex(undefined);
-				break;
-			default:
-				break;
-		}
-	}, [activeScript]);
+			console.log(activeScript);
+
+			if (isBreakpoint(activeScript)) {
+				await sleep(activeScript.delayTime);
+			}
+
+			if (containsPlaceholder(activeScript)) {
+				activeScript.changeText(replaceWithUsername(activeScript.text, username));
+			}
+
+			const { text, type, choices } = activeScript;
+
+			isBugging(activeScript) && activateSmallGlitch(dispatch);
+
+			// To prevent a same or previous script, or a script that
+			// shoudn't be rendered is added to the dialogue log
+			isSafeToAddScript(activeScript, dialogueLog) &&
+				updateDialogueLog(
+					dispatch,
+					new DialogueMessage({
+						text,
+					})
+				) &&
+				// Also update Janus last message back in the SMS List screen
+				updateJanusLastMessage(dispatch, text);
+
+			updateUserAction(dispatch, {
+				type,
+				choices,
+			});
+
+			await sleep(NUMBERS.JANUS_SMS_DELAY);
+
+			// Check to proceed to the next script
+			// Do not proceed to next script if reach the ending
+			if (!isEnding(activeScript)) {
+				// Check if the next script needs to be triggered or not
+				if (isNeedToTrigger(activeScript)) {
+					isSafeToTrigger(activeScript, game) &&
+						doProceedToNextScript(activeScript) &&
+						updateCurrentScriptID(dispatch, activeScript.nextID);
+				} else {
+					// Check if the current script has user action or not
+					doProceedToNextScript(activeScript) &&
+						updateCurrentScriptID(dispatch, activeScript.nextID);
+				}
+			} else {
+				// await sleep(NUMBERS.JANUS_APPEARS_DELAY_SECS);
+
+				activateBigGlitch(dispatch);
+
+				await sleep(NUMBERS.GLITCH_XL * NUMBERS.GLITCH_INTERVAL);
+
+				navigation.navigate(SCREENS.JANUS);
+			}
+		};
+
+		update();
+	}, [currentScriptID, dialogueLog, username]);
 
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<SmsList
-					ref={smsListRef}
-					onContentSizeChange={() =>
-						smsListRef.current?.scrollToEnd({ animated: true })
-					}>
-					{dialogueMessages.map((message, i) => (
-						<SmsMessage
-							key={i}
-							hasPlaceholder={!message.isUser}
-							isUser={message.isUser}
-							message={message.text}
-						/>
-					))}
-				</SmsList>
-				<InputWrapper>
-					<SmsInput
-						choice={choices ? choices[activeChoiceIndex] : undefined}
-						onPressSend={choices ? onPressSend : undefined}
+		<LayoutWrapper screenName={route.name}>
+			<FlatList
+				ref={smsListRef}
+				css={`
+					${theme.styles.list}
+					padding-top: 24px;
+				`}
+				data={dialogueLog}
+				keyExtractor={(item, index) => index.toString()}
+				onScrollToIndexFailed={() => {}}
+				onContentSizeChange={() =>
+					smsListRef.current && smsListRef.current.scrollToEnd()
+				}
+				renderItem={({ item: sms }) => (
+					<SmsMessage
+						withAvatar={!sms.isUser}
+						isUser={sms.isUser}
+						data={sms.text}
+						withSpacing
 					/>
-					<ChoicesWrapper>
-						<ChoicesContent
-							script={activeScript}
-							activeChoiceIndex={activeChoiceIndex}
-							onPressChoice={onPressChoice}
-						/>
-					</ChoicesWrapper>
-				</InputWrapper>
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+				)}
+				ListFooterComponent={<FillGap height={36} />}
+			/>
+
+			<JanusAnswerBlock
+				userAction={userAction}
+				onPressChoice={onPressChoice}
+				onPressSend={onPressSend}
+			/>
+
+			<FillGap />
+		</LayoutWrapper>
 	);
 };
 
-const styles = StyleSheet.create({
-	body: {
-		backgroundColor: '#fff',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-		alignItems: 'center',
-		paddingBottom: 40,
-	},
-	sendIcon: {
-		position: 'absolute',
-		right: 12,
-		top: 12,
-	},
-});
-
-export default JanusConversation;
+export default withTheme(JanusConversationScreen);

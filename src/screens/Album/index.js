@@ -1,90 +1,99 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import Modal from 'react-native-modal';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { FlatList } from 'react-native-gesture-handler';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
+import FillGap from 'sharedUI/FillGap';
 import PasswordLock from 'sharedUI/PasswordLock';
 import PhotoThumbnail from './components/PhotoThumbnail';
 
-const PhotoGrid = styled.ScrollView`
+import { tick } from 'utils';
+import { KEY_PUZZLE_B, NUMBERS, SCREENS, SIZES } from 'configs';
+
+import { unlockAlbum, incrementChanges } from 'states/actions/gameActions';
+
+const PasswordLockContainer = styled.View`
+	${({ theme }) => theme.styles.flex('flex-start', 'flex-start', null, true)}
+	position: absolute;
+	top: ${SIZES.HEADER_H_GAP}px;
 	width: 100%;
-	background-color: #fff;
-	margin-bottom: 40px;
+	height: ${SIZES.ALBUM_LOCK_H}px;
+	padding-top: 36px;
+	background-color: ${({ theme }) => theme.colors.slateBlue};
 `;
 
-const AlbumScreen = ({ navigation }) => {
-	const deviceW = Dimensions.get('window').width;
-	const photoSize = deviceW / 3;
-	const photoNb = 32;
+const AlbumScreen = ({ route, navigation, theme }) => {
+	const dispatch = useDispatch();
+	const { gallery } = useSelector((state) => state.mergedData);
+	const { UNLOCK_ALBUM } = useSelector((state) => state.game);
 
-	const [isLocked, setIsLocked] = useState(true);
+	const photoSize = SIZES.ALBUM_PHOTO;
+
+	const PASSWORD = KEY_PUZZLE_B;
+	const [isLocked, setIsLocked] = useState(!UNLOCK_ALBUM);
 	const [passwordInput, setPasswordInput] = useState('');
-	const [albumPassword, setAlbumPassword] = useState('0d1n');
+	const [passwordValid, setPasswordValid] = useState(false);
+	const [passwordSubmitted, setPasswordSubmitted] = useState(false);
 
 	const onSubmitPassword = () => {
-		if (passwordInput === albumPassword) {
-			setIsLocked(false);
+		setPasswordSubmitted(true);
+
+		if (passwordInput !== PASSWORD) {
+			setPasswordValid(false);
+			setPasswordSubmitted(false);
+		} else {
+			setPasswordValid(true);
+			tick(() => setIsLocked(false), NUMBERS.RESET_PRESS_DURATION_ALBUM);
+			unlockAlbum(dispatch);
+			incrementChanges(dispatch);
 		}
 	};
 
-	const renderPasswordLock = () => (
-		<Modal
-			isVisible={isLocked}
-			style={styles.modal}
-			animationInTiming={400}
-			animationOutTiming={800}
-			useNativeDriver>
-			<PasswordLock
-				color="#fff"
-				passwordInput={passwordInput}
-				onInputPassword={(text) => setPasswordInput(text)}
-				onSubmitPassword={onSubmitPassword}
-			/>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</Modal>
-	);
+	const renderPasswordLock = () =>
+		isLocked ? (
+			<PasswordLockContainer>
+				<PasswordLock
+					fullBody={false}
+					bodyColor={theme.colors.slateBlue}
+					titleColor={theme.colors.ghostWhite}
+					inputBorder
+					passwordInput={passwordInput}
+					passwordValid={passwordValid}
+					passwordSubmitted={passwordSubmitted}
+					onInputPassword={(text) => setPasswordInput(text)}
+					onSubmitPassword={onSubmitPassword}
+				/>
+			</PasswordLockContainer>
+		) : null;
 
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<PhotoGrid contentContainerStyle={styles.photoGridContainer}>
-					{[...Array(photoNb)].map((p, i) => (
-						<PhotoThumbnail
-							key={i}
-							size={photoSize}
-							color={i % 2 === 0 ? '#c4c4c4' : '#818181'}
-							onPress={() => navigation.navigate('AlbumPhotoScreen', { photoId: p })}
-						/>
-					))}
-				</PhotoGrid>
-				{renderPasswordLock()}
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+		<LayoutWrapper screenName={route.name}>
+			<FlatList
+				css={`
+					${theme.styles.list}
+				`}
+				data={gallery.photos}
+				keyExtractor={(item, index) => index.toString()}
+				numColumns={NUMBERS.ALBUM_COLS}
+				renderItem={({ item: photo }) => (
+					<PhotoThumbnail
+						isFakePhoto={photo.isFakePhoto}
+						size={photoSize}
+						source={photo.source}
+						onPress={() =>
+							navigation.navigate(SCREENS.ALBUM_PHOTO, {
+								source: photo.source,
+								isFakePhoto: photo.isFakePhoto,
+							})
+						}
+					/>
+				)}
+			/>
+			<FillGap />
+			{renderPasswordLock()}
+		</LayoutWrapper>
 	);
 };
 
-const styles = StyleSheet.create({
-	body: {
-		backgroundColor: '#fff',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	photoGridContainer: {
-		display: 'flex',
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'flex-start',
-		alignItems: 'flex-start',
-	},
-	modal: {
-		flex: 1,
-		margin: 0,
-	},
-});
-
-export default AlbumScreen;
+export default withTheme(AlbumScreen);

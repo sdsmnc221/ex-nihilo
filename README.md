@@ -1,20 +1,45 @@
 # EX NIHILO :alien:
 
-_The answer is out there._
+_**The answer is out there.**_
 
 ---
 
 <br>
 
-One Paragraph of project description goes here.
+![Made by](https://img.shields.io/badge/Team-EX%20NIHILO%20%40%20Gobelins%20BDDI%202020-lightgrey)
 
-Badges here.
+[![Website](https://img.shields.io/badge/Website-up-green)](https://exnihilo.netlify.app) [![GitHub license](https://img.shields.io/badge/License-MIT-green)](./LICENSE) [![GitHub release](https://img.shields.io/badge/Release-v1.0.0.0-green)](https://github.com/sdsmnc221/ex-nihilo/releases)
 
-**ANDROID APP** :exclamation: :exclamation: :exclamation:
+[![App size](https://img.shields.io/badge/APK%20size-~51%20Mb-blue)](https://bit.ly/ex-nihilo-apk) ![Platform](https://img.shields.io/badge/Platform-Android%20only!-red) [![Maintenance](https://img.shields.io/badge/Maintained%3F-maybe-yellow)](https://github.com/sdsmnc221/ex-nihilo/graphs/commit-activity)
 
-[Live Demo](https://)
+![made-with-react-native](https://img.shields.io/badge/Made%20with-React%20Native-blue) ![made-with-vue](https://img.shields.io/badge/Made%20with-Vue-informational) ![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-blue)
 
 <br>
+
+---
+
+<br>
+
+<p align="center">
+    <a href="https://exnihilo.netlify.app" target="__blank"><img src="./docs/exnihilo_affiche.jpg" alt="Affiiche Ex Nihilo" style="width:80%;"/></a>
+</p>
+
+<br>
+
+<p align="center">
+    Si vous trouviez un téléphone abandonné...
+    <br>
+    Quel secret pourriez-vous découvrir ?
+    <br>
+    Et si la réponse à vos question était autre part ?
+    <br>
+    <br>
+    <a href="https://exnihilo.netlify.app" target="__blank"><b>___Android APK Download___</b></a>
+</p>
+
+<br>
+
+---
 
 ## Getting Started
 
@@ -24,112 +49,80 @@ These instructions will get you a copy of the project up and running on your loc
 
 - Node / NPM
 - React Native / react-native-cli
-- Debugger (optional)
+- React Native Debugger (optional)
 - **Android** device or emulator
 
 ```
-$ git clone https://github.com/sdsmnc221/nexus-tests-rn.git
+$ git clone https://github.com/sdsmnc221/ex-nihilo.git
 ```
 
 ### Installing
 
-Install dependencies
+- Install dependencies:
 
 ```
 $ npm i (or yarn)
 $ react-native link
 ```
 
-## Build
+### Configuration
+
+- Create a correct **.env file** base on [**.env.example**](./.env.example), or ask us :sweat:.
+
+## Build Debug
 
 ```
+$ npm start --reset-cache // optional, to open metro bundler server first
 $ react-native run-android
 ```
 
-## About Theming
+## Build Release
 
-- Checkout theme configs in [theme.js](./src/configs/theme.js).
+- Follow [the official document](https://reactnative.dev/docs/signed-apk-android):
 
-- Guides: [Colors](./docs/guide-colors.png) | [Typo](./docs/guide-typo.png).
+  - Generate a key store with the same configs in [**gradle.properties**](./android/gradle.properties):
 
-### Custom Fonts
+  ```
+  $ sudo keytool -genkey -v -keystore ex-nihilo-key.keystore -alias ex-nihilo -keyalg RSA -keysize 2048 -validity 10000
+  ```
 
-#### Install / Remove / Update Fonts
+  - Place the keystore file under `android/app`.
 
-- We've already configured the [assets fonts folder](./react-native.config.js) (for React Native > 0.6).
+  - Generate the release AAB:
 
-- Every time the fonts are to be installed / removed / updated, first manually delete [android/app/src/main/assets](./android/app/src/main/assets) folder.
+  ```
+  $ cd android
+  $ ./gradlew bundleRelease
+  $ cd ..
+  ```
 
-- Install / Remove / Update fonts in [src/assets/fonts](./src/assets/fonts) folder.
+  - Test the release build of your app:
 
-- Relink:
+  ```
+  $ npx react-native run-android --variant=release
+  ```
 
-```
-$ react-native link
-```
+- Generate APK from AAB: use [**bundletool**](https://developer.android.com/studio/command-line/bundletool) with `--mode=universal`:
 
-- Restart metro bundler server and rebuild the app:
+  ```
+  $ java -jar "PATH_TO_BUNDLE_TOOL" build-apks --bundle=PATH_TO_AAP/AAB_FILE_NAME.aab --output=ex-nihilo.apks --ks="PATH_TO_KEYSTORE" --ks-pass=pass:KEYSTORE_PASSWORD --ks-key-alias=KEYSTORE_ALIAS --key-pass=pass:KEYSTORE_PASSWORD --mode=universal
+  ```
 
-```
-$ npm start --reset-cache
-$ react-native run-android
-```
+## Others DOCS
 
-- Update _fonts_ in [theme.js](./src/configs/theme.js): **IT'S IMPORTANT to have the _FONT NAME STRING_ exactly THE SAME AS the _FONT NAME FILE_.**
-
-#### Use Fonts in the project
-
-- Checkout _fonts_ in [theme.js](./src/configs/theme.js).
-
-- **With _styled-component_**: [_example_](./src/screens/SMS/components/AnswerChoice.js) _(can be tested and checked in the Janus Convo Screen)._
-
-```javascript
-import theme from 'configs/theme';
-
-const { cairo, sourceSans, superclarendon } = theme.fonts;
-
-/*
- * Example of how to use custom fonts:
- *
- * 00. Import fonts from theme (configs/theme)
- * 01. DO NOT USE font-weight, font-style etc., as
- *     the imported fonts already have their own weight
- *     and style.
- * 02. Use font-family like normal CSS.
- */
-
-const Choice = styled.Text`
-	font-size: 13px;
-	/* font-weight: bold; */
-	font-family: ${sourceSans.italic};
-`;
-```
-
-- **With _React Native StyleSheet_**:
-
-```javascript
-import theme from 'configs/theme';
-
-const { superclarendon } = theme.fonts;
-
-const styles = StyleSheet.create({
-	font: {
-		fontFamily: superclarendon,
-	},
-});
-```
+- For **Testings**, check [TEST.md](./TEST.md).
+- For **App Structure**, check [APP_STRUCTURE.md](./APP_STRUCTURE.md).
 
 ## Built With
 
+- React Native / Redux.
+- VueJS / VueX.
+- P5 / Canvas.
 - [Make A README](https://www.makeareadme.com/) - README's good practices.
 - [A template to make good README.md](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) - Dependency Management.
-- **Love**.
-- React Native.
+- [Badges from SHIELDS.IO](https://shields.io/).
+- **Love** & **COVID19 social distance**.
 - etc.
-
-## Contributing
-
-## Versioning
 
 ## Authors
 
@@ -140,8 +133,9 @@ const styles = StyleSheet.create({
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
 
 ## Acknowledgments
 
-- etc.
+- [**Gobelins - L'Ecole de l'Image**](https://www.gobelins.fr/).
+- [**Gobelins - Interactive Design**](http://designinteractif.gobelins.fr/).

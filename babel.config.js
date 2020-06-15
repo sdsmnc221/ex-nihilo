@@ -9,6 +9,7 @@ module.exports = {
 					assets: './src/assets',
 					configs: './src/configs',
 					data: './src/data',
+					hooks: './src/hooks',
 					states: './src/states',
 					screens: './src/screens',
 					sharedUI: './src/sharedUI',

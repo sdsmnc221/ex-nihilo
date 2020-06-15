@@ -1,10 +1,9 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components';
+import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import PlaceHolder from 'sharedUI/PlaceHolder';
 import AddButton from 'sharedUI/Button/AddButton';
 import FacebookPost from './components/FacebookPost';
@@ -68,7 +67,7 @@ const storiesAddButtonPosition = {
 	bottom: 'auto',
 };
 
-const FacebookScreen = ({ navigation }) => {
+const FacebookScreen = ({ route, navigation }) => {
 	const statusBtns = ['En direct', 'Photo', 'Visite'];
 	const stories = [
 		'Ajouter à la story',
@@ -111,64 +110,61 @@ const FacebookScreen = ({ navigation }) => {
 	];
 
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<ScrollView contentContainerStyle={styles.scrollBody}>
-					<Header>
-						<Row fullWidth>
-							<PlaceHolder
-								width={125}
-								height={25}
-								color="#c4c4c4"
-								text="Logo Facebook"
-							/>
-							<Row>
-								<PlaceHolderWithSpacing spacing={12} size={25} color="#c4c4c4" round />
-								<PlaceHolder size={25} color="#c4c4c4" round />
-							</Row>
-						</Row>
-						<Row fullWidth>
-							{[...Array(5)].map((e, i) => (
-								<PlaceHolder key={i} size={25} color="#c4c4c4" />
-							))}
-						</Row>
-					</Header>
-					<Status>
-						<Row fullWidth>
-							<PlaceHolder size={30} color="#818181" round />
-							<PlaceHolder width={284} height={25} color="#818181" />
-						</Row>
-						<Row fullWidth>
-							{statusBtns.map((e, i) => (
-								<PlaceHolder key={i} width={100} height={25} color="#e8e8e8" text={e} />
-							))}
-						</Row>
-					</Status>
-					<Stories>
-						<ScrollView
-							horizontal
-							showsHorizontalScrollIndicator={false}
-							contentContainerStyle={styles.storiesContainer}>
-							{stories.map((e, i) => (
-								<Story key={i} text={e} last={i === stories.length - 1} />
-							))}
-						</ScrollView>
-						<AddButton
-							position={storiesAddButtonPosition}
-							size={26}
-							iconW={13.93}
-							iconH={16.07}
+		<LayoutWrapper screenName={route.name}>
+			<ScrollView contentContainerStyle={styles.scrollBody}>
+				<Header>
+					<Row fullWidth>
+						<PlaceHolder
+							width={125}
+							height={25}
+							color="#c4c4c4"
+							text="Logo Facebook"
 						/>
-					</Stories>
-					<Feeds>
-						{posts.map((p, i) => (
-							<FacebookPost key={i} user={p.user} date={p.date} content={p.content} />
+						<Row>
+							<PlaceHolderWithSpacing spacing={12} size={25} color="#c4c4c4" round />
+							<PlaceHolder size={25} color="#c4c4c4" round />
+						</Row>
+					</Row>
+					<Row fullWidth>
+						{[...Array(5)].map((e, i) => (
+							<PlaceHolder key={i} size={25} color="#c4c4c4" />
 						))}
-					</Feeds>
-				</ScrollView>
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+					</Row>
+				</Header>
+				<Status>
+					<Row fullWidth>
+						<PlaceHolder size={30} color="#818181" round />
+						<PlaceHolder width={284} height={25} color="#818181" />
+					</Row>
+					<Row fullWidth>
+						{statusBtns.map((e, i) => (
+							<PlaceHolder key={i} width={100} height={25} color="#e8e8e8" text={e} />
+						))}
+					</Row>
+				</Status>
+				<Stories>
+					<ScrollView
+						horizontal
+						showsHorizontalScrollIndicator={false}
+						contentContainerStyle={styles.storiesContainer}>
+						{stories.map((e, i) => (
+							<Story key={i} text={e} last={i === stories.length - 1} />
+						))}
+					</ScrollView>
+					<AddButton
+						position={storiesAddButtonPosition}
+						size={26}
+						iconW={13.93}
+						iconH={16.07}
+					/>
+				</Stories>
+				<Feeds>
+					{posts.map((p, i) => (
+						<FacebookPost key={i} user={p.user} date={p.date} content={p.content} />
+					))}
+				</Feeds>
+			</ScrollView>
+		</LayoutWrapper>
 	);
 };
 

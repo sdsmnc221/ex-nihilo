@@ -13,29 +13,30 @@ const Wrapper = styled.TouchableOpacity`
 `;
 
 const IconButton = ({
-	type,
 	size,
 	onPress,
 	pressOpacity,
 	noBlink,
-	additionalStyles,
+
+	additionalStyle,
+	...iconProps
 }) => (
 	<Wrapper
 		size={size}
 		onPress={onPress}
 		activeOpacity={noBlink ? 1.0 : pressOpacity}
-		style={additionalStyles}>
-		<Icon type={type} />
+		css={additionalStyle}>
+		<Icon {...iconProps} />
 	</Wrapper>
 );
 
 IconButton.propTypes = {
-	type: PropTypes.string.isRequired,
 	size: PropTypes.number,
 	onPress: PropTypes.func,
 	pressOpacity: PropTypes.number,
 	noBlink: PropTypes.bool,
-	additionalStyles: PropTypes.object,
+
+	additionalStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };
 
 IconButton.defaultProps = {
@@ -43,7 +44,7 @@ IconButton.defaultProps = {
 	onPress: () => {},
 	noBlink: false,
 	pressOpacity: 0.8,
-	additionalStyles: {},
+	additionalStyle: null,
 };
 
 export default IconButton;

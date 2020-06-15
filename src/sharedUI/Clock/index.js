@@ -1,51 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
-import styled from 'styled-components';
+import React, { useState, useCallback } from 'react';
+import styled, { withTheme } from 'styled-components';
+import { useFocusEffect } from '@react-navigation/native';
 import moment from 'moment';
+import { View, Text } from 'react-native';
 
 const Wrapper = styled.View`
 	position: absolute;
-	top: 84px;
+	top: 12%;
 `;
 
 const Time = styled.Text`
-	font-weight: bold;
-	font-size: 96px;
-	line-height: 96px;
+	font-family: ${({ theme }) => theme.fonts.cairo.bold};
+	font-size: 88px;
+	letter-spacing: 1.8px;
+	line-height: 80px;
+	color: ${({ theme }) => theme.colors.ghostWhite};
+	text-align: center;
+	padding-top: 40px;
 `;
 
 const Date = styled.Text`
-	font-size: 11px;
-	text-transform: capitalize;
+	color: ${({ theme }) => theme.colors.white};
+	font-family: ${({ theme }) => theme.fonts.sourceSans.semiBold};
+	font-size: ${({ theme }) => theme.typo.sizes.body};
+	text-transform: lowercase;
+	text-align: center;
+	top: -36px;
 `;
 
-const Clock = () => {
-	const now = moment().format('LLLL');
-	const [time, setTime] = useState(now.slice(-5));
-	const [date, setDate] = useState(
-		now.slice(0, now.length - time.length).trim()
-	);
+const Clock = ({ theme }) => {
+	const { clock: shadowClock } = theme.shadows;
 
-	const tick = () => {
-		const now_ = moment().format('LLLL');
-		setTime(now_.slice(-5));
-		setDate(now_.slice(0, now.length - time.length).trim());
-	};
+	const getTime = () => moment().format('hh:mm');
+	const getDate = () => moment().format('dddd D MMM');
 
-	useEffect(() => {
-		let timerID = setInterval(tick, 1000);
+	const [time, setTime] = useState(getTime());
+	const [date, setDate] = useState(getDate());
+
+	const tickTime = useCallback(() => {
+		const now = getTime();
+		if (now !== time) {
+			setTime(now);
+		}
+	}, [time]);
+
+	const tickDate = useCallback(() => {
+		const now = getDate();
+		if (now !== date) {
+			setDate(now);
+		}
+	}, [date]);
+
+	useFocusEffect(() => {
+		let timerID = setInterval(tickTime, 1000);
+		let daterID = setInterval(tickDate, 1000);
 		return () => {
 			clearInterval(timerID);
+			clearInterval(daterID);
 		};
-	}, []);
+	}, [time, date]);
 
 	return (
 		<Wrapper>
-			<Time>{time.slice(0, 2)}</Time>
-			<Time>{time.slice(-2)}</Time>
-			<Date>{date}</Date>
+			<Time style={shadowClock}>{time.replace(':', '\n')}</Time>
+			<Date style={shadowClock}>{date}</Date>
 		</Wrapper>
 	);
 };
 
-export default Clock;
+export default withTheme(Clock);

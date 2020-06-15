@@ -1,173 +1,156 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import styled from 'styled-components';
+import styled, { css, withTheme } from 'styled-components';
+import { View, Text } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 
-import NavigationBar from 'sharedUI/NavigationBar';
+import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import Icon from 'sharedUI/Icon';
+import RectButton from 'sharedUI/Button/RectButton';
+
+import useKeyBoard from 'hooks/useKeyboard';
+import { EMAIL_ACCOUNT, KEY_PUZZLE_C, SCREENS } from 'configs';
+
+const COMMON_SIZES = {
+	w: '72%',
+	h: '36px',
+};
+
+const PASSWORD = KEY_PUZZLE_C;
+const EMAIL = EMAIL_ACCOUNT;
 
 const LogoContainer = styled.View`
-	width: 100%;
-	height: 218px;
-	background-color: #565656;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	height: 32%;
+	background-color: ${({ theme }) => theme.colors.slateBlue};
+	${({ theme }) => theme.styles.flex(null, null, null, true)};
 `;
 
 const ContentContainer = styled.View`
-	width: 100%;
 	flex: 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 32px 24px;
+	top: ${({ keyboardShown }) => (keyboardShown ? 0 : -4)}%;
+	${({ theme }) => theme.styles.flex(null, null, null, true)};
 `;
 
 const Input = styled.TextInput`
-	width: 72%;
-	height: 41px;
-	background-color: #e8e8e8;
-	font-size: 12px;
-	text-align: left;
-	padding: 8px 16px;
-	margin-bottom: 36px;
+	width: ${COMMON_SIZES.w};
+	height: ${COMMON_SIZES.h};
+	${({ theme }) => theme.styles.flexWithoutSize()};
+	border: 1px solid ${({ theme }) => theme.colors.slateBlue};
+	background-color: ${({ theme }) => theme.colors.white};
+	color: ${({ theme }) => theme.colors.charcoal};
+	${({ theme }) => theme.styles.os.input}
+	letter-spacing: 0.21px;
+	padding: 0 12px;
+	margin-bottom: 16px;
 `;
 
-const Button = styled.TouchableOpacity`
-	width: 72%;
-	height: 41px;
-	background-color: #c4c4c4;
-	margin-bottom: 36px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-`;
-
-const StyledText = styled.Text`
-	font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
-	font-size: ${({ size }) => size}px;
-	text-align: center;
-	margin: ${({ margin }) => margin || 0};
+const FailedText = styled.Text`
+	${({ theme }) => theme.styles.flex()};
+	${({ theme }) => theme.styles.os.inputItalic}
+	color: ${({ theme }) => theme.colors.slateBlue};
+	letter-spacing: 0.21px;
+	margin-bottom: 16px;
 `;
 
 const SeparatorContainer = styled.View`
-	margin-bottom: 36px;
+	margin: 20px;
+	width: ${COMMON_SIZES.w};
+	${({ theme }) => theme.styles.flexWithoutSize()};
+`;
+
+const StyledText = styled.Text`
+	color: ${({ theme }) => theme.colors.charcoal};
+	font-family: ${({ theme }) => theme.fonts.sourceSans.regular};
+	font-size: ${({ size }) => size}px;
+	letter-spacing: ${({ letterSpacing }) => letterSpacing || 0}px;
 `;
 
 const Separator = styled.View`
-	margin-top: 18px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
+	position: relative;
+	margin: 20px;
+	${({ theme }) => theme.styles.flex(null, null, 'row', true)};
 `;
 
 const Line = styled.View`
-	background-color: #000;
-	height: 1px;
-	width: 96px;
+	background-color: ${({ theme }) => theme.colors.charcoal};
+	height: 0.7px;
+	width: 100%;
 `;
 
-const LanguagesContainer = styled.View`
-	flex-direction: row;
-	align-items: center;
-	margin-bottom: 36px;
-`;
+const FacebookLoginScreen = ({ route, navigation, theme }) => {
+	const { keyboardShown } = useKeyBoard();
 
-const Dot = styled.View`
-	background-color: #c4c4c4;
-	width: 4px;
-	height: 4px;
-	border-radius: 4px;
-	margin: 0 8px;
-`;
-
-const FacebookLoginScreen = ({ navigation }) => {
-	const [emailInput, setEmailInput] = useState('sam.blanchard@gmail.com');
+	const [emailInput, setEmailInput] = useState(EMAIL);
 	const [passwordInput, setPasswordInput] = useState('');
-	const [fbEmail, setFbEmail] = useState('sam.blanchard@gmail.com');
-	const [fbPassword, setFbPassword] = useState('b1nouze');
 	const [failed, setFailed] = useState(false);
 
 	const onSubmit = () => {
-		console.log(`${passwordInput} | ${fbPassword}`);
-		console.log(`${emailInput} | ${fbEmail}`);
-		if (passwordInput !== fbPassword || emailInput !== fbEmail) {
+		if (passwordInput !== PASSWORD || emailInput !== EMAIL) {
 			setFailed(true);
 		} else {
-			navigation.navigate('FacebookScreen');
+			navigation.navigate(SCREENS.FACEBOOK);
 		}
 	};
 
+	const rectButtonTextStyle = css`
+		font-family: ${theme.fonts.sourceSans.semiBold};
+		font-size: ${theme.typo.sizes.body};
+		color: ${theme.colors.ghostWhite};
+		letter-spacing: 0.27px;
+	`;
+
 	return (
-		<SafeAreaView>
-			<View style={styles.body}>
-				<LogoContainer>
-					<Icon type="FACEBOOK_XL" />
-				</LogoContainer>
-				<ContentContainer>
-					<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
-					{failed && <Text color="#DDD">Email ou mot de passe incorrect.</Text>}
-					<Input
-						value={passwordInput}
-						secureTextEntry
-						blurOnSubmit
-						onSubmitEditing={onSubmit}
-						onChangeText={(text) => setPasswordInput(text)}
-					/>
-					<Button onPress={onSubmit}>
-						<StyledText size={14} bold>
-							Connexion
-						</StyledText>
-					</Button>
-					<SeparatorContainer>
-						<StyledText size={13} bold>
-							Mot de passe oublié ?
-						</StyledText>
-						<Separator>
-							<Line />
-							<StyledText size={10} margin="0 16px">
+		<LayoutWrapper screenName={route.name}>
+			<LogoContainer>
+				<Icon type="FACEBOOK_XL" />
+			</LogoContainer>
+			<ContentContainer keyboardShown={keyboardShown}>
+				<Input value={emailInput} onChangeText={(text) => setEmailInput(text)} />
+				{failed && <FailedText>Email ou mot de passe incorrect.</FailedText>}
+				<Input
+					value={passwordInput}
+					secureTextEntry
+					blurOnSubmit
+					onSubmitEditing={onSubmit}
+					onChangeText={(text) => setPasswordInput(text)}
+				/>
+				<RectButton
+					width={COMMON_SIZES.w}
+					height={COMMON_SIZES.h}
+					text="connexion"
+					pressHandler={onSubmit}
+					additionalTextStyle={rectButtonTextStyle}
+					backgroundColor={theme.colors.slateBlue}
+				/>
+				<SeparatorContainer>
+					<StyledText size={12} letterSpacing={0.23}>
+						mot de passe oublié ?
+					</StyledText>
+					<Separator>
+						<Line />
+						<View
+							css={`
+								${css`
+									position: absolute;
+									background-color: ${theme.colors.ghostWhite};
+									padding: 4px;
+								`}
+							`}>
+							<StyledText size={11} letterSpacing={0.21}>
 								ou
 							</StyledText>
-							<Line />
-						</Separator>
-					</SeparatorContainer>
-					<Button>
-						<StyledText size={14} bold>
-							Créer un nouveau compte Facebook
-						</StyledText>
-					</Button>
-					<LanguagesContainer>
-						<StyledText size={9}>English</StyledText>
-						<Dot />
-						<StyledText size={9}>Español</StyledText>
-						<Dot />
-						<StyledText size={9}>Plus...</StyledText>
-					</LanguagesContainer>
-				</ContentContainer>
-			</View>
-			<NavigationBar onPressHome={() => navigation.navigate('HomeScreen')} black />
-		</SafeAreaView>
+						</View>
+					</Separator>
+				</SeparatorContainer>
+				<RectButton
+					width="72%"
+					height={42}
+					text="créer un compte facebook"
+					additionalTextStyle={rectButtonTextStyle}
+					backgroundColor={theme.colors.slateBlue}
+				/>
+			</ContentContainer>
+		</LayoutWrapper>
 	);
 };
 
-const styles = StyleSheet.create({
-	body: {
-		backgroundColor: '#fff',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
-	},
-	input: {
-		width: '72%',
-		height: 41,
-		backgroundColor: '#e8e8e8',
-		fontSize: 12,
-		textAlign: 'center',
-		padding: 8,
-	},
-});
-
-export default FacebookLoginScreen;
+export default withTheme(FacebookLoginScreen);

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Svg, { Path } from 'react-native-svg';
 
 const ARROW_LEFT = ({ width, height, color }) => (
-	<Svg width={width} height={height} viewBox="0 0 28 8">
+	<Svg width={width} height={height} viewBox="0 0 20 14">
 		<Path
-			d="M27.3536 4.35355C27.5488 4.15829 27.5488 3.84171 27.3536 3.64645L24.1716 0.464466C23.9763 0.269204 23.6597 0.269204 23.4645 0.464466C23.2692 0.659728 23.2692 0.976311 23.4645 1.17157L26.2929 4L23.4645 6.82843C23.2692 7.02369 23.2692 7.34027 23.4645 7.53553C23.6597 7.7308 23.9763 7.7308 24.1716 7.53553L27.3536 4.35355ZM0 4.5L27 4.5V3.5L0 3.5L0 4.5Z"
+			d="M0.104385 7.21991L6.81999 13.9355L7.32491 13.4307L1.21913 7.32489L19.3564 7.32489V6.61075L1.21913 6.61075L7.32491 0.505005L6.81999 0.00012207L0.104385 6.71503C-0.0348663 6.85498 -0.0348663 7.08066 0.104385 7.21991Z"
 			stroke="none"
 			fill={color}
 			fillRule="evenodd"
@@ -20,9 +20,9 @@ ARROW_LEFT.propTypes = {
 };
 
 ARROW_LEFT.defaultProps = {
-	width: 28,
-	height: 8,
-	color: '#000',
+	width: 20,
+	height: 14,
+	color: '#FFFFFF',
 };
 
 export default ARROW_LEFT;

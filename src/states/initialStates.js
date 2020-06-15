@@ -1,19 +1,91 @@
-import Data from 'data';
+import DialogueMessage from 'data/classes/DialogueMessage';
 
-import dataContacts from 'data/json/contacts';
-import dataStoryScripts from '../data/json/storyScripts';
-
-const contacts = dataContacts.map((contact) => Data('CONTACT', contact));
-const storyScripts = dataStoryScripts.map((script) =>
-	Data('STORY_SCRIPT', script)
-);
+import {
+	accounts,
+	emails,
+	contacts,
+	notifications,
+	photos,
+	sms,
+	storyScripts as scripts,
+} from './data';
 
 export default {
-	contacts,
-	story: {
-		scripts: storyScripts,
-		dialogueLog: {
-			currentScriptID: 1,
+	permissions: {
+		requested: false,
+		statuses: null,
+	},
+	deviceData: {
+		accounts: null,
+		contacts: null,
+		calendar: {
+			list: null,
+			events: null,
 		},
+		calls: null,
+		gallery: {
+			count: 0,
+			albums: null,
+			photos: [],
+		},
+		gps: {
+			lat: null,
+			long: null,
+			address: null,
+		},
+		sms: {
+			count: 0,
+			list: null,
+		},
+		misc: null,
+	},
+	fakeData: {
+		accounts,
+		contacts,
+		calls: null,
+		gallery: {
+			count: photos.length,
+			photos,
+		},
+		sms,
+		emails,
+	},
+	mergedData: {
+		contacts: null,
+		gallery: {
+			count: 0,
+			photos: [],
+		},
+		sms: null,
+		notifications,
+	},
+	story: {
+		scripts,
+		dialogueLog: [new DialogueMessage({ text: scripts[0].text })],
+		currentScriptID: 1,
+		username: null,
+		userAction: {
+			type: null,
+			choices: [],
+			activeChoiceIndex: null,
+		},
+		notification: {
+			shown: false,
+			date: "À l'instant",
+			title: 'Janus',
+			message: scripts[0].text,
+			repeatCount: 0,
+		},
+	},
+	game: {
+		UNLOCK_APP: false,
+		UNLOCK_ALBUM: false,
+		UNLOCK_EMAIL: false,
+		changesCount: 0,
+		glitchEnabled: false,
+		glitchAmount: 0,
+	},
+	dataviz: {
+		tabIndex: null,
 	},
 };

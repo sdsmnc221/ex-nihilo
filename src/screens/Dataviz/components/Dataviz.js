@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 import WebScreen from 'sharedUI/WebScreen';
@@ -75,4 +75,4 @@ const Dataviz = ({ ...webScreenprops }) => {
 	);
 };
 
-export default memo(Dataviz);
+export default Dataviz;

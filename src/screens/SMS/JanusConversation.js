@@ -114,8 +114,6 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 						updateCurrentScriptID(dispatch, activeScript.nextID);
 				}
 			} else {
-				// await sleep(NUMBERS.JANUS_APPEARS_DELAY_SECS);
-
 				activateBigGlitch(dispatch);
 
 				await sleep(NUMBERS.GLITCH_XL * NUMBERS.GLITCH_INTERVAL);

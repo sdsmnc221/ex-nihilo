@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, withTheme } from 'styled-components';
 import { View, Text, Image } from 'react-native';
@@ -172,4 +172,4 @@ SmsMessage.defaultProps = {
 	smsActionType: null,
 };
 
-export default memo(withTheme(SmsMessage));
+export default withTheme(SmsMessage);

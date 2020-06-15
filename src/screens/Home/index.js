@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import { useSafeArea } from 'react-native-safe-area-context';
-import { View, Keyboard } from 'react-native';
+import { View } from 'react-native';
 
 import BG_HOMESCREEN from 'assets/images/BG-HomeScreen.png';
 
@@ -27,8 +27,6 @@ const Icons = styled.View`
 
 const HomeScreen = ({ route, navigation, theme }) => {
 	const insets = useSafeArea();
-
-	Keyboard.dismiss();
 
 	const iconSize = getIconSize();
 

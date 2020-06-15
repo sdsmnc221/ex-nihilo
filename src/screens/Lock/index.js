@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { withTheme } from 'styled-components';
 import { useDispatch } from 'react-redux';
 import GestureRecognizer from 'react-native-swipe-gestures';
+import { Keyboard } from 'react-native';
 
 import BG_LOCKSCREEN from 'assets/images/BG-LockScreen.png';
 
@@ -46,6 +47,7 @@ const LockScreen = ({ navigation, theme }) => {
 
 	useEffect(() => {
 		if (passwordValid) {
+			Keyboard.dismiss();
 			setTimeout(() => {
 				navigation.navigate(SCREENS.HOME);
 			}, 32);

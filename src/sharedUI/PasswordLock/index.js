@@ -74,17 +74,7 @@ const PasswordLock = ({
 }) => {
 	const { whiskey, white } = theme.colors;
 
-	const [buttonPressed, setButtonPressed] = useState(false);
 	const [inputFocused, setInputFocused] = useState(false);
-
-	const onPress = () => onSubmitPassword();
-
-	// useEffect(() => {
-	// 	if (buttonPressed) {
-	// 		console.log('pressed')
-	// 		setTimeout(() => onSubmitPassword(), 60);
-	// 	}
-	// }, [buttonPressed, onSubmitPassword]);
 
 	return (
 		<Wrapper color={bodyColor} fullBody={fullBody}>
@@ -112,7 +102,7 @@ const PasswordLock = ({
 					inactiveTextColor={whiskey}
 					activeButtonColor={whiskey}
 					activeTextColor={white}
-					pressHandler={onPress}
+					pressHandler={onSubmitPassword}
 				/>
 			)}
 		</Wrapper>

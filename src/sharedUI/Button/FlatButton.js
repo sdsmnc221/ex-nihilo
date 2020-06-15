@@ -45,13 +45,18 @@ const FlatButton = ({
 	activeTextColor,
 }) => {
 	const [buttonPressed, setButtonPressed] = useState(false);
+	const [pressCount, setPressCount] = useState(0);
 
 	const onPress = () => setButtonPressed(!buttonPressed);
 
 	useEffect(() => {
-		if (buttonPressed) {
+		if (buttonPressed && pressCount < 1) {
+			setPressCount(pressCount + 1);
 			pressHandler();
+
 			tick(() => setButtonPressed(false), NUMBERS.RESET_PRESS_DURATION);
+		} else if (buttonPressed && pressCount === 1) {
+			setPressCount(0);
 		}
 	}, [buttonPressed, pressHandler]);
 

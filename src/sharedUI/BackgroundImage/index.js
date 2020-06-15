@@ -4,23 +4,50 @@ import { Image } from 'react-native';
 import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import { device } from 'utils';
+
+const { width, height, navigationBarHeight } = device();
+
 const StyledImage = styled.Image`
-	width: 100%;
-	height: 100%;
-	position: absolute;
+	width: ${width}px;
+	height: ${height + navigationBarHeight}px;
+	${({ theme }) => theme.styles.fullScreen}
 `;
 
-const BackgroundImage = ({ source, resizeMode }) => (
-	<StyledImage source={source} resizeMode={resizeMode} />
+const Solid = styled.View`
+	position: absolute;
+	width: ${width}px;
+	height: ${height + navigationBarHeight * 2}px;
+	background-color: ${({ solidColor }) => solidColor};
+	opacity: ${({ solidOpacity }) => solidOpacity};
+`;
+
+const BackgroundImage = ({
+	source,
+	resizeMode,
+	solid,
+	solidColor,
+	solidOpacity,
+}) => (
+	<>
+		<StyledImage source={source} resizeMode={resizeMode} />
+		{solid && <Solid solidColor={solidColor} solidOpacity={solidOpacity} />}
+	</>
 );
 
 BackgroundImage.propTypes = {
 	source: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 	resizeMode: PropTypes.string,
+	solid: PropTypes.bool,
+	solidColor: PropTypes.string,
+	solidOpacity: PropTypes.number,
 };
 
 BackgroundImage.defaultProps = {
 	resizeMode: 'cover',
+	solid: false,
+	solidColor: 'transparent',
+	solidOpacity: 0,
 };
 
 export default BackgroundImage;

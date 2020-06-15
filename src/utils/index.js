@@ -1,8 +1,10 @@
 import { Dimensions } from 'react-native';
+import ExtraDimensions from 'react-native-extra-dimensions-android';
 
 const device = () => {
 	return {
 		...Dimensions.get('window'),
+		navigationBarHeight: ExtraDimensions.getSoftMenuBarHeight(),
 	};
 };
 

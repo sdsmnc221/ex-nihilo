@@ -31,7 +31,7 @@ _**The answer is out there.**_
     <br>
     Quel secret pourriez-vous découvrir ?
     <br>
-    Et si la réponse à vos question était autre part ?
+    Et si la réponse à vos questions était autre part ?
     <br>
     <br>
     <a href="https://exnihilo.netlify.app" target="__blank"><b>___Android APK Download___</b></a>

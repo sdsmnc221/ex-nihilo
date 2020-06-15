@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css, withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';

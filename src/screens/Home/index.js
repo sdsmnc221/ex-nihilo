@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { View } from 'react-native';
 
 import BG_HOMESCREEN from 'assets/images/BG-HomeScreen.png';
@@ -14,14 +14,6 @@ import { APP_ICON, HOME_APPS } from 'configs';
 
 const { ICONS_TRAY_WIDTH, ICONS_TRAY_MARGE } = APP_ICON;
 
-const Solid = styled.View`
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-color: ${({ theme }) => theme.colors.ghostWhite};
-	opacity: 0.24;
-`;
-
 const Icons = styled.View`
 	position: absolute;
 	bottom: 64px;
@@ -32,15 +24,20 @@ const Icons = styled.View`
 	${({ theme }) => theme.styles.flexWithoutSize('space-around', null, 'row')}
 `;
 
-const HomeScreen = ({ route, navigation }) => {
+const HomeScreen = ({ route, navigation, theme }) => {
 	const iconSize = getIconSize();
 
 	const onPress = (screen) => navigation.navigate(screen);
 
 	return (
 		<LayoutWrapper screenName={route.name}>
-			<BackgroundImage source={BG_HOMESCREEN} />
-			<Solid />
+			<BackgroundImage
+				source={BG_HOMESCREEN}
+				solid
+				solidColor={theme.colors.ghostWhite}
+				solidOpacity={0.24}
+			/>
+
 			<Clock />
 			<Icons>
 				{HOME_APPS.map((app, index) => (
@@ -60,4 +57,4 @@ const HomeScreen = ({ route, navigation }) => {
 	);
 };
 
-export default HomeScreen;
+export default withTheme(HomeScreen);

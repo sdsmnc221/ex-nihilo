@@ -1,16 +1,25 @@
 import { StyleSheet } from 'react-native';
 import { css } from 'styled-components';
 
+import { device } from 'utils';
 import theme from './theme';
 import { FLEX } from './constants';
 
 const { colors } = theme;
 const { JUSTIFY_CONTENT, ALIGN_ITEMS, FLEX_DIRECTION } = FLEX;
+const { width, height, navigationBarHeight } = device();
 
 export default {
-	safeAreaView: (gapForStatusBar, backgroundColor) => css`
-		background-color: ${backgroundColor || colors.ghostWhite};
+	safeAreaView: (
+		gapForStatusBar,
+		hasNavigationBar = false,
+		backgroundColor
+	) => css`
+		background-color: ${backgroundColor || 'transparent'};
 		padding-top: ${gapForStatusBar ? 30 : 0}px;
+		position: relative;
+		width: ${width}px;
+		height: ${height + navigationBarHeight * (hasNavigationBar ? 1 : 2)}px;
 	`,
 	body: (backgroundColor, justifyContent, alignItems) =>
 		css`
@@ -41,6 +50,13 @@ export default {
 		background-color: ${bodyColor || colors.ghostWhite};
 	`,
 	janusVoice: css`
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	`,
+	fullScreen: css`
 		position: absolute;
 		top: 0;
 		left: 0;

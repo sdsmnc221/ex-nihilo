@@ -24,21 +24,14 @@ const Input = styled.TextInput`
 	padding: 14px 26px;
 	border-radius: 50px;
 	border: ${({ inputBorder }) => (inputBorder ? 2 : 1)}px solid
-		${({
-			theme,
-			inputBorder,
-			isFocused,
-			passwordValid,
-			passwordSubmitted,
-			value,
-		}) =>
+		${({ theme, inputBorder, isFocused, passwordValid, value }) =>
 			passwordValid
 				? theme.colors.lime
-				: (isFocused && !passwordSubmitted) || !value
-				? inputBorder
-					? theme.colors.white
-					: 'transparent'
-				: theme.colors.cinnabar};
+				: !isFocused && !!value
+				? theme.colors.cinnabar
+				: inputBorder
+				? theme.colors.white
+				: 'transparent'}
 	background-color: ${({ theme }) => theme.colors.ghostWhite};
 	color: ${({ theme }) => theme.colors.dimGray};
 	${({ theme }) => theme.styles.os.input}
@@ -68,7 +61,6 @@ const PasswordLock = ({
 	inputBorder,
 	passwordInput,
 	passwordValid,
-	passwordSubmitted,
 	onInputPassword,
 	onSubmitPassword,
 }) => {
@@ -91,7 +83,6 @@ const PasswordLock = ({
 				style={theme.shadows.default}
 				isFocused={inputFocused}
 				passwordValid={passwordValid}
-				passwordSubmitted={passwordSubmitted}
 			/>
 			{hintEnabled && <Hint color={hintColor}>{hint}</Hint>}
 			{submitButton && (

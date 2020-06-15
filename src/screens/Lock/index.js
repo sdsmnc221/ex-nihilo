@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled, { withTheme } from 'styled-components';
+import { withTheme } from 'styled-components';
 import { useDispatch } from 'react-redux';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import { Keyboard } from 'react-native';
@@ -22,14 +22,11 @@ const LockScreen = ({ navigation, theme }) => {
 	const [messageFailed, setMessageFailed] = useState('');
 	const [passwordInput, setPasswordInput] = useState('');
 	const [passwordValid, setPasswordValid] = useState(false);
-	const [passwordSubmitted, setPasswordSubmitted] = useState(false);
 
 	const onSubmit = () => {
-		setPasswordSubmitted(true);
-
 		if (passwordInput !== PASSWORD) {
 			setPasswordValid(false);
-			setPasswordSubmitted(false);
+
 			setNumberOfTry(numberOfTry + 1);
 
 			if (numberOfTry >= 2) {
@@ -76,7 +73,6 @@ const LockScreen = ({ navigation, theme }) => {
 					hint={messageFailed}
 					passwordInput={passwordInput}
 					passwordValid={passwordValid}
-					passwordSubmitted={passwordSubmitted}
 					onInputPassword={(text) => setPasswordInput(text)}
 					onSubmitPassword={onSubmit}
 				/>

@@ -77,13 +77,14 @@ const PasswordLock = ({
 	const [buttonPressed, setButtonPressed] = useState(false);
 	const [inputFocused, setInputFocused] = useState(false);
 
-	const onPress = () => setButtonPressed(!buttonPressed);
+	const onPress = () => onSubmitPassword();
 
-	useEffect(() => {
-		if (buttonPressed) {
-			setTimeout(() => onSubmitPassword(), 60);
-		}
-	}, [buttonPressed, onSubmitPassword]);
+	// useEffect(() => {
+	// 	if (buttonPressed) {
+	// 		console.log('pressed')
+	// 		setTimeout(() => onSubmitPassword(), 60);
+	// 	}
+	// }, [buttonPressed, onSubmitPassword]);
 
 	return (
 		<Wrapper color={bodyColor} fullBody={fullBody}>

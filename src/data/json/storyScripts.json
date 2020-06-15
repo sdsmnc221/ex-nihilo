@@ -207,6 +207,8 @@
     {
         "ID": 22,
         "type": "MESSAGE",
+        "smsType": "poem",
+        "smsActionType": "EMPHASIS_CAPITALIZE",
         "text": "Grand et velus nous sommes\nOn aime les boîtes de thon\n\nC’est dans la rue qu’on fait nos biftons\nHotel poubelle, orgie de vieilles pommes\nEn fouillant bien on y trouve des merveilles couleur\nKiwi, croûte de moisi\n\nTout est couleur kiwi, faites nous une faveur\nEn disposant eau et poissons frais\nSur le pas de vos portes nous viendrons à l’heure\n\nSonner, passer par dessus la haie\nMerci pour cet élan de générosité\nSerpents de l’ombre chéris et aimés",
         "choices": [],
         "nextID": 23

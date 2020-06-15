@@ -2,6 +2,7 @@ import { device } from 'utils';
 import { HEADER_OPTIONS } from 'sharedUI/Header/configs';
 
 import dataEmailContentTypes from 'data/json/emailContentTypes.json';
+import dataSmsActionTypes from 'data/json/smsActionTypes.json';
 
 const { width: deviceW, height: deviceH } = device();
 
@@ -72,6 +73,12 @@ dataEmailContentTypes.forEach(
 	(type) => (EMAIL_CONTENT_TYPES[type.toUpperCase()] = type)
 );
 
+const SMS_ACTION_TYPES = {};
+
+dataSmsActionTypes.forEach(
+	(type) => (SMS_ACTION_TYPES[type.toUpperCase()] = type)
+);
+
 const STRINGS = {
 	CONTACT_INFO: [
 		{ title: 'Mobile', key: 'phoneNumber' },
@@ -109,6 +116,7 @@ const STRINGS = {
 		DOWN: 'ARROW_DOWN',
 	},
 	EMAIL_CONTENT_TYPES,
+	SMS_ACTION_TYPES,
 	JANUS_VOICE: () => require('../assets/sound/JANUS_VOICE.mp4'),
 };
 

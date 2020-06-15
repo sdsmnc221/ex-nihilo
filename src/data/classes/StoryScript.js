@@ -17,9 +17,19 @@ const {
 } = STORY_TYPES;
 
 export default class StoryScript {
-	constructor({ ID, type, text, choices, delayMinutes, condition, nextID }) {
+	constructor({
+		ID,
+		type,
+		smsActionType,
+		text,
+		choices,
+		delayMinutes,
+		condition,
+		nextID,
+	}) {
 		this.ID = ID;
 		this.type = type;
+		this.smsActionType = smsActionType;
 
 		switch (type) {
 			case BUG:

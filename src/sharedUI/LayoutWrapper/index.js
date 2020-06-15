@@ -68,11 +68,11 @@ const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
 	return (
 		<SafeAreaView
 			css={`
-				${theme.styles.safeAreaView(gapForStatusBar, navigationBar, bodyColor)}
+				${theme.styles.safeAreaView(gapForStatusBar, null, bodyColor)}
 			`}>
 			<View
 				css={`
-					${theme.styles.fullScreen}
+					/* ${theme.styles.fullScreen} */
 					${theme.styles.body(bodyColor)}
 					${bodyAdditionalStyle}
 				`}>

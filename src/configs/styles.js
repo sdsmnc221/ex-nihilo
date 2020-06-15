@@ -19,7 +19,7 @@ export default {
 		padding-top: ${gapForStatusBar ? 30 : 0}px;
 		position: relative;
 		width: ${width}px;
-		height: ${height + navigationBarHeight * (hasNavigationBar ? 1 : 2)}px;
+		/* height: ${height + navigationBarHeight * (hasNavigationBar ? 1 : 2)}px; */
 	`,
 	body: (backgroundColor, justifyContent, alignItems) =>
 		css`

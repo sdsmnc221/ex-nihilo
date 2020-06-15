@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
-import { View } from 'react-native';
+import { View, Keyboard } from 'react-native';
 
 import BG_HOMESCREEN from 'assets/images/BG-HomeScreen.png';
 
@@ -25,6 +25,8 @@ const Icons = styled.View`
 `;
 
 const HomeScreen = ({ route, navigation, theme }) => {
+	Keyboard.dismiss();
+
 	const iconSize = getIconSize();
 
 	const onPress = (screen) => navigation.navigate(screen);

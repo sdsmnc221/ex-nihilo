@@ -1,26 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'react-native';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { device } from 'utils';
 
 const { width, realHeight } = device();
 
-const StyledImage = styled.Image`
-	position: absolute;
+const size = css`
 	width: ${width}px;
 	height: ${realHeight}px;
+`;
+
+const StyledImage = styled.Image`
+	${size}
 	${({ theme }) => theme.styles.fullScreen}
 `;
 
 const Solid = styled.View`
-	position: absolute;
-	width: ${width}px;
-	height: ${realHeight}px;
 	background-color: ${({ solidColor }) => solidColor};
 	opacity: ${({ solidOpacity }) => solidOpacity};
+	${size}
+	${({ theme }) => theme.styles.fullScreen}
 `;
 
 const BackgroundImage = ({

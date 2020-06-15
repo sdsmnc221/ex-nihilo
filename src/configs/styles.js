@@ -15,10 +15,12 @@ export default {
 		padding-top: ${gapForStatusBar ? 30 : 0}px;
 		position: relative;
 		width: ${width}px;
+		flex: 1;
 		/* height: ${realHeight}px; */
 	`,
 	body: (backgroundColor, justifyContent, alignItems) =>
 		css`
+			flex: 1;
 			background-color: ${backgroundColor || colors.ghostWhite};
 			width: 100%;
 			height: 100%;
@@ -46,6 +48,13 @@ export default {
 		background-color: ${bodyColor || colors.ghostWhite};
 	`,
 	janusVoice: css`
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	`,
+	fullScreen: css`
 		position: absolute;
 		top: 0;
 		left: 0;

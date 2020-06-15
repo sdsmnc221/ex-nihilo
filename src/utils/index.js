@@ -41,6 +41,12 @@ const isArrEmpty = (array) => array.length === 0;
 
 const find = (arr, key, value) => arr.find((element) => element[key] === value);
 
+const flatten = (arr, depth = 1) =>
+	arr.reduce(
+		(a, v) => a.concat(depth > 1 && Array.isArray(v) ? flatten(v, depth - 1) : v),
+		[]
+	);
+
 const chunk = (arr, size) =>
 	Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
 		arr.slice(i * size, i * size + size)
@@ -131,6 +137,7 @@ export {
 	device,
 	isArrEmpty,
 	find,
+	flatten,
 	groupBy,
 	last,
 	random,

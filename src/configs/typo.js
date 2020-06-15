@@ -72,6 +72,10 @@ export default {
 			font-family: ${sourceSans.regular};
 			font-size: ${sizes.h3};
 		`,
+		smsTextBold: css`
+			font-family: ${sourceSans.bold};
+			font-size: ${sizes.h3};
+		`,
 	},
 	dataviz: {
 		title: css`

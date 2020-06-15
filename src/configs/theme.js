@@ -11,6 +11,7 @@ const theme = {
 		electricIndigo: '#8F00FF',
 		ghostWhite: '#F5F4FF',
 		lime: '#14FF00',
+		limeAlpha: 'rgba(20, 255, 0, $a)',
 		neonCarrot: '#FF9B3B',
 		persianRed: '#CC4141',
 		persianRedAlpha: 'rgba(204, 65, 65, $a)',

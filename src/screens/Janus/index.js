@@ -1,6 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 import { useDispatch } from 'react-redux';
+import { StackActions } from '@react-navigation/native';
 import Video from 'react-native-video';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
@@ -12,6 +13,8 @@ import { activateBigGlitch } from 'states/actions/gameActions';
 const JanusScreen = ({ route, navigation, theme }) => {
 	const dispatch = useDispatch();
 
+	const pushAction = StackActions.push(SCREENS.END_MENU);
+
 	return (
 		<LayoutWrapper screenName={route.name}>
 			<Video
@@ -22,7 +25,7 @@ const JanusScreen = ({ route, navigation, theme }) => {
 				css={theme.styles.janusVoice}
 				onEnd={() => {
 					activateBigGlitch(dispatch);
-					navigation.navigate(SCREENS.END_MENU);
+					navigation.dispatch(pushAction);
 				}}
 			/>
 		</LayoutWrapper>

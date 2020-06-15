@@ -92,6 +92,26 @@ const getLayoutConfigs = (screen) => {
 			break;
 	}
 
+	switch (screen) {
+		case SCREENS.ALBUM:
+		case SCREENS.CONTACTS:
+		case SCREENS.EMAIL:
+		case SCREENS.EMAIL_DETAILS:
+		case SCREENS.SMS:
+		case SCREENS.SMS_CONVERSATION:
+		case SCREENS.SMS_JANUS:
+		case SCREENS.FACEBOOK:
+		case SCREENS.FACEBOOK_LOGIN:
+			configs = {
+				...configs,
+				hasFillGap: true,
+			};
+			break;
+		default:
+			configs = { ...configs, hasFillGap: false };
+			break;
+	}
+
 	return {
 		...configs,
 		...(screenInfo

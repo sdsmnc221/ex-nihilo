@@ -5,6 +5,7 @@ const device = () => {
 	return {
 		...Dimensions.get('window'),
 		navigationBarHeight: ExtraDimensions.getSoftMenuBarHeight(),
+		realHeight: ExtraDimensions.getRealWindowHeight(),
 	};
 };
 

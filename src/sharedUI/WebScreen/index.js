@@ -5,8 +5,6 @@ import { useFocusEffect } from '@react-navigation/native';
 import { View, Linking } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-import FillGap from 'sharedUI/FillGap';
-
 const Wrapper = styled.View`
 	width: ${({ width }) => (width ? `${width}px` : '100%')};
 	${({ height }) =>
@@ -25,7 +23,6 @@ const WebScreen = ({
 	height,
 	url,
 	bodyColor,
-	fillGapHeight,
 	injectJS,
 	theme,
 	...webViewProps
@@ -69,7 +66,6 @@ const WebScreen = ({
 				onContentProcessDidTerminate={handlerContentProcessDidTerminate}
 				{...webViewProps}
 			/>
-			{fillGapHeight && <FillGap height={fillGapHeight} />}
 		</Wrapper>
 	);
 };
@@ -79,7 +75,6 @@ WebScreen.propTypes = {
 	height: PropTypes.number,
 	url: PropTypes.string.isRequired,
 	bodyColor: PropTypes.string,
-	fillGapHeight: PropTypes.number,
 	injectJS: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
 
@@ -87,7 +82,6 @@ WebScreen.defaultProps = {
 	width: null,
 	height: null,
 	bodyColor: null,
-	fillGapHeight: null,
 	injectJS: null,
 };
 

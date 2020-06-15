@@ -156,8 +156,6 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 				onPressChoice={onPressChoice}
 				onPressSend={onPressSend}
 			/>
-
-			<FillGap />
 		</LayoutWrapper>
 	);
 };

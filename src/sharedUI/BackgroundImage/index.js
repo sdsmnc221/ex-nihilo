@@ -6,18 +6,19 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { device } from 'utils';
 
-const { width, height, navigationBarHeight } = device();
+const { width, realHeight } = device();
 
 const StyledImage = styled.Image`
+	position: absolute;
 	width: ${width}px;
-	height: ${height + navigationBarHeight}px;
+	height: ${realHeight}px;
 	${({ theme }) => theme.styles.fullScreen}
 `;
 
 const Solid = styled.View`
 	position: absolute;
 	width: ${width}px;
-	height: ${height + navigationBarHeight * 2}px;
+	height: ${realHeight}px;
 	background-color: ${({ solidColor }) => solidColor};
 	opacity: ${({ solidOpacity }) => solidOpacity};
 `;

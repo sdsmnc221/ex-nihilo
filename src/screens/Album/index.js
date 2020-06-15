@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FlatList } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
-import FillGap from 'sharedUI/FillGap';
 import PasswordLock from 'sharedUI/PasswordLock';
 import PhotoThumbnail from './components/PhotoThumbnail';
 
@@ -90,7 +89,6 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 					/>
 				)}
 			/>
-			<FillGap />
 			{renderPasswordLock()}
 		</LayoutWrapper>
 	);

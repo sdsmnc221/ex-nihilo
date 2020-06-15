@@ -9,6 +9,7 @@ import NavigationBar from 'sharedUI/NavigationBar';
 import StatusBar from 'sharedUI/StatusBar';
 import Header from 'sharedUI/Header';
 import Glitch from 'sharedUI/Glitch';
+import FillGap from 'sharedUI/FillGap';
 
 import getLayoutConfigs from './configs';
 import getHeaderConfigs from 'sharedUI/Header/configs';
@@ -25,6 +26,7 @@ const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
 		gapForStatusBar,
 		bodyColor,
 		bodyAdditionalStyle,
+		hasFillGap,
 	} = getLayoutConfigs(screenName);
 
 	const { header, headerConfigs } = getHeaderConfigs(screenName);
@@ -68,19 +70,19 @@ const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
 	return (
 		<SafeAreaView
 			css={`
-				${theme.styles.safeAreaView(gapForStatusBar, null, bodyColor)}
+				${theme.styles.safeAreaView(gapForStatusBar, bodyColor)}
 			`}>
 			<View
 				css={`
-					/* ${theme.styles.fullScreen} */
 					${theme.styles.body(bodyColor)}
 					${bodyAdditionalStyle}
 				`}>
 				{header && <Header {...headerConfigs} />}
 				{children}
+				{hasFillGap && <FillGap />}
 			</View>
-			{statusBar && <StatusBar {...statusBarConfigs} />}
 			{navigationBar && <NavigationBar {...navigationBarConfigs} />}
+			{statusBar && <StatusBar {...statusBarConfigs} />}
 			{glitchEnabled && glitchOn && <Glitch glitchon={glitchOn} />}
 		</SafeAreaView>
 	);

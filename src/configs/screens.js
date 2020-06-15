@@ -30,7 +30,7 @@ const SCREENS = {
 };
 
 const getBodyColor = (screen) => {
-	const { black, charcoal, ghostWhite, slateBlue, white } = colors;
+	const { black, charcoal, ghostWhite, slateBlue } = colors;
 	let bodyColor = ghostWhite;
 
 	switch (screen) {
@@ -47,11 +47,6 @@ const getBodyColor = (screen) => {
 			break;
 		case SCREENS.INTRO:
 			bodyColor = charcoal;
-			break;
-		case SCREENS.EMAIL:
-		case SCREENS.EMAIL_LOGIN:
-		case SCREENS.EMAIL_DETAILS:
-			bodyColor = white;
 			break;
 		default:
 			break;

@@ -7,19 +7,15 @@ import { FLEX } from './constants';
 
 const { colors } = theme;
 const { JUSTIFY_CONTENT, ALIGN_ITEMS, FLEX_DIRECTION } = FLEX;
-const { width, height, navigationBarHeight } = device();
+const { width, height, navigationBarHeight, realHeight } = device();
 
 export default {
-	safeAreaView: (
-		gapForStatusBar,
-		hasNavigationBar = false,
-		backgroundColor
-	) => css`
+	safeAreaView: (gapForStatusBar, backgroundColor) => css`
 		background-color: ${backgroundColor || 'transparent'};
 		padding-top: ${gapForStatusBar ? 30 : 0}px;
 		position: relative;
 		width: ${width}px;
-		/* height: ${height + navigationBarHeight * (hasNavigationBar ? 1 : 2)}px; */
+		/* height: ${realHeight}px; */
 	`,
 	body: (backgroundColor, justifyContent, alignItems) =>
 		css`
@@ -50,13 +46,6 @@ export default {
 		background-color: ${bodyColor || colors.ghostWhite};
 	`,
 	janusVoice: css`
-		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-	`,
-	fullScreen: css`
 		position: absolute;
 		top: 0;
 		left: 0;

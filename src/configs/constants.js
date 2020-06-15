@@ -4,7 +4,12 @@ import { HEADER_OPTIONS } from 'sharedUI/Header/configs';
 import dataEmailContentTypes from 'data/json/emailContentTypes.json';
 import dataSmsActionTypes from 'data/json/smsActionTypes.json';
 
-const { width: deviceW, height: deviceH } = device();
+const {
+	width: deviceW,
+	height: deviceH,
+	navigationBarHeight,
+	realHeight,
+} = device();
 
 const NUMBERS = {
 	ALBUM_COLS: 3,
@@ -41,7 +46,9 @@ const HEADER_H = deviceH * HEADER_OPTIONS.minHeight;
 const HEADER_H_GAP = HEADER_H + HEADER_OPTIONS.extraGap;
 
 const SIZES = {
-	NAV_BAR_H: 50,
+	REAL_H: realHeight,
+	NAV_BAR_H: navigationBarHeight,
+	NAV_BAR_H_: 50,
 	STT_BAR_H: 30,
 	HEADER_H,
 	HEADER_H_GAP,
@@ -120,10 +127,9 @@ const STRINGS = {
 	SMS_ACTION_TYPES,
 	JANUS_VOICE: () => require('../assets/sound/JANUS_VOICE.mp4'),
 	WEBVIEW_GAP_SCRIPT: (scaleRatio = 1) => `
-	document.body.style.paddingBottom = '${SIZES.WEBVIEW_FILL_GAP * scaleRatio}px';
-	
-	true; // note: this is required, or you'll sometimes get silent failures
-`,
+		document.body.style.paddingBottom = '${SIZES.WEBVIEW_FILL_GAP * scaleRatio}px';
+		true; // note: this is required, or you'll sometimes get silent failures
+	`,
 };
 
 export { APP_ICON, FLEX, NUMBERS, SIZES, STRINGS };

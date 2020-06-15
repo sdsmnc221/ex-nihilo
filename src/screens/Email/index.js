@@ -33,7 +33,6 @@ const EmailScreen = ({ route, navigation, theme }) => {
 				)}
 				ListFooterComponent={<FillGap height={18} />}
 			/>
-			<FillGap />
 		</LayoutWrapper>
 	);
 };

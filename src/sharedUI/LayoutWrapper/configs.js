@@ -5,6 +5,10 @@ const navigationBarConfigs = {
 		transparentButtons: true,
 		transparentBG: true,
 	},
+	blackWhite: {
+		transparentButtons: true,
+		blackBG: true,
+	},
 	transparentColor: {
 		transparentButtons: false,
 		transparentBG: true,
@@ -79,7 +83,7 @@ const getLayoutConfigs = (screen) => {
 		case SCREENS.ABOUT_US:
 			configs = {
 				navigationBar: true,
-				navigationBarConfigs: navigationBarConfigs.transparentWhite,
+				navigationBarConfigs: navigationBarConfigs.blackWhite,
 				statusBar: true,
 				statusBarConfigs: statusBarConfigs.dark,
 			};

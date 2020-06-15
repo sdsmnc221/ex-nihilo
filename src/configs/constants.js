@@ -65,6 +65,7 @@ const SIZES = {
 		W: deviceW * 0.9,
 		H: 36,
 	},
+	WEBVIEW_FILL_GAP: 64,
 };
 
 const EMAIL_CONTENT_TYPES = {};
@@ -118,6 +119,11 @@ const STRINGS = {
 	EMAIL_CONTENT_TYPES,
 	SMS_ACTION_TYPES,
 	JANUS_VOICE: () => require('../assets/sound/JANUS_VOICE.mp4'),
+	WEBVIEW_GAP_SCRIPT: (scaleRatio = 1) => `
+	document.body.style.paddingBottom = '${SIZES.WEBVIEW_FILL_GAP * scaleRatio}px';
+	
+	true; // note: this is required, or you'll sometimes get silent failures
+`,
 };
 
 export { APP_ICON, FLEX, NUMBERS, SIZES, STRINGS };

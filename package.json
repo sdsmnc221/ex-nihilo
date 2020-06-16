@@ -93,8 +93,6 @@
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|react-(native|universal|navigation)-(.*)|@react-native-community/(.*)|@react-navigation/(.*))"
     ],
-    "globals": {
-
-    }
+    "globals": {}
   }
 }

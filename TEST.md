@@ -78,7 +78,7 @@ Testing isn't always about testing frameworks, we also have some linter and type
 ### Expected results:
 
 <p align="center">
-    <img src="./docs/test-results.png" alt="Tests results" style="width:600px;"/>
+    <img src="./docs/test-results.png" alt="Tests results" style="width:480px; height: auto;"/>
 </p>
 
 #### Failed Test

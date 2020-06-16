@@ -13,7 +13,9 @@ import { activateBigGlitch } from 'states/actions/gameActions';
 const JanusScreen = ({ route, navigation, theme }) => {
 	const dispatch = useDispatch();
 
-	const pushAction = StackActions.push(SCREENS.END_MENU);
+	const pushAction = StackActions.push(SCREENS.END_MENU, {
+		doNotRunScript: true,
+	});
 
 	return (
 		<LayoutWrapper screenName={route.name}>

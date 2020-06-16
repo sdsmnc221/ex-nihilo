@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 import WebScreen from 'sharedUI/WebScreen';
@@ -7,7 +8,7 @@ import { STRINGS, URL_DATAVIZ } from 'configs';
 
 const { DATAVIZ_TAB_BAR, DATAVIZ_EVENT_TYPES } = STRINGS;
 
-const Dataviz = ({ ...webScreenprops }) => {
+const Dataviz = ({ doNotRunScript, ...webScreenprops }) => {
 	const { tabIndex } = useSelector((state) => state.dataviz);
 	const { sms, gallery, contacts, calls } = useSelector(
 		(state) => state.deviceData
@@ -69,10 +70,18 @@ const Dataviz = ({ ...webScreenprops }) => {
 		<WebScreen
 			url={URL_DATAVIZ}
 			// injectedJavaScript={runScript}
-			injectJS={run}
+			injectJS={doNotRunScript ? () => {} : run}
 			{...webScreenprops}
 		/>
 	);
+};
+
+Dataviz.propTypes = {
+	doNotRunScript: PropTypes.bool,
+};
+
+Dataviz.defaultProps = {
+	doNotRunScript: false,
 };
 
 export default Dataviz;

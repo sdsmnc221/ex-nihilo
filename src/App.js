@@ -10,7 +10,6 @@ import {
 import moment from 'moment';
 import 'moment/locale/fr';
 
-import FullScreen from 'utils/FullScreen';
 import { LOCALE, SCREENS } from 'configs';
 import { DEFAULT_HEADER_OPTIONS as headerOptions } from 'sharedUI/Header/configs';
 

@@ -2,6 +2,7 @@ import {
 	MERGED_DATA_SET_CONTACTS,
 	MERGED_DATA_SET_PHOTOS,
 	MERGED_DATA_SET_SMS,
+	MERGED_DATA_RESET_EMAILS_NOTIFICATIONS,
 	MERGED_DATA_UPDATE_SMS_WITH_JANUS,
 	MERGED_DATA_UPDATE_JANUS_SMS_LAST_MESSAGE,
 } from '../actionTypes';
@@ -16,6 +17,10 @@ export const setAppGallery = (dispatch, gallery) => {
 
 export const setAppSms = (dispatch, sms) => {
 	dispatch({ type: MERGED_DATA_SET_SMS, payload: { sms } });
+};
+
+export const resetEmailsNotifs = (dispatch) => {
+	dispatch({ type: MERGED_DATA_RESET_EMAILS_NOTIFICATIONS });
 };
 
 export const updateSmsWithJanus = (dispatch, JanusSms) => {

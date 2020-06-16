@@ -1,6 +1,6 @@
 import StoryChoice from './StoryChoice';
 
-import { convertDelayTime } from 'hooks/DialogueManager/utils';
+import { convertDelayTime } from 'utils';
 import { STORY_TYPES } from 'hooks/DialogueManager/configs';
 
 const {

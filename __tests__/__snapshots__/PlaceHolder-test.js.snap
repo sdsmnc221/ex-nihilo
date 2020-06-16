@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders PlaceHolder correctly 1`] = `
+<View
+  color="#565656"
+  round={false}
+  size={50}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#565656",
+        "borderRadius": 0,
+        "height": 50,
+        "justifyContent": "center",
+        "width": 50,
+      },
+    ]
+  }
+/>
+`;

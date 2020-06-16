@@ -1,6 +1,6 @@
 import { find, last } from 'utils';
 
-import { storyScripts } from 'states/data';
+import storyScripts from 'data/defaultData/storyScripts';
 import { STORY_TYPES } from './configs';
 
 const {
@@ -15,8 +15,6 @@ const {
 } = STORY_TYPES;
 
 const containsPlaceholder = ({ type }) => type === MESSAGE_WITH_PLACEHOLDER;
-
-const convertDelayTime = (minute) => 1000 * 60 * minute;
 
 const doProceedToNextScript = ({ choices, nextID }) =>
 	!choices || choices.length === 0 || nextID;
@@ -54,7 +52,6 @@ const replaceWithUsername = (string, username, isUser = false) => {
 
 export {
 	containsPlaceholder,
-	convertDelayTime,
 	doProceedToNextScript,
 	doTriggerNotification,
 	findScript,

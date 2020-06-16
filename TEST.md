@@ -79,6 +79,10 @@ Testing isn't always about testing frameworks, we also have some linter and type
 
 ### Expected results:
 
+<p align="center">
+    <img src="./docs/test-results.png" alt="Tests results" style="width:80%;"/>
+</p>
+
 #### Failed Test
 
 As we will see in the terminal, every tests will pass except for [App-test.js](__tests__/App-test.js) :mask:. Which is actually normal, if we check [App.js](src/App.js). The app comes with many dependencies and stuffs (store, many providers, many constants that needed to be mocked first or it will stay `undefined`, making the rendering test failed).

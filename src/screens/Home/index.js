@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
+import { useSelector } from 'react-redux';
 import { useSafeArea } from 'react-native-safe-area-context';
 import { View } from 'react-native';
 
@@ -26,6 +27,7 @@ const Icons = styled.View`
 `;
 
 const HomeScreen = ({ route, navigation, theme }) => {
+	const mergedData = useSelector((state) => state.mergedData);
 	const insets = useSafeArea();
 
 	const iconSize = getIconSize();
@@ -48,7 +50,9 @@ const HomeScreen = ({ route, navigation, theme }) => {
 						key={index}
 						type={app.iconType}
 						size={iconSize}
-						notifs={app.notifs}
+						notifs={
+							typeof app.notifs === 'number' ? app.notifs : mergedData[app.notifs]
+						}
 						{...(app.screen
 							? { onPress: () => onPress(app.screen) }
 							: { noPressEffect: true })}

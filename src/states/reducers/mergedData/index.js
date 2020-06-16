@@ -25,6 +25,7 @@ function mergedData(state = initialStates.mergedData, action) {
 			return {
 				...state,
 				sms,
+				smsNotifications: sms.length,
 			};
 		}
 		case MERGED_DATA_UPDATE_SMS_WITH_JANUS: {

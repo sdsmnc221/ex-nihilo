@@ -58,6 +58,8 @@ export default {
 		},
 		sms: null,
 		notifications,
+		smsNotifications: 0,
+		emailsNotifications: emails.length,
 	},
 	story: {
 		scripts,

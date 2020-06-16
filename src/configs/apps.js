@@ -1,4 +1,5 @@
 import { SCREENS } from './screens';
+import { notifications } from 'states/data';
 
 const ALL_APPS = [
 	{ label: 'Contacts', iconType: 'CONTACTS', screen: SCREENS.CONTACTS },
@@ -7,12 +8,18 @@ const ALL_APPS = [
 		iconType: 'EMAIL',
 		screen: SCREENS.EMAIL_LOGIN,
 		screenUnlock: SCREENS.EMAIL,
+		notifs: 'emailsNotifications',
 	},
-	{ label: 'Messages', iconType: 'SMS', screen: SCREENS.SMS, notifs: 24 },
+	{
+		label: 'Messages',
+		iconType: 'SMS',
+		screen: SCREENS.SMS,
+		notifs: 'smsNotifications',
+	},
 	{ label: 'Internet', iconType: 'BROWSER', screen: SCREENS.INTERNET },
 	{ label: 'Mes Notes', iconType: 'NOTES' },
 	{ label: 'Calendrier', iconType: 'CALENDAR' },
-	{ label: 'Appels', iconType: 'PHONE', notifs: 8 },
+	{ label: 'Appels', iconType: 'PHONE', notifs: notifications.length / 2 },
 	{ label: 'Galerie', iconType: 'ALBUM', screen: SCREENS.ALBUM },
 	{ label: 'Facebook', iconType: 'FACEBOOK', screen: SCREENS.FACEBOOK_LOGIN },
 	{ label: 'Calculatrice' },
@@ -25,8 +32,13 @@ const ALL_APPS = [
 ];
 
 const HOME_APPS = [
-	{ label: 'Appels', iconType: 'PHONE', notifs: 8 },
-	{ label: 'Messages', iconType: 'SMS', screen: SCREENS.SMS, notifs: 24 },
+	{ label: 'Appels', iconType: 'PHONE', notifs: notifications.length / 2 },
+	{
+		label: 'Messages',
+		iconType: 'SMS',
+		screen: SCREENS.SMS,
+		notifs: 'smsNotifications',
+	},
 	{ label: 'Apps', iconType: 'APPS', screen: SCREENS.ALL_APPS },
 	{ label: 'Contacts', iconType: 'CONTACTS', screen: SCREENS.CONTACTS },
 	{ label: 'Galerie', iconType: 'ALBUM', screen: SCREENS.ALBUM },

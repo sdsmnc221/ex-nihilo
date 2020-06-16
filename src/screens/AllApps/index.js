@@ -12,6 +12,7 @@ import { chunk } from 'utils';
 import getIconSize from 'utils/getIconSize';
 
 const AllAppsScreen = ({ route, navigation }) => {
+	const mergedData = useSelector((state) => state.mergedData);
 	const { UNLOCK_EMAIL } = useSelector((state) => state.game);
 
 	const iconSize = getIconSize();
@@ -42,7 +43,7 @@ const AllAppsScreen = ({ route, navigation }) => {
 								label={a.label}
 								type={a.iconType || 'LOCK'}
 								size={iconSize}
-								notifs={a.notifs}
+								notifs={typeof a.notifs === 'number' ? a.notifs : mergedData[a.notifs]}
 								{...(a.screen
 									? {
 											onPress: () =>

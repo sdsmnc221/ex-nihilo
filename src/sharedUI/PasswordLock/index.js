@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import { View, Text } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
 import FlatButton from 'sharedUI/Button/FlatButton';
+
+import { tick } from 'utils';
+import { NUMBERS } from 'configs';
 
 const Wrapper = styled.View`
 	height: ${({ fullBody }) => (fullBody ? '100%' : 'auto')};
@@ -31,7 +34,7 @@ const Input = styled.TextInput`
 				? theme.colors.cinnabar
 				: inputBorder
 				? theme.colors.white
-				: 'transparent'}
+				: 'transparent'};
 	background-color: ${({ theme }) => theme.colors.ghostWhite};
 	color: ${({ theme }) => theme.colors.dimGray};
 	${({ theme }) => theme.styles.os.input}
@@ -66,12 +69,25 @@ const PasswordLock = ({
 }) => {
 	const { whiskey, white } = theme.colors;
 
+	const inputRef = useRef(null);
+
 	const [inputFocused, setInputFocused] = useState(false);
+
+	const onPress = () => {
+		inputRef.current && inputRef.current.blur();
+		onSubmitPassword();
+
+		tick(
+			() => inputRef.current && inputRef.current.focus(),
+			NUMBERS.RESET_PRESS_DURATION
+		);
+	};
 
 	return (
 		<Wrapper color={bodyColor} fullBody={fullBody}>
 			<Title color={titleColor}>Mot de passe</Title>
 			<Input
+				ref={inputRef}
 				inputBorder={inputBorder}
 				secureTextEntry
 				blurOnSubmit
@@ -93,7 +109,7 @@ const PasswordLock = ({
 					inactiveTextColor={whiskey}
 					activeButtonColor={whiskey}
 					activeTextColor={white}
-					pressHandler={onSubmitPassword}
+					pressHandler={onPress}
 				/>
 			)}
 		</Wrapper>

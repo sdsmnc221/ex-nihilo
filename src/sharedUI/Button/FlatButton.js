@@ -50,21 +50,24 @@ const FlatButton = ({
 	const onPress = () => setButtonPressed(!buttonPressed);
 
 	useEffect(() => {
-		if (buttonPressed && pressCount < 1) {
+		if (buttonPressed) {
 			setPressCount(pressCount + 1);
 			pressHandler();
 
 			tick(() => setButtonPressed(false), NUMBERS.RESET_PRESS_DURATION);
-		} else if (buttonPressed && pressCount === 1) {
-			setPressCount(0);
 		}
-	}, [buttonPressed, pressHandler]);
 
+		return () => {
+			setPressCount(0);
+		};
+	}, [buttonPressed]);
+
+	// if button is in pressed state, do not trigger onPress ever again
 	return (
 		<Button
-			onPress={onPress}
+			onPress={!buttonPressed ? onPress : () => {}}
 			active={buttonPressed}
-			activeOpacity={0.8}
+			activeOpacity={buttonPressed ? 1 : 0.8}
 			borderColor={borderColor}
 			inactiveButtonColor={inactiveButtonColor}
 			activeButtonColor={activeButtonColor}

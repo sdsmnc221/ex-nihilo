@@ -1,6 +1,7 @@
 {
   "name": "ex-nihilo",
-  "version": "1.0.0",
+  "version": "1.1.5",
+  "type": "module",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -55,6 +56,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
     "@babel/runtime": "^7.8.7",
     "@react-native-community/eslint-config": "^0.0.7",
     "babel-jest": "^25.1.0",
@@ -72,11 +75,26 @@
     "setupFiles": [
       "./node_modules/react-native-gesture-handler/jestSetup.js"
     ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/utils/test/assetsTransformer.js",
-      "sharedUI/(.*)": [
-        "<rootDir>/src/sharedUI/$1"
-      ]
+      "sharedUI/(.*)": "<rootDir>/src/sharedUI/$1"
+    },
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-(native|universal|navigation)-(.*)|@react-native-community/(.*)|@react-navigation/(.*))"
+    ],
+    "globals": {
+
     }
   }
 }

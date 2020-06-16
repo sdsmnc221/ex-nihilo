@@ -1,6 +1,7 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled, { withTheme } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+import { useFocusEffect } from '@react-navigation/native';
 import { useSafeArea } from 'react-native-safe-area-context';
 import { View, Keyboard } from 'react-native';
 
@@ -36,7 +37,7 @@ const HomeScreen = ({ route, navigation, theme }) => {
 
 	const onPress = (screen) => navigation.navigate(screen);
 
-	useLayoutEffect(() => {
+	useFocusEffect(() => {
 		Keyboard.dismiss();
 	}, []);
 

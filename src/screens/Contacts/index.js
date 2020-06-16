@@ -19,7 +19,9 @@ const SectionTitle = styled.Text`
 `;
 
 const ContactsScreen = ({ route, navigation, theme }) => {
+	const { contactsSet } = useSelector((state) => state.deviceData.misc);
 	const { contacts } = useSelector((state) => state.mergedData);
+	const { contacts: fakeContacts } = useSelector((state) => state.fakeData);
 
 	return (
 		<LayoutWrapper screenName={route.name}>
@@ -27,7 +29,11 @@ const ContactsScreen = ({ route, navigation, theme }) => {
 				css={`
 					${theme.styles.list}
 				`}
-				sections={getSections(contacts, 'name', 'number')}
+				sections={getSections(
+					contactsSet ? contacts : fakeContacts,
+					'name',
+					'number'
+				)}
 				keyExtractor={(item, index) => index.toString()}
 				renderSectionHeader={({ section: { title } }) => (
 					<SectionTitle>{title}</SectionTitle>

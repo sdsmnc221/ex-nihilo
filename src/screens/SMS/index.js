@@ -10,7 +10,9 @@ import FillGap from 'sharedUI/FillGap';
 import { SCREENS } from 'configs';
 
 const SmsScreen = ({ route, navigation, theme }) => {
+	const { smsSet } = useSelector((state) => state.deviceData.misc);
 	const { sms: smsList } = useSelector((state) => state.mergedData);
+	const { sms: fakeSmsList } = useSelector((state) => state.fakeData);
 
 	return (
 		<LayoutWrapper screenName={route.name}>
@@ -18,7 +20,7 @@ const SmsScreen = ({ route, navigation, theme }) => {
 				css={`
 					${theme.styles.list}
 				`}
-				data={smsList}
+				data={smsSet ? smsList : fakeSmsList}
 				keyExtractor={(item, index) => index.toString()}
 				renderItem={({ item: sms, index }) => (
 					<SmsShort

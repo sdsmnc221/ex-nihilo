@@ -17,7 +17,7 @@ import FullScreen from 'utils/FullScreen';
 
 import getLayoutConfigs from './configs';
 import getHeaderConfigs from 'sharedUI/Header/configs';
-import { NUMBERS } from 'configs';
+import { SCREENS, NUMBERS } from 'configs';
 
 import { resetGlitch } from 'states/actions/gameActions';
 
@@ -43,6 +43,9 @@ const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
 
 	const dispatch = useDispatch();
 	const { glitchEnabled, glitchAmount } = useSelector((state) => state.game);
+	const { requested: permissionsRequested } = useSelector(
+		(state) => state.permissions
+	);
 
 	const [glitchOn, setGlitchOn] = useState(false);
 	const [glitchCount, setGlitchCount] = useState(0);
@@ -73,12 +76,14 @@ const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
 		}
 	}, [glitchCount, glitchEnabled]);
 
-	useFocusEffect(
-		() =>
-			// Enable Fullscreen mode
-			FullScreen.enable(),
-		[]
-	);
+	// Enable Fullscreen mode
+	useFocusEffect(() => {
+		if (screenName === SCREENS.INTRO) {
+			permissionsRequested && FullScreen.enable();
+		} else {
+			FullScreen.enable();
+		}
+	}, []);
 
 	return (
 		<SafeAreaView

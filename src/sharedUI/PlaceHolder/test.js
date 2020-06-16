@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/native';
+import 'jest-styled-components/native';
 import { View, Text } from 'react-native';
 
 const Wrapper = styled.View`

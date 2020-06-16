@@ -114,6 +114,7 @@ const Notification = ({ reappearDelay, navigationRef, theme }) => {
 			isVisible={isVisible}
 			style={theme.styles.styleSheet.modal}
 			hasBackdrop={false}
+			coverScreen={false}
 			animationIn="slideInDown"
 			animationOut="slideOutUp"
 			animationInTiming={800}

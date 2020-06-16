@@ -173,7 +173,7 @@ Notification.propTypes = {
 };
 
 Notification.defaultProps = {
-	reappearDelay: 4000,
+	reappearDelay: NUMBERS.NOTIF_REAPPEAR_DELAY,
 };
 
 export default withTheme(Notification);

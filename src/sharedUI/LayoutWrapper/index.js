@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+import { useFocusEffect } from '@react-navigation/native';
 import { useSafeArea } from 'react-native-safe-area-context';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -11,6 +12,8 @@ import StatusBar from 'sharedUI/StatusBar';
 import Header from 'sharedUI/Header';
 import Glitch from 'sharedUI/Glitch';
 import FillGap from 'sharedUI/FillGap';
+
+import FullScreen from 'utils/FullScreen';
 
 import getLayoutConfigs from './configs';
 import getHeaderConfigs from 'sharedUI/Header/configs';
@@ -69,6 +72,13 @@ const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
 			);
 		}
 	}, [glitchCount, glitchEnabled]);
+
+	useFocusEffect(
+		() =>
+			// Enable Fullscreen mode
+			FullScreen.enable(),
+		[]
+	);
 
 	return (
 		<SafeAreaView

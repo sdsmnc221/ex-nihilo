@@ -59,9 +59,6 @@ const App = () => {
 	};
 	BackHandler.addEventListener('hardwareBackPress', onBackButtonPressed);
 
-	// Enable Fullscreen mode
-	FullScreen.enable();
-
 	const navContainerRef = useRef(null);
 
 	return (

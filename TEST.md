@@ -12,8 +12,6 @@ Testing isn't always about testing frameworks, we also have some linter and type
 
 <br>
 
----
-
 ## Basic Testing with Jest
 
 ### Some external documentations
@@ -80,7 +78,7 @@ Testing isn't always about testing frameworks, we also have some linter and type
 ### Expected results:
 
 <p align="center">
-    <img src="./docs/test-results.png" alt="Tests results" style="width:80%;"/>
+    <img src="./docs/test-results.png" alt="Tests results" style="width:600px;"/>
 </p>
 
 #### Failed Test
@@ -118,8 +116,6 @@ As we will see in the terminal, every tests will pass except for [App-test.js](_
   - Snapshot can be found here: [Glitch/index.test.js](src/sharedUI/Glitch/__snapshots__/index.test.js.snap).
 
 <br>
-
----
 
 ## Potential test scenarios
 
@@ -260,8 +256,6 @@ As we will see in the terminal, every tests will pass except for [App-test.js](_
 - Branched dialogue story
 
 <br>
-
----
 
 ## Static Analysis Test
 

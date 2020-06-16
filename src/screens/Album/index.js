@@ -24,7 +24,10 @@ const PasswordLockContainer = styled.View`
 
 const AlbumScreen = ({ route, navigation, theme }) => {
 	const dispatch = useDispatch();
+
+	const { gallerySet } = useSelector((state) => state.deviceData.misc);
 	const { gallery } = useSelector((state) => state.mergedData);
+	const { gallery: fakeGallery } = useSelector((state) => state.fakeData);
 	const { UNLOCK_ALBUM } = useSelector((state) => state.game);
 
 	const photoSize = SIZES.ALBUM_PHOTO;
@@ -67,7 +70,7 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 				css={`
 					${theme.styles.list}
 				`}
-				data={gallery.photos}
+				data={gallerySet ? gallery.photos : fakeGallery.photos}
 				keyExtractor={(item, index) => index.toString()}
 				numColumns={NUMBERS.ALBUM_COLS}
 				renderItem={({ item: photo }) => (

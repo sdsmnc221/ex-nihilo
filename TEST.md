@@ -75,7 +75,7 @@ Testing isn't always about testing frameworks, we also have some linter and type
   $ npm run test (or yarn test)
   ```
 
-### Expected results:
+### Expected results
 
 <p align="center">
     <img src="./docs/test-results.png" alt="Tests results" width="480"/>
@@ -85,7 +85,7 @@ Testing isn't always about testing frameworks, we also have some linter and type
 
 As we will see in the terminal, every tests will pass except for [App-test.js](__tests__/App-test.js) :mask:. Which is actually normal, if we check [App.js](src/App.js). The app comes with many dependencies and stuffs (store, many providers, many constants that needed to be mocked first or it will stay `undefined`, making the rendering test failed).
 
-#### Some successful basic tests:
+#### Some successful basic tests
 
 - **Component Test: Testing Rendered Output & Snapshot the [PlaceHolder component](src/sharedUI/PlaceHolder/__test.js).**
 

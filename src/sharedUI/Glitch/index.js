@@ -135,7 +135,7 @@ const Glitch = () => {
 
 	return (
 		<>
-			<View style={styles.container}>
+			<View style={styles.container} pointerEvents="none">
 				{glitchRnd()}
 				{glitchRnd()}
 				{glitchRnd()}

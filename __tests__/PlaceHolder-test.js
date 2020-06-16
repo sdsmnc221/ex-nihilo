@@ -11,6 +11,7 @@ import PlaceHolder from '../src/sharedUI/PlaceHolder';
 import renderer from 'react-test-renderer';
 
 // A SIMPLE TEST: component PlaceHolder rendered correctly.
-it('renders correctly', () => {
-	renderer.create(<PlaceHolder />);
+it('renders PlaceHolder correctly', () => {
+	const tree = renderer.create(<PlaceHolder />).toJSON();
+	expect(tree).toMatchSnapshot();
 });

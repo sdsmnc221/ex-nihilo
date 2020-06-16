@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import styled, { withTheme } from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useSafeArea } from 'react-native-safe-area-context';
-import { View } from 'react-native';
+import { View, Keyboard } from 'react-native';
 
 import BG_HOMESCREEN from 'assets/images/BG-HomeScreen.png';
 
@@ -33,6 +33,10 @@ const HomeScreen = ({ route, navigation, theme }) => {
 	const iconSize = getIconSize();
 
 	const onPress = (screen) => navigation.navigate(screen);
+
+	useLayoutEffect(() => {
+		Keyboard.dismiss();
+	}, []);
 
 	return (
 		<LayoutWrapper screenName={route.name}>

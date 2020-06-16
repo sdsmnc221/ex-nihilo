@@ -1,5 +1,4 @@
 import { SCREENS } from './screens';
-import { notifications } from 'states/data';
 
 const ALL_APPS = [
 	{ label: 'Contacts', iconType: 'CONTACTS', screen: SCREENS.CONTACTS },
@@ -19,7 +18,7 @@ const ALL_APPS = [
 	{ label: 'Internet', iconType: 'BROWSER', screen: SCREENS.INTERNET },
 	{ label: 'Mes Notes', iconType: 'NOTES' },
 	{ label: 'Calendrier', iconType: 'CALENDAR' },
-	{ label: 'Appels', iconType: 'PHONE', notifs: notifications.length / 2 },
+	{ label: 'Appels', iconType: 'PHONE', notifs: 6 },
 	{ label: 'Galerie', iconType: 'ALBUM', screen: SCREENS.ALBUM },
 	{ label: 'Facebook', iconType: 'FACEBOOK', screen: SCREENS.FACEBOOK_LOGIN },
 	{ label: 'Calculatrice' },
@@ -32,7 +31,7 @@ const ALL_APPS = [
 ];
 
 const HOME_APPS = [
-	{ label: 'Appels', iconType: 'PHONE', notifs: notifications.length / 2 },
+	{ label: 'Appels', iconType: 'PHONE', notifs: 6 },
 	{
 		label: 'Messages',
 		iconType: 'SMS',

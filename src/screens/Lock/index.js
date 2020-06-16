@@ -44,7 +44,6 @@ const LockScreen = ({ navigation, theme }) => {
 
 	useEffect(() => {
 		if (passwordValid) {
-			Keyboard.dismiss();
 			setTimeout(() => {
 				navigation.navigate(SCREENS.HOME);
 			}, 32);

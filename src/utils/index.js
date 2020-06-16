@@ -37,6 +37,8 @@ const replaceRandom = (string, complexity = 0.4) => {
 const replaceTemplate = (string, replaceValue, pattern = '[$]') =>
 	string.replace(pattern, replaceValue);
 
+const convertDelayTime = (minute) => 1000 * 60 * minute;
+
 const cleanLineBreaks = (str, withValue = ' ') =>
 	str.replace(/\r?\n|\r/g, withValue);
 
@@ -136,6 +138,7 @@ const getSections = (array, key, subKey) => {
 
 export {
 	chunk,
+	convertDelayTime,
 	cleanLineBreaks,
 	device,
 	isArrEmpty,

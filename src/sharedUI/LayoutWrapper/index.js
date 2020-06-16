@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { withTheme, css } from 'styled-components';
+import { withTheme } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+import { useFocusEffect } from '@react-navigation/native';
+import { useSafeArea } from 'react-native-safe-area-context';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -9,6 +11,9 @@ import NavigationBar from 'sharedUI/NavigationBar';
 import StatusBar from 'sharedUI/StatusBar';
 import Header from 'sharedUI/Header';
 import Glitch from 'sharedUI/Glitch';
+import FillGap from 'sharedUI/FillGap';
+
+import FullScreen from 'utils/FullScreen';
 
 import getLayoutConfigs from './configs';
 import getHeaderConfigs from 'sharedUI/Header/configs';
@@ -17,6 +22,8 @@ import { NUMBERS } from 'configs';
 import { resetGlitch } from 'states/actions/gameActions';
 
 const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
+	const insets = useSafeArea();
+
 	const {
 		navigationBar,
 		navigationBarConfigs,
@@ -25,6 +32,7 @@ const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
 		gapForStatusBar,
 		bodyColor,
 		bodyAdditionalStyle,
+		hasFillGap,
 	} = getLayoutConfigs(screenName);
 
 	const { header, headerConfigs } = getHeaderConfigs(screenName);
@@ -65,23 +73,29 @@ const LayoutWrapper = ({ theme, children, screenName, headerTitle }) => {
 		}
 	}, [glitchCount, glitchEnabled]);
 
+	useFocusEffect(
+		() =>
+			// Enable Fullscreen mode
+			FullScreen.enable(),
+		[]
+	);
+
 	return (
 		<SafeAreaView
 			css={`
-				${theme.styles.safeAreaView(gapForStatusBar)}
+				${theme.styles.safeAreaView(gapForStatusBar, bodyColor)}
 			`}>
 			<View
 				css={`
-					${css`
-						${theme.styles.body(bodyColor)}
-						${bodyAdditionalStyle}
-					`}
+					${theme.styles.body(bodyColor)}
+					${bodyAdditionalStyle}
 				`}>
 				{header && <Header {...headerConfigs} />}
 				{children}
+				{!insets.bottom && hasFillGap && <FillGap />}
 			</View>
-			{statusBar && <StatusBar {...statusBarConfigs} />}
 			{navigationBar && <NavigationBar {...navigationBarConfigs} />}
+			{statusBar && <StatusBar {...statusBarConfigs} />}
 			{glitchEnabled && glitchOn && <Glitch glitchon={glitchOn} />}
 		</SafeAreaView>
 	);

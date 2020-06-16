@@ -45,7 +45,6 @@ const ContactsScreen = ({ route, navigation, theme }) => {
 				)}
 				ListFooterComponent={<FillGap height={36} />}
 			/>
-			<FillGap />
 		</LayoutWrapper>
 	);
 };

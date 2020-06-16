@@ -13,6 +13,7 @@ import { rgba } from 'utils';
 import { EMAIL_ACCOUNT, KEY_PUZZLE_D, SCREENS } from 'configs';
 
 import { unlockEmail, incrementChanges } from 'states/actions/gameActions';
+import { resetEmailsNotifs } from 'states/actions/mergedDataActions';
 
 const COMMON_SIZES = {
 	w: '64%',
@@ -90,6 +91,7 @@ const EmailLoginScreen = ({ route, navigation, theme }) => {
 		} else {
 			navigation.navigate(SCREENS.EMAIL);
 			unlockEmail(dispatch);
+			resetEmailsNotifs(dispatch);
 			incrementChanges(dispatch);
 		}
 	};

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import styled, { withTheme } from 'styled-components';
+import { withTheme } from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { View } from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
+import { Keyboard } from 'react-native';
 
 import BG_LOCKSCREEN from 'assets/images/BG-LockScreen.png';
 
@@ -14,14 +14,6 @@ import { KEY_PUZZLE_A, SCREENS } from 'configs';
 
 import { unlockApp } from 'states/actions/gameActions';
 
-const Solid = styled.View`
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-color: ${({ theme }) => theme.colors.ghostWhite};
-	opacity: 0.6;
-`;
-
 const LockScreen = ({ navigation, theme }) => {
 	const dispatch = useDispatch();
 
@@ -30,14 +22,11 @@ const LockScreen = ({ navigation, theme }) => {
 	const [messageFailed, setMessageFailed] = useState('');
 	const [passwordInput, setPasswordInput] = useState('');
 	const [passwordValid, setPasswordValid] = useState(false);
-	const [passwordSubmitted, setPasswordSubmitted] = useState(false);
 
 	const onSubmit = () => {
-		setPasswordSubmitted(true);
-
 		if (passwordInput !== PASSWORD) {
 			setPasswordValid(false);
-			setPasswordSubmitted(false);
+
 			setNumberOfTry(numberOfTry + 1);
 
 			if (numberOfTry >= 2) {
@@ -70,15 +59,19 @@ const LockScreen = ({ navigation, theme }) => {
 				css={`
 					${theme.styles.body()}
 				`}>
-				<BackgroundImage source={BG_LOCKSCREEN} />
-				<Solid />
+				<BackgroundImage
+					source={BG_LOCKSCREEN}
+					solid
+					solidColor={theme.colors.ghostWhite}
+					solidOpacity={0.6}
+				/>
+
 				<PasswordLock
 					submitButton
 					hintEnabled
 					hint={messageFailed}
 					passwordInput={passwordInput}
 					passwordValid={passwordValid}
-					passwordSubmitted={passwordSubmitted}
 					onInputPassword={(text) => setPasswordInput(text)}
 					onSubmitPassword={onSubmit}
 				/>

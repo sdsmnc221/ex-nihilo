@@ -114,6 +114,7 @@ const Notification = ({ reappearDelay, navigationRef, theme }) => {
 			isVisible={isVisible}
 			style={theme.styles.styleSheet.modal}
 			hasBackdrop={false}
+			coverScreen={false}
 			animationIn="slideInDown"
 			animationOut="slideOutUp"
 			animationInTiming={800}
@@ -172,7 +173,7 @@ Notification.propTypes = {
 };
 
 Notification.defaultProps = {
-	reappearDelay: 4000,
+	reappearDelay: NUMBERS.NOTIF_REAPPEAR_DELAY,
 };
 
 export default withTheme(Notification);

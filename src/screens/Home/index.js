@@ -1,6 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-import { View } from 'react-native';
+import styled, { withTheme } from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { useFocusEffect } from '@react-navigation/native';
+import { useSafeArea } from 'react-native-safe-area-context';
+import { View, Keyboard } from 'react-native';
 
 import BG_HOMESCREEN from 'assets/images/BG-HomeScreen.png';
 
@@ -14,17 +17,9 @@ import { APP_ICON, HOME_APPS } from 'configs';
 
 const { ICONS_TRAY_WIDTH, ICONS_TRAY_MARGE } = APP_ICON;
 
-const Solid = styled.View`
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-color: ${({ theme }) => theme.colors.ghostWhite};
-	opacity: 0.24;
-`;
-
 const Icons = styled.View`
 	position: absolute;
-	bottom: 64px;
+	bottom: ${({ notFullScreenDisplay }) => (notFullScreenDisplay ? 32 : 64)}px;
 	width: ${ICONS_TRAY_WIDTH}%;
 	padding: ${ICONS_TRAY_MARGE}px;
 	border-radius: 50px;
@@ -32,25 +27,46 @@ const Icons = styled.View`
 	${({ theme }) => theme.styles.flexWithoutSize('space-around', null, 'row')}
 `;
 
-const HomeScreen = ({ route, navigation }) => {
+const HomeScreen = ({ route, navigation, theme }) => {
+	const insets = useSafeArea();
+	const dispatch = useDispatch();
+
+	const mergedData = useSelector((state) => state.mergedData);
+
 	const iconSize = getIconSize();
 
 	const onPress = (screen) => navigation.navigate(screen);
 
+	useFocusEffect(() => {
+		Keyboard.dismiss();
+	}, []);
+
 	return (
 		<LayoutWrapper screenName={route.name}>
-			<BackgroundImage source={BG_HOMESCREEN} />
-			<Solid />
+			<BackgroundImage
+				source={BG_HOMESCREEN}
+				solid
+				solidColor={theme.colors.ghostWhite}
+				solidOpacity={0.24}
+			/>
+
 			<Clock />
-			<Icons>
+			<Icons notFullScreenDisplay={!!insets.bottom}>
 				{HOME_APPS.map((app, index) => (
 					<AppIcon
 						key={index}
 						type={app.iconType}
 						size={iconSize}
-						notifs={app.notifs}
+						notifs={
+							typeof app.notifs === 'number' ? app.notifs : mergedData[app.notifs]
+						}
 						{...(app.screen
-							? { onPress: () => onPress(app.screen) }
+							? {
+									onPress: () => {
+										onPress(app.screen);
+										app.onPress && app.onPress(dispatch);
+									},
+							  }
 							: { noPressEffect: true })}
 						withSpacing
 					/>
@@ -60,4 +76,4 @@ const HomeScreen = ({ route, navigation }) => {
 	);
 };
 
-export default HomeScreen;
+export default withTheme(HomeScreen);

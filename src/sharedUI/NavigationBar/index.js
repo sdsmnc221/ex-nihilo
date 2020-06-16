@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css, withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
@@ -18,11 +18,20 @@ const Wrapper = styled.View`
 	position: absolute;
 	z-index: 99;
 	bottom: 0;
-	background-color: ${({ transparentBG, theme }) =>
-		transparentBG ? 'transparent' : theme.colors.white};
+	background-color: ${({ transparentBG, blackBG, theme }) =>
+		transparentBG
+			? 'transparent'
+			: blackBG
+			? theme.colors.black
+			: theme.colors.white};
 `;
 
-const NavigationBar = ({ transparentButtons, transparentBG, theme }) => {
+const NavigationBar = ({
+	transparentButtons,
+	transparentBG,
+	blackBG,
+	theme,
+}) => {
 	const { whiskey, white } = theme.colors;
 
 	const dispatch = useDispatch();
@@ -33,7 +42,7 @@ const NavigationBar = ({ transparentButtons, transparentBG, theme }) => {
 	const onPressGlitch = () => activateSmallGlitch(dispatch);
 
 	return (
-		<Wrapper transparentBG={transparentBG}>
+		<Wrapper transparentBG={transparentBG} blackBG={blackBG}>
 			<IconButton
 				type="NAVIGATION_BACK"
 				color={transparentButtons ? white : whiskey}
@@ -56,11 +65,13 @@ const NavigationBar = ({ transparentButtons, transparentBG, theme }) => {
 NavigationBar.propTypes = {
 	transparentButtons: PropTypes.bool,
 	transparentBG: PropTypes.bool,
+	blacktBG: PropTypes.bool,
 };
 
 NavigationBar.defaultProps = {
 	transparentButtons: false,
 	transparentBG: false,
+	blackBG: false,
 };
 
 export default withTheme(NavigationBar);

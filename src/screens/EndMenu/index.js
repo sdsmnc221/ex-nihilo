@@ -35,7 +35,11 @@ const EndMenuScreen = ({ route, navigation }) => {
 
 	return (
 		<LayoutWrapper screenName={route.name}>
-			<Dataviz width={w} height={h} />
+			<Dataviz
+				width={w}
+				height={h}
+				doNotRunScript={route.params?.doNotRunScript}
+			/>
 			<Title>Menu</Title>
 			{MENU.map((button, index) => (
 				<FlatButton

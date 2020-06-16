@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import { View, Text } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
 import FlatButton from 'sharedUI/Button/FlatButton';
+
+import { NUMBERS } from 'configs';
 
 const Wrapper = styled.View`
 	height: ${({ fullBody }) => (fullBody ? '100%' : 'auto')};
@@ -24,21 +26,14 @@ const Input = styled.TextInput`
 	padding: 14px 26px;
 	border-radius: 50px;
 	border: ${({ inputBorder }) => (inputBorder ? 2 : 1)}px solid
-		${({
-			theme,
-			inputBorder,
-			isFocused,
-			passwordValid,
-			passwordSubmitted,
-			value,
-		}) =>
+		${({ theme, inputBorder, isFocused, passwordValid, value }) =>
 			passwordValid
 				? theme.colors.lime
-				: (isFocused && !passwordSubmitted) || !value
-				? inputBorder
-					? theme.colors.white
-					: 'transparent'
-				: theme.colors.cinnabar};
+				: !isFocused && !!value
+				? theme.colors.cinnabar
+				: inputBorder
+				? theme.colors.white
+				: 'transparent'};
 	background-color: ${({ theme }) => theme.colors.ghostWhite};
 	color: ${({ theme }) => theme.colors.dimGray};
 	${({ theme }) => theme.styles.os.input}
@@ -68,27 +63,43 @@ const PasswordLock = ({
 	inputBorder,
 	passwordInput,
 	passwordValid,
-	passwordSubmitted,
 	onInputPassword,
 	onSubmitPassword,
 }) => {
 	const { whiskey, white } = theme.colors;
 
-	const [buttonPressed, setButtonPressed] = useState(false);
+	const inputRef = useRef(null);
+
 	const [inputFocused, setInputFocused] = useState(false);
 
-	const onPress = () => setButtonPressed(!buttonPressed);
+	const onPress = () => {
+		onSubmitPassword();
+		inputRef.current && inputRef.current.blur();
+	};
 
-	useEffect(() => {
-		if (buttonPressed) {
-			setTimeout(() => onSubmitPassword(), 60);
+	useLayoutEffect(() => {
+		let timer;
+
+		const input = inputRef.current;
+
+		if (!passwordValid) {
+			timer = setTimeout(
+				() => input && input.focus(),
+				NUMBERS.RESET_PRESS_DURATION
+			);
 		}
-	}, [buttonPressed, onSubmitPassword]);
+
+		return () => {
+			clearTimeout(timer);
+			input && input.blur();
+		};
+	}, [inputRef, passwordValid]);
 
 	return (
 		<Wrapper color={bodyColor} fullBody={fullBody}>
 			<Title color={titleColor}>Mot de passe</Title>
 			<Input
+				ref={inputRef}
 				inputBorder={inputBorder}
 				secureTextEntry
 				blurOnSubmit
@@ -100,7 +111,6 @@ const PasswordLock = ({
 				style={theme.shadows.default}
 				isFocused={inputFocused}
 				passwordValid={passwordValid}
-				passwordSubmitted={passwordSubmitted}
 			/>
 			{hintEnabled && <Hint color={hintColor}>{hint}</Hint>}
 			{submitButton && (

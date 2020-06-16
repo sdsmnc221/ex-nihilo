@@ -2,23 +2,30 @@ import { device } from 'utils';
 import { HEADER_OPTIONS } from 'sharedUI/Header/configs';
 
 import dataEmailContentTypes from 'data/json/emailContentTypes.json';
+import dataSmsActionTypes from 'data/json/smsActionTypes.json';
 
-const { width: deviceW, height: deviceH } = device();
+const {
+	width: deviceW,
+	height: deviceH,
+	navigationBarHeight,
+	realHeight,
+} = device();
 
 const NUMBERS = {
 	ALBUM_COLS: 3,
 	ALBUM_DEVICE_PHOTOS: 36,
 	DEVICE_SMS: 6,
-	RESET_PRESS_DURATION: 120,
-	RESET_PRESS_DURATION_ALBUM: 12,
+	END_MENU_APPEARS_DELAY: 640,
 	GLITCH_INTERVAL: 120,
 	GLITCH_XS: 2,
 	GLITCH_XL: 20,
-	UNLOCK_EMAIL_DELAY: 2000,
 	JANUS_SMS_DELAY: 120,
-	JANUS_APPEARS_DELAY_SECS: 2000,
 	JANUS_APPEARS_DELAY_MINUTES: 0.5,
-	END_MENU_APPEARS_DELAY: 640,
+	NOTIF_REAPPEAR_DELAY: 7200,
+	RESET_PRESS_DURATION: 120,
+	RESET_PRESS_DURATION_ALBUM: 12,
+	RESET_ACTION_SMS_DURATION: 4000,
+	UNLOCK_EMAIL_DELAY: 2000,
 };
 
 const APP_ICON = {
@@ -40,7 +47,9 @@ const HEADER_H = deviceH * HEADER_OPTIONS.minHeight;
 const HEADER_H_GAP = HEADER_H + HEADER_OPTIONS.extraGap;
 
 const SIZES = {
-	NAV_BAR_H: 50,
+	REAL_H: realHeight,
+	NAV_BAR_H: navigationBarHeight,
+	NAV_BAR_H_: 50,
 	STT_BAR_H: 30,
 	HEADER_H,
 	HEADER_H_GAP,
@@ -64,12 +73,19 @@ const SIZES = {
 		W: deviceW * 0.9,
 		H: 36,
 	},
+	WEBVIEW_FILL_GAP: 64,
 };
 
 const EMAIL_CONTENT_TYPES = {};
 
 dataEmailContentTypes.forEach(
 	(type) => (EMAIL_CONTENT_TYPES[type.toUpperCase()] = type)
+);
+
+const SMS_ACTION_TYPES = {};
+
+dataSmsActionTypes.forEach(
+	(type) => (SMS_ACTION_TYPES[type.toUpperCase()] = type)
 );
 
 const STRINGS = {
@@ -109,7 +125,12 @@ const STRINGS = {
 		DOWN: 'ARROW_DOWN',
 	},
 	EMAIL_CONTENT_TYPES,
+	SMS_ACTION_TYPES,
 	JANUS_VOICE: () => require('../assets/sound/JANUS_VOICE.mp4'),
+	WEBVIEW_GAP_SCRIPT: (scaleRatio = 1) => `
+		document.body.style.paddingBottom = '${SIZES.WEBVIEW_FILL_GAP * scaleRatio}px';
+		true; // note: this is required, or you'll sometimes get silent failures
+	`,
 };
 
 export { APP_ICON, FLEX, NUMBERS, SIZES, STRINGS };

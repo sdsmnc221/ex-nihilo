@@ -6,13 +6,11 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
 import FlexDiv from 'sharedUI/FlexDiv';
-import FillGap from 'sharedUI/FillGap';
 import StarButton from 'sharedUI/Button/StarButton';
 import StyledIcon from 'sharedUI/Icon/StyledIcon';
 
 import { device, rgba, replaceTemplate, truncate } from 'utils';
-import { SCREENS, STRINGS } from 'configs';
-import { FAKE_PHOTO_MAIL_TEMPLATE } from '../../configs';
+import { SCREENS, STRINGS, FAKE_PHOTO_MAIL_TEMPLATE } from 'configs';
 
 const { EMAIL_CONTENT_TYPES } = STRINGS;
 
@@ -195,7 +193,6 @@ const EmailDetailsScreen = ({ route, navigation, theme }) => {
 					})}
 				</Content>
 			</ScrollView>
-			<FillGap />
 		</LayoutWrapper>
 	);
 };

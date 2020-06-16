@@ -5,7 +5,7 @@ import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.brentvatne.react.ReactVideoPackage;
-import com.brentvatne.react.ReactVideoPackage;
+import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import iyegoroff.RNColorMatrixImageFilters.ColorMatrixImageFiltersPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.gointegro.accountmanager.AccountManagerPackage;

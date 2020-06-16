@@ -5,6 +5,10 @@ const navigationBarConfigs = {
 		transparentButtons: true,
 		transparentBG: true,
 	},
+	blackWhite: {
+		transparentButtons: true,
+		blackBG: true,
+	},
 	transparentColor: {
 		transparentButtons: false,
 		transparentBG: true,
@@ -79,12 +83,32 @@ const getLayoutConfigs = (screen) => {
 		case SCREENS.ABOUT_US:
 			configs = {
 				navigationBar: true,
-				navigationBarConfigs: navigationBarConfigs.transparentWhite,
+				navigationBarConfigs: navigationBarConfigs.blackWhite,
 				statusBar: true,
 				statusBarConfigs: statusBarConfigs.dark,
 			};
 			break;
 		default:
+			break;
+	}
+
+	switch (screen) {
+		case SCREENS.ALBUM:
+		case SCREENS.CONTACTS:
+		case SCREENS.EMAIL:
+		case SCREENS.EMAIL_DETAILS:
+		case SCREENS.SMS:
+		case SCREENS.SMS_CONVERSATION:
+		case SCREENS.SMS_JANUS:
+		case SCREENS.FACEBOOK:
+		case SCREENS.FACEBOOK_LOGIN:
+			configs = {
+				...configs,
+				hasFillGap: true,
+			};
+			break;
+		default:
+			configs = { ...configs, hasFillGap: false };
 			break;
 	}
 

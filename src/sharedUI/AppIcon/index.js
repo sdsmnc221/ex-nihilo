@@ -93,7 +93,7 @@ const AppIcon = ({
 
 			tick(() => setButtonPressed(false), NUMBERS.RESET_PRESS_DURATION);
 		}
-	}, [buttonPressed, onPress]);
+	}, [buttonPressed]);
 
 	return (
 		<Wrapper size={size} withSpacing={withSpacing} css={additionalStyle}>

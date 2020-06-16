@@ -64,7 +64,6 @@ const SmsConversationScreen = ({ route, theme }) => {
 				ListFooterComponent={<FillGap height={18} />}
 			/>
 			<SmsInput />
-			<FillGap />
 		</LayoutWrapper>
 	);
 };

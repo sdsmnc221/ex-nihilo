@@ -10,7 +10,10 @@ import JanusAnswerBlock from './components/JanusAnswerBlock';
 
 import DialogueMessage from 'data/classes/DialogueMessage';
 
-import { updateJanusLastMessage } from 'states/actions/mergedDataActions';
+import {
+	updateJanusLastMessage,
+	resetSmsNotifs,
+} from 'states/actions/mergedDataActions';
 import {
 	activateSmallGlitch,
 	activateBigGlitch,
@@ -63,6 +66,10 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 	};
 
 	useEffect(() => {
+		resetSmsNotifs(dispatch);
+	}, []);
+
+	useEffect(() => {
 		const update = async () => {
 			const activeScript = findActiveScript();
 
@@ -76,7 +83,7 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 				activeScript.changeText(replaceWithUsername(activeScript.text, username));
 			}
 
-			const { text, type, choices } = activeScript;
+			const { text, type, smsActionType, choices } = activeScript;
 
 			isBugging(activeScript) && activateSmallGlitch(dispatch);
 
@@ -87,6 +94,7 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 					dispatch,
 					new DialogueMessage({
 						text,
+						smsActionType,
 					})
 				) &&
 				// Also update Janus last message back in the SMS List screen
@@ -113,8 +121,6 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 						updateCurrentScriptID(dispatch, activeScript.nextID);
 				}
 			} else {
-				// await sleep(NUMBERS.JANUS_APPEARS_DELAY_SECS);
-
 				activateBigGlitch(dispatch);
 
 				await sleep(NUMBERS.GLITCH_XL * NUMBERS.GLITCH_INTERVAL);
@@ -145,7 +151,8 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 						withAvatar={!sms.isUser}
 						isUser={sms.isUser}
 						data={sms.text}
-						withSpacing
+						smsActionType={sms.smsActionType}
+						withSpacing={!sms.isUser}
 					/>
 				)}
 				ListFooterComponent={<FillGap height={36} />}
@@ -156,8 +163,6 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 				onPressChoice={onPressChoice}
 				onPressSend={onPressSend}
 			/>
-
-			<FillGap />
 		</LayoutWrapper>
 	);
 };

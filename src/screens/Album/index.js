@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FlatList } from 'react-native-gesture-handler';
 
 import LayoutWrapper from 'sharedUI/LayoutWrapper';
-import FillGap from 'sharedUI/FillGap';
 import PasswordLock from 'sharedUI/PasswordLock';
 import PhotoThumbnail from './components/PhotoThumbnail';
 
@@ -34,14 +33,10 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 	const [isLocked, setIsLocked] = useState(!UNLOCK_ALBUM);
 	const [passwordInput, setPasswordInput] = useState('');
 	const [passwordValid, setPasswordValid] = useState(false);
-	const [passwordSubmitted, setPasswordSubmitted] = useState(false);
 
 	const onSubmitPassword = () => {
-		setPasswordSubmitted(true);
-
 		if (passwordInput !== PASSWORD) {
 			setPasswordValid(false);
-			setPasswordSubmitted(false);
 		} else {
 			setPasswordValid(true);
 			tick(() => setIsLocked(false), NUMBERS.RESET_PRESS_DURATION_ALBUM);
@@ -60,7 +55,6 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 					inputBorder
 					passwordInput={passwordInput}
 					passwordValid={passwordValid}
-					passwordSubmitted={passwordSubmitted}
 					onInputPassword={(text) => setPasswordInput(text)}
 					onSubmitPassword={onSubmitPassword}
 				/>
@@ -90,7 +84,6 @@ const AlbumScreen = ({ route, navigation, theme }) => {
 					/>
 				)}
 			/>
-			<FillGap />
 			{renderPasswordLock()}
 		</LayoutWrapper>
 	);

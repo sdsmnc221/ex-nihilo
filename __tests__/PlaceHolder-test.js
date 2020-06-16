@@ -1,5 +1,5 @@
 /**
- * @format
+ * ASIMPLE TEST: component PlaceHolder rendered correctly.
  */
 
 import 'react-native';
@@ -10,7 +10,6 @@ import PlaceHolder from '../src/sharedUI/PlaceHolder';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-// A SIMPLE TEST: component PlaceHolder rendered correctly.
 it('renders PlaceHolder correctly', () => {
 	const tree = renderer.create(<PlaceHolder />).toJSON();
 	expect(tree).toMatchSnapshot();

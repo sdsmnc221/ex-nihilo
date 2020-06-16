@@ -77,10 +77,11 @@ const PasswordLock = ({
 		inputRef.current && inputRef.current.blur();
 		onSubmitPassword();
 
-		tick(
-			() => inputRef.current && inputRef.current.focus(),
-			NUMBERS.RESET_PRESS_DURATION
-		);
+		!passwordValid &&
+			tick(
+				() => inputRef.current && inputRef.current.focus(),
+				NUMBERS.RESET_PRESS_DURATION
+			);
 	};
 
 	return (

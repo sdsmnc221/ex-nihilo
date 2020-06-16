@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import { View, Text } from 'react-native';
@@ -6,7 +6,6 @@ import { TextInput } from 'react-native-gesture-handler';
 
 import FlatButton from 'sharedUI/Button/FlatButton';
 
-import { tick } from 'utils';
 import { NUMBERS } from 'configs';
 
 const Wrapper = styled.View`
@@ -74,15 +73,27 @@ const PasswordLock = ({
 	const [inputFocused, setInputFocused] = useState(false);
 
 	const onPress = () => {
-		inputRef.current && inputRef.current.blur();
 		onSubmitPassword();
+		inputRef.current && inputRef.current.blur();
+	};
 
-		!passwordValid &&
-			tick(
-				() => inputRef.current && inputRef.current.focus(),
+	useLayoutEffect(() => {
+		let timer;
+
+		const input = inputRef.current;
+
+		if (!passwordValid) {
+			timer = setTimeout(
+				() => input && input.focus(),
 				NUMBERS.RESET_PRESS_DURATION
 			);
-	};
+		}
+
+		return () => {
+			clearTimeout(timer);
+			input && input.blur();
+		};
+	}, [inputRef, passwordValid]);
 
 	return (
 		<Wrapper color={bodyColor} fullBody={fullBody}>

@@ -28,7 +28,8 @@ const ALL_APPS = [
 	{ label: 'Instagram' },
 	{ label: 'Paramètres' },
 	{ label: 'Fichiers' },
-	{ label: 'E-Store', screen: SCREENS.END_MENU },
+	{ label: 'E-Store' },
+	// { label: 'E-Store', screen: SCREENS.END_MENU },
 	// { label: 'JANUS', screen: SCREENS.JANUS },
 ];
 

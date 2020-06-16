@@ -1,4 +1,5 @@
 import { SCREENS } from './screens';
+import { resetSmsNotifs } from 'states/actions/mergedDataActions';
 
 const ALL_APPS = [
 	{ label: 'Contacts', iconType: 'CONTACTS', screen: SCREENS.CONTACTS },
@@ -14,6 +15,7 @@ const ALL_APPS = [
 		iconType: 'SMS',
 		screen: SCREENS.SMS,
 		notifs: 'smsNotifications',
+		onPress: (dispatch) => resetSmsNotifs(dispatch),
 	},
 	{ label: 'Internet', iconType: 'BROWSER', screen: SCREENS.INTERNET },
 	{ label: 'Mes Notes', iconType: 'NOTES' },
@@ -37,6 +39,7 @@ const HOME_APPS = [
 		iconType: 'SMS',
 		screen: SCREENS.SMS,
 		notifs: 'smsNotifications',
+		onPress: (dispatch) => resetSmsNotifs(dispatch),
 	},
 	{ label: 'Apps', iconType: 'APPS', screen: SCREENS.ALL_APPS },
 	{ label: 'Contacts', iconType: 'CONTACTS', screen: SCREENS.CONTACTS },

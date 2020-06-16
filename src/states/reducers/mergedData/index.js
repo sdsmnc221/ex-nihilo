@@ -4,6 +4,7 @@ import {
 	MERGED_DATA_SET_CONTACTS,
 	MERGED_DATA_SET_SMS,
 	MERGED_DATA_RESET_EMAILS_NOTIFICATIONS,
+	MERGED_DATA_RESET_SMS_NOTIFICATIONS,
 	MERGED_DATA_UPDATE_SMS_WITH_JANUS,
 	MERGED_DATA_UPDATE_JANUS_SMS_LAST_MESSAGE,
 } from 'states/actionTypes';
@@ -34,7 +35,11 @@ function mergedData(state = initialStates.mergedData, action) {
 				...state,
 				emailsNotifications: 0,
 			};
-
+		case MERGED_DATA_RESET_SMS_NOTIFICATIONS:
+			return {
+				...state,
+				smsNotifications: 0,
+			};
 		case MERGED_DATA_UPDATE_SMS_WITH_JANUS: {
 			const { JanusSms } = action.payload;
 			const { sms } = state;

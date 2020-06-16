@@ -10,7 +10,10 @@ import JanusAnswerBlock from './components/JanusAnswerBlock';
 
 import DialogueMessage from 'data/classes/DialogueMessage';
 
-import { updateJanusLastMessage } from 'states/actions/mergedDataActions';
+import {
+	updateJanusLastMessage,
+	resetSmsNotifs,
+} from 'states/actions/mergedDataActions';
 import {
 	activateSmallGlitch,
 	activateBigGlitch,
@@ -61,6 +64,10 @@ const JanusConversationScreen = ({ route, navigation, theme }) => {
 
 		updateCurrentScriptID(dispatch, nextID);
 	};
+
+	useEffect(() => {
+		resetSmsNotifs(dispatch);
+	}, []);
 
 	useEffect(() => {
 		const update = async () => {

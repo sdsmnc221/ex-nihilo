@@ -4,12 +4,13 @@
 
 import 'react-native';
 import React from 'react';
-import App from '../src/App';
+
+import PlaceHolder from '../src/sharedUI/PlaceHolder';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-// INITIAL TEST: Able to render app.
+// A SIMPLE TEST: component PlaceHolder rendered correctly.
 it('renders correctly', () => {
-	renderer.create(<App />);
+	renderer.create(<PlaceHolder />);
 });

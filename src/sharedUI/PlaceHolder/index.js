@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components/native';
+import 'jest-styled-components/native';
 import { View, Text } from 'react-native';
-import styled, { css } from 'styled-components';
 
 const Wrapper = styled.View`
   background-color: ${({ color }) => color};

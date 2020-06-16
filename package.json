@@ -63,10 +63,18 @@
     "eslint": "^6.8.0",
     "jest": "^25.1.0",
     "jest-cli": "^26.0.1",
+    "jest-styled-components": "^7.0.2",
     "metro-react-native-babel-preset": "^0.59.0",
     "react-test-renderer": "16.9.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__tests__/assetsTransformer.js",
+      "\\.(css|less)$": "<rootDir>/__tests__/assetsTransformer.js"
+    }
   }
 }

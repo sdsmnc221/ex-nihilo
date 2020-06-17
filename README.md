@@ -21,7 +21,7 @@ _**The answer is out there.**_
 <br>
 
 <p align="center">
-    <a href="https://exnihilo.netlify.app" target="__blank"><img src="./docs/exnihilo_affiche.jpg" alt="Affiiche Ex Nihilo" height="640"/></a>
+    <a href="https://exnihilo.netlify.app" target="__blank"><img src="./docs/exnihilo_affiche.jpg" alt="Affiiche Ex Nihilo" height="720"/></a>
 </p>
 
 <br>
@@ -150,7 +150,7 @@ $ react-native run-android
 ## Authors
 
 <p align="center">
-    <img src="./docs/team-ex-nihilo.gif" alt="Team Ex Nihilo" width="720"/>
+    <img src="./docs/team-ex-nihilo.gif" alt="Team Ex Nihilo"/>
 </p>
 
 - [**Sarah Manzaro**](htts://) @ Gobelins - Designer.

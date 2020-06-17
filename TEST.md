@@ -4,7 +4,7 @@
 
 ## Where are we?
 
-These instructions will get you up to run some simple and basic tests implemented for **Ex Nihilo** with **Jest**. Some may succeed, some may failed (intentionnaly or not, but of course explanations will be given).
+These instructions will get you up to run some simple and basic tests implemented for **Ex Nihilo** with **Jest**. Some may succeed, some may fail (intentionaly or not, but of course explanations will be provided).
 
 We would like to add many more tests but we don't have enough time. Therefore, this doc also includes a list of potential / future test case scenarios.
 
@@ -35,7 +35,6 @@ Testing isn't always about testing frameworks, we also have some linter and type
   ```json
   {
   	"scripts": {
-  		//...
   		"test": "jest"
   	},
   	"jest": {
@@ -57,13 +56,13 @@ Testing isn't always about testing frameworks, we also have some linter and type
   }
   ```
 
-- We use an [assetsTransformer](./src/utils/test/assetsTransformer.js) for non-js file name mapper.
+- We used an [assetsTransformer](./src/utils/test/assetsTransformer.js) for non-js file name mapper.
 
-- Test suites are to be found normally in the global or each local [\_**tests\_**](./__tests__/) folder.
+- Test suites are to be found normally in the global [\_**tests\_**](./__tests__/) folder.
 
 ### Let's Jesting
 
-- Install dependencies (jest and co. will also be installed since the dependencies are already specified in **package.json**):
+- Install dependencies (Jest and co. will also be installed since the dependencies are already specified in **package.json**):
 
   ```
   $ npm i (or yarn)
@@ -83,13 +82,13 @@ Testing isn't always about testing frameworks, we also have some linter and type
 
 #### Failed Test
 
-As we will see in the terminal, every tests will pass except for [App-test.js](__tests__/App-test.js) :mask:. Which is actually normal, if we check [App.js](src/App.js). The app comes with many dependencies and stuffs (store, many providers, many constants that needed to be mocked first or it will stay `undefined`, making the rendering test failed).
+As we saw in the terminal, every tests passed except for [App-test.js](__tests__/App-test.js) :mask:. Which is actually normal, if we check [App.js](src/App.js). The app comes with many dependencies and stuffs (store, many providers, many constants that needed to be mocked first or it will stay `undefined`, making the rendering test failed).
 
 #### Some successful basic tests
 
 - **Component Test: Testing Rendered Output & Snapshot the [PlaceHolder component](src/sharedUI/PlaceHolder/__test.js).**
 
-  - The test file: [PlaceHolder-test.js](__tests__/PlaceHolder-test.js), which is simple and very straightforward snapshot test came out right from the doc :joy:.
+  - The test file: [PlaceHolder-test.js](__tests__/PlaceHolder-test.js), which is a simple and very straightforward snapshot test :joy:.
 
     ```javascript
     it('renders PlaceHolder correctly', () => {
@@ -98,7 +97,7 @@ As we will see in the terminal, every tests will pass except for [App-test.js](_
     });
     ```
 
-  - The test component: [PlaceHolder component](src/sharedUI/PlaceHolder/__test.js), a basic dumb component. We don't use the [real PlaceHolder component](src/sharedUI/PlaceHolder/index.js) though, because for testing purpose we would need to use these two little friends witch will cause build conflicts.
+  - The test component: [PlaceHolder component](src/sharedUI/PlaceHolder/__test.js), a basic dumb component. We don't use the [real PlaceHolder component](src/sharedUI/PlaceHolder/index.js) though, because for testing purposes we would need to use these two little friends from the `styled-components` family which will cause build conflicts.
 
     ```javascript
     import styled, { css } from 'styled-components/native';
@@ -135,13 +134,13 @@ As we will see in the terminal, every tests will pass except for [App-test.js](_
                 ╚═════╝                 │  NO DATA, NO GAME!  │
                    │                    └─────────────────────┘
             Device has data?
-          (Simulator won't)
+          (-Simulator won't-)
                    │           ╔════╗
                    ├───────────║ NO ║──────────────┐
                    │           ╚════╝              │
                 ╔═════╗                            ▼
                 ║ YES ║                  ┌───────────────────┐
-                ╚═════╝                  │     FAILSAIFE:    │
+                ╚═════╝                  │      FAILSAFE:    │
                    │                     │CONTINUE GAME WITH │
                    │                     │      FAKE DATA    │
                    ▼                     └───────────────────┘
@@ -150,7 +149,7 @@ As we will see in the terminal, every tests will pass except for [App-test.js](_
           └────────────────┘                       │
                    │                               │
                    │                               │
-      Data retrieval success?                      │
+       Data retrieval success?                     │
                    │           ╔════╗              │
                    ├───────────║ NO ║──────────────┘
                    │           ╚════╝
@@ -170,6 +169,8 @@ As we will see in the terminal, every tests will pass except for [App-test.js](_
 
 ### PASSWORD LOCK
 
+[This component](./src/sharedUI/PasswordLock/index.js).
+
 ```
    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
    ┃      USER INPUT PASSWORD      ┃
@@ -188,7 +189,7 @@ As we will see in the terminal, every tests will pass except for [App-test.js](_
                    └───────────────┘               │
                                                    │
                                                    │
-                   ┌───────────────────Is Password correct?
+                   ┌───────────────────▶︎ Is Password correct?
                    │                               │
                 ╔═════╗                            ▼
                 ║ YES ║                          ╔════╗
@@ -219,6 +220,8 @@ As we will see in the terminal, every tests will pass except for [App-test.js](_
 <br>
 
 ### GLITCH COMPONENT
+
+[This component](./src/sharedUI/Glitch/index.js).
 
 ```javascript
 - var glitchOn (globalSate) = activator

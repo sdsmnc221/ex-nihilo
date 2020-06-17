@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { last, randomDate } from 'utils';
-import { storyScripts } from 'states/data';
+import storyScripts from 'data/defaultData/storyScripts';
 
 export default class Sms {
 	constructor({ title, notification, content }) {

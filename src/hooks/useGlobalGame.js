@@ -11,12 +11,8 @@ import {
 } from 'states/actions/storyActions';
 
 import { NUMBERS } from 'configs';
-import { tick } from 'utils';
-import {
-	doTriggerNotification,
-	findScript,
-	convertDelayTime,
-} from 'hooks/DialogueManager/utils';
+import { tick, convertDelayTime } from 'utils';
+import { doTriggerNotification, findScript } from 'hooks/DialogueManager/utils';
 import { JANUS_SMS } from './DialogueManager/configs';
 
 const useGlobalGame = () => {

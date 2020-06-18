@@ -8,7 +8,7 @@ _**The answer is out there.**_
 
 [![Made by](https://img.shields.io/badge/Team-EX%20NIHILO%20%40%20Gobelins%20BDDI%202020-lightgrey)](../docs/team-ex-nihilo.gif)
 
-[![App size](https://img.shields.io/badge/APK%20size-~55%20Mb-blue)](https://bit.ly/ex-nihilo-1-2-1-0) [![Platform](https://img.shields.io/badge/Platform-Android%20only!-red)]() [![Maintenance](https://img.shields.io/badge/Maintained%3F-maybe-yellow)](https://github.com/sdsmnc221/ex-nihilo/graphs/commit-activity)
+[![App size](https://img.shields.io/badge/APK%20size-~55%20Mb-blue)](https://bit.ly/ex-nihilo-1-2-1-0) ![Platform](https://img.shields.io/badge/Platform-Android%20only!-red) [![Maintenance](https://img.shields.io/badge/Maintained%3F-maybe-yellow)](https://github.com/sdsmnc221/ex-nihilo/graphs/commit-activity)
 
 <br>
 

@@ -10,7 +10,7 @@ _**The answer is out there.**_
 
 [![Website](https://img.shields.io/badge/Website-up-green)](https://exnihilo.netlify.app) [![GitHub license](https://img.shields.io/badge/License-MIT-green)](./LICENSE) [![GitHub release](https://img.shields.io/badge/Release-v1.2.1.0-green)](./releases/RELEASES.MD)
 
-[![App size](https://img.shields.io/badge/APK%20size-~55Mb-blue)](https://bit.ly/ex-nihilo-1-2-1-0) [![Platform](https://img.shields.io/badge/Platform-Android%20only!-red)]() [![Maintenance](https://img.shields.io/badge/Maintained%3F-maybe-yellow)](https://github.com/sdsmnc221/ex-nihilo/graphs/commit-activity)
+[![App size](https://img.shields.io/badge/APK%20size-~55Mb-blue)](https://bit.ly/ex-nihilo-1-2-1-0) ![Platform](https://img.shields.io/badge/Platform-Android%20only!-red) [![Maintenance](https://img.shields.io/badge/Maintained%3F-maybe-yellow)](https://github.com/sdsmnc221/ex-nihilo/graphs/commit-activity)
 
 [![made-with-react-native](https://img.shields.io/badge/Made%20with-React%20Native-blue)](https://reactnative.dev/) [![made-with-vue](https://img.shields.io/badge/Made%20with-Vue-informational)](https://vuejs.org/) [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-blue)](https://code.visualstudio.com/)
 

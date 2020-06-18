@@ -3,6 +3,7 @@ import {
 	MERGED_DATA_SET_PHOTOS,
 	MERGED_DATA_SET_CONTACTS,
 	MERGED_DATA_SET_SMS,
+	MERGED_DATA_INCREMENT_SMS_NOTIFICATIONS,
 	MERGED_DATA_RESET_EMAILS_NOTIFICATIONS,
 	MERGED_DATA_RESET_SMS_NOTIFICATIONS,
 	MERGED_DATA_UPDATE_SMS_WITH_JANUS,
@@ -34,6 +35,11 @@ function mergedData(state = initialStates.mergedData, action) {
 			return {
 				...state,
 				emailsNotifications: 0,
+			};
+		case MERGED_DATA_INCREMENT_SMS_NOTIFICATIONS:
+			return {
+				...state,
+				smsNotifications: state.smsNotifications + 1,
 			};
 		case MERGED_DATA_RESET_SMS_NOTIFICATIONS:
 			return {

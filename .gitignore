@@ -31,6 +31,10 @@ local.properties
 android/gradle.properties
 android/*.hprof
 
+# Releases
+*.aab
+*.apk
+
 # node.js
 #
 node_modules/

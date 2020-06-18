@@ -189,7 +189,7 @@ As we saw in the terminal, every tests passed except for [App-test.js](__tests__
                    └───────────────┘               │
                                                    │
                                                    │
-                   ┌───────────────────▶︎ Is Password correct?
+                   ┌──────────────────── Is Password correct?
                    │                               │
                 ╔═════╗                            ▼
                 ║ YES ║                          ╔════╗

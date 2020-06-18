@@ -65,7 +65,9 @@ const App = () => {
 			<ThemeProvider>
 				<SafeAreaProvider initialSafeAreaInsets={initialWindowSafeAreaInsets}>
 					<LayoutProvider>
-						<NavigationContainer ref={navContainerRef}>
+						<NavigationContainer
+							ref={navContainerRef}
+							initialRouteName={SCREENS.SPLASH}>
 							<Stack.Navigator>
 								<Stack.Screen
 									name={SCREENS.SPLASH}

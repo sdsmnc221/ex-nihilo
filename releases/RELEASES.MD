@@ -8,7 +8,7 @@ _**The answer is out there.**_
 
 [![Made by](https://img.shields.io/badge/Team-EX%20NIHILO%20%40%20Gobelins%20BDDI%202020-lightgrey)](../docs/team-ex-nihilo.gif)
 
-[![App size](https://img.shields.io/badge/APK%20size-~55%20Mb-blue)](https://www.dropbox.com/s/zp2zxpsa2dy0mrp/ex-nihilo-1.1.5.0.apk?dl=0) [![Platform](https://img.shields.io/badge/Platform-Android%20only!-red)]() [![Maintenance](https://img.shields.io/badge/Maintained%3F-maybe-yellow)](https://github.com/sdsmnc221/ex-nihilo/graphs/commit-activity)
+[![App size](https://img.shields.io/badge/APK%20size-~55%20Mb-blue)](https://bit.ly/ex-nihilo-1-2-1-0) ![Platform](https://img.shields.io/badge/Platform-Android%20only!-red) [![Maintenance](https://img.shields.io/badge/Maintained%3F-maybe-yellow)](https://github.com/sdsmnc221/ex-nihilo/graphs/commit-activity)
 
 <br>
 
@@ -39,11 +39,14 @@ _**The answer is out there.**_
 
 ## RELEASES
 
-| Version |                                Download Link                                |             Notes              |
-| :-----: | :-------------------------------------------------------------------------: | :----------------------------: |
-|  1.0.0  |     [APK](https://www.dropbox.com/s/q0i4wyfems1odu4/ex-nihilo.apk?dl=0)     | Maybe this is v1.0.0 :flushed: |
-|  1.1.0  | [APK](https://www.dropbox.com/s/1cg9jbcs63n8yl6/ex-nihilo-1.1.0.0.apk?dl=0) |       Dataviz enhanced.        |
-|  1.1.5  | [APK](https://www.dropbox.com/s/zp2zxpsa2dy0mrp/ex-nihilo-1.1.5.0.apk?dl=0) |   FullScreen support added.    |
+| Version |                                Download Link                                |                     Notes                      |
+| :-----: | :-------------------------------------------------------------------------: | :--------------------------------------------: |
+|  1.0.0  |     [APK](https://www.dropbox.com/s/q0i4wyfems1odu4/ex-nihilo.apk?dl=0)     |         Maybe this is v1.0.0 :flushed:         |
+|  1.1.0  | [APK](https://www.dropbox.com/s/1cg9jbcs63n8yl6/ex-nihilo-1.1.0.0.apk?dl=0) |               Dataviz enhanced.                |
+|  1.1.5  | [APK](https://www.dropbox.com/s/zp2zxpsa2dy0mrp/ex-nihilo-1.1.5.0.apk?dl=0) |           FullScreen support added.            |
+|  1.2.1  | [APK](https://www.dropbox.com/s/r9imo7wsdf6umdk/ex-nihilo-1.2.1.0.apk?dl=0) | Minor updates on In-game Notification feature. |
+
+<br>
 
 ## Authors
 

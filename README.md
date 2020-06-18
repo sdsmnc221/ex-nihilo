@@ -8,9 +8,9 @@ _**The answer is out there.**_
 
 [![Made by](https://img.shields.io/badge/Team-EX%20NIHILO%20%40%20Gobelins%20BDDI%202020-lightgrey)](./docs/team-ex-nihilo.gif)
 
-[![Website](https://img.shields.io/badge/Website-up-green)](https://exnihilo.netlify.app) [![GitHub license](https://img.shields.io/badge/License-MIT-green)](./LICENSE) [![GitHub release](https://img.shields.io/badge/Release-v1.1.5.0-green)](./releases/RELEASES.MD)
+[![Website](https://img.shields.io/badge/Website-up-green)](https://exnihilo.netlify.app) [![GitHub license](https://img.shields.io/badge/License-MIT-green)](./LICENSE) [![GitHub release](https://img.shields.io/badge/Release-v1.2.1.0-green)](./releases/RELEASES.MD)
 
-[![App size](https://img.shields.io/badge/APK%20size-~55%20Mb-blue)](https://www.dropbox.com/s/zp2zxpsa2dy0mrp/ex-nihilo-1.1.5.0.apk?dl=0) [![Platform](https://img.shields.io/badge/Platform-Android%20only!-red)]() [![Maintenance](https://img.shields.io/badge/Maintained%3F-maybe-yellow)](https://github.com/sdsmnc221/ex-nihilo/graphs/commit-activity)
+[![App size](https://img.shields.io/badge/APK%20size-~55Mb-blue)](https://bit.ly/ex-nihilo-1-2-1-0) ![Platform](https://img.shields.io/badge/Platform-Android%20only!-red) [![Maintenance](https://img.shields.io/badge/Maintained%3F-maybe-yellow)](https://github.com/sdsmnc221/ex-nihilo/graphs/commit-activity)
 
 [![made-with-react-native](https://img.shields.io/badge/Made%20with-React%20Native-blue)](https://reactnative.dev/) [![made-with-vue](https://img.shields.io/badge/Made%20with-Vue-informational)](https://vuejs.org/) [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-blue)](https://code.visualstudio.com/)
 
@@ -21,7 +21,7 @@ _**The answer is out there.**_
 <br>
 
 <p align="center">
-    <a href="https://exnihilo.netlify.app" target="__blank"><img src="./docs/exnihilo_affiche.jpg" alt="Affiiche Ex Nihilo" height="720"/></a>
+    <a href="https://exnihilo.netlify.app" target="__blank"><img src="./docs/exnihilo_affiche.jpg" alt="Affiche Ex Nihilo" height="720"/></a>
 </p>
 
 <br>
@@ -120,6 +120,7 @@ $ react-native run-android
 
 - For **Testings**, check [TEST.md](./TEST.md).
 - For **App Structure**, check [APP_STRUCTURE.md](./APP_STRUCTURE.md).
+- For **Releases Archive**, check [RELEASES.md](./releases/RELEASES.md).
 - For more details about our project, check [Conception Doc](./docs/ex-nihilo-doc-conception.pdf).
 
 <br>

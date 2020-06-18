@@ -1,13 +1,5 @@
 module.exports = {
-	presets: [
-		[
-			'@babel/preset-env',
-			{
-				modules: 'commonjs',
-			},
-		],
-		'module:metro-react-native-babel-preset',
-	],
+	presets: ['module:metro-react-native-babel-preset'],
 	plugins: [
 		'@babel/plugin-transform-modules-commonjs',
 		'babel-plugin-styled-components',

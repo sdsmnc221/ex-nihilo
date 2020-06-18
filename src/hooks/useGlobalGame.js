@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Data from 'data';
 
-import { updateSmsWithJanus } from 'states/actions/mergedDataActions';
+import {
+	updateSmsWithJanus,
+	incrementSmsNotifs,
+} from 'states/actions/mergedDataActions';
 import {
 	showNotification,
 	updateNotificationMessage,
@@ -28,6 +31,7 @@ const useGlobalGame = () => {
 			const actions = () => {
 				updateSmsWithJanus(dispatch, JanusSms);
 				showNotification(dispatch);
+				incrementSmsNotifs(dispatch);
 			};
 
 			tick(() => actions(), convertDelayTime(NUMBERS.JANUS_APPEARS_DELAY_MINUTES));
@@ -46,7 +50,8 @@ const useGlobalGame = () => {
 		// Trigger Notification
 		doTriggerNotification(activeScript) &&
 			updateNotificationMessage(dispatch, activeScript.text) &&
-			showNotification(dispatch);
+			showNotification(dispatch) &&
+			incrementSmsNotifs(dispatch);
 	}, [currentScriptID]);
 
 	useEffect(() => {

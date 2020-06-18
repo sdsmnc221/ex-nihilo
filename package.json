@@ -23,7 +23,6 @@
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react": "16.9.0",
-    "react-create-hoc": "^1.0.1",
     "react-devtools": "^4.6.0",
     "react-native": "^0.62.2",
     "react-native-account-manager": "^1.0.9",

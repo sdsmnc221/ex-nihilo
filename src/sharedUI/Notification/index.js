@@ -19,6 +19,7 @@ import {
 	repeatNotification,
 	updateDialogueLog,
 } from 'states/actions/storyActions';
+import { incrementSmsNotifs } from 'states/actions/mergedDataActions';
 
 const WIDTH = device().width * 0.84;
 
@@ -97,6 +98,7 @@ const Notification = ({ reappearDelay, navigationRef, theme }) => {
 		}
 		setIsVisible(false);
 		repeatNotification(dispatch);
+		tick(() => incrementSmsNotifs(dispatch), reappearDelay);
 	};
 
 	const onPress = () => {

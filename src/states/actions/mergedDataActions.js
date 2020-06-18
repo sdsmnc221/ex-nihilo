@@ -2,6 +2,7 @@ import {
 	MERGED_DATA_SET_CONTACTS,
 	MERGED_DATA_SET_PHOTOS,
 	MERGED_DATA_SET_SMS,
+	MERGED_DATA_INCREMENT_SMS_NOTIFICATIONS,
 	MERGED_DATA_RESET_EMAILS_NOTIFICATIONS,
 	MERGED_DATA_RESET_SMS_NOTIFICATIONS,
 	MERGED_DATA_UPDATE_SMS_WITH_JANUS,
@@ -22,6 +23,10 @@ export const setAppSms = (dispatch, sms) => {
 
 export const resetEmailsNotifs = (dispatch) => {
 	dispatch({ type: MERGED_DATA_RESET_EMAILS_NOTIFICATIONS });
+};
+
+export const incrementSmsNotifs = (dispatch) => {
+	dispatch({ type: MERGED_DATA_INCREMENT_SMS_NOTIFICATIONS });
 };
 
 export const resetSmsNotifs = (dispatch) => {
